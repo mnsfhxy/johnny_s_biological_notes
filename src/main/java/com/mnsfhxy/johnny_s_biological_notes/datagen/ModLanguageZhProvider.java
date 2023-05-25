@@ -2,6 +2,7 @@ package com.mnsfhxy.johnny_s_biological_notes.datagen;
 
 import com.mnsfhxy.johnny_s_biological_notes.JohnnySBiologicalNotes;
 import com.mnsfhxy.johnny_s_biological_notes.init.ModInit;
+import com.mnsfhxy.johnny_s_biological_notes.init.PotionsInit;
 import com.mnsfhxy.johnny_s_biological_notes.init.RegistrationInit;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.LanguageProvider;
@@ -26,7 +27,7 @@ public class ModLanguageZhProvider extends LanguageProvider {
         add(RegistrationInit.CRAB.get()+".SPOTTED","斑纹螃蟹");
         add(RegistrationInit.CRAB.get()+".CYAN","青色螃蟹");
         add(RegistrationInit.CRAB.get()+".BLACK","黑色螃蟹");
-        add(RegistrationInit.FEAR_WATER.get(),"恐水");
+        add(PotionsInit.FEAR_WATER.get(),"恐水");
         add("item.minecraft.lingering_potion.effect.fear_water_potion","滞留型恐水药水");
         add("item.minecraft.splash_potion.effect.fear_water_potion","喷溅型恐水药水");
         add("item.minecraft.potion.effect.fear_water_potion","恐水药水");

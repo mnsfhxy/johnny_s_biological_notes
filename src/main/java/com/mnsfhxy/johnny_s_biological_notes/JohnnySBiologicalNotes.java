@@ -21,7 +21,7 @@ public class JohnnySBiologicalNotes {
         ForgeInit.init();
         RegistrationInit.init();//包括物品 方块 效果 实体
         SoundInit.init();
-        PotionsInit.init();
+        PotionsInit.init();//效果 药水
         modBusEvent.addListener(this::setup);
     }
     private void setup(final FMLCommonSetupEvent event) {

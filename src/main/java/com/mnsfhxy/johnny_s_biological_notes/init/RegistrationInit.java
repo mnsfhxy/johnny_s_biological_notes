@@ -40,8 +40,6 @@ public class RegistrationInit {
             new Item.Properties().tab(ModInit.ITEM_GROUP);
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, JohnnySBiologicalNotes.MODID);
-    public static final DeferredRegister<MobEffect> MOBEFFECTS =
-            DeferredRegister.create(ForgeRegistries.MOB_EFFECTS, JohnnySBiologicalNotes.MODID);
 
     public static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES =
             DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, JohnnySBiologicalNotes.MODID);
@@ -58,7 +56,6 @@ public class RegistrationInit {
         //        STRUCTURES.register(bus);
         //        BIOME_MODIFIERS.register(bus);
         //        PLACED_FEATURES.register(bus);
-        MOBEFFECTS.register(bus);
         PARTICLE_TYPES.register(bus);
     }
 
@@ -89,10 +86,6 @@ public class RegistrationInit {
     //tages
 //    public static final TagKey<EntityType<?>> HYDROBIOS = TagKey.create(Registry.ENTITY_TYPE_REGISTRY, new ResourceLocation(JohnnySBiologicalNotes.MODID, "hydrobios"));
 
-    //effect注册
-    public static RegistryObject<MobEffect> FEAR_WATER =
-            MOBEFFECTS.register(
-                    "fear_water_effect", () -> new EffectFearWater(MobEffectCategory.HARMFUL, 65793));
 
     //投掷器
     public static void initDispenser(){

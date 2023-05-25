@@ -22,12 +22,14 @@ public class EffectFearWater extends MobEffect {
     @Override
     public void applyEffectTick(LivingEntity pLivingEntity, int pAmplifier) {
     if(canFearWaterEffect.test(pLivingEntity)){
-        pLivingEntity.setSwimming(false);
-        if(pLivingEntity.getDeltaMovement().x > 0|| pLivingEntity.getDeltaMovement().z> 0){
-            pLivingEntity.setDeltaMovement( pLivingEntity.getDeltaMovement().multiply(0, 1, 0));
+        if(pLivingEntity.isInWaterOrBubble()&&(pLivingEntity.getDeltaMovement().x > 0|| pLivingEntity.getDeltaMovement().z> 0)){
+            pLivingEntity.setDeltaMovement( pLivingEntity.getDeltaMovement().multiply(0.5, 1, 0.5));
         }
     }
         super.applyEffectTick(pLivingEntity, pAmplifier);
+    }
+    public boolean isDurationEffectTick(int duration, int amplifier) {
+        return duration > 0;
     }
 
     @Override
