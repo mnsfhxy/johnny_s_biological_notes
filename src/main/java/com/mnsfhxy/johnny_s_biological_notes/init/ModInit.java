@@ -44,12 +44,12 @@ public class ModInit {
 
 
 
-//        @SubscribeEvent
-//        public static void onSpawnPlacementRegisterEvent(SpawnPlacementRegisterEvent event) {
-//                event.register(RegistrationInit.CRAB.get(),
-//                        SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-//                        EntityCrab::checkCrabSpawnRules, SpawnPlacementRegisterEvent.Operation.OR);
-//        }
+        @SubscribeEvent
+        public static void onSpawnPlacementRegisterEvent(SpawnPlacementRegisterEvent event) {
+                event.register(RegistrationInit.CRAB.get(),
+                        SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                        EntityCrab::checkCrabSpawnRules, SpawnPlacementRegisterEvent.Operation.OR);
+        }
 
 
 }
