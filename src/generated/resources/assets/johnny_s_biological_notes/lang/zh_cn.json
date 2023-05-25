@@ -1,0 +1,18 @@
+{
+  "entity.johnny_s_biological_notes.crab": "螃蟹",
+  "entity.johnny_s_biological_notes.crab.BLACK": "黑色螃蟹",
+  "entity.johnny_s_biological_notes.crab.BROWN": "褐色螃蟹",
+  "entity.johnny_s_biological_notes.crab.CYAN": "青色螃蟹",
+  "entity.johnny_s_biological_notes.crab.RED": "红色螃蟹",
+  "entity.johnny_s_biological_notes.crab.SPOTTED": "斑纹螃蟹",
+  "item.johnny_s_biological_notes.cooked_crab_meat": "熟蟹",
+  "item.johnny_s_biological_notes.crab": "螃蟹蛋",
+  "item.johnny_s_biological_notes.crab_bucket": "蟹桶",
+  "item.johnny_s_biological_notes.crab_meat": "生蟹",
+  "item.johnny_s_biological_notes.crab_shell": "甲片",
+  "item.minecraft.lingering_potion.effect.fear_water_potion": "滞留型恐水药水",
+  "item.minecraft.potion.effect.fear_water_potion": "恐水药水",
+  "item.minecraft.splash_potion.effect.fear_water_potion": "喷溅型恐水药水",
+  "itemGroup.JohnnySBiologicalNotes": "Johnny的生物笔记",
+  "johnny_s_biological_notes.potion.fear_water": "恐水"
+}

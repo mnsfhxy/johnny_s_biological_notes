@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "cookingtime": 200,
+  "experience": 0.15,
+  "ingredient": {
+    "item": "johnny_s_biological_notes:crab_meat"
+  },
+  "result": "johnny_s_biological_notes:cooked_crab_meat"
+}

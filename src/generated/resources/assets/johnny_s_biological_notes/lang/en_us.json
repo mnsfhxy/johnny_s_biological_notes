@@ -1,0 +1,17 @@
+{
+  "entity.johnny_s_biological_notes.crab": "Crab",
+  "entity.johnny_s_biological_notes.crab.BLACK": "Black Crab",
+  "entity.johnny_s_biological_notes.crab.BROWN": "Brown Crab",
+  "entity.johnny_s_biological_notes.crab.CYAN": "Cyan Crab",
+  "entity.johnny_s_biological_notes.crab.RED": "Red Crab",
+  "entity.johnny_s_biological_notes.crab.SPOTTED": "Spotted Crab",
+  "item.johnny_s_biological_notes.cooked_crab_meat": "Cooked Crab Meat",
+  "item.johnny_s_biological_notes.crab": "Crab Egg",
+  "item.johnny_s_biological_notes.crab_bucket": "Crab Bucket",
+  "item.johnny_s_biological_notes.crab_meat": "Crab Meat",
+  "item.minecraft.lingering_potion.effect.fear_water_potion": "Lingering Fear Water Potion",
+  "item.minecraft.potion.effect.fear_water_potion": "Fear Water Potion",
+  "item.minecraft.splash_potion.effect.fear_water_potion": "Splash Fear Water Potion",
+  "itemGroup.JohnnySBiologicalNotes": "JohnnySBiologicalNotes",
+  "johnny_s_biological_notes.potion.fear_water": "Fear Water"
+}

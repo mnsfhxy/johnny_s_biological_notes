@@ -1,0 +1,15 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": [
+    "minecraft:mangrove_swamp",
+    "minecraft:beach",
+    "minecraft:ocean",
+    "minecraft:deep_ocean"
+  ],
+  "spawners": {
+    "type": "johnny_s_biological_notes:crab",
+    "weight": 50,
+    "minCount": 2,
+    "maxCount": 5
+  }
+}

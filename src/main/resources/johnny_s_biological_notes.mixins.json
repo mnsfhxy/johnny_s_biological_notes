@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.mnsfhxy.johnny_s_biological_notes.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "johnny_s_biological_notes.refmap.json",
+  "mixins": [
+    "MixinLivingEntity"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
