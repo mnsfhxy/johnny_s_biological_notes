@@ -9,6 +9,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.resources.sounds.EntityBoundSoundInstance;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.BlockParticleOption;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -28,14 +30,12 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.Goal;
-import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
-import net.minecraft.world.entity.ai.goal.PanicGoal;
-import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
+import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.Bucketable;
+import net.minecraft.world.entity.animal.Cat;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -143,7 +143,7 @@ public class EntityCrab extends Animal implements Bucketable {
         if (this.isAlive()) {
             for (LivingEntity livingEntity : this.level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(0.3D), SCARY_MOB)) {
 //                JohnnySBiologicalNotes.LOGGER.info("mob type:" + mob.getType().getDescription().getString());
-                if (livingEntity.isAlive()) {
+                if (livingEntity.isAlive()&&!this.isDug()) {
                     this.touch(livingEntity);
                 }
             }
@@ -157,6 +157,7 @@ public class EntityCrab extends Animal implements Bucketable {
 //    }
 
     private void touch(LivingEntity livingEntity) {
+        this.playSound(SoundInit.CRAB_TALON.get(), this.getSoundVolume(), this.getVoicePitch());
         livingEntity.hurt(DamageSource.mobAttack(this), (float) (1));
     }
 
@@ -215,7 +216,8 @@ public class EntityCrab extends Animal implements Bucketable {
         this.goalSelector.addGoal(1, new PanicGoal(this, 2.0D));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
         this.goalSelector.addGoal(2, new MoltGoal(this));
-        this.goalSelector.addGoal(3, new CrabRandomStrollGoal(this, MOVEMENT_SPEED, 150));
+        this.goalSelector.addGoal(4, new CrabRandomStrollGoal(this, MOVEMENT_SPEED, 150));
+        this.goalSelector.addGoal( 3,new CrabAvoidEntityGoal<Player>(this, Player.class, 5.0F, 0.8D, 1.33D));
 
     }
 
@@ -454,9 +456,10 @@ public class EntityCrab extends Animal implements Bucketable {
     public void startDig() {
         setNoAi(true);
         digTick++;
+        if(this.level.isClientSide)this.level.addParticle(new BlockParticleOption(ParticleTypes.BLOCK,this.preBlockState),this.getX(),this.getY(),this.getZ(),1,1,1);
         if (digTick == 1) {
             preBlockState = getBlockStateOn();
-            this.playSound(SoundInit.CRAB_TALON.get(), this.getSoundVolume(), this.getVoicePitch());
+            this.playSound(SoundInit.CRAB_DIG.get(), this.getSoundVolume(), this.getVoicePitch());
             if (this.level.isClientSide()) {
                 this.diggingAnimationState.start(this.tickCount);
             }
@@ -483,7 +486,7 @@ public class EntityCrab extends Animal implements Bucketable {
     private int digOutTick = 0;
 
     public void startDigOut() {
-
+        if(this.level.isClientSide)this.level.addParticle(new BlockParticleOption(ParticleTypes.BLOCK,this.preBlockState),this.getX(),this.getY(),this.getZ(),1,1,1);
         digOutTick++;
         if (digOutTick == 1) {
             if (this.level.isClientSide()) {
@@ -491,7 +494,7 @@ public class EntityCrab extends Animal implements Bucketable {
                 this.diggingOutAnimationState.start(this.tickCount);
 
             }
-            this.playSound(SoundInit.CRAB_TALON.get(), this.getSoundVolume(), this.getVoicePitch());
+            this.playSound(SoundInit.CRAB_DIG.get(), this.getSoundVolume(), this.getVoicePitch());
         } else if (digOutTick > UtilLevel.TIME.SECOND.getTick() * 2.5) {
             this.setDug(false);
             digOutTick = 0;
@@ -623,4 +626,27 @@ public class EntityCrab extends Animal implements Bucketable {
 //            }
 //        }
 //    }
+static class CrabAvoidEntityGoal<T extends LivingEntity> extends AvoidEntityGoal<T> {
+    private final EntityCrab crab;
+
+    public CrabAvoidEntityGoal(EntityCrab pCrab, Class<T> pEntityClassToAvoid, float pMaxDist, double pWalkSpeedModifier, double pSprintSpeedModifier) {
+        super(pCrab, pEntityClassToAvoid, pMaxDist, pWalkSpeedModifier, pSprintSpeedModifier, EntitySelector.NO_CREATIVE_OR_SPECTATOR::test);
+        this.crab = pCrab;
+    }
+
+    /**
+     * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
+     * method as well.
+     */
+    public boolean canUse() {
+        return  super.canUse();
+    }
+
+    /**
+     * Returns whether an in-progress EntityAIBase should continue executing
+     */
+    public boolean canContinueToUse() {
+        return  super.canContinueToUse();
+    }
+}
 }

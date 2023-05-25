@@ -28,7 +28,9 @@ public class UtilSoundJsonGen {
                 .simpleAdd("crab_drop_shell", 1)
                 .simpleAdd("crab_hurt",2)
                 .simpleAdd("crab_talon",2)
-                .simpleAdd("crab_walking",1);
+                .simpleAdd("crab_walking",1)
+                .simpleAdd("crab_dig",1);
+
         Gson gson = new Gson();
         String json = gson.toJson(soundsJson.soundsJson);
         try  {

@@ -22,6 +22,7 @@ public class SoundInit {
     public static final RegistryObject<SoundEvent> CRAB_TALON = createSoundEvent("crab_talon");
     public static final RegistryObject<SoundEvent> CRAB_DROP_SHELL = createSoundEvent("crab_drop_shell");
     public static final RegistryObject<SoundEvent> CRAB_WALKING = createSoundEvent("crab_walking");
+    public static final RegistryObject<SoundEvent> CRAB_DIG= createSoundEvent("crab_dig");
 
 
 
