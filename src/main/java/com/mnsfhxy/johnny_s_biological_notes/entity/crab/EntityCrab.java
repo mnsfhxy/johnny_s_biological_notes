@@ -144,7 +144,7 @@ public class EntityCrab extends Animal implements Bucketable {
         if (this.isAlive()) {
             for (LivingEntity livingEntity : this.level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(0.3D), SCARY_MOB)) {
 //                JohnnySBiologicalNotes.LOGGER.info("mob type:" + mob.getType().getDescription().getString());
-                if (livingEntity.isAlive()&&!this.isDug()) {
+                if (livingEntity.isAlive() && !this.isDug()) {
                     this.touch(livingEntity);
                 }
             }
@@ -179,14 +179,27 @@ public class EntityCrab extends Animal implements Bucketable {
 
     @Override
     public boolean hurt(DamageSource pSource, float pAmount) {
-        if (isDug()) return false;
-        this.diggingOutAnimationState.stop();
-        this.diggingAnimationState.stop();
-        this.walkingAnimationState.stop();
-        this.restAnimationState.stop();
-//        digTick = UtilLevel.TIME.SECOND.getTick() * 2;
-        setNoAi(false);
-        return super.hurt(pSource, pAmount);
+        if (isDug() && !pSource.getMsgId().equals("outOfWorld")) {
+            return false;
+        } else {
+            this.diggingOutAnimationState.stop();
+            this.diggingAnimationState.stop();
+            this.walkingAnimationState.stop();
+            this.restAnimationState.stop();
+            digTick = 0;
+            digOutTick = 0;
+            setNoAi(false);
+            return super.hurt(pSource, pAmount);
+        }
+    }
+
+    @Override
+    protected void dropCustomDeathLoot(DamageSource pSource, int pLooting, boolean pRecentlyHit) {
+        super.dropCustomDeathLoot(pSource, pLooting, pRecentlyHit);
+        ItemStack itemStack;
+        if(this.isOnFire())itemStack=new ItemStack(RegistrationInit.COOKED_CRAB_MEAT.get(),1);
+        else itemStack=new ItemStack(RegistrationInit.CRAB_MEAT.get(),1);
+        this.spawnAtLocation(itemStack);
     }
 
     @Override
@@ -216,11 +229,11 @@ public class EntityCrab extends Animal implements Bucketable {
     protected void registerGoals() {
 
 //        this.goalSelector.addGoal(0, new MeleeAttackGoal(this, 1.0D, false));
-        this.goalSelector.addGoal(1, new PanicGoal(this, 2.0D));
+        this.goalSelector.addGoal(1, new PanicGoal(this, MOVEMENT_SPEED));
 //        this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
         this.goalSelector.addGoal(2, new MoltGoal(this));
         this.goalSelector.addGoal(4, new CrabRandomStrollGoal(this, MOVEMENT_SPEED, 150));
-        this.goalSelector.addGoal( 3,new CrabAvoidEntityGoal<Player>(this, Player.class, 5.0F, MOVEMENT_SPEED,  MOVEMENT_SPEED*1.5));
+        this.goalSelector.addGoal(3, new CrabAvoidEntityGoal<Player>(this, Player.class, 5.0F, MOVEMENT_SPEED, MOVEMENT_SPEED * 1.5));
 
     }
 
@@ -325,21 +338,20 @@ public class EntityCrab extends Animal implements Bucketable {
 //            if(!canDig())setNoAi(false);
         }
         if (this.isInWater()) {
-            this.playSound(SoundInit.CRAB_BUBBLE.get(), this.getSoundVolume()*0.2F, this.getVoicePitch());
+            this.playSound(SoundInit.CRAB_BUBBLE.get(), this.getSoundVolume() * 0.05F, this.getVoicePitch());
         }
 //        JohnnySBiologicalNotes.LOGGER.info("isDug:" + this.isDug());
-        if (canDig()||digTick>0) {
+        if (canDig() || digTick > 0) {
             setNoAi(true);
             startDig();
         }
-        if (canDigOut()||digOutTick>0) {
+        if (canDigOut() || digOutTick > 0) {
             setNoAi(true);
             startDigOut();
         }
         if (!this.isDug()) {
             if (this.isMoving()) {
 //                    JohnnySBiologicalNotes.LOGGER.info("moving...");
-                    playSound(SoundInit.CRAB_WALKING.get(), this.getSoundVolume()*0.2F, this.getVoicePitch());
 
                 if (this.level.isClientSide()) {
 //                    Minecraft.getInstance().getSoundManager().play(crabWalkingSoundInstance);
@@ -363,6 +375,13 @@ public class EntityCrab extends Animal implements Bucketable {
             }
         }
 
+    }
+
+    @Override
+    public void playStepSound(BlockPos pos, BlockState blockIn) {
+        playSound(SoundInit.CRAB_WALKING.get(), this.getSoundVolume() * 0.5F, this.getVoicePitch());
+
+//        this.playSound(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("ambient.cave")), 0.15f, 1);
     }
 
     public boolean requiresCustomPersistence() {
@@ -459,7 +478,8 @@ public class EntityCrab extends Animal implements Bucketable {
     public void startDig() {
         setNoAi(true);
         digTick++;
-        if(this.level.isClientSide)this.level.addParticle(new BlockParticleOption(ParticleTypes.BLOCK,this.preBlockState),this.getX(),this.getY(),this.getZ(),1,1,1);
+        if (this.level.isClientSide)
+            this.level.addParticle(new BlockParticleOption(ParticleTypes.BLOCK, this.preBlockState), this.getX(), this.getY(), this.getZ(), 1, 1, 1);
         if (digTick == 1) {
             preBlockState = getBlockStateOn();
             this.playSound(SoundInit.CRAB_DIG.get(), this.getSoundVolume(), this.getVoicePitch());
@@ -477,7 +497,7 @@ public class EntityCrab extends Animal implements Bucketable {
 //                return;
 //            }
         //dig完成
-        if (digTick > UtilLevel.TIME.SECOND.getTick() * 2) {
+        if (digTick > 53) {
             this.setDug(true);
             digTick = 0;
             setNoAi(false);
@@ -489,7 +509,8 @@ public class EntityCrab extends Animal implements Bucketable {
     private int digOutTick = 0;
 
     public void startDigOut() {
-        if(this.level.isClientSide)this.level.addParticle(new BlockParticleOption(ParticleTypes.BLOCK,this.preBlockState),this.getX(),this.getY(),this.getZ(),1,1,1);
+        if (this.level.isClientSide)
+            this.level.addParticle(new BlockParticleOption(ParticleTypes.BLOCK, this.preBlockState), this.getX(), this.getY(), this.getZ(), 1, 1, 1);
         digOutTick++;
         if (digOutTick == 1) {
             if (this.level.isClientSide()) {
@@ -498,8 +519,9 @@ public class EntityCrab extends Animal implements Bucketable {
 
             }
             this.playSound(SoundInit.CRAB_DIG.get(), this.getSoundVolume(), this.getVoicePitch());
-        } else if (digOutTick > UtilLevel.TIME.SECOND.getTick() * 2.5) {
+        } else if (digOutTick > 53) {
             this.setDug(false);
+            this.setNoAi(false);
             digOutTick = 0;
             if (this.level.isClientSide()) {
                 this.diggingOutAnimationState.stop();
@@ -612,7 +634,8 @@ public class EntityCrab extends Animal implements Bucketable {
             }
         }
     }
-//    private class CrabWalkingSoundInstance extends EntityBoundSoundInstance {
+
+    //    private class CrabWalkingSoundInstance extends EntityBoundSoundInstance {
 //        EntityCrab entity;
 //        public CrabWalkingSoundInstance(SoundEvent pSoundEvent, SoundSource pSource, float pVolume, float pPitch, EntityCrab pEntity, long pSeed) {
 //            super(pSoundEvent, pSource, pVolume, pPitch, pEntity, pSeed);
@@ -634,34 +657,34 @@ public class EntityCrab extends Animal implements Bucketable {
 //            }
 //        }
 //    }
-static class CrabAvoidEntityGoal<T extends LivingEntity> extends AvoidEntityGoal<T> {
-    private final EntityCrab crab;
+    static class CrabAvoidEntityGoal<T extends LivingEntity> extends AvoidEntityGoal<T> {
+        private final EntityCrab crab;
 
-    public CrabAvoidEntityGoal(EntityCrab pCrab, Class<T> pEntityClassToAvoid, float pMaxDist, double pWalkSpeedModifier, double pSprintSpeedModifier) {
-        super(pCrab, pEntityClassToAvoid, pMaxDist, pWalkSpeedModifier, pSprintSpeedModifier, EntitySelector.NO_CREATIVE_OR_SPECTATOR::test);
-        this.crab = pCrab;
-    }
+        public CrabAvoidEntityGoal(EntityCrab pCrab, Class<T> pEntityClassToAvoid, float pMaxDist, double pWalkSpeedModifier, double pSprintSpeedModifier) {
+            super(pCrab, pEntityClassToAvoid, pMaxDist, pWalkSpeedModifier, pSprintSpeedModifier, EntitySelector.NO_CREATIVE_OR_SPECTATOR::test);
+            this.crab = pCrab;
+        }
 
-    /**
-     * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
-     * method as well.
-     */
-    public boolean canUse() {
-        boolean ret=super.canUse();
-        return  ret;
-    }
+        /**
+         * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
+         * method as well.
+         */
+        public boolean canUse() {
+            boolean ret = super.canUse();
+            return ret;
+        }
 
-    /**
-     * Returns whether an in-progress EntityAIBase should continue executing
-     */
-    public boolean canContinueToUse() {
-        boolean ret=super.canContinueToUse();
-        return  ret;
-    }
+        /**
+         * Returns whether an in-progress EntityAIBase should continue executing
+         */
+        public boolean canContinueToUse() {
+            boolean ret = super.canContinueToUse();
+            return ret;
+        }
 
-    @Override
-    public void tick() {
-        super.tick();
+        @Override
+        public void tick() {
+            super.tick();
+        }
     }
-}
 }

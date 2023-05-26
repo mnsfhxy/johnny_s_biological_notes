@@ -30,8 +30,9 @@ public class ModLanguageProvider  extends LanguageProvider {
         add("item.minecraft.lingering_potion.effect.fear_water_potion","Lingering Fear Water Potion");
         add("item.minecraft.splash_potion.effect.fear_water_potion","Splash Fear Water Potion");
         add("item.minecraft.potion.effect.fear_water_potion","Fear Water Potion");
-
-
+        add("item.minecraft.lingering_potion.effect.long_fear_water_potion","Lingering Fear Water Potion");
+        add("item.minecraft.splash_potion.effect.long_fear_water_potion","Splash Fear Water Potion");
+        add("item.minecraft.potion.effect.long_fear_water_potion","Fear Water Potion");
 
     }
 }

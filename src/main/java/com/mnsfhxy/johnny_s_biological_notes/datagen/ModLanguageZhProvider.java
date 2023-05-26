@@ -31,6 +31,9 @@ public class ModLanguageZhProvider extends LanguageProvider {
         add("item.minecraft.lingering_potion.effect.fear_water_potion","滞留型恐水药水");
         add("item.minecraft.splash_potion.effect.fear_water_potion","喷溅型恐水药水");
         add("item.minecraft.potion.effect.fear_water_potion","恐水药水");
+        add("item.minecraft.lingering_potion.effect.long_fear_water_potion","滞留型恐水药水");
+        add("item.minecraft.splash_potion.effect.long_fear_water_potion","喷溅型恐水药水");
+        add("item.minecraft.potion.effect.long_fear_water_potion","恐水药水");
 
 
     }

@@ -11,7 +11,7 @@ import java.util.function.Predicate;
 
 public class EffectFearWater extends MobEffect {
     public EffectFearWater(MobEffectCategory pCategory, int pColor) {
-        super(pCategory, pColor);
+        super(pCategory, 0x3f2e3f);
     }
     Predicate<LivingEntity> canFearWaterEffect = (p) -> {
         if (p instanceof WaterAnimal && !(p instanceof Dolphin)) {
