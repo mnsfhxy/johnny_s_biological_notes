@@ -55,9 +55,10 @@ import java.util.function.Predicate;
 
 public class EntityCrab extends Animal implements Bucketable {
     private static final float START_HEALTH = 6.0F;
+    private static final float MOVEMENT_SPEED = 0.5F;
     private static final float ATTACK_DAMAGE = 2.0F;
-    private static final float MOVEMENT_SPEED = 0.15F;
-//    private CrabWalkingSoundInstance crabWalkingSoundInstance;
+
+    //    private CrabWalkingSoundInstance crabWalkingSoundInstance;
     //20tick 1秒
     private final int MOLT_TIME = 50;//脱壳时间
     private final int MOLT_INTERVAL = 100;//脱壳间隔
@@ -181,7 +182,9 @@ public class EntityCrab extends Animal implements Bucketable {
         if (isDug()) return false;
         this.diggingOutAnimationState.stop();
         this.diggingAnimationState.stop();
-        digTick = UtilLevel.TIME.SECOND.getTick() * 2;
+        this.walkingAnimationState.stop();
+        this.restAnimationState.stop();
+//        digTick = UtilLevel.TIME.SECOND.getTick() * 2;
         setNoAi(false);
         return super.hurt(pSource, pAmount);
     }
@@ -212,12 +215,12 @@ public class EntityCrab extends Animal implements Bucketable {
 
     protected void registerGoals() {
 
-        this.goalSelector.addGoal(0, new MeleeAttackGoal(this, 1.0D, false));
+//        this.goalSelector.addGoal(0, new MeleeAttackGoal(this, 1.0D, false));
         this.goalSelector.addGoal(1, new PanicGoal(this, 2.0D));
-        this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
+//        this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
         this.goalSelector.addGoal(2, new MoltGoal(this));
         this.goalSelector.addGoal(4, new CrabRandomStrollGoal(this, MOVEMENT_SPEED, 150));
-        this.goalSelector.addGoal( 3,new CrabAvoidEntityGoal<Player>(this, Player.class, 5.0F, 0.8D, 1.33D));
+        this.goalSelector.addGoal( 3,new CrabAvoidEntityGoal<Player>(this, Player.class, 5.0F, MOVEMENT_SPEED,  MOVEMENT_SPEED*1.5));
 
     }
 
@@ -319,10 +322,10 @@ public class EntityCrab extends Animal implements Bucketable {
             this.setDeltaMovement(0, 0, 0);
             setNoAi(true);
         } else {
-
+//            if(!canDig())setNoAi(false);
         }
         if (this.isInWater()) {
-            this.playSound(SoundInit.CRAB_BUBBLE.get(), this.getSoundVolume()*0.4F, this.getVoicePitch());
+            this.playSound(SoundInit.CRAB_BUBBLE.get(), this.getSoundVolume()*0.2F, this.getVoicePitch());
         }
 //        JohnnySBiologicalNotes.LOGGER.info("isDug:" + this.isDug());
         if (canDig()||digTick>0) {
@@ -336,7 +339,7 @@ public class EntityCrab extends Animal implements Bucketable {
         if (!this.isDug()) {
             if (this.isMoving()) {
 //                    JohnnySBiologicalNotes.LOGGER.info("moving...");
-                    playSound(SoundInit.CRAB_WALKING.get(), this.getSoundVolume(), this.getVoicePitch());
+                    playSound(SoundInit.CRAB_WALKING.get(), this.getSoundVolume()*0.2F, this.getVoicePitch());
 
                 if (this.level.isClientSide()) {
 //                    Minecraft.getInstance().getSoundManager().play(crabWalkingSoundInstance);
@@ -525,6 +528,11 @@ public class EntityCrab extends Animal implements Bucketable {
         }
 
         @Override
+        public boolean canContinueToUse() {
+            return super.canContinueToUse();
+        }
+
+        @Override
         public void tick() {
             super.tick();
             JohnnySBiologicalNotes.LOGGER.info("strolling--");
@@ -639,14 +647,21 @@ static class CrabAvoidEntityGoal<T extends LivingEntity> extends AvoidEntityGoal
      * method as well.
      */
     public boolean canUse() {
-        return  super.canUse();
+        boolean ret=super.canUse();
+        return  ret;
     }
 
     /**
      * Returns whether an in-progress EntityAIBase should continue executing
      */
     public boolean canContinueToUse() {
-        return  super.canContinueToUse();
+        boolean ret=super.canContinueToUse();
+        return  ret;
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
     }
 }
 }
