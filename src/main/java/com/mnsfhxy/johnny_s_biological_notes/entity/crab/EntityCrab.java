@@ -60,9 +60,9 @@ public class EntityCrab extends Animal implements Bucketable {
 
     //    private CrabWalkingSoundInstance crabWalkingSoundInstance;
     //20tick 1秒
-    private final int MOLT_TIME = 50;//脱壳时间
-    private final int MOLT_INTERVAL = 100;//脱壳间隔
-    private final int RECOVER_TIME = 100;//总时间
+    private final int MOLT_TIME = UtilLevel.TIME.SECOND.getTick()*30;//脱壳时间
+    private final int MOLT_INTERVAL = UtilLevel.TIME.GAMEDAY.getTick()*5;//脱壳间隔
+    private final int RECOVER_TIME = MOLT_TIME+UtilLevel.TIME.MINUTE.getTick()*2;//总时间(应该大于脱壳时间)
     //总时间=脱壳时间加恢复时间
     private int moltInterval = MOLT_INTERVAL;
     private int moltTime = MOLT_TIME;
