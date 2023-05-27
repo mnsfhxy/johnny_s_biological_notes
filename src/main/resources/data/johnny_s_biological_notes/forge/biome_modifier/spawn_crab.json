@@ -1,10 +1,15 @@
 {
   "type": "forge:add_spawns",
   "biomes": [
-    "minecraft:mangrove_swamp",
-    "minecraft:beach",
-    "minecraft:ocean",
-    "minecraft:deep_ocean"
+    "deep_cold_ocean",
+    "frozen_ocean",
+    "warm_ocean",
+    "ocean",
+    "lukewarm_ocean",
+    "deep_lukewarm_ocean",
+    "cold_ocean",
+    "deep_ocean",
+    "deep_frozen_ocean"
   ],
   "spawners": {
     "type": "johnny_s_biological_notes:crab",

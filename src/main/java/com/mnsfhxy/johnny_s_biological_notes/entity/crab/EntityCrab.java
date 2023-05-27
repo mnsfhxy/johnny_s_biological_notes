@@ -9,12 +9,14 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.resources.sounds.EntityBoundSoundInstance;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
@@ -42,6 +44,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.GravelBlock;
 import net.minecraft.world.level.block.MudBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -60,9 +63,9 @@ public class EntityCrab extends Animal implements Bucketable {
 
     //    private CrabWalkingSoundInstance crabWalkingSoundInstance;
     //20tick 1秒
-    private final int MOLT_TIME = UtilLevel.TIME.SECOND.getTick()*30;//脱壳时间
-    private final int MOLT_INTERVAL = UtilLevel.TIME.GAMEDAY.getTick()*5;//脱壳间隔
-    private final int RECOVER_TIME = MOLT_TIME+UtilLevel.TIME.MINUTE.getTick()*2;//总时间(应该大于脱壳时间)
+    private final int MOLT_TIME = UtilLevel.TIME.SECOND.getTick() * 30;//脱壳时间
+    private final int MOLT_INTERVAL = UtilLevel.TIME.GAMEDAY.getTick() * 5;//脱壳间隔
+    private final int RECOVER_TIME = MOLT_TIME + UtilLevel.TIME.MINUTE.getTick() * 2;//总时间(应该大于脱壳时间)
     //总时间=脱壳时间加恢复时间
     private int moltInterval = MOLT_INTERVAL;
     private int moltTime = MOLT_TIME;
@@ -116,6 +119,30 @@ public class EntityCrab extends Animal implements Bucketable {
         this.recoverTime = recoverTime;
     }
 
+    public void spawnColorInit() {
+        Level world = this.getLevel();
+        Holder<Biome> biome = world.getBiome(new BlockPos(this.getX(), this.getY(), this.getZ()));
+        if (biome.is(new ResourceLocation("beach"))) {
+            this.setBornColor(colors[random.nextInt(2)]);
+        } else if (biome.is(new ResourceLocation("mangrove_swamp"))) {
+            this.setBornColor(colors[random.nextInt(2)]);
+        }
+        else if (biome.is(new ResourceLocation("lukewarm_ocean"))) {
+            this.setBornColor(colors[random.nextInt(2)+1]);
+        }
+        else if (biome.is(new ResourceLocation("deep_lukewarm_ocean"))) {
+            this.setBornColor(colors[random.nextInt(2)+1]);
+        }else if (biome.is(new ResourceLocation("deep_ocean"))) {
+            this.setBornColor(colors[random.nextInt(3)+1]);
+        }else if (biome.is(new ResourceLocation("warm_ocean"))) {
+            this.setBornColor(colors[2]);
+        }else if (biome.is(new ResourceLocation("ocean"))) {
+            this.setBornColor(colors[random.nextInt(3)+1]);
+        }else if (biome.is(new ResourceLocation("cold_ocean"))||biome.is(new ResourceLocation("deep_cold_ocean"))||biome.is(new ResourceLocation("frozen_ocean"))||biome.is(new ResourceLocation("deep_frozen_ocean"))) {
+            this.setBornColor(colors[3]);
+        }
+
+    }
 
     public EntityCrab(EntityType<? extends Animal> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -197,8 +224,8 @@ public class EntityCrab extends Animal implements Bucketable {
     protected void dropCustomDeathLoot(DamageSource pSource, int pLooting, boolean pRecentlyHit) {
         super.dropCustomDeathLoot(pSource, pLooting, pRecentlyHit);
         ItemStack itemStack;
-        if(this.isOnFire())itemStack=new ItemStack(RegistrationInit.COOKED_CRAB_MEAT.get(),1);
-        else itemStack=new ItemStack(RegistrationInit.CRAB_MEAT.get(),1);
+        if (this.isOnFire()) itemStack = new ItemStack(RegistrationInit.COOKED_CRAB_MEAT.get(), 1);
+        else itemStack = new ItemStack(RegistrationInit.CRAB_MEAT.get(), 1);
         this.spawnAtLocation(itemStack);
     }
 
@@ -244,9 +271,7 @@ public class EntityCrab extends Animal implements Bucketable {
             BlockPos pPos,
             RandomSource pRandom) {
 
-        return (pPos.getY() < pLevel.getSeaLevel() + 4
-                || pLevel.getBiome(pPos.below()).is(Tags.Biomes.IS_SWAMP))
-                && isBrightEnoughToSpawn(pLevel, pPos);
+        return isBrightEnoughToSpawn(pLevel, pPos);
     }
 
     public boolean canBreatheUnderwater() {
@@ -297,6 +322,11 @@ public class EntityCrab extends Animal implements Bucketable {
 
     public String getBornColor() {
         return this.entityData.get(BORN_COLOR);
+    }
+
+    public void setBornColor(String color) {
+        this.entityData.set(BORN_COLOR, color);
+        this.entityData.set(COLOR, color);
     }
 
     public void recoverBornColor() {
