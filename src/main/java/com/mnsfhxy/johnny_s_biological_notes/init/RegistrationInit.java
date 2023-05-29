@@ -3,17 +3,13 @@ package com.mnsfhxy.johnny_s_biological_notes.init;
 import com.mnsfhxy.johnny_s_biological_notes.Item.ItemModFishBucket;
 import com.mnsfhxy.johnny_s_biological_notes.JohnnySBiologicalNotes;
 import com.mnsfhxy.johnny_s_biological_notes.entity.crab.EntityCrab;
-import com.mnsfhxy.johnny_s_biological_notes.effect.EffectFearWater;
+import com.mnsfhxy.johnny_s_biological_notes.entity.drifter.EntityDrifter;
+import com.mnsfhxy.johnny_s_biological_notes.entity.peeper.EntityPeeper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockSource;
-import net.minecraft.core.Registry;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.core.particles.ParticleType;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.TagKey;
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.player.Player;
@@ -22,7 +18,6 @@ import net.minecraft.world.item.DispensibleContainerItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.material.Fluids;
@@ -66,17 +61,39 @@ public class RegistrationInit {
                     () ->registerEntity(EntityType.Builder.of(EntityCrab::new, MobCategory.AMBIENT)
                             .sized(0.75F, 0.75F),"crab"));
 
+    public static final RegistryObject<EntityType<EntityDrifter>> DRIFTER =
+            ENTITIES.register(
+                    "drifter",
+                    () ->registerEntity(EntityType.Builder.of(EntityDrifter::new, MobCategory.AMBIENT)
+                            .sized(0.75F, 1.8F),"drifter"));
 
 
+    public static final RegistryObject<EntityType<EntityPeeper>> PEEPER =
+            ENTITIES.register(
+                    "peeper",
+                    () ->registerEntity(EntityType.Builder.of(EntityPeeper::new, MobCategory.MONSTER)
+                            .sized(1F, 1.2F),"peeper"));
 
 
 
 
 
 //Item注册
+    //egg
     public static final RegistryObject<Item> CRAB_EGG =
             ITEMS.register(
                     "crab", () -> new ForgeSpawnEggItem(CRAB, 0xe25243, 0xc1bbb9, ITEM_PROPERTIES));
+    public static final RegistryObject<Item> DRIFTER_EGG =
+            ITEMS.register(
+                    "drifter", () -> new ForgeSpawnEggItem(DRIFTER, 0xe11111, 0xc1bbb9, ITEM_PROPERTIES));
+
+    public static final RegistryObject<Item> PEEPER_EGG =
+            ITEMS.register(
+                    "peeper", () -> new ForgeSpawnEggItem(PEEPER, 0xe12333, 0xc1bbb9, ITEM_PROPERTIES));
+
+
+
+
 
     public static final RegistryObject<Item> CRAB_SHELL=ITEMS.register("crab_shell",()->new Item(new Item.Properties().tab(ModInit.ITEM_GROUP)));
     public static final RegistryObject<Item> CRAB_MEAT=ITEMS.register("crab_meat",()->new Item(new Item.Properties().tab(ModInit.ITEM_GROUP).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.4f).meat().build())));

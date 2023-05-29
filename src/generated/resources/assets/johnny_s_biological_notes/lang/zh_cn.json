@@ -11,8 +11,17 @@
   "item.johnny_s_biological_notes.crab_meat": "生蟹",
   "item.johnny_s_biological_notes.crab_shell": "甲片",
   "item.minecraft.lingering_potion.effect.fear_water_potion": "滞留型恐水药水",
+  "item.minecraft.lingering_potion.effect.long_fear_water_potion": "滞留型恐水药水",
   "item.minecraft.potion.effect.fear_water_potion": "恐水药水",
+  "item.minecraft.potion.effect.long_fear_water_potion": "恐水药水",
   "item.minecraft.splash_potion.effect.fear_water_potion": "喷溅型恐水药水",
+  "item.minecraft.splash_potion.effect.long_fear_water_potion": "喷溅型恐水药水",
   "itemGroup.JohnnySBiologicalNotes": "Johnny的生物笔记",
-  "johnny_s_biological_notes.potion.fear_water": "恐水"
+  "johnny_s_biological_notes.potion.fear_water": "恐水",
+  "johnny_s_biological_notes.sound.subtitle.crab_bubble": "螃蟹吐泡声",
+  "johnny_s_biological_notes.sound.subtitle.crab_dig": "螃蟹挖掘声",
+  "johnny_s_biological_notes.sound.subtitle.crab_drop_shell": "螃蟹脱壳声",
+  "johnny_s_biological_notes.sound.subtitle.crab_hurt": "螃蟹受伤声",
+  "johnny_s_biological_notes.sound.subtitle.crab_talon": "螃蟹钳击声",
+  "johnny_s_biological_notes.sound.subtitle.crab_walking": "螃蟹脚步声"
 }

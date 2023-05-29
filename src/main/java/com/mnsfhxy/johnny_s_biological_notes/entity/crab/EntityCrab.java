@@ -46,8 +46,10 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.GravelBlock;
+import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.MudBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.phys.Vec3;
@@ -126,20 +128,27 @@ public class EntityCrab extends Animal implements Bucketable {
             this.setBornColor(colors[random.nextInt(2)]);
         } else if (biome.is(new ResourceLocation("mangrove_swamp"))) {
             this.setBornColor(colors[random.nextInt(2)]);
-        }
-        else if (biome.is(new ResourceLocation("lukewarm_ocean"))) {
-            this.setBornColor(colors[random.nextInt(2)+1]);
-        }
-        else if (biome.is(new ResourceLocation("deep_lukewarm_ocean"))) {
-            this.setBornColor(colors[random.nextInt(2)+1]);
-        }else if (biome.is(new ResourceLocation("deep_ocean"))) {
-            this.setBornColor(colors[random.nextInt(3)+1]);
-        }else if (biome.is(new ResourceLocation("warm_ocean"))) {
-            this.setBornColor(colors[2]);
-        }else if (biome.is(new ResourceLocation("ocean"))) {
-            this.setBornColor(colors[random.nextInt(3)+1]);
-        }else if (biome.is(new ResourceLocation("cold_ocean"))||biome.is(new ResourceLocation("deep_cold_ocean"))||biome.is(new ResourceLocation("frozen_ocean"))||biome.is(new ResourceLocation("deep_frozen_ocean"))) {
+        } else if (biome.is(new ResourceLocation("lukewarm_ocean"))) {
+            this.setBornColor(colors[random.nextInt(2) + 1]);
+        } else if (biome.is(new ResourceLocation("deep_lukewarm_ocean"))) {
+            this.setBornColor(colors[random.nextInt(2) + 1]);
+        } else if (biome.is(new ResourceLocation("deep_ocean"))) {
+            this.setBornColor(colors[random.nextInt(3) + 1]);
+        } else if (biome.is(new ResourceLocation("warm_ocean"))) {
+            if (random.nextInt(2) == 0) {
+                this.setBornColor(colors[2]);
+            } else {
+                this.setBornColor(colors[0]);
+            }
+
+        } else if (biome.is(new ResourceLocation("ocean"))) {
+            this.setBornColor(colors[random.nextInt(3) + 1]);
+        } else if (biome.is(new ResourceLocation("cold_ocean")) || biome.is(new ResourceLocation("deep_cold_ocean")) || biome.is(new ResourceLocation("frozen_ocean")) || biome.is(new ResourceLocation("deep_frozen_ocean"))) {
             this.setBornColor(colors[3]);
+        }
+
+        while (this.level.getBlockState(this.getOnPos().below()).getBlock() instanceof LiquidBlock) {
+            this.setPos(this.getX(),this.getOnPos().below().getY(),this.getZ());
         }
 
     }
@@ -270,8 +279,8 @@ public class EntityCrab extends Animal implements Bucketable {
             MobSpawnType pSpawnType,
             BlockPos pPos,
             RandomSource pRandom) {
-
         return isBrightEnoughToSpawn(pLevel, pPos);
+//        return (!(pLevel.getBlockState(pPos.below()).getMaterial() == Material.WATER));//&&(!(pLevel.getBlockState(pPos.below()).getMaterial() == net.minecraft.world.level.material.Material.LEAVES)) ;//&& (isBrightEnoughToSpawn(pLevel, pPos));
     }
 
     public boolean canBreatheUnderwater() {
@@ -587,7 +596,7 @@ public class EntityCrab extends Animal implements Bucketable {
         @Override
         public void tick() {
             super.tick();
-            JohnnySBiologicalNotes.LOGGER.info("strolling--");
+//            JohnnySBiologicalNotes.LOGGER.info("strolling--");
         }
     }
 

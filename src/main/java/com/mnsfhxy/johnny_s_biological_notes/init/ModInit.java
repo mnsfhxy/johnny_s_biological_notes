@@ -5,6 +5,8 @@ import com.mnsfhxy.johnny_s_biological_notes.entity.crab.EntityCrab;
 //import com.mnsfhxy.johnny_s_biological_notes.entity.crab.BRendererCrab;
 import com.mnsfhxy.johnny_s_biological_notes.entity.crab.ModelCrab;
 import com.mnsfhxy.johnny_s_biological_notes.entity.crab.RendererCrab;
+import com.mnsfhxy.johnny_s_biological_notes.entity.drifter.EntityDrifter;
+import com.mnsfhxy.johnny_s_biological_notes.entity.peeper.EntityPeeper;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
@@ -42,6 +44,10 @@ public class ModInit {
         @SubscribeEvent
         public static void onAttributeCreate(EntityAttributeCreationEvent event) {
                 event.put(RegistrationInit.CRAB.get(), EntityCrab.prepareAttributes().build());
+                event.put(RegistrationInit.DRIFTER.get(), EntityDrifter.prepareAttributes().build());
+                event.put(RegistrationInit.PEEPER.get(), EntityPeeper.prepareAttributes().build());
+
+
         }
 
 
@@ -50,7 +56,7 @@ public class ModInit {
         public static void onSpawnPlacementRegisterEvent(SpawnPlacementRegisterEvent event) {
                 event.register(RegistrationInit.CRAB.get(),
                         SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                        EntityCrab::checkCrabSpawnRules, SpawnPlacementRegisterEvent.Operation.OR);
+                        EntityCrab::checkCrabSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
         }
         @SubscribeEvent
         public static void onCommonSetupEvent(FMLCommonSetupEvent event) {

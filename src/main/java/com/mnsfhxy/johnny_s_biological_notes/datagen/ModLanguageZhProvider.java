@@ -34,7 +34,12 @@ public class ModLanguageZhProvider extends LanguageProvider {
         add("item.minecraft.lingering_potion.effect.long_fear_water_potion","滞留型恐水药水");
         add("item.minecraft.splash_potion.effect.long_fear_water_potion","喷溅型恐水药水");
         add("item.minecraft.potion.effect.long_fear_water_potion","恐水药水");
-
+        add("johnny_s_biological_notes.sound.subtitle.crab_bubble","螃蟹吐泡声");
+        add("johnny_s_biological_notes.sound.subtitle.crab_drop_shell","螃蟹脱壳声");
+        add("johnny_s_biological_notes.sound.subtitle.crab_hurt","螃蟹受伤声");
+        add("johnny_s_biological_notes.sound.subtitle.crab_talon","螃蟹钳击声");
+        add("johnny_s_biological_notes.sound.subtitle.crab_walking","螃蟹脚步声");
+        add("johnny_s_biological_notes.sound.subtitle.crab_dig","螃蟹挖掘声");
 
     }
 }

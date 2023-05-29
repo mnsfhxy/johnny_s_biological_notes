@@ -3,9 +3,12 @@ package com.mnsfhxy.johnny_s_biological_notes.init;
 import com.mnsfhxy.johnny_s_biological_notes.JohnnySBiologicalNotes;
 import com.mnsfhxy.johnny_s_biological_notes.entity.crab.ModelCrab;
 import com.mnsfhxy.johnny_s_biological_notes.entity.crab.RendererCrab;
+import com.mnsfhxy.johnny_s_biological_notes.entity.drifter.ModelDrifter;
+import com.mnsfhxy.johnny_s_biological_notes.entity.drifter.RendererDrifter;
+import com.mnsfhxy.johnny_s_biological_notes.entity.peeper.ModelPeeper;
+import com.mnsfhxy.johnny_s_biological_notes.entity.peeper.RendererPeeper;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.*;
-import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -15,11 +18,16 @@ public class ClientInit {
     @SubscribeEvent
     public static void onRegisterLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(ModelCrab.LAYER_LOCATION, ModelCrab::createBodyLayer);
+        event.registerLayerDefinition(ModelDrifter.LAYER_LOCATION,ModelDrifter::createBodyLayer);
+        event.registerLayerDefinition(ModelPeeper.LAYER_LOCATION,ModelPeeper::createBodyLayer);
     }
 
     @SubscribeEvent
     public static void onRegisterRenderer(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(RegistrationInit.CRAB.get(), RendererCrab::new);
+        event.registerEntityRenderer(RegistrationInit.DRIFTER.get(), RendererDrifter::new);
+        event.registerEntityRenderer(RegistrationInit.PEEPER.get(), RendererPeeper::new);
+
     }
 
 

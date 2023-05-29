@@ -5,7 +5,10 @@ import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public class RendererCrab extends MobRenderer<EntityCrab, EntityModel<EntityCrab>> {
 
     private static final ResourceLocation RED = new ResourceLocation(JohnnySBiologicalNotes.MODID, "textures/entity/crab/crab_red.png");

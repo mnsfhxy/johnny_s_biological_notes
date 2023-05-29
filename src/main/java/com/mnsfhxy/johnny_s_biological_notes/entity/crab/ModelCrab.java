@@ -9,7 +9,10 @@ import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public class ModelCrab extends HierarchicalModel<EntityCrab> {
     // This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
     public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(JohnnySBiologicalNotes.MODID, "crab"), "root");
@@ -95,11 +98,11 @@ public class ModelCrab extends HierarchicalModel<EntityCrab> {
 
     @Override
     public void setupAnim(EntityCrab entity, float pLimbSwing, float pLimbSwingAmount, float ageInTicks, float pNetHeadYaw, float pHeadPitch) {
-         this.root().getAllParts().forEach(ModelPart::resetPose);
+        this.root().getAllParts().forEach(ModelPart::resetPose);
         this.animate(entity.walkingAnimationState, AnimationCrab.WALKING, ageInTicks);
         this.animate(entity.restAnimationState, AnimationCrab.REST, ageInTicks);
         this.animate(entity.diggingAnimationState, AnimationCrab.DIGGING, ageInTicks);
-        this.animate(entity.diggingOutAnimationState, AnimationCrab.DIGGING_OUT,ageInTicks);
+        this.animate(entity.diggingOutAnimationState, AnimationCrab.DIGGING_OUT, ageInTicks);
 
-          }
+    }
 }

@@ -10,8 +10,17 @@
   "item.johnny_s_biological_notes.crab_bucket": "Crab Bucket",
   "item.johnny_s_biological_notes.crab_meat": "Crab Meat",
   "item.minecraft.lingering_potion.effect.fear_water_potion": "Lingering Fear Water Potion",
+  "item.minecraft.lingering_potion.effect.long_fear_water_potion": "Lingering Fear Water Potion",
   "item.minecraft.potion.effect.fear_water_potion": "Fear Water Potion",
+  "item.minecraft.potion.effect.long_fear_water_potion": "Fear Water Potion",
   "item.minecraft.splash_potion.effect.fear_water_potion": "Splash Fear Water Potion",
+  "item.minecraft.splash_potion.effect.long_fear_water_potion": "Splash Fear Water Potion",
   "itemGroup.JohnnySBiologicalNotes": "JohnnySBiologicalNotes",
-  "johnny_s_biological_notes.potion.fear_water": "Fear Water"
+  "johnny_s_biological_notes.potion.fear_water": "Fear Water",
+  "johnny_s_biological_notes.sound.subtitle.crab_bubble": "Crab Bubble",
+  "johnny_s_biological_notes.sound.subtitle.crab_dig": "Crab Dig",
+  "johnny_s_biological_notes.sound.subtitle.crab_drop_shell": "Crab Drop Shell",
+  "johnny_s_biological_notes.sound.subtitle.crab_hurt": "Crab Hurt",
+  "johnny_s_biological_notes.sound.subtitle.crab_talon": "Crab Talon",
+  "johnny_s_biological_notes.sound.subtitle.crab_walking": "Crab Walking"
 }

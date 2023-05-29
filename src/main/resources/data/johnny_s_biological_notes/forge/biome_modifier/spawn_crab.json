@@ -9,11 +9,13 @@
     "deep_lukewarm_ocean",
     "cold_ocean",
     "deep_ocean",
-    "deep_frozen_ocean"
+    "deep_frozen_ocean",
+    "beach",
+    "mangrove_swamp"
   ],
   "spawners": {
     "type": "johnny_s_biological_notes:crab",
-    "weight": 50,
+    "weight": 100,
     "minCount": 2,
     "maxCount": 5
   }

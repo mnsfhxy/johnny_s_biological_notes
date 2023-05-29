@@ -33,6 +33,13 @@ public class ModLanguageProvider  extends LanguageProvider {
         add("item.minecraft.lingering_potion.effect.long_fear_water_potion","Lingering Fear Water Potion");
         add("item.minecraft.splash_potion.effect.long_fear_water_potion","Splash Fear Water Potion");
         add("item.minecraft.potion.effect.long_fear_water_potion","Fear Water Potion");
+        add("johnny_s_biological_notes.sound.subtitle.crab_bubble","Crab Bubble");
+        add("johnny_s_biological_notes.sound.subtitle.crab_drop_shell","Crab Drop Shell");
+        add("johnny_s_biological_notes.sound.subtitle.crab_hurt","Crab Hurt");
+        add("johnny_s_biological_notes.sound.subtitle.crab_talon","Crab Talon");
+        add("johnny_s_biological_notes.sound.subtitle.crab_walking","Crab Walking");
+        add("johnny_s_biological_notes.sound.subtitle.crab_dig","Crab Dig");
+
 
     }
 }

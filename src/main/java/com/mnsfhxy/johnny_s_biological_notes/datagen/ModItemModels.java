@@ -33,6 +33,8 @@ public class ModItemModels extends ItemModelProvider {
 //                mcLoc("item/generated"),
 //                "layer0", modLoc("item/mysterious_ingot"));
         withExistingParent(RegistrationInit.CRAB_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
+        withExistingParent(RegistrationInit.PEEPER_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
+        withExistingParent(RegistrationInit.DRIFTER_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         singleTexture(RegistrationInit.CRAB_SHELL.getId().getPath(),mcLoc("item/generated"),"layer0",modLoc("item/crab_shell"));
         singleTexture(RegistrationInit.CRAB_MEAT.getId().getPath(),mcLoc("item/generated"),"layer0",modLoc("item/crab_meat"));
         singleTexture(RegistrationInit.COOKED_CRAB_MEAT.getId().getPath(),mcLoc("item/generated"),"layer0",modLoc("item/cooked_crab_meat"));
