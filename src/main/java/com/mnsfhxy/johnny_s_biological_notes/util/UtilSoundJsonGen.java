@@ -18,6 +18,7 @@ public class UtilSoundJsonGen {
     public static void main(String[] args) {
         new UtilSoundJsonGen().gen();
     }
+
     public static String getNamespace() {
         return namespace;
     }
@@ -26,15 +27,18 @@ public class UtilSoundJsonGen {
         SoundsJson soundsJson = new SoundsJson()
                 .simpleAdd("crab_bubble", 1)
                 .simpleAdd("crab_drop_shell", 1)
-                .simpleAdd("crab_hurt",2)
-                .simpleAdd("crab_talon",2)
-                .simpleAdd("crab_walking",1)
-                .simpleAdd("crab_dig",1);
+                .simpleAdd("crab_hurt", 2)
+                .simpleAdd("crab_talon", 2)
+                .simpleAdd("crab_walking", 1)
+                .simpleAdd("crab_dig", 1)
+                .simpleAdd("peeper_hurt", 2)
+                .simpleAdd("peeper_death", 2)
+                .simpleAdd("peeper_sound",4);
 
         Gson gson = new Gson();
         String json = gson.toJson(soundsJson.soundsJson);
-        try  {
-            if(!file.exists())file.createNewFile();
+        try {
+            if (!file.exists()) file.createNewFile();
             FileWriter writer = new FileWriter(file);
             writer.write(json);
             writer.flush();
@@ -50,7 +54,7 @@ public class UtilSoundJsonGen {
             this.soundsJson = new HashMap<>();
         }
 
-        public  SoundsJson add(String soundName, SoundEvent soundEvent) {
+        public SoundsJson add(String soundName, SoundEvent soundEvent) {
             soundsJson.put(soundName, soundEvent);
             return this;
         }

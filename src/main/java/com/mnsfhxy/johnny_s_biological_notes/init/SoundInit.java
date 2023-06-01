@@ -24,7 +24,9 @@ public class SoundInit {
     public static final RegistryObject<SoundEvent> CRAB_WALKING = createSoundEvent("crab_walking");
     public static final RegistryObject<SoundEvent> CRAB_DIG= createSoundEvent("crab_dig");
 
-
+    public static final RegistryObject<SoundEvent> PEEPER_SOUND=createSoundEvent("peeper_sound");
+    public static final RegistryObject<SoundEvent> PEEPER_HURT=createSoundEvent("peeper_hurt");
+    public static final RegistryObject<SoundEvent> PEEPER_DEATH=createSoundEvent("peeper_death");
 
 
     private static RegistryObject<SoundEvent> createSoundEvent(final String soundName) {

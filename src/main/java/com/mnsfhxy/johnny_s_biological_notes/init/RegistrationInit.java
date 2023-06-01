@@ -89,7 +89,7 @@ public class RegistrationInit {
 
     public static final RegistryObject<Item> PEEPER_EGG =
             ITEMS.register(
-                    "peeper", () -> new ForgeSpawnEggItem(PEEPER, 0xe12333, 0xc1bbb9, ITEM_PROPERTIES));
+                    "peeper", () -> new ForgeSpawnEggItem(PEEPER, 0x534620, 0x6c7911, ITEM_PROPERTIES));
 
 
 

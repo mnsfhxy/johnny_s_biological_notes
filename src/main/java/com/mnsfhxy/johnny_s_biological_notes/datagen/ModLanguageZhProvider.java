@@ -40,6 +40,8 @@ public class ModLanguageZhProvider extends LanguageProvider {
         add("johnny_s_biological_notes.sound.subtitle.crab_talon","螃蟹钳击声");
         add("johnny_s_biological_notes.sound.subtitle.crab_walking","螃蟹脚步声");
         add("johnny_s_biological_notes.sound.subtitle.crab_dig","螃蟹挖掘声");
+        add(RegistrationInit.PEEPER.get(),"窥视者");
+        add(RegistrationInit.PEEPER_EGG.get(),"窥视者蛋");
 
     }
 }

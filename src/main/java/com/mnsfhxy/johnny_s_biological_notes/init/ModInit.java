@@ -51,7 +51,6 @@ public class ModInit {
         }
 
 
-
         @SubscribeEvent
         public static void onSpawnPlacementRegisterEvent(SpawnPlacementRegisterEvent event) {
                 event.register(RegistrationInit.CRAB.get(),
@@ -61,6 +60,9 @@ public class ModInit {
         @SubscribeEvent
         public static void onCommonSetupEvent(FMLCommonSetupEvent event) {
                 event.enqueueWork(PotionsInit::initBrewing);
+                event.enqueueWork(() -> {
+                        EntityPeeper.init();
+                });
         }
 
 
