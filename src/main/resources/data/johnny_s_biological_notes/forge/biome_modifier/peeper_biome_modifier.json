@@ -3,7 +3,7 @@
   "biomes": "dark_forest",
   "spawners": {
     "type": "johnny_s_biological_notes:peeper",
-    "weight": 50,
+    "weight": 100,
     "minCount": 1,
     "maxCount": 1
   }

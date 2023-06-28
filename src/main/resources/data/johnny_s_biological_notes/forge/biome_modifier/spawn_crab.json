@@ -15,7 +15,7 @@
   ],
   "spawners": {
     "type": "johnny_s_biological_notes:crab",
-    "weight": 100,
+    "weight": 500,
     "minCount": 2,
     "maxCount": 5
   }

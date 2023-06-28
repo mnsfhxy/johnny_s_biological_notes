@@ -39,6 +39,7 @@ import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.Bucketable;
 import net.minecraft.world.entity.animal.Cat;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -49,6 +50,7 @@ import net.minecraft.world.level.block.GravelBlock;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.MudBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
@@ -271,6 +273,10 @@ public class EntityCrab extends Animal implements Bucketable {
         this.goalSelector.addGoal(4, new CrabRandomStrollGoal(this, MOVEMENT_SPEED, 150));
         this.goalSelector.addGoal(3, new CrabAvoidEntityGoal<Player>(this, Player.class, 5.0F, MOVEMENT_SPEED, MOVEMENT_SPEED * 1.5));
 
+    }
+    public static void init() {
+        SpawnPlacements.register(RegistrationInit.CRAB.get(), SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                (entityType, world, reason, pos, random) -> ( isBrightEnoughToSpawn(world,pos)&& Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));
     }
 
     public static boolean checkCrabSpawnRules(

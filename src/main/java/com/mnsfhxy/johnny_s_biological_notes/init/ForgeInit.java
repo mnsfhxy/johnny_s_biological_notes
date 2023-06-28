@@ -1,6 +1,7 @@
 package com.mnsfhxy.johnny_s_biological_notes.init;
 
 import com.mnsfhxy.johnny_s_biological_notes.JohnnySBiologicalNotes;
+import com.mnsfhxy.johnny_s_biological_notes.config.ConfigBiome;
 import com.mnsfhxy.johnny_s_biological_notes.entity.crab.EntityCrab;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
@@ -14,9 +15,11 @@ import net.minecraftforge.client.event.RenderLevelStageEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.config.ModConfigEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
-@Mod.EventBusSubscriber(modid = JohnnySBiologicalNotes.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.FORGE)
+@Mod.EventBusSubscriber(modid = JohnnySBiologicalNotes.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ForgeInit {
     public static void init() {
 
@@ -29,7 +32,16 @@ public class ForgeInit {
     {
 
     }
-
+    //无法触发?
+    @SubscribeEvent
+    public void onModConfigEvent(final ModConfigEvent event) {
+        final ModConfig config = event.getConfig();
+        // Rebake the configs when they change
+//        if (config.getSpec() == ConfigHolder.COMMON_SPEC) {
+//            AMConfig.bake(config);
+//        }
+//        ConfigBiome.init();
+    }
 
     @SubscribeEvent
     public static void onEntitySpawned(EntityJoinLevelEvent event) {

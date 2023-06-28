@@ -34,14 +34,16 @@ public class ModLanguageZhProvider extends LanguageProvider {
         add("item.minecraft.lingering_potion.effect.long_fear_water_potion","滞留型恐水药水");
         add("item.minecraft.splash_potion.effect.long_fear_water_potion","喷溅型恐水药水");
         add("item.minecraft.potion.effect.long_fear_water_potion","恐水药水");
-        add("johnny_s_biological_notes.sound.subtitle.crab_bubble","螃蟹吐泡声");
-        add("johnny_s_biological_notes.sound.subtitle.crab_drop_shell","螃蟹脱壳声");
-        add("johnny_s_biological_notes.sound.subtitle.crab_hurt","螃蟹受伤声");
-        add("johnny_s_biological_notes.sound.subtitle.crab_talon","螃蟹钳击声");
-        add("johnny_s_biological_notes.sound.subtitle.crab_walking","螃蟹脚步声");
-        add("johnny_s_biological_notes.sound.subtitle.crab_dig","螃蟹挖掘声");
+        add("johnny_s_biological_notes.sound.subtitle.crab_bubble","螃蟹：吐泡");
+        add("johnny_s_biological_notes.sound.subtitle.crab_drop_shell","螃蟹：脱壳");
+        add("johnny_s_biological_notes.sound.subtitle.crab_hurt","螃蟹：受伤");
+        add("johnny_s_biological_notes.sound.subtitle.crab_talon","螃蟹：钳击");
+        add("johnny_s_biological_notes.sound.subtitle.crab_walking","螃蟹：脚步");
+        add("johnny_s_biological_notes.sound.subtitle.crab_dig","螃蟹：挖掘");
         add(RegistrationInit.PEEPER.get(),"窥视者");
         add(RegistrationInit.PEEPER_EGG.get(),"窥视者蛋");
-
+        add("johnny_s_biological_notes.sound.subtitle.peeper_death","窥视者：死亡");
+        add("johnny_s_biological_notes.sound.subtitle.peeper_hurt","窥视者：受伤");
+        add("johnny_s_biological_notes.sound.subtitle.peeper_sound","窥视者：呜呜");
     }
 }

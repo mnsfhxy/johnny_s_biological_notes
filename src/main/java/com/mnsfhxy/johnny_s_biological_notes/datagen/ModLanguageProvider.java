@@ -41,6 +41,11 @@ public class ModLanguageProvider  extends LanguageProvider {
         add("johnny_s_biological_notes.sound.subtitle.crab_dig","Crab Dig");
         add(RegistrationInit.PEEPER.get(),"Peeper");
         add(RegistrationInit.PEEPER_EGG.get(),"Peeper Egg");
+        add("johnny_s_biological_notes.sound.subtitle.peeper_death","Peeper Death");
+        add("johnny_s_biological_notes.sound.subtitle.peeper_hurt","Peeper Hurt");
+        add("johnny_s_biological_notes.sound.subtitle.peeper_sound","Peeper wuwu");
+
+
 
     }
 }

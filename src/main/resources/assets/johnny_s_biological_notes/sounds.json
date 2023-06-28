@@ -1,1 +1,104 @@
-{"crab_dig":{"category":"neutral","sounds":[{"name":"johnny_s_biological_notes:crab_dig_0"}],"subtitle":"johnny_s_biological_notes.sound.subtitle.crab_dig"},"crab_drop_shell":{"category":"neutral","sounds":[{"name":"johnny_s_biological_notes:crab_drop_shell_0"}],"subtitle":"johnny_s_biological_notes.sound.subtitle.crab_drop_shell"},"crab_walking":{"category":"neutral","sounds":[{"name":"johnny_s_biological_notes:crab_walking_0"}],"subtitle":"johnny_s_biological_notes.sound.subtitle.crab_walking"},"crab_bubble":{"category":"neutral","sounds":[{"name":"johnny_s_biological_notes:crab_bubble_0"}],"subtitle":"johnny_s_biological_notes.sound.subtitle.crab_bubble"},"crab_hurt":{"category":"neutral","sounds":[{"name":"johnny_s_biological_notes:crab_hurt_0"},{"name":"johnny_s_biological_notes:crab_hurt_1"}],"subtitle":"johnny_s_biological_notes.sound.subtitle.crab_hurt"},"crab_talon":{"category":"neutral","sounds":[{"name":"johnny_s_biological_notes:crab_talon_0"},{"name":"johnny_s_biological_notes:crab_talon_1"}],"subtitle":"johnny_s_biological_notes.sound.subtitle.crab_talon"}}
+{
+  "crab_dig": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "johnny_s_biological_notes:crab_dig_0"
+      }
+    ],
+    "subtitle": "johnny_s_biological_notes.sound.subtitle.crab_dig"
+  },
+  "peeper_sound": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "johnny_s_biological_notes:peeper_sound_0"
+      },
+      {
+        "name": "johnny_s_biological_notes:peeper_sound_1"
+      },
+      {
+        "name": "johnny_s_biological_notes:peeper_sound_2"
+      },
+      {
+        "name": "johnny_s_biological_notes:peeper_sound_3"
+      }
+    ],
+    "subtitle": "johnny_s_biological_notes.sound.subtitle.peeper_sound"
+  },
+  "crab_drop_shell": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "johnny_s_biological_notes:crab_drop_shell_0"
+      }
+    ],
+    "subtitle": "johnny_s_biological_notes.sound.subtitle.crab_drop_shell"
+  },
+  "peeper_hurt": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "johnny_s_biological_notes:peeper_hurt_0"
+      },
+      {
+        "name": "johnny_s_biological_notes:peeper_hurt_1"
+      }
+    ],
+    "subtitle": "johnny_s_biological_notes.sound.subtitle.peeper_hurt"
+  },
+  "peeper_death": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "johnny_s_biological_notes:peeper_death_0"
+      },
+      {
+        "name": "johnny_s_biological_notes:peeper_death_1"
+      }
+    ],
+    "subtitle": "johnny_s_biological_notes.sound.subtitle.peeper_death"
+  },
+  "crab_walking": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "johnny_s_biological_notes:crab_walking_0"
+      }
+    ],
+    "subtitle": "johnny_s_biological_notes.sound.subtitle.crab_walking"
+  },
+  "crab_bubble": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "johnny_s_biological_notes:crab_bubble_0"
+      }
+    ],
+    "subtitle": "johnny_s_biological_notes.sound.subtitle.crab_bubble"
+  },
+  "crab_hurt": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "johnny_s_biological_notes:crab_hurt_0"
+      },
+      {
+        "name": "johnny_s_biological_notes:crab_hurt_1"
+      }
+    ],
+    "subtitle": "johnny_s_biological_notes.sound.subtitle.crab_hurt"
+  },
+  "crab_talon": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "johnny_s_biological_notes:crab_talon_0"
+      },
+      {
+        "name": "johnny_s_biological_notes:crab_talon_1"
+      }
+    ],
+    "subtitle": "johnny_s_biological_notes.sound.subtitle.crab_talon"
+  }
+}
