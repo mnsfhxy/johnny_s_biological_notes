@@ -1,24 +1,24 @@
 package com.mnsfhxy.johnny_s_biological_notes.init;
 
+import com.mnsfhxy.johnny_s_biological_notes.Item.ItemKatana;
 import com.mnsfhxy.johnny_s_biological_notes.JohnnySBiologicalNotes;
+import com.mnsfhxy.johnny_s_biological_notes.capability.spirit.PlayerSpirit;
+import com.mnsfhxy.johnny_s_biological_notes.capability.spirit.PlayerSpiritProvider;
+import com.mnsfhxy.johnny_s_biological_notes.capability.spirit.SpiritEvents;
 import com.mnsfhxy.johnny_s_biological_notes.entity.crab.EntityCrab;
 //import com.mnsfhxy.johnny_s_biological_notes.entity.crab.BRendererCrab;
-import com.mnsfhxy.johnny_s_biological_notes.entity.crab.ModelCrab;
-import com.mnsfhxy.johnny_s_biological_notes.entity.crab.RendererCrab;
 import com.mnsfhxy.johnny_s_biological_notes.entity.drifter.EntityDrifter;
 import com.mnsfhxy.johnny_s_biological_notes.entity.peeper.EntityPeeper;
-import net.minecraft.world.Difficulty;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.SpawnPlacements;
-import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraftforge.client.event.EntityRenderersEvent;
-import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent;
+import net.minecraftforge.event.entity.player.AttackEntityEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -38,7 +38,13 @@ public class ModInit {
             return JohnnySBiologicalNotes.MODID;
         }
     };
-
+    public static void setup() {
+        IEventBus bus = MinecraftForge.EVENT_BUS;
+        bus.addGenericListener(Entity.class, SpiritEvents::onAttachCapabilitiesPlayer);
+        bus.addListener(SpiritEvents::onPlayerCloned);
+        bus.addListener(SpiritEvents::onRegisterCapabilities);
+//        bus.addListener(ManaEvents::onWorldTick);
+    }
 
     public static void init() {
 //                IEventBus bus = MinecraftForge.EVENT_BUS;

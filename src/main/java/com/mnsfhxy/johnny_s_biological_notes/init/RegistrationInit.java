@@ -1,5 +1,6 @@
 package com.mnsfhxy.johnny_s_biological_notes.init;
 
+import com.mnsfhxy.johnny_s_biological_notes.Item.ItemKatana;
 import com.mnsfhxy.johnny_s_biological_notes.Item.ItemModFishBucket;
 import com.mnsfhxy.johnny_s_biological_notes.JohnnySBiologicalNotes;
 import com.mnsfhxy.johnny_s_biological_notes.entity.crab.EntityCrab;
@@ -10,14 +11,12 @@ import net.minecraft.core.BlockSource;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.core.particles.ParticleType;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.DispensibleContainerItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.material.Fluids;
@@ -91,7 +90,12 @@ public class RegistrationInit {
             ITEMS.register(
                     "peeper", () -> new ForgeSpawnEggItem(PEEPER, 0x534620, 0x6c7911, ITEM_PROPERTIES));
 
-
+    public static final RegistryObject<ItemKatana> WOOD_KATANA=ITEMS.register("wood_katana",()->new ItemKatana(Tiers.WOOD,3,-3f));
+    public static final RegistryObject<ItemKatana> STONE_KATANA=ITEMS.register("stone_katana",()->new ItemKatana(Tiers.STONE,3,-3f));
+    public static final RegistryObject<ItemKatana> IRON_KATANA=ITEMS.register("iron_katana",()->new ItemKatana(Tiers.IRON,3,-3f));
+    public static final RegistryObject<ItemKatana> GOLD_KATANA=ITEMS.register("gold_katana",()->new ItemKatana(Tiers.GOLD,3,-3f));
+    public static final RegistryObject<ItemKatana> DIAMOND_KATANA=ITEMS.register("diamond_katana",()->new ItemKatana(Tiers.DIAMOND,3,-3f));
+    public static final RegistryObject<ItemKatana> NETHERITE_KATANA=ITEMS.register("netherite_katana",()->new ItemKatana(Tiers.NETHERITE,3,-3f));
 
 
 
@@ -103,6 +107,10 @@ public class RegistrationInit {
     //tages
 //    public static final TagKey<EntityType<?>> HYDROBIOS = TagKey.create(Registry.ENTITY_TYPE_REGISTRY, new ResourceLocation(JohnnySBiologicalNotes.MODID, "hydrobios"));
 
+//粒子注册
+
+    public static final RegistryObject<SimpleParticleType> CHOP_PARTICLE =
+            PARTICLE_TYPES.register("chop", () -> new SimpleParticleType(true));
 
     //投掷器
     public static void initDispenser(){

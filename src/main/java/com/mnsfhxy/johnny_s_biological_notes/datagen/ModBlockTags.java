@@ -1,8 +1,10 @@
 package com.mnsfhxy.johnny_s_biological_notes.datagen;
 
 import com.mnsfhxy.johnny_s_biological_notes.JohnnySBiologicalNotes;
+import com.mnsfhxy.johnny_s_biological_notes.init.TagsInit;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 /*
@@ -25,6 +27,8 @@ public class ModBlockTags extends BlockTagsProvider {
 //                .add(Registration.FIRST_BLOCK.get());
 //        tag(BlockTags.NEEDS_IRON_TOOL)
 //                .add(Registration.FIRST_BLOCK.get());
+        tag(TagsInit.Blocks.MINEABLE_WITH_KATANA).add(Blocks.BAMBOO, Blocks.COCOA);
+
     }
 
     @Override

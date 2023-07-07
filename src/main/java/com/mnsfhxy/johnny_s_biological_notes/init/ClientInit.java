@@ -1,14 +1,17 @@
 package com.mnsfhxy.johnny_s_biological_notes.init;
 
 import com.mnsfhxy.johnny_s_biological_notes.JohnnySBiologicalNotes;
+import com.mnsfhxy.johnny_s_biological_notes.capability.spirit.SpiritOverlay;
 import com.mnsfhxy.johnny_s_biological_notes.entity.crab.ModelCrab;
 import com.mnsfhxy.johnny_s_biological_notes.entity.crab.RendererCrab;
 import com.mnsfhxy.johnny_s_biological_notes.entity.drifter.ModelDrifter;
 import com.mnsfhxy.johnny_s_biological_notes.entity.drifter.RendererDrifter;
 import com.mnsfhxy.johnny_s_biological_notes.entity.peeper.ModelPeeper;
 import com.mnsfhxy.johnny_s_biological_notes.entity.peeper.RendererPeeper;
+import com.mnsfhxy.johnny_s_biological_notes.particle.ChopParticle;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.*;
+import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -30,7 +33,6 @@ public class ClientInit {
 
     }
 
-
     @SubscribeEvent
     public static void onTextureStitch(TextureStitchEvent.Pre event) {
 //        if (!event.getAtlas().location().equals(TextureAtlas.LOCATION_BLOCKS)) {
@@ -38,7 +40,11 @@ public class ClientInit {
 //        }
 //        event.addSprite(PowergenRenderer.HALO);
     }
+    @SubscribeEvent
+    public static void onRegisterParticleProviders(RegisterParticleProvidersEvent event) {
+        event.register(RegistrationInit.CHOP_PARTICLE.get(), ChopParticle.Provider::new);
 
+    }
     @SubscribeEvent
     public static void onModelRegistryEvent(ModelEvent.RegisterGeometryLoaders event) {
 //        event.register(GeneratorModelLoader.GENERATOR_LOADER.getPath(), new GeneratorModelLoader());
@@ -51,5 +57,7 @@ public class ClientInit {
     @SubscribeEvent
     public static void onRegisterOverlays(RegisterGuiOverlaysEvent event) {
 //        event.registerAbove(VanillaGuiOverlay.HOTBAR.id(), "mana_overlay", ManaOverlay.HUD_MANA);
+        event.registerAbove(VanillaGuiOverlay.HOTBAR.id(), "spirit_overlay", SpiritOverlay.HUD_SPIRIT);
+
     }
 }

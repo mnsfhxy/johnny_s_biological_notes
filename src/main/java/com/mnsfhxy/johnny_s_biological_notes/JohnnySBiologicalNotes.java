@@ -29,6 +29,7 @@ public class JohnnySBiologicalNotes {
         ConfigInit.init();
         SoundInit.init();
         PotionsInit.init();//效果 药水
+        ModInit.setup();
         modBusEvent.addListener(this::setup);
 //        ConfigBiome.init();
 //        final DeferredRegister<Codec<? extends BiomeModifier>> biomeModifiers = DeferredRegister.create(ForgeRegistries.Keys.BIOME_MODIFIER_SERIALIZERS, JohnnySBiologicalNotes.MODID);

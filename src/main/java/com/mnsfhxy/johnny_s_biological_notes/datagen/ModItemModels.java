@@ -40,5 +40,11 @@ public class ModItemModels extends ItemModelProvider {
         singleTexture(RegistrationInit.COOKED_CRAB_MEAT.getId().getPath(),mcLoc("item/generated"),"layer0",modLoc("item/cooked_crab_meat"));
         singleTexture(RegistrationInit.CRAB_BUCKET.getId().getPath(),mcLoc("item/generated"),"layer0",modLoc("item/crab_bucket"));
 //        singleTexture(PotionsInit.FEAR_WATER_POTION.getId().getPath(), mcLoc("item/generated"),"layer0",modLoc("item/fear_water_glass"));
+        singleTexture(RegistrationInit.WOOD_KATANA.getId().getPath(),mcLoc("item/generated"),"layer0",modLoc("item/wood_katana"));
+        singleTexture(RegistrationInit.GOLD_KATANA.getId().getPath(),mcLoc("item/generated"),"layer0",modLoc("item/gold_katana"));
+        singleTexture(RegistrationInit.DIAMOND_KATANA.getId().getPath(),mcLoc("item/generated"),"layer0",modLoc("item/diamond_katana"));
+        singleTexture(RegistrationInit.IRON_KATANA.getId().getPath(),mcLoc("item/generated"),"layer0",modLoc("item/iron_katana"));
+        singleTexture(RegistrationInit.NETHERITE_KATANA.getId().getPath(),mcLoc("item/generated"),"layer0",modLoc("item/netherite_katana"));
+        singleTexture(RegistrationInit.STONE_KATANA.getId().getPath(),mcLoc("item/generated"),"layer0",modLoc("item/stone_katana"));
     }
 }
