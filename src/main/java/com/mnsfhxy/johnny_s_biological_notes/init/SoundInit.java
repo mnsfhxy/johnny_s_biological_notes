@@ -28,6 +28,13 @@ public class SoundInit {
     public static final RegistryObject<SoundEvent> PEEPER_HURT=createSoundEvent("peeper_hurt");
     public static final RegistryObject<SoundEvent> PEEPER_DEATH=createSoundEvent("peeper_death");
 
+    public static final RegistryObject<SoundEvent> DRIFTERS_ADMIRE =createSoundEvent("drifter_admire");
+    public static final RegistryObject<SoundEvent> DRIFTERS_AMBIENT =createSoundEvent("drifter_ambient");
+    public static final RegistryObject<SoundEvent> DRIFTERS_DEATH =createSoundEvent("drifter_death");
+    public static final RegistryObject<SoundEvent> DRIFTERS_HURT =createSoundEvent("drifter_hurt");
+    public static final RegistryObject<SoundEvent> DRIFTERS_VICTORY =createSoundEvent("drifter_victory");
+
+
 
     private static RegistryObject<SoundEvent> createSoundEvent(final String soundName) {
         return SOUND_EVENTS.register(soundName, () -> new SoundEvent(new ResourceLocation(JohnnySBiologicalNotes.MODID, soundName)));

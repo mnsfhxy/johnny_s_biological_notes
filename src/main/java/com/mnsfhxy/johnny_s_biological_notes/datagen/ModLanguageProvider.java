@@ -45,6 +45,28 @@ public class ModLanguageProvider  extends LanguageProvider {
         add("johnny_s_biological_notes.sound.subtitle.peeper_hurt","Peeper Hurt");
         add("johnny_s_biological_notes.sound.subtitle.peeper_sound","Peeper wuwu");
 
+        add("johnny_s_biological_notes.sound.subtitle.drifter_admire","Drifters Admire");
+        add("johnny_s_biological_notes.sound.subtitle.drifter_ambient","Drifters Ambient");
+        add("johnny_s_biological_notes.sound.subtitle.drifter_death","Drifters Death");
+        add("johnny_s_biological_notes.sound.subtitle.drifter_hurt","Drifters Hurt");
+        add("johnny_s_biological_notes.sound.subtitle.drifter_victory","Drifters Victory");
+        add(RegistrationInit.DRIFTER.get(),"Drifter");
+        add(RegistrationInit.DRIFTER_EGG.get(),"Drifter Egg");
+        add(RegistrationInit.NETHERITE_KATANA.get(),"Netherite Katana");
+        add(RegistrationInit.WOOD_KATANA.get(),"Wood Katana");
+        add(RegistrationInit.DIAMOND_KATANA.get(),"Diamond Katana");
+        add(RegistrationInit.STONE_KATANA.get(),"Stone Katana");
+        add(RegistrationInit.GOLD_KATANA.get(),"Gold Katana");
+        add(RegistrationInit.IRON_KATANA.get(),"Iron Katana");
+        add(RegistrationInit.FORGED_PLATE.get(),"Forged Plate");
+        add(RegistrationInit.NETHERITE_BLADE.get(),"Netherite Blade");
+        add(RegistrationInit.WOOD_BLADE.get(),"Wood Blade");
+        add(RegistrationInit.DIAMOND_BLADE.get(),"Diamond Blade");
+        add(RegistrationInit.STONE_BLADE.get(),"Stone Blade");
+        add(RegistrationInit.GOLD_BLADE.get(),"Gold Blade");
+        add(RegistrationInit.IRON_BLADE.get(),"Iron Blade");
+
+
 
 
     }

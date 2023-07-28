@@ -33,8 +33,12 @@ public class UtilSoundJsonGen {
                 .simpleAdd("crab_dig", 1)
                 .simpleAdd("peeper_hurt", 2)
                 .simpleAdd("peeper_death", 2)
-                .simpleAdd("peeper_sound",4);
-
+                .simpleAdd("peeper_sound",4)
+                .simpleAdd("drifter_admire",1)
+                .simpleAdd("drifter_ambient",5)
+                .simpleAdd("drifter_death",1)
+                .simpleAdd("drifter_hurt",3)
+                .simpleAdd("drifter_victory",1);
         Gson gson = new Gson();
         String json = gson.toJson(soundsJson.soundsJson);
         try {

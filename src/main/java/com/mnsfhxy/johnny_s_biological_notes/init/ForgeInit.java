@@ -7,23 +7,29 @@ import com.mnsfhxy.johnny_s_biological_notes.capability.spirit.PlayerSpiritProvi
 import com.mnsfhxy.johnny_s_biological_notes.capability.spirit.SpiritOverlay;
 import com.mnsfhxy.johnny_s_biological_notes.config.ConfigBiome;
 import com.mnsfhxy.johnny_s_biological_notes.entity.crab.EntityCrab;
+import com.mnsfhxy.johnny_s_biological_notes.entity.drifter.EntityDrifter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RenderLevelStageEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.config.ModConfigEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+
+import java.util.List;
 
 @Mod.EventBusSubscriber(modid = JohnnySBiologicalNotes.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ForgeInit {
@@ -32,7 +38,22 @@ public class ForgeInit {
     }
 
     @SubscribeEvent
+    public static void onLivingDeath(LivingDeathEvent event) {
+
+        Entity entitySource = event.getSource().getEntity();
+        //Drifter好感度
+        if (entitySource instanceof Player) {
+            List<EntityDrifter> entitiesOfClass = entitySource.level.getEntitiesOfClass(EntityDrifter.class, entitySource.getBoundingBox().inflate(64F, 10, 64F));
+            for (var drifter : entitiesOfClass) {
+                drifter.updateFavorability((Player) entitySource, event.getEntity());
+            }
+        }
+    }
+
+    @SubscribeEvent
     public static void onAttackEntity(AttackEntityEvent event) {
+        Entity target = event.getTarget();
+        Player player = event.getEntity();
 //        if (event.getEntity().getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof ItemKatana) {
 //            event.getEntity().getCapability(PlayerSpiritProvider.PLAYER_SPIRIT).ifPresent(s -> {
 //                if (s.isMax()) {
@@ -44,6 +65,8 @@ public class ForgeInit {
 //                }
 //            });
 //        }
+
+
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -73,6 +96,7 @@ public class ForgeInit {
             ((EntityCrab) entity).spawnColorInit();
         }
     }
+
 
 }
 

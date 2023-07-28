@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "johnny_s_biological_notes:wood_katana"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_wood_blade": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "johnny_s_biological_notes:wood_blade"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_wood_blade",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "johnny_s_biological_notes:wood_katana"
+    ]
+  }
+}

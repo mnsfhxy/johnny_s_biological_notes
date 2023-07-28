@@ -9,6 +9,7 @@ import com.mnsfhxy.johnny_s_biological_notes.entity.crab.EntityCrab;
 //import com.mnsfhxy.johnny_s_biological_notes.entity.crab.BRendererCrab;
 import com.mnsfhxy.johnny_s_biological_notes.entity.drifter.EntityDrifter;
 import com.mnsfhxy.johnny_s_biological_notes.entity.peeper.EntityPeeper;
+import com.mnsfhxy.johnny_s_biological_notes.networking.Messages;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.CreativeModeTab;
@@ -77,6 +78,7 @@ public class ModInit {
         event.enqueueWork(PotionsInit::initBrewing);
         event.enqueueWork(EntityPeeper::init);
         event.enqueueWork(EntityCrab::init);
+        Messages.register();
 
     }
 

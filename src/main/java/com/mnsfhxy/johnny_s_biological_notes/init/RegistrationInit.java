@@ -89,6 +89,15 @@ public class RegistrationInit {
     public static final RegistryObject<Item> PEEPER_EGG =
             ITEMS.register(
                     "peeper", () -> new ForgeSpawnEggItem(PEEPER, 0x534620, 0x6c7911, ITEM_PROPERTIES));
+    public static final RegistryObject<Item> FORGED_PLATE=ITEMS.register("forged_plate",()->new Item(new Item.Properties().tab(ModInit.ITEM_GROUP)));
+
+    public static final RegistryObject<Item> WOOD_BLADE=ITEMS.register("wood_blade",()->new Item(new Item.Properties().tab(ModInit.ITEM_GROUP)));
+    public static final RegistryObject<Item> STONE_BLADE=ITEMS.register("stone_blade",()->new Item(new Item.Properties().tab(ModInit.ITEM_GROUP)));
+    public static final RegistryObject<Item> IRON_BLADE=ITEMS.register("iron_blade",()->new Item(new Item.Properties().tab(ModInit.ITEM_GROUP)));
+    public static final RegistryObject<Item> GOLD_BLADE=ITEMS.register("gold_blade",()->new Item(new Item.Properties().tab(ModInit.ITEM_GROUP)));
+    public static final RegistryObject<Item> DIAMOND_BLADE=ITEMS.register("diamond_blade",()->new Item(new Item.Properties().tab(ModInit.ITEM_GROUP)));
+    public static final RegistryObject<Item> NETHERITE_BLADE=ITEMS.register("netherite_blade",()->new Item(new Item.Properties().tab(ModInit.ITEM_GROUP)));
+
 
     public static final RegistryObject<ItemKatana> WOOD_KATANA=ITEMS.register("wood_katana",()->new ItemKatana(Tiers.WOOD,3,-3f));
     public static final RegistryObject<ItemKatana> STONE_KATANA=ITEMS.register("stone_katana",()->new ItemKatana(Tiers.STONE,3,-3f));
@@ -103,6 +112,8 @@ public class RegistrationInit {
     public static final RegistryObject<Item> CRAB_MEAT=ITEMS.register("crab_meat",()->new Item(new Item.Properties().tab(ModInit.ITEM_GROUP).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.4f).meat().build())));
     public static final RegistryObject<Item> COOKED_CRAB_MEAT=ITEMS.register("cooked_crab_meat",()->new Item(new Item.Properties().tab(ModInit.ITEM_GROUP).food(new FoodProperties.Builder().nutrition(5).saturationMod(3f).meat().build())));
     public static final RegistryObject<Item> CRAB_BUCKET = ITEMS.register("crab_bucket", () -> new ItemModFishBucket(CRAB, Fluids.WATER, new Item.Properties().tab(ModInit.ITEM_GROUP)));
+
+
 
     //tages
 //    public static final TagKey<EntityType<?>> HYDROBIOS = TagKey.create(Registry.ENTITY_TYPE_REGISTRY, new ResourceLocation(JohnnySBiologicalNotes.MODID, "hydrobios"));

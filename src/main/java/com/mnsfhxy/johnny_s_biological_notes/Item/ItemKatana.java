@@ -22,7 +22,9 @@ public class ItemKatana extends SwordItem {
     public ItemKatana(final Tier tier, int pAttackDamageModifier, float pAttackSpeedModifier) {
         super(tier, pAttackDamageModifier, pAttackSpeedModifier, new Item.Properties().tab(CreativeModeTab.TAB_COMBAT));
     }
-
+    public ItemKatana(final Tier tier, int pAttackDamageModifier, float pAttackSpeedModifier,Item.Properties pProperties) {
+        super(tier, pAttackDamageModifier, pAttackSpeedModifier, pProperties);
+    }
     @Override
     public boolean hurtEnemy(ItemStack pStack, LivingEntity pTarget, LivingEntity pAttacker) {
         AtomicReference<Float> amount = new AtomicReference<>(0F);

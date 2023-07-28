@@ -45,5 +45,26 @@ public class ModLanguageZhProvider extends LanguageProvider {
         add("johnny_s_biological_notes.sound.subtitle.peeper_death","窥视者：死亡");
         add("johnny_s_biological_notes.sound.subtitle.peeper_hurt","窥视者：受伤");
         add("johnny_s_biological_notes.sound.subtitle.peeper_sound","窥视者：呜呜");
+
+        add("johnny_s_biological_notes.sound.subtitle.drifter_admire","浪客：欣赏");
+        add("johnny_s_biological_notes.sound.subtitle.drifter_ambient","浪客：自言自语");
+        add("johnny_s_biological_notes.sound.subtitle.drifter_death","浪客：死亡");
+        add("johnny_s_biological_notes.sound.subtitle.drifter_hurt","浪客：死亡");
+        add("johnny_s_biological_notes.sound.subtitle.drifter_victory","浪客：祝胜");
+        add(RegistrationInit.DRIFTER.get(),"浪客");
+        add(RegistrationInit.DRIFTER_EGG.get(),"浪客蛋");
+        add(RegistrationInit.NETHERITE_KATANA.get(),"下界合金刀");
+        add(RegistrationInit.WOOD_KATANA.get(),"木刀");
+        add(RegistrationInit.DIAMOND_KATANA.get(),"钻石刀");
+        add(RegistrationInit.STONE_KATANA.get(),"石刀");
+        add(RegistrationInit.GOLD_KATANA.get(),"金刀");
+        add(RegistrationInit.IRON_KATANA.get(),"铁刀");
+        add(RegistrationInit.FORGED_PLATE.get(),"锻刀模板");
+        add(RegistrationInit.NETHERITE_BLADE.get(),"下界合金刀刃");
+        add(RegistrationInit.WOOD_BLADE.get(),"木刀刃");
+        add(RegistrationInit.DIAMOND_BLADE.get(),"钻石刀刃");
+        add(RegistrationInit.STONE_BLADE.get(),"石刀刃");
+        add(RegistrationInit.GOLD_BLADE.get(),"金刀刃");
+        add(RegistrationInit.IRON_BLADE.get(),"铁刀刃");
     }
 }

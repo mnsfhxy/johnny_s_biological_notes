@@ -1,0 +1,24 @@
+{
+  "values": [
+    "minecraft:zombie",
+    "minecraft:zombie_villager",
+    "minecraft:wither_skeleton",
+    "minecraft:witch",
+    "minecraft:vindicator",
+    "minecraft:vex",
+    "minecraft:stray",
+    "minecraft:slime",
+    "minecraft:skeleton",
+    "minecraft:shulker",
+    "minecraft:phantom",
+    "minecraft:magma_cube",
+    "minecraft:husk",
+    "minecraft:hoglin",
+    "minecraft:ghast",
+    "minecraft:endermite",
+    "minecraft:elder_guardian",
+    "minecraft:drowned",
+    "minecraft:blaze",
+    "minecraft:piglin_brute"
+  ]
+}

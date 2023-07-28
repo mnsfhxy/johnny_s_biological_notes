@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "johnny_s_biological_notes:forged_plate"
+    }
+  ],
+  "result": {
+    "item": "johnny_s_biological_notes:iron_blade"
+  }
+}

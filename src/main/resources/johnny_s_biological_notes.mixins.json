@@ -6,7 +6,8 @@
   "refmap": "johnny_s_biological_notes.refmap.json",
   "mixins": [
     "MixinEntity",
-    "MixinLivingEntity"
+    "MixinLivingEntity",
+    "MixinServerLevel"
   ],
   "client": [
   ],
