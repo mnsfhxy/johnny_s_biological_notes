@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "item": "johnny_s_biological_notes:diamond_blade"
+  },
+  "addition": {
+    "item": "minecraft:netherite_ingot",
+    "count": 2
+  },
+  "result": {
+    "item": "johnny_s_biological_notes:netherite_blade"
+  }
+}

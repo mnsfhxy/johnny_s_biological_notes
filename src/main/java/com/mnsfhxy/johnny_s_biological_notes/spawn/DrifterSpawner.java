@@ -2,6 +2,7 @@ package com.mnsfhxy.johnny_s_biological_notes.spawn;
 
 import com.mnsfhxy.johnny_s_biological_notes.entity.drifter.EntityDrifter;
 import com.mnsfhxy.johnny_s_biological_notes.init.RegistrationInit;
+import com.mnsfhxy.johnny_s_biological_notes.util.UtilLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -25,64 +26,40 @@ import javax.annotation.Nullable;
 import java.util.Optional;
 
 public class DrifterSpawner implements CustomSpawner {
-    private static final int DEFAULT_TICK_DELAY = 1200;
-    public static final int DEFAULT_SPAWN_DELAY = 24000;
-    private static final int MIN_SPAWN_CHANCE = 25;
-    private static final int MAX_SPAWN_CHANCE = 75;
-    private static final int SPAWN_CHANCE_INCREASE = 25;
-    private static final int SPAWN_ONE_IN_X_CHANCE = 10;
-    private static final int NUMBER_OF_SPAWN_ATTEMPTS = 10;
+
     private final RandomSource random = RandomSource.create();
-    private final ServerLevelData serverLevelData;
     private int tickDelay;
     private int spawnDelay;
-    private int spawnChance;
+    private final int SPAWN_DELAY = UtilLevel.TIME.MINUTE.getTick() * 5;
 
-    public DrifterSpawner(ServerLevelData pServerLevelData) {
-        this.serverLevelData = pServerLevelData;
-        this.tickDelay = 1200;
-        this.spawnDelay = pServerLevelData.getWanderingTraderSpawnDelay();
-        this.spawnChance = pServerLevelData.getWanderingTraderSpawnChance();
-        if (this.spawnDelay == 0 && this.spawnChance == 0) {
-            this.spawnDelay = 24000;
-            pServerLevelData.setWanderingTraderSpawnDelay(this.spawnDelay);
-            this.spawnChance = 25;
-            pServerLevelData.setWanderingTraderSpawnChance(this.spawnChance);
-        }
-
+    public DrifterSpawner() {
+        this.tickDelay = UtilLevel.TIME.MINUTE.getTick();
+        this.spawnDelay = SPAWN_DELAY;
     }
+
     @Override
     public int tick(ServerLevel pLevel, boolean pSpawnHostiles, boolean pSpawnPassives) {
-        if (!pLevel.getGameRules().getBoolean(GameRules.RULE_DO_TRADER_SPAWNING)) {
-            return 0;
-        } else if (--this.tickDelay > 0) {
+        if (--this.tickDelay > 0) {
             return 0;
         } else {
-            this.tickDelay = 1200;
-            this.spawnDelay -= 1200;
-            this.serverLevelData.setWanderingTraderSpawnDelay(this.spawnDelay);
+            this.tickDelay = UtilLevel.TIME.MINUTE.getTick();
+            this.spawnDelay -= UtilLevel.TIME.MINUTE.getTick();
+//            this.serverLevelData.setWanderingTraderSpawnDelay(this.spawnDelay);
             if (this.spawnDelay > 0) {
                 return 0;
             } else {
-                this.spawnDelay = 24000;
+                this.spawnDelay = SPAWN_DELAY;
                 if (!pLevel.getGameRules().getBoolean(GameRules.RULE_DOMOBSPAWNING)) {
                     return 0;
                 } else {
-                    int i = this.spawnChance;
-                    this.spawnChance = Mth.clamp(this.spawnChance + 25, 25, 75);
-                    this.serverLevelData.setWanderingTraderSpawnChance(this.spawnChance);
-                    if (this.random.nextInt(100) > i) {
-                        return 0;
-                    } else if (this.spawn(pLevel)) {
-                        this.spawnChance = 25;
-                        return 1;
-                    } else {
-                        return 0;
-                    }
+                    this.spawn(pLevel);
+                    return 1;
                 }
             }
         }
     }
+
+
 
     private boolean spawn(ServerLevel pServerLevel) {
         Player player = pServerLevel.getRandomPlayer();
@@ -106,10 +83,8 @@ public class DrifterSpawner implements CustomSpawner {
                     return false;
                 }
 
-                EntityDrifter entityDrifter = RegistrationInit.DRIFTER.get().spawn(pServerLevel, (CompoundTag)null, (Component)null, (Player)null, blockpos2, MobSpawnType.EVENT, false, false);
+                EntityDrifter entityDrifter = RegistrationInit.DRIFTER.get().spawn(pServerLevel, (CompoundTag) null, (Component) null, (Player) null, blockpos2, MobSpawnType.EVENT, false, false);
                 if (entityDrifter != null) {
-//                    entityDrifter.setDespawnDelay(48000);
-//                    entityDrifter.setWanderTarget(blockpos1);
                     entityDrifter.restrictTo(blockpos1, 16);
                     return true;
                 }
@@ -120,12 +95,11 @@ public class DrifterSpawner implements CustomSpawner {
     }
 
 
-
     @Nullable
     private BlockPos findSpawnPositionNear(LevelReader pLevel, BlockPos pPos, int pMaxDistance) {
         BlockPos blockpos = null;
 
-        for(int i = 0; i < 10; ++i) {
+        for (int i = 0; i < 10; ++i) {
             int j = pPos.getX() + this.random.nextInt(pMaxDistance * 2) - pMaxDistance;
             int k = pPos.getZ() + this.random.nextInt(pMaxDistance * 2) - pMaxDistance;
             int l = pLevel.getHeight(Heightmap.Types.WORLD_SURFACE, j, k);
@@ -140,7 +114,7 @@ public class DrifterSpawner implements CustomSpawner {
     }
 
     private boolean hasEnoughSpace(BlockGetter pLevel, BlockPos pPos) {
-        for(BlockPos blockpos : BlockPos.betweenClosed(pPos, pPos.offset(1, 2, 1))) {
+        for (BlockPos blockpos : BlockPos.betweenClosed(pPos, pPos.offset(1, 2, 1))) {
             if (!pLevel.getBlockState(blockpos).getCollisionShape(pLevel, blockpos).isEmpty()) {
                 return false;
             }

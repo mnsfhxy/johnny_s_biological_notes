@@ -38,7 +38,7 @@ public class ItemKatana extends SwordItem {
                     ((ServerLevel)pAttacker.level).sendParticles(RegistrationInit.CHOP_PARTICLE.get(), pAttacker.getX() + d0, pAttacker.getY(0.5D), pAttacker.getZ() + d1, 0, d0, 0.0D, d1, 0.0D);
                 }
                 SpiritOverlay.HUD = SpiritOverlay.SPIRIT_FIGHT;
-                amount.updateAndGet(v -> (float) (v + (5 - pTarget.getArrowCount())));
+                amount.updateAndGet(v -> (float) (v + (8 - pTarget.getArrowCount())));
                 s.cleanSpirit();
             } else {
                 s.addSpirit();

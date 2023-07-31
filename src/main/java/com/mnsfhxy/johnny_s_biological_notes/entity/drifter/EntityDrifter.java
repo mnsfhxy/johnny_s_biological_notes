@@ -1,6 +1,7 @@
 package com.mnsfhxy.johnny_s_biological_notes.entity.drifter;
 
 import com.google.common.collect.Maps;
+import com.google.gson.Gson;
 import com.mnsfhxy.johnny_s_biological_notes.Item.ItemKatana;
 import com.mnsfhxy.johnny_s_biological_notes.init.RegistrationInit;
 import com.mnsfhxy.johnny_s_biological_notes.init.SoundInit;
@@ -13,6 +14,9 @@ import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
@@ -24,6 +28,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.behavior.BehaviorUtils;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
@@ -48,24 +53,24 @@ import net.minecraft.world.level.pathfinder.WalkNodeEvaluator;
 import net.minecraftforge.common.data.ForgeEntityTypeTagsProvider;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectOutputStream;
+import java.util.*;
 
 public class EntityDrifter extends PathfinderMob {
-
-    private Map<Player, Favorability> favorability = new HashMap<>();
+    private static final EntityDataAccessor<String> FAV_STR = SynchedEntityData.defineId(EntityDrifter.class, EntityDataSerializers.STRING);
+    public Map<UUID, Favorability> favorability = new HashMap<>();
     public AnimationState walkingAnimationState = new AnimationState();
     public AnimationState alert0AnimationState = new AnimationState();
     public AnimationState alert1AnimationState = new AnimationState();
-//    public AnimationState fightAnimationState = new AnimationState();
+    //    public AnimationState fightAnimationState = new AnimationState();
     //    public ModAnimation walkingAnimationState = new ModAnimation();
 //    public ModAnimation alert0AnimationState = new ModAnimation();
 //    public ModAnimation alert1AnimationState = new ModAnimation();
     public ModAnimation fightAnimationState = new ModAnimation();
     private boolean renderItem = false;
-    private boolean haveGift=true;
+    private boolean haveGift = true;
+
     public EntityDrifter(EntityType<? extends PathfinderMob> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
         this.xpReward = 5;
@@ -74,11 +79,55 @@ public class EntityDrifter extends PathfinderMob {
     public static AttributeSupplier.Builder prepareAttributes() {
         AttributeSupplier.Builder builder = Mob.createMobAttributes();
         builder = builder.add(Attributes.MOVEMENT_SPEED, 0.35F);
-        builder = builder.add(Attributes.MAX_HEALTH, 20);
+        builder = builder.add(Attributes.MAX_HEALTH, 50);
         builder = builder.add(Attributes.ARMOR, 0);
         builder = builder.add(Attributes.ATTACK_DAMAGE, 3);
         builder = builder.add(Attributes.FOLLOW_RANGE, 64);
         return builder;
+    }
+
+    private static class FavJson {
+        private String uuid;
+        private float value;
+
+        public String getUuid() {
+            return uuid;
+        }
+
+        public void setUuid(String uuid) {
+            this.uuid = uuid;
+        }
+
+        public float getValue() {
+            return value;
+        }
+
+        public void setValue(float value) {
+            this.value = value;
+        }
+    }
+
+    private static HashMap<UUID, Favorability> favStrToMap(String s) {
+        HashMap<UUID, Favorability> stringFavorabilityHashMap = new HashMap<>();
+        if(s==null||s.equals(""))return stringFavorabilityHashMap;
+        Gson gson = new Gson();
+        FavJson[] favJsons = gson.fromJson(s, FavJson[].class);
+        for (var fav : favJsons) {
+            stringFavorabilityHashMap.put(UUID.fromString(fav.getUuid()), new Favorability(fav.getValue()));
+        }
+        return stringFavorabilityHashMap;
+    }
+
+    private static String MapToFavStr(Map<UUID, Favorability> map) {
+        List<FavJson> favJsons = new ArrayList<>();
+        Gson gson = new Gson();
+        for (var key : map.keySet()) {
+            FavJson favJson = new FavJson();
+            favJson.setUuid(key.toString());
+            favJson.setValue(map.get(key).getValue());
+            favJsons.add(favJson);
+        }
+        return gson.toJson(favJsons);
     }
 
     @Override
@@ -87,7 +136,12 @@ public class EntityDrifter extends PathfinderMob {
         this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0D, false));
         this.goalSelector.addGoal(3, new FllowPlayerGoal(this));
         this.goalSelector.addGoal(4, new WaterAvoidingRandomStrollGoal(this, 1.0D));
-        this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)));
+        this.targetSelector.addGoal(1, (new HurtByTargetGoal(this, Player.class) {
+            @Override
+            public boolean canUse() {
+                return (!(this.mob.getLastHurtByMob() instanceof Player)) && super.canUse();
+            }
+        }));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Zombie.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, ZombieVillager.class, true));
         this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, WitherSkeleton.class, true));
@@ -107,7 +161,25 @@ public class EntityDrifter extends PathfinderMob {
         this.targetSelector.addGoal(18, new NearestAttackableTargetGoal<>(this, Drowned.class, true));
         this.targetSelector.addGoal(19, new NearestAttackableTargetGoal<>(this, Blaze.class, true));
         this.targetSelector.addGoal(20, new NearestAttackableTargetGoal<>(this, PiglinBrute.class, true));
-        this.targetSelector.addGoal(21, new  NearestAttackablePlayerGoal(this,true));
+        this.targetSelector.addGoal(20, new NearestAttackableTargetGoal<>(this, Pillager.class, true));
+
+        this.targetSelector.addGoal(22, new NearestAttackablePlayerGoal(this, true));
+
+    }
+
+    @Override
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(FAV_STR, "");
+    }
+
+    @Override
+    public boolean hurt(DamageSource pSource, float pAmount) {
+        if (pSource.getEntity() instanceof Player) {
+            Favorability favorability = this.favorability.get(((Player) pSource.getEntity()).getUUID());
+            if (favorability != null && favorability.canFollow()) return false;
+        }
+        return super.hurt(pSource, pAmount);
 
     }
 
@@ -124,7 +196,7 @@ public class EntityDrifter extends PathfinderMob {
         super.dropCustomDeathLoot(pSource, pLooting, pRecentlyHit);
 
         if (this.random.nextInt(0, 100) < 9) {
-            ItemStack itemStack=new ItemStack(RegistrationInit.IRON_KATANA.get());
+            ItemStack itemStack = new ItemStack(RegistrationInit.IRON_KATANA.get());
             itemStack.setDamageValue(75);
 //            itemStack = new ItemStack(ItemKatana(Tiers.IRON, 0, 0, new Item.Properties().tab(CreativeModeTab.TAB_COMBAT).durability(75)));
             this.spawnAtLocation(itemStack);
@@ -136,20 +208,29 @@ public class EntityDrifter extends PathfinderMob {
         this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(RegistrationInit.IRON_KATANA.get()));
     }
 
+
     public Favorability updateFavorability(Player pPlayer, LivingEntity pTarget) {
         Favorability favorability = null;
-        if (this.favorability.containsKey(pPlayer)) {
-            favorability = this.favorability.get(pPlayer);
+        if (this.favorability.containsKey(pPlayer.getUUID())) {
+            favorability = this.favorability.get(pPlayer.getUUID());
             favorability.update(pTarget);
-            this.favorability.replace(pPlayer, favorability);
-            if(this.haveGift&&favorability.canReward()&&pPlayer.distanceTo(this)<3){
-                this.spawnAtLocation(RegistrationInit.FORGED_PLATE.get());
-                this.haveGift=false;
+            this.favorability.replace(pPlayer.getUUID(), favorability);
+            if (this.haveGift && favorability.canReward()) {
+                if (pPlayer.distanceTo(this) >= 3) {
+                    this.moveTo((double) pPlayer.getX() + 0.5D, (double) pPlayer.getY(), (double) pPlayer.getZ() + 0.5D, this.getYRot(), this.getXRot());
+                    this.navigation.stop();
+                }
+                    BehaviorUtils.throwItem(this, new ItemStack(RegistrationInit.FORGED_PLATE.get()), this.position().add(0.0D, 1.0D, 0.0D));
+                    this.haveGift = false;
+
+            }
+            if (favorability.value == favorability.FOLLOW_VALUE) {
+                this.playSound(SoundInit.DRIFTERS_ADMIRE.get(), this.getSoundVolume(), this.getVoicePitch());
             }
         } else {
             favorability = new Favorability();
             favorability.update(pTarget);
-            this.favorability.put(pPlayer, favorability);
+            this.favorability.put(pPlayer.getUUID(), favorability);
         }
         return favorability;
     }
@@ -164,43 +245,23 @@ public class EntityDrifter extends PathfinderMob {
         super.tick();
 //        LivingEntity target = getTarget();
         if (this.level.isClientSide) {
-//            target = this.level.getNearestEntity(this.level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(10, 4.0D, 10), (x) -> {
-//                return true;
-//            }), TargetingConditions.forCombat().range(this.getAttributeValue(Attributes.FOLLOW_RANGE)).selector(null), this, this.getX(), this.getEyeY(), this.getZ());
-            List<LivingEntity> entitiesOfClass = this.level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(10, 4.0D, 10), (x) -> {
-                return true;
-            });
-            float minDisToEnemy = Float.MAX_VALUE;
-            for (LivingEntity target : entitiesOfClass) {
-                if (target.isAlive() && canAttackType(target.getType())) {
-                    minDisToEnemy = Math.min(target.distanceTo(this), minDisToEnemy);
-
-                }
-            }
-            alert0AnimationState.stop();
-            alert1AnimationState.stop();
-            if (minDisToEnemy < 4) {
-                alert1AnimationState.start(this.tickCount);
-                if(this.isAggressive()){
-                    fightAnimationState.start(this.tickCount);
-                }else{
-                    fightAnimationState.stop();
-                }
-                renderItem = true;
-            } else if (minDisToEnemy < 10) {
-                alert0AnimationState.start(this.tickCount);
-                renderItem = true;
-            } else {
-                renderItem = false;
-            }
+            this.favorability = favStrToMap(this.entityData.get(FAV_STR));
+        } else {
+            this.entityData.set(FAV_STR, MapToFavStr(this.favorability));
         }
 
-
-        Player nearestPlayer = this.level.getNearestPlayer(this, 64F);
-        if (nearestPlayer != null && !favorability.containsKey(nearestPlayer))
-            favorability.put(nearestPlayer, new Favorability());
-
     }
+
+    @Override
+    public boolean canAttack(LivingEntity pTarget) {
+        boolean flag = true;
+        if (pTarget instanceof Player) {
+            Favorability favorability = this.favorability.get(pTarget.getUUID());
+            if (favorability != null) flag = favorability.canAttack();
+        }
+        return flag && super.canAttack(pTarget);
+    }
+
     @Override
     public SoundEvent getAmbientSound() {
         return SoundInit.DRIFTERS_AMBIENT.get();
@@ -215,9 +276,9 @@ public class EntityDrifter extends PathfinderMob {
     @Override
     public boolean doHurtTarget(Entity pEntity) {
         boolean b = super.doHurtTarget(pEntity);
-        if(pEntity instanceof LivingEntity){
-            if(((LivingEntity)pEntity).getHealth()<=0){
-                playSound(SoundInit.DRIFTERS_VICTORY.get(),this.getSoundVolume(),this.getVoicePitch());
+        if (pEntity instanceof LivingEntity) {
+            if (((LivingEntity) pEntity).getHealth() <= 0 && random.nextInt(0, 4) == 1) {
+                playSound(SoundInit.DRIFTERS_VICTORY.get(), this.getSoundVolume(), this.getVoicePitch());
             }
         }
         return b;
@@ -236,9 +297,52 @@ public class EntityDrifter extends PathfinderMob {
     @Override
     public void aiStep() {
         super.aiStep();
+        if (this.level.isClientSide) {
+            List<LivingEntity> entitiesOfClass = this.level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(10, 4.0D, 10), (x) -> {
+                return true;
+            });
+            float minDisToEnemy = Float.MAX_VALUE;
+            for (LivingEntity target : entitiesOfClass) {
+                if (target.isAlive() && canAttackType(target.getType())) {
+                    if (target instanceof Player) {
+                        Favorability favorability = this.favorability.get(((Player) target).getUUID());
+                        if (favorability != null && (!favorability.canAttack())) continue;
+                    }
+                    minDisToEnemy = Math.min(target.distanceTo(this), minDisToEnemy);
+                }
+            }
+//            Boolean flag=isAggressive();
+//            if(flag&&!isAggressive())flag=true;
+            alert0AnimationState.stop();
+            alert1AnimationState.stop();
+            if (minDisToEnemy < 4) {
+                alert1AnimationState.start(this.tickCount);
+                if (this.isAggressive()) {
+                    alert1AnimationState.stop();
+//                    fightAnimationState.start(this.tickCount);
+                    fightAnimationState.playOnce(this.tickCount, 500);
+                } else {
+//                    fightAnimationState.stop();
+                }
+                renderItem = true;
+            } else if (minDisToEnemy < 10) {
+                alert0AnimationState.start(this.tickCount);
+                renderItem = true;
+            } else {
+                renderItem = false;
+            }
+//            if(flag)fightAnimationState.stop();
+
+        }
+
+
+        Player nearestPlayer = this.level.getNearestPlayer(this, 64F);
+        if (nearestPlayer != null && !favorability.containsKey(nearestPlayer.getUUID())) {
+            favorability.put(nearestPlayer.getUUID(), new Favorability());
+        }
     }
 
-    public class Favorability {
+    public static class Favorability {
         private float value;
         private final float MAX_VALUE = 5F;
         private final float MIN_VALUE = -1F;
@@ -248,6 +352,10 @@ public class EntityDrifter extends PathfinderMob {
             this.value = 0;
         }
 
+        public Favorability(float value) {
+            this.value = value;
+        }
+
         private void add(float add) {
             this.value = Math.min(this.value + add, MAX_VALUE);
         }
@@ -255,7 +363,11 @@ public class EntityDrifter extends PathfinderMob {
         private boolean canFollow() {
 //            return true;
 //            System.out.println(value);
-            return value > FOLLOW_VALUE;
+            return value >= FOLLOW_VALUE;
+        }
+
+        public float getValue() {
+            return value;
         }
 
         private boolean canAttack() {
@@ -273,10 +385,10 @@ public class EntityDrifter extends PathfinderMob {
         public void update(LivingEntity pTarget) {
             if (pTarget.getType().is(TagsInit.Entities.DRIFTER_FAVORABILITY_ADD_QUARTER)) {
                 add(0.25F);
-            } else if (pTarget instanceof AbstractIllager) {
-                add(0.5F);
             } else if (pTarget.getType().is(TagsInit.Entities.DRIFTER_FAVORABILITY_ADD_ONE)) {
                 add(1F);
+            } else if (pTarget instanceof AbstractIllager) {
+                add(0.5F);
             } else if (pTarget instanceof Villager) {
                 if (((Villager) pTarget).isBaby()) sub(2F);
                 else sub(1F);
@@ -287,22 +399,38 @@ public class EntityDrifter extends PathfinderMob {
         }
 
     }
-    private class NearestAttackablePlayerGoal extends NearestAttackableTargetGoal{
+
+    private class NearestAttackablePlayerGoal extends NearestAttackableTargetGoal {
         private EntityDrifter entityDrifter;
-        public NearestAttackablePlayerGoal(EntityDrifter entityDrifter,  boolean pMustSee) {
+
+        public NearestAttackablePlayerGoal(EntityDrifter entityDrifter, boolean pMustSee) {
             super(entityDrifter, Player.class, pMustSee);
-            this.entityDrifter=entityDrifter;
+            this.entityDrifter = entityDrifter;
+        }
+
+        @Override
+        public boolean canUse() {
+//            if(entityDrifter.getTarget() instanceof Player){
+//                Favorability favorability = entityDrifter.favorability.get(entityDrifter.getTarget());
+//                if(favorability!=null&&!favorability.canAttack())entityDrifter.setTarget(null);
+//            }
+            return super.canUse();
         }
 
         @Override
         protected void findTarget() {
             this.target = this.mob.level.getNearestPlayer(this.targetConditions, this.mob, this.mob.getX(), this.mob.getEyeY(), this.mob.getZ());
-            Favorability favorability = entityDrifter.favorability.get(this.target);
-            if(favorability==null||!favorability.canAttack()){
-                this.target=null;
+            if (this.target != null) {
+                Favorability favorability = entityDrifter.favorability.get(this.target.getUUID());
+                if (favorability == null || !favorability.canAttack()) {
+                    this.target = null;
+                }
+
             }
+
         }
     }
+
     private class FllowPlayerGoal extends Goal {
         private Player followPlayer;
         private int timeToRecalcPath;
@@ -318,9 +446,9 @@ public class EntityDrifter extends PathfinderMob {
 
         @Override
         public boolean canUse() {
-            for (Player player : entityDrifter.favorability.keySet()) {
+            for (var player : entityDrifter.favorability.keySet()) {
                 if (entityDrifter.favorability.get(player).canFollow()) {
-                    this.followPlayer = player;
+                    this.followPlayer = getLevel().getPlayerByUUID(player);
                     return true;
                 }
             }
@@ -332,13 +460,12 @@ public class EntityDrifter extends PathfinderMob {
             if (this.navigation.isDone()) {
                 return false;
             } else {
-                return super.canContinueToUse() && followPlayer != null && entityDrifter.favorability.get(followPlayer).canFollow();
+                return super.canContinueToUse() && followPlayer != null && entityDrifter.favorability.get(followPlayer.getUUID()).canFollow();
             }
         }
 
         @Override
         public void stop() {
-
             super.stop();
             this.navigation.stop();
         }
@@ -346,7 +473,6 @@ public class EntityDrifter extends PathfinderMob {
         @Override
         public void start() {
             super.start();
-            entityDrifter.playSound(SoundInit.DRIFTERS_ADMIRE.get(),entityDrifter.getSoundVolume(),entityDrifter.getVoicePitch());
             this.timeToRecalcPath = 0;
 
         }
@@ -417,5 +543,6 @@ public class EntityDrifter extends PathfinderMob {
             }
         }
     }
+
 }
 

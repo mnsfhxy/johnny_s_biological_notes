@@ -16,7 +16,6 @@ public class PacketGetTarget {
     }
 
     public void toBytes(FriendlyByteBuf buf) {
-
     }
 
     public boolean handle(Supplier<NetworkEvent.Context> supplier) {

@@ -15,11 +15,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ServerLevel.class)
 public abstract class MixinServerLevel {
-    @Shadow
-    private  ServerLevelData serverLevelData;
     @Inject(method = "tickCustomSpawners",at = @At("TAIL"))
     public void tickCustomSpawners(boolean pSpawnEnemies, boolean pSpawnFriendlies, CallbackInfo ci) {
-        if(ModSpawners.customSpawners==null) ModSpawners.customSpawners=ImmutableList.of(new DrifterSpawner(serverLevelData));
+        if(ModSpawners.customSpawners==null) ModSpawners.customSpawners=ImmutableList.of(new DrifterSpawner());
         for(CustomSpawner customspawner : ModSpawners.customSpawners) {
             customspawner.tick((ServerLevel) (Object)this, pSpawnEnemies, pSpawnFriendlies);
         }

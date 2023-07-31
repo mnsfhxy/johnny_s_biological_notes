@@ -99,12 +99,12 @@ public class RegistrationInit {
     public static final RegistryObject<Item> NETHERITE_BLADE=ITEMS.register("netherite_blade",()->new Item(new Item.Properties().tab(ModInit.ITEM_GROUP)));
 
 
-    public static final RegistryObject<ItemKatana> WOOD_KATANA=ITEMS.register("wood_katana",()->new ItemKatana(Tiers.WOOD,3,-3f));
-    public static final RegistryObject<ItemKatana> STONE_KATANA=ITEMS.register("stone_katana",()->new ItemKatana(Tiers.STONE,3,-3f));
-    public static final RegistryObject<ItemKatana> IRON_KATANA=ITEMS.register("iron_katana",()->new ItemKatana(Tiers.IRON,3,-3f));
-    public static final RegistryObject<ItemKatana> GOLD_KATANA=ITEMS.register("gold_katana",()->new ItemKatana(Tiers.GOLD,3,-3f));
-    public static final RegistryObject<ItemKatana> DIAMOND_KATANA=ITEMS.register("diamond_katana",()->new ItemKatana(Tiers.DIAMOND,3,-3f));
-    public static final RegistryObject<ItemKatana> NETHERITE_KATANA=ITEMS.register("netherite_katana",()->new ItemKatana(Tiers.NETHERITE,3,-3f));
+    public static final RegistryObject<ItemKatana> WOOD_KATANA=ITEMS.register("wood_katana",()->new ItemKatana(Tiers.WOOD,4,-3f));
+    public static final RegistryObject<ItemKatana> STONE_KATANA=ITEMS.register("stone_katana",()->new ItemKatana(Tiers.STONE,4,-3f));
+    public static final RegistryObject<ItemKatana> IRON_KATANA=ITEMS.register("iron_katana",()->new ItemKatana(Tiers.IRON,5,-3f));
+    public static final RegistryObject<ItemKatana> GOLD_KATANA=ITEMS.register("gold_katana",()->new ItemKatana(Tiers.GOLD,7,-3f));
+    public static final RegistryObject<ItemKatana> DIAMOND_KATANA=ITEMS.register("diamond_katana",()->new ItemKatana(Tiers.DIAMOND,6,-3f));
+    public static final RegistryObject<ItemKatana> NETHERITE_KATANA=ITEMS.register("netherite_katana",()->new ItemKatana(Tiers.NETHERITE,7,-3f));
 
 
 

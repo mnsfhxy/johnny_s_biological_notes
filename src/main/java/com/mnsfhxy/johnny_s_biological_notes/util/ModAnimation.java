@@ -2,12 +2,14 @@ package com.mnsfhxy.johnny_s_biological_notes.util;
 
 import net.minecraft.world.entity.AnimationState;
 
-public class ModAnimation {
-    private boolean isStart;
-    private AnimationState animationState;
+import java.util.Timer;
+import java.util.TimerTask;
 
+public class ModAnimation extends AnimationState{
+
+    private AnimationState animationState;
+    private boolean isStart;
     public ModAnimation() {
-        isStart = false;
         this.animationState = new AnimationState();
     }
 
@@ -16,6 +18,10 @@ public class ModAnimation {
         this.animationState = animationState;
     }
 
+    public AnimationState getAnimationState() {
+        isStart = false;
+        return this.animationState;
+    }
     public void start(int tick) {
         if (!isStart) {
             isStart = true;
@@ -29,10 +35,20 @@ public class ModAnimation {
             animationState.stop();
         }
     }
-
-    public AnimationState getAnimationState() {
-        return this.animationState;
-
+    public void playOnce(int tickStart,int tickTime){
+        if(animationState.isStarted())return;
+        animationState.start(tickStart);
+        Thread thread=new Thread(){
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(tickTime);
+                    animationState.stop();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        thread.start();
     }
-
 }

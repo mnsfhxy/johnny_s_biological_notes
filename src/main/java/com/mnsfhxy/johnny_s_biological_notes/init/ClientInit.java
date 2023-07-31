@@ -57,7 +57,7 @@ public class ClientInit {
     @SubscribeEvent
     public static void onRegisterOverlays(RegisterGuiOverlaysEvent event) {
 //        event.registerAbove(VanillaGuiOverlay.HOTBAR.id(), "mana_overlay", ManaOverlay.HUD_MANA);
-        event.registerAbove(VanillaGuiOverlay.HOTBAR.id(), "spirit_overlay", SpiritOverlay.HUD_SPIRIT);
+        event.registerAbove(VanillaGuiOverlay.PLAYER_HEALTH.id(), "spirit_overlay", SpiritOverlay.HUD_SPIRIT);
 
     }
 }

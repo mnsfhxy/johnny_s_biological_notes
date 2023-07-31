@@ -2,7 +2,10 @@ package com.mnsfhxy.johnny_s_biological_notes.capability.spirit;
 
 import com.mnsfhxy.johnny_s_biological_notes.Item.ItemKatana;
 import com.mnsfhxy.johnny_s_biological_notes.JohnnySBiologicalNotes;
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiComponent;
+import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
@@ -37,9 +40,15 @@ public class SpiritOverlay {
     public static final IGuiOverlay HUD_SPIRIT = (gui, poseStack, partialTicks, width, height) -> {
         Player player=null;
         player=Minecraft.getInstance().player;
+        int x=width/2;
+        int y=height;
         if(Minecraft.getInstance().player==null)return;
         if(!(player.getItemInHand(InteractionHand.MAIN_HAND).getItem() instanceof ItemKatana))return;
-        gui.setupOverlayRenderState(true, true,HUD);
-        gui.blit(poseStack, 123, 180, 0, 0, 113, 20, 113, 20);
+        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+        RenderSystem.setShaderColor(1.0F,1.0F,1.0F,1.0F);
+        RenderSystem.setShaderTexture(0,HUD);
+        GuiComponent.blit(poseStack,x-94,y-54,0, 0, 113, 20, 113, 20 );
+//        gui.setupOverlayRenderState(true, true,HUD);
+//        gui.blit(poseStack, 123, 180,0, 0, 113, 20, 113, 20 );
     };
 }
