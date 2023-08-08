@@ -5,6 +5,7 @@ import com.mnsfhxy.johnny_s_biological_notes.Item.ItemModFishBucket;
 import com.mnsfhxy.johnny_s_biological_notes.JohnnySBiologicalNotes;
 import com.mnsfhxy.johnny_s_biological_notes.entity.crab.EntityCrab;
 import com.mnsfhxy.johnny_s_biological_notes.entity.drifter.EntityDrifter;
+import com.mnsfhxy.johnny_s_biological_notes.entity.jelly.EntityJelly;
 import com.mnsfhxy.johnny_s_biological_notes.entity.peeper.EntityPeeper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockSource;
@@ -53,31 +54,34 @@ public class RegistrationInit {
         PARTICLE_TYPES.register(bus);
     }
 
-//Entity注册
+    //Entity注册
     public static final RegistryObject<EntityType<EntityCrab>> CRAB =
             ENTITIES.register(
                     "crab",
-                    () ->registerEntity(EntityType.Builder.of(EntityCrab::new, MobCategory.AMBIENT)
-                            .sized(0.75F, 0.75F),"crab"));
+                    () -> registerEntity(EntityType.Builder.of(EntityCrab::new, MobCategory.AMBIENT)
+                            .sized(0.75F, 0.75F), "crab"));
 
     public static final RegistryObject<EntityType<EntityDrifter>> DRIFTER =
             ENTITIES.register(
                     "drifter",
-                    () ->registerEntity(EntityType.Builder.of(EntityDrifter::new, MobCategory.AMBIENT)
-                            .sized(0.75F, 1.8F),"drifter"));
+                    () -> registerEntity(EntityType.Builder.of(EntityDrifter::new, MobCategory.AMBIENT)
+                            .sized(0.75F, 1.8F), "drifter"));
 
 
     public static final RegistryObject<EntityType<EntityPeeper>> PEEPER =
             ENTITIES.register(
                     "peeper",
-                    () ->registerEntity(EntityType.Builder.of(EntityPeeper::new, MobCategory.MONSTER)
-                            .sized(1F, 1.2F),"peeper"));
+                    () -> registerEntity(EntityType.Builder.of(EntityPeeper::new, MobCategory.MONSTER)
+                            .sized(1F, 1.2F), "peeper"));
 
 
+    public static final RegistryObject<EntityType<EntityJelly>> JELLY =
+            ENTITIES.register("jelly",
+                    () -> registerEntity(EntityType.Builder.of(EntityJelly::new, MobCategory.AMBIENT)
+                            .sized(1F, 1F),"jelly"));
 
 
-
-//Item注册
+    //Item注册
     //egg
     public static final RegistryObject<Item> CRAB_EGG =
             ITEMS.register(
@@ -89,30 +93,32 @@ public class RegistrationInit {
     public static final RegistryObject<Item> PEEPER_EGG =
             ITEMS.register(
                     "peeper", () -> new ForgeSpawnEggItem(PEEPER, 0x534620, 0x6c7911, ITEM_PROPERTIES));
-    public static final RegistryObject<Item> FORGED_PLATE=ITEMS.register("forged_plate",()->new Item(new Item.Properties().tab(ModInit.ITEM_GROUP)));
+    public static final RegistryObject<Item> JELLY_EGG =
+            ITEMS.register(
+                    "jelly", () -> new ForgeSpawnEggItem(JELLY, 0x534620, 0x6c7911, ITEM_PROPERTIES));
 
-    public static final RegistryObject<Item> WOOD_BLADE=ITEMS.register("wood_blade",()->new Item(new Item.Properties().tab(ModInit.ITEM_GROUP)));
-    public static final RegistryObject<Item> STONE_BLADE=ITEMS.register("stone_blade",()->new Item(new Item.Properties().tab(ModInit.ITEM_GROUP)));
-    public static final RegistryObject<Item> IRON_BLADE=ITEMS.register("iron_blade",()->new Item(new Item.Properties().tab(ModInit.ITEM_GROUP)));
-    public static final RegistryObject<Item> GOLD_BLADE=ITEMS.register("gold_blade",()->new Item(new Item.Properties().tab(ModInit.ITEM_GROUP)));
-    public static final RegistryObject<Item> DIAMOND_BLADE=ITEMS.register("diamond_blade",()->new Item(new Item.Properties().tab(ModInit.ITEM_GROUP)));
-    public static final RegistryObject<Item> NETHERITE_BLADE=ITEMS.register("netherite_blade",()->new Item(new Item.Properties().tab(ModInit.ITEM_GROUP)));
+    public static final RegistryObject<Item> FORGED_PLATE = ITEMS.register("forged_plate", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP)));
 
-
-    public static final RegistryObject<ItemKatana> WOOD_KATANA=ITEMS.register("wood_katana",()->new ItemKatana(Tiers.WOOD,4,-3f));
-    public static final RegistryObject<ItemKatana> STONE_KATANA=ITEMS.register("stone_katana",()->new ItemKatana(Tiers.STONE,4,-3f));
-    public static final RegistryObject<ItemKatana> IRON_KATANA=ITEMS.register("iron_katana",()->new ItemKatana(Tiers.IRON,5,-3f));
-    public static final RegistryObject<ItemKatana> GOLD_KATANA=ITEMS.register("gold_katana",()->new ItemKatana(Tiers.GOLD,7,-3f));
-    public static final RegistryObject<ItemKatana> DIAMOND_KATANA=ITEMS.register("diamond_katana",()->new ItemKatana(Tiers.DIAMOND,6,-3f));
-    public static final RegistryObject<ItemKatana> NETHERITE_KATANA=ITEMS.register("netherite_katana",()->new ItemKatana(Tiers.NETHERITE,7,-3f));
+    public static final RegistryObject<Item> WOOD_BLADE = ITEMS.register("wood_blade", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP)));
+    public static final RegistryObject<Item> STONE_BLADE = ITEMS.register("stone_blade", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP)));
+    public static final RegistryObject<Item> IRON_BLADE = ITEMS.register("iron_blade", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP)));
+    public static final RegistryObject<Item> GOLD_BLADE = ITEMS.register("gold_blade", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP)));
+    public static final RegistryObject<Item> DIAMOND_BLADE = ITEMS.register("diamond_blade", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP)));
+    public static final RegistryObject<Item> NETHERITE_BLADE = ITEMS.register("netherite_blade", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP)));
 
 
+    public static final RegistryObject<ItemKatana> WOOD_KATANA = ITEMS.register("wood_katana", () -> new ItemKatana(Tiers.WOOD, 4, -3f));
+    public static final RegistryObject<ItemKatana> STONE_KATANA = ITEMS.register("stone_katana", () -> new ItemKatana(Tiers.STONE, 4, -3f));
+    public static final RegistryObject<ItemKatana> IRON_KATANA = ITEMS.register("iron_katana", () -> new ItemKatana(Tiers.IRON, 5, -3f));
+    public static final RegistryObject<ItemKatana> GOLD_KATANA = ITEMS.register("gold_katana", () -> new ItemKatana(Tiers.GOLD, 7, -3f));
+    public static final RegistryObject<ItemKatana> DIAMOND_KATANA = ITEMS.register("diamond_katana", () -> new ItemKatana(Tiers.DIAMOND, 6, -3f));
+    public static final RegistryObject<ItemKatana> NETHERITE_KATANA = ITEMS.register("netherite_katana", () -> new ItemKatana(Tiers.NETHERITE, 7, -3f));
 
-    public static final RegistryObject<Item> CRAB_SHELL=ITEMS.register("crab_shell",()->new Item(new Item.Properties().tab(ModInit.ITEM_GROUP)));
-    public static final RegistryObject<Item> CRAB_MEAT=ITEMS.register("crab_meat",()->new Item(new Item.Properties().tab(ModInit.ITEM_GROUP).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.4f).meat().build())));
-    public static final RegistryObject<Item> COOKED_CRAB_MEAT=ITEMS.register("cooked_crab_meat",()->new Item(new Item.Properties().tab(ModInit.ITEM_GROUP).food(new FoodProperties.Builder().nutrition(5).saturationMod(3f).meat().build())));
+
+    public static final RegistryObject<Item> CRAB_SHELL = ITEMS.register("crab_shell", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP)));
+    public static final RegistryObject<Item> CRAB_MEAT = ITEMS.register("crab_meat", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.4f).meat().build())));
+    public static final RegistryObject<Item> COOKED_CRAB_MEAT = ITEMS.register("cooked_crab_meat", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP).food(new FoodProperties.Builder().nutrition(5).saturationMod(3f).meat().build())));
     public static final RegistryObject<Item> CRAB_BUCKET = ITEMS.register("crab_bucket", () -> new ItemModFishBucket(CRAB, Fluids.WATER, new Item.Properties().tab(ModInit.ITEM_GROUP)));
-
 
 
     //tages
@@ -124,16 +130,16 @@ public class RegistrationInit {
             PARTICLE_TYPES.register("chop", () -> new SimpleParticleType(true));
 
     //投掷器
-    public static void initDispenser(){
+    public static void initDispenser() {
         DispenseItemBehavior bucketDispenseBehavior = new DefaultDispenseItemBehavior() {
             private final DefaultDispenseItemBehavior defaultDispenseItemBehavior = new DefaultDispenseItemBehavior();
 
             public ItemStack execute(BlockSource blockSource, ItemStack stack) {
-                DispensibleContainerItem dispensiblecontaineritem = (DispensibleContainerItem)stack.getItem();
+                DispensibleContainerItem dispensiblecontaineritem = (DispensibleContainerItem) stack.getItem();
                 BlockPos blockpos = blockSource.getPos().relative(blockSource.getBlockState().getValue(DispenserBlock.FACING));
                 Level level = blockSource.getLevel();
-                if (dispensiblecontaineritem.emptyContents((Player)null, level, blockpos, (BlockHitResult)null)) {
-                    dispensiblecontaineritem.checkExtraContent((Player)null, level, stack, blockpos);
+                if (dispensiblecontaineritem.emptyContents((Player) null, level, blockpos, (BlockHitResult) null)) {
+                    dispensiblecontaineritem.checkExtraContent((Player) null, level, stack, blockpos);
                     return new ItemStack(Items.BUCKET);
                 } else {
                     return this.defaultDispenseItemBehavior.dispense(blockSource, stack);
@@ -143,6 +149,7 @@ public class RegistrationInit {
         DispenserBlock.registerBehavior(CRAB_BUCKET.get(), bucketDispenseBehavior);
 
     }
+
     private static final EntityType registerEntity(EntityType.Builder builder, String entityName) {
         return (EntityType) builder.build(entityName);
     }

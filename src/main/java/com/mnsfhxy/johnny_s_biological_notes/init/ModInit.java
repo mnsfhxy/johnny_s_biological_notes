@@ -8,6 +8,7 @@ import com.mnsfhxy.johnny_s_biological_notes.capability.spirit.SpiritEvents;
 import com.mnsfhxy.johnny_s_biological_notes.entity.crab.EntityCrab;
 //import com.mnsfhxy.johnny_s_biological_notes.entity.crab.BRendererCrab;
 import com.mnsfhxy.johnny_s_biological_notes.entity.drifter.EntityDrifter;
+import com.mnsfhxy.johnny_s_biological_notes.entity.jelly.EntityJelly;
 import com.mnsfhxy.johnny_s_biological_notes.entity.peeper.EntityPeeper;
 import com.mnsfhxy.johnny_s_biological_notes.networking.Messages;
 import net.minecraft.world.InteractionHand;
@@ -57,6 +58,7 @@ public class ModInit {
         event.put(RegistrationInit.CRAB.get(), EntityCrab.prepareAttributes().build());
         event.put(RegistrationInit.DRIFTER.get(), EntityDrifter.prepareAttributes().build());
         event.put(RegistrationInit.PEEPER.get(), EntityPeeper.prepareAttributes().build());
+        event.put(RegistrationInit.JELLY.get(), EntityJelly.prepareAttributes().build());
 
 
     }

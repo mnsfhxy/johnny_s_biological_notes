@@ -32,6 +32,7 @@ public class ModItemModels extends ItemModelProvider {
 //        singleTexture(Registration.MYSTERIOUS_INGOT.getId().getPath(),
 //                mcLoc("item/generated"),
 //                "layer0", modLoc("item/mysterious_ingot"));
+        withExistingParent(RegistrationInit.JELLY_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(RegistrationInit.CRAB_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(RegistrationInit.PEEPER_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(RegistrationInit.DRIFTER_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));

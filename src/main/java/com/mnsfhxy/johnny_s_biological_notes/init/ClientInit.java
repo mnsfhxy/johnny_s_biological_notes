@@ -6,6 +6,8 @@ import com.mnsfhxy.johnny_s_biological_notes.entity.crab.ModelCrab;
 import com.mnsfhxy.johnny_s_biological_notes.entity.crab.RendererCrab;
 import com.mnsfhxy.johnny_s_biological_notes.entity.drifter.ModelDrifter;
 import com.mnsfhxy.johnny_s_biological_notes.entity.drifter.RendererDrifter;
+import com.mnsfhxy.johnny_s_biological_notes.entity.jelly.ModelJelly;
+import com.mnsfhxy.johnny_s_biological_notes.entity.jelly.RendererJelly;
 import com.mnsfhxy.johnny_s_biological_notes.entity.peeper.ModelPeeper;
 import com.mnsfhxy.johnny_s_biological_notes.entity.peeper.RendererPeeper;
 import com.mnsfhxy.johnny_s_biological_notes.particle.ChopParticle;
@@ -23,6 +25,7 @@ public class ClientInit {
         event.registerLayerDefinition(ModelCrab.LAYER_LOCATION, ModelCrab::createBodyLayer);
         event.registerLayerDefinition(ModelDrifter.LAYER_LOCATION,ModelDrifter::createBodyLayer);
         event.registerLayerDefinition(ModelPeeper.LAYER_LOCATION,ModelPeeper::createBodyLayer);
+        event.registerLayerDefinition(ModelJelly.LAYER_LOCATION,ModelJelly::createBodyLayer);
     }
 
     @SubscribeEvent
@@ -30,7 +33,7 @@ public class ClientInit {
         event.registerEntityRenderer(RegistrationInit.CRAB.get(), RendererCrab::new);
         event.registerEntityRenderer(RegistrationInit.DRIFTER.get(), RendererDrifter::new);
         event.registerEntityRenderer(RegistrationInit.PEEPER.get(), RendererPeeper::new);
-
+        event.registerEntityRenderer(RegistrationInit.JELLY.get(), RendererJelly::new);
     }
 
     @SubscribeEvent
