@@ -47,7 +47,7 @@ public class SpiritOverlay {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F,1.0F,1.0F,1.0F);
         RenderSystem.setShaderTexture(0,HUD);
-        GuiComponent.blit(poseStack,x-94,y-54,0, 0, 113, 20, 113, 20 );
+        GuiComponent.blit(poseStack,x-94,y-66,0, 0, 113, 20, 113, 20 );
 //        gui.setupOverlayRenderState(true, true,HUD);
 //        gui.blit(poseStack, 123, 180,0, 0, 113, 20, 113, 20 );
     };

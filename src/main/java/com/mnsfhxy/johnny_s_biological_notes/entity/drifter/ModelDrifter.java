@@ -32,6 +32,8 @@ public class ModelDrifter  extends HierarchicalModel<EntityDrifter> implements A
     private final ModelPart LeftLeg;
     private final ModelPart RightLeg;
     private final ModelPart root;
+    private final ModelPart head;
+
 //    private final ModelPart item;
 
     public ModelDrifter(ModelPart root) {
@@ -42,6 +44,7 @@ public class ModelDrifter  extends HierarchicalModel<EntityDrifter> implements A
         this.rightarm = root.getChild("rightarm");
         this.LeftLeg = root.getChild("LeftLeg");
         this.RightLeg = root.getChild("RightLeg");
+        this.head=body.getChild("head");
 //        this.item=rightarm.getChild("item");
     }
 
@@ -82,6 +85,8 @@ public class ModelDrifter  extends HierarchicalModel<EntityDrifter> implements A
     @Override
     public void setupAnim(EntityDrifter entity, float pLimbSwing, float pLimbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.root().getAllParts().forEach(ModelPart::resetPose);
+        this.head.yRot = netHeadYaw * ((float)Math.PI / 180F);
+        this.head.xRot = headPitch * ((float)Math.PI / 180F);
         this.animate(entity.alert0AnimationState,AnimationDrifter.DRIFTERS_ALERT_0,ageInTicks);
         this.animate(entity.alert1AnimationState,AnimationDrifter.DRIFTERS_ALERT_1,ageInTicks);
         this.animate(entity.fightAnimationState.getAnimationState(),AnimationDrifter.DRIFTERS_FIGHT,ageInTicks);
@@ -91,6 +96,9 @@ public class ModelDrifter  extends HierarchicalModel<EntityDrifter> implements A
         this.LeftLeg.yRot = 0.0F;
 //      this.animate(entity.walkingAnimationState,AnimationDrifter.DRIFTERS_WALKING,ageInTicks);
 
+    }
+    public ModelPart getHead() {
+        return this.head;
     }
 
     public ModelPart root() {

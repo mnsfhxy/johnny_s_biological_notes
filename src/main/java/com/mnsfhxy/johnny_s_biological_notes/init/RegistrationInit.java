@@ -84,7 +84,7 @@ public class RegistrationInit {
                     "crab", () -> new ForgeSpawnEggItem(CRAB, 0xe25243, 0xc1bbb9, ITEM_PROPERTIES));
     public static final RegistryObject<Item> DRIFTER_EGG =
             ITEMS.register(
-                    "drifter", () -> new ForgeSpawnEggItem(DRIFTER, 0xe11111, 0xc1bbb9, ITEM_PROPERTIES));
+                    "drifter", () -> new ForgeSpawnEggItem(DRIFTER, 0x794343, 0xbba84c, ITEM_PROPERTIES));
 
     public static final RegistryObject<Item> PEEPER_EGG =
             ITEMS.register(

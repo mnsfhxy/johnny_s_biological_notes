@@ -109,7 +109,7 @@ public class EntityDrifter extends PathfinderMob {
 
     private static HashMap<UUID, Favorability> favStrToMap(String s) {
         HashMap<UUID, Favorability> stringFavorabilityHashMap = new HashMap<>();
-        if(s==null||s.equals(""))return stringFavorabilityHashMap;
+        if (s == null || s.equals("")) return stringFavorabilityHashMap;
         Gson gson = new Gson();
         FavJson[] favJsons = gson.fromJson(s, FavJson[].class);
         for (var fav : favJsons) {
@@ -135,35 +135,41 @@ public class EntityDrifter extends PathfinderMob {
         this.goalSelector.addGoal(1, new FloatGoal(this));
         this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0D, false));
         this.goalSelector.addGoal(3, new FllowPlayerGoal(this));
-        this.goalSelector.addGoal(4, new WaterAvoidingRandomStrollGoal(this, 1.0D));
+        this.goalSelector.addGoal(4, new LookAtPlayerGoal(this, Player.class, 3.0F, 1.0F));
+        this.goalSelector.addGoal(5, new LookAtPlayerGoal(this, Mob.class, 8.0F));
+        this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 1.0D));
+
         this.targetSelector.addGoal(1, (new HurtByTargetGoal(this, Player.class) {
             @Override
             public boolean canUse() {
                 return (!(this.mob.getLastHurtByMob() instanceof Player)) && super.canUse();
             }
         }));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Zombie.class, true));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, ZombieVillager.class, true));
-        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, WitherSkeleton.class, true));
-        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, Witch.class, true));
-        this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, Vindicator.class, true));
-        this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, Vex.class, true));
-        this.targetSelector.addGoal(8, new NearestAttackableTargetGoal<>(this, Stray.class, true));
-        this.targetSelector.addGoal(9, new NearestAttackableTargetGoal<>(this, Slime.class, true));
-        this.targetSelector.addGoal(10, new NearestAttackableTargetGoal<>(this, Shulker.class, true));
-        this.targetSelector.addGoal(11, new NearestAttackableTargetGoal<>(this, Phantom.class, true));
-        this.targetSelector.addGoal(12, new NearestAttackableTargetGoal<>(this, MagmaCube.class, true));
-        this.targetSelector.addGoal(13, new NearestAttackableTargetGoal<>(this, Husk.class, true));
-        this.targetSelector.addGoal(14, new NearestAttackableTargetGoal<>(this, Hoglin.class, true));
-        this.targetSelector.addGoal(15, new NearestAttackableTargetGoal<>(this, Ghast.class, true));
-        this.targetSelector.addGoal(16, new NearestAttackableTargetGoal<>(this, Endermite.class, true));
-        this.targetSelector.addGoal(17, new NearestAttackableTargetGoal<>(this, ElderGuardian.class, true));
-        this.targetSelector.addGoal(18, new NearestAttackableTargetGoal<>(this, Drowned.class, true));
-        this.targetSelector.addGoal(19, new NearestAttackableTargetGoal<>(this, Blaze.class, true));
-        this.targetSelector.addGoal(20, new NearestAttackableTargetGoal<>(this, PiglinBrute.class, true));
-        this.targetSelector.addGoal(20, new NearestAttackableTargetGoal<>(this, Pillager.class, true));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Mob.class, 5, false, false, (p_28879_) -> {
+            return p_28879_ instanceof Enemy && !(p_28879_ instanceof Creeper);
+        }));
+      //        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Zombie.class, true));
+//        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, ZombieVillager.class, true));
+//        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, WitherSkeleton.class, true));
+//        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, Witch.class, true));
+//        this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, Vindicator.class, true));
+//        this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, Vex.class, true));
+//        this.targetSelector.addGoal(8, new NearestAttackableTargetGoal<>(this, Stray.class, true));
+//        this.targetSelector.addGoal(9, new NearestAttackableTargetGoal<>(this, Slime.class, true));
+//        this.targetSelector.addGoal(10, new NearestAttackableTargetGoal<>(this, Shulker.class, true));
+//        this.targetSelector.addGoal(11, new NearestAttackableTargetGoal<>(this, Phantom.class, true));
+//        this.targetSelector.addGoal(12, new NearestAttackableTargetGoal<>(this, MagmaCube.class, true));
+//        this.targetSelector.addGoal(13, new NearestAttackableTargetGoal<>(this, Husk.class, true));
+//        this.targetSelector.addGoal(14, new NearestAttackableTargetGoal<>(this, Hoglin.class, true));
+//        this.targetSelector.addGoal(15, new NearestAttackableTargetGoal<>(this, Ghast.class, true));
+//        this.targetSelector.addGoal(16, new NearestAttackableTargetGoal<>(this, Endermite.class, true));
+//        this.targetSelector.addGoal(17, new NearestAttackableTargetGoal<>(this, ElderGuardian.class, true));
+//        this.targetSelector.addGoal(18, new NearestAttackableTargetGoal<>(this, Drowned.class, true));
+//        this.targetSelector.addGoal(19, new NearestAttackableTargetGoal<>(this, Blaze.class, true));
+//        this.targetSelector.addGoal(20, new NearestAttackableTargetGoal<>(this, PiglinBrute.class, true));
+//        this.targetSelector.addGoal(20, new NearestAttackableTargetGoal<>(this, Pillager.class, true));
 
-        this.targetSelector.addGoal(22, new NearestAttackablePlayerGoal(this, true));
+        this.targetSelector.addGoal(3, new NearestAttackablePlayerGoal(this, true));
 
     }
 
@@ -220,8 +226,8 @@ public class EntityDrifter extends PathfinderMob {
                     this.moveTo((double) pPlayer.getX() + 0.5D, (double) pPlayer.getY(), (double) pPlayer.getZ() + 0.5D, this.getYRot(), this.getXRot());
                     this.navigation.stop();
                 }
-                    BehaviorUtils.throwItem(this, new ItemStack(RegistrationInit.FORGED_PLATE.get()), this.position().add(0.0D, 1.0D, 0.0D));
-                    this.haveGift = false;
+                BehaviorUtils.throwItem(this, new ItemStack(RegistrationInit.FORGED_PLATE.get()), this.position().add(0.0D, 1.0D, 0.0D));
+                this.haveGift = false;
 
             }
             if (favorability.value == favorability.FOLLOW_VALUE) {
@@ -237,7 +243,8 @@ public class EntityDrifter extends PathfinderMob {
 
     @Override
     public boolean canAttackType(EntityType<?> pType) {
-        return pType.is(TagsInit.Entities.DRIFTER_ATTACKABLE);
+//        return pType.is(TagsInit.Entities.DRIFTER_ATTACKABLE);
+        return true;
     }
 
     @Override
@@ -303,7 +310,7 @@ public class EntityDrifter extends PathfinderMob {
             });
             float minDisToEnemy = Float.MAX_VALUE;
             for (LivingEntity target : entitiesOfClass) {
-                if (target.isAlive() && canAttackType(target.getType())) {
+                if (target.isAlive() && target instanceof Enemy && !(target instanceof Creeper) && !(target instanceof EntityDrifter)) {
                     if (target instanceof Player) {
                         Favorability favorability = this.favorability.get(((Player) target).getUUID());
                         if (favorability != null && (!favorability.canAttack())) continue;
@@ -311,30 +318,36 @@ public class EntityDrifter extends PathfinderMob {
                     minDisToEnemy = Math.min(target.distanceTo(this), minDisToEnemy);
                 }
             }
-//            Boolean flag=isAggressive();
-//            if(flag&&!isAggressive())flag=true;
-            alert0AnimationState.stop();
-            alert1AnimationState.stop();
-            if (minDisToEnemy < 4) {
-                alert1AnimationState.start(this.tickCount);
-                if (this.isAggressive()) {
-                    alert1AnimationState.stop();
-//                    fightAnimationState.start(this.tickCount);
+
+            if (this.isAggressive()) {
+                renderItem = true;
+                if (!fightAnimationState.isStarted()) {
+                    renderItem = true;
                     fightAnimationState.playOnce(this.tickCount, 500);
-                } else {
-//                    fightAnimationState.stop();
+//                fightAnimationState.start(this.tickCount);
                 }
-                renderItem = true;
-            } else if (minDisToEnemy < 10) {
-                alert0AnimationState.start(this.tickCount);
-                renderItem = true;
-            } else {
+            }else{
                 renderItem = false;
+
             }
-//            if(flag)fightAnimationState.stop();
-
+//            alert0AnimationState.stop();
+//            alert1AnimationState.stop();
+//            if (!this.fightAnimationState.isStarted()) {
+//                if (minDisToEnemy < 4) {
+//                    if (this.isAggressive()) {
+//                        fightAnimationState.playOnce(this.tickCount, 500);
+//                    } else {
+//                        alert1AnimationState.start(this.tickCount);
+//                    }
+//                    renderItem = true;
+//                } else if (minDisToEnemy < 10) {
+//                        alert0AnimationState.start(this.tickCount);
+//                    renderItem = true;
+//                } else {
+//                    renderItem = false;
+//                }
+//            }
         }
-
 
         Player nearestPlayer = this.level.getNearestPlayer(this, 64F);
         if (nearestPlayer != null && !favorability.containsKey(nearestPlayer.getUUID())) {
