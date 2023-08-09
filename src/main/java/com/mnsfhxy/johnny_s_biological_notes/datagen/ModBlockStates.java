@@ -13,6 +13,7 @@ public class ModBlockStates extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
+
 //        simpleBlock(Registration.FIRST_BLOCK.get());
     }
 }

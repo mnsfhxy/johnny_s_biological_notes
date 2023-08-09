@@ -3,6 +3,7 @@ package com.mnsfhxy.johnny_s_biological_notes.datagen;
 import com.mnsfhxy.johnny_s_biological_notes.JohnnySBiologicalNotes;
 import com.mnsfhxy.johnny_s_biological_notes.init.PotionsInit;
 import com.mnsfhxy.johnny_s_biological_notes.init.RegistrationInit;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -32,6 +33,7 @@ public class ModItemModels extends ItemModelProvider {
 //        singleTexture(Registration.MYSTERIOUS_INGOT.getId().getPath(),
 //                mcLoc("item/generated"),
 //                "layer0", modLoc("item/mysterious_ingot"));
+        withExistingParent(RegistrationInit.BLOCK_ITEM_JELLY.getId().getPath(),modLoc("block/jelly_block"));
         withExistingParent(RegistrationInit.JELLY_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(RegistrationInit.CRAB_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(RegistrationInit.PEEPER_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));

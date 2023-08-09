@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "johnny_s_biological_notes.refmap.json",
   "mixins": [
+    "MixinBlock",
     "MixinEntity",
     "MixinLivingEntity",
     "MixinServerLevel"

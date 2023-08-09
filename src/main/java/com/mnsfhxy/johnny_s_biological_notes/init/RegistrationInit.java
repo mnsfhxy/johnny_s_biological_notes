@@ -3,6 +3,7 @@ package com.mnsfhxy.johnny_s_biological_notes.init;
 import com.mnsfhxy.johnny_s_biological_notes.Item.ItemKatana;
 import com.mnsfhxy.johnny_s_biological_notes.Item.ItemModFishBucket;
 import com.mnsfhxy.johnny_s_biological_notes.JohnnySBiologicalNotes;
+import com.mnsfhxy.johnny_s_biological_notes.block.BlockJelly;
 import com.mnsfhxy.johnny_s_biological_notes.entity.crab.EntityCrab;
 import com.mnsfhxy.johnny_s_biological_notes.entity.drifter.EntityDrifter;
 import com.mnsfhxy.johnny_s_biological_notes.entity.jelly.EntityJelly;
@@ -19,6 +20,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
@@ -30,7 +32,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class RegistrationInit {
-
+    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, JohnnySBiologicalNotes.MODID);
     public static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties().tab(ModInit.ITEM_GROUP);
     public static final DeferredRegister<Item> ITEMS =
@@ -43,7 +45,7 @@ public class RegistrationInit {
 
     public static void init() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
-        //        BLOCKS.register(bus);
+        BLOCKS.register(bus);
         ITEMS.register(bus);
         //        BLOCK_ENTITIES.register(bus);
         //        CONTAINERS.register(bus);
@@ -53,6 +55,13 @@ public class RegistrationInit {
         //        PLACED_FEATURES.register(bus);
         PARTICLE_TYPES.register(bus);
     }
+    //Block注册
+    public static final RegistryObject<BlockJelly> BLOCK_JELLY = BLOCKS.register("jelly_block", BlockJelly::new);
+    public static final RegistryObject<Item> BLOCK_ITEM_JELLY = fromBlock(BLOCK_JELLY);
+    public static <B extends Block> RegistryObject<Item> fromBlock(RegistryObject<B> block) {
+        return ITEMS.register(block.getId().getPath(), () -> new BlockItem(block.get(), ITEM_PROPERTIES));
+    }
+
 
     //Entity注册
     public static final RegistryObject<EntityType<EntityCrab>> CRAB =
@@ -78,7 +87,7 @@ public class RegistrationInit {
     public static final RegistryObject<EntityType<EntityJelly>> JELLY =
             ENTITIES.register("jelly",
                     () -> registerEntity(EntityType.Builder.of(EntityJelly::new, MobCategory.AMBIENT)
-                            .sized(1F, 1F),"jelly"));
+                            .sized(1F, 1F), "jelly"));
 
 
     //Item注册
