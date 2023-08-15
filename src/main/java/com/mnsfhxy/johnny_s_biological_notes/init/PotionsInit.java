@@ -2,6 +2,7 @@ package com.mnsfhxy.johnny_s_biological_notes.init;
 
 import com.mnsfhxy.johnny_s_biological_notes.JohnnySBiologicalNotes;
 import com.mnsfhxy.johnny_s_biological_notes.effect.EffectFearWater;
+import com.mnsfhxy.johnny_s_biological_notes.effect.EffectVulnusRecover;
 import com.mnsfhxy.johnny_s_biological_notes.potions.ProperBrewingRecipe;
 import com.mnsfhxy.johnny_s_biological_notes.util.UtilLevel;
 import net.minecraft.world.effect.MobEffect;
@@ -30,12 +31,20 @@ public class PotionsInit {
     public static RegistryObject<MobEffect> FEAR_WATER =
             MOBEFFECTS.register(
                     "fear_water_effect", () -> new EffectFearWater(MobEffectCategory.HARMFUL, 65793));
+    public static RegistryObject<MobEffect> VULNUS_RECOVER =
+            MOBEFFECTS.register(
+                    "vulnus_recover_effect", () -> new EffectVulnusRecover(MobEffectCategory.BENEFICIAL, 65756));
 
-
+    //potion注册
     public static final RegistryObject<Potion> FEAR_WATER_POTION =
             POTIONS.register("fear_water_potion", () -> new Potion(new MobEffectInstance(FEAR_WATER.get(), UtilLevel.TIME.SECOND.getTick() * 45)));
     public static final RegistryObject<Potion> LONG_FEAR_WATER_POTION =
             POTIONS.register("long_fear_water_potion", () -> new Potion(new MobEffectInstance(FEAR_WATER.get(), UtilLevel.TIME.SECOND.getTick() * 90)));
+
+//    public static final RegistryObject<Potion> VULNUS_RECOVER_POTION =
+//            POTIONS.register("vulnus_recover_effect", () -> new Potion(new MobEffectInstance(VULNUS_RECOVER.get(), UtilLevel.TIME.SECOND.getTick() * 45,0)));
+
+
 
     public static void init() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();

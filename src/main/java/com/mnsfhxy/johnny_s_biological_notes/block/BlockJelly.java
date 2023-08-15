@@ -16,7 +16,7 @@ public class BlockJelly extends HalfTransparentBlock {
 
 
     public BlockJelly() {
-        super(BlockBehaviour.Properties.of(Material.CLAY, MaterialColor.GRASS).friction(0.8F).sound(SoundType.SLIME_BLOCK).noOcclusion());
+        super(BlockBehaviour.Properties.of(Material.CLAY, MaterialColor.GRASS).friction(0.8F).sound(SoundType.SLIME_BLOCK).noOcclusion().strength(0,1200));
     }
 
     @Override

@@ -36,7 +36,7 @@ public class Messages {
         net.messageBuilder(PacketGetTarget.class, id(), NetworkDirection.PLAY_TO_CLIENT)
                 .decoder(PacketGetTarget::new)
                 .encoder(PacketGetTarget::toBytes)
-                .consumer(PacketGetTarget::handle)
+//                .consumer(PacketGetTarget::handle)
                 .add();
     }
 

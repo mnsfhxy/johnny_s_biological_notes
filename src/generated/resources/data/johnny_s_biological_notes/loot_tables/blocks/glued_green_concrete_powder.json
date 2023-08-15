@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:green_concrete_powder"
+        }
+      ],
+      "name": "glued_green_concrete_powder",
+      "rolls": 1.0
+    }
+  ]
+}

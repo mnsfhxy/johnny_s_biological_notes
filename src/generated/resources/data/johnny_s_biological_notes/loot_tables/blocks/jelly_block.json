@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "johnny_s_biological_notes:jelly_block"
+        }
+      ],
+      "name": "jelly_block",
+      "rolls": 1.0
+    }
+  ]
+}

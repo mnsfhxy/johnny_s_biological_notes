@@ -28,7 +28,7 @@ public class TagsInit {
         }
 
         public static final TagKey<Block> MINEABLE_WITH_KATANA = tag("mineable/katana");
-
+        public static final TagKey<Block> SAFE_ON_JELLY=tag("safe_on_jelly");
         private static TagKey<Block> tag(String name) {
             return BlockTags.create(new ResourceLocation(JohnnySBiologicalNotes.MODID, name));
         }

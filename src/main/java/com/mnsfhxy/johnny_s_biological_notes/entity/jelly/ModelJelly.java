@@ -3,14 +3,12 @@ package com.mnsfhxy.johnny_s_biological_notes.entity.jelly;
 import com.mnsfhxy.johnny_s_biological_notes.JohnnySBiologicalNotes;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.Entity;
 
 public class ModelJelly extends HierarchicalModel<EntityJelly> {
     // This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
@@ -22,7 +20,7 @@ public class ModelJelly extends HierarchicalModel<EntityJelly> {
     private final ModelPart root;
 
     public ModelJelly(ModelPart root) {
-        this.root = root;
+        this.root=root;
         this.bell_0 = root.getChild("bell_0");
         this.tentacle = root.getChild("tentacle");
         this.oral_arms = root.getChild("oral_arms");
@@ -46,10 +44,6 @@ public class ModelJelly extends HierarchicalModel<EntityJelly> {
 
 
 
-    public ModelPart root() {
-        return this.root;
-    }
-
     @Override
     public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
         bell_0.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
@@ -58,8 +52,15 @@ public class ModelJelly extends HierarchicalModel<EntityJelly> {
         core.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
     }
 
+
     @Override
     public void setupAnim(EntityJelly pEntity, float pLimbSwing, float pLimbSwingAmount, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
+        this.root().getAllParts().forEach(ModelPart::resetPose);
+        this.animate(pEntity.movingAnimation, AnimationJelly.JELLY_MOVING, pAgeInTicks);
 
+    }
+    @Override
+    public ModelPart root() {
+        return this.root;
     }
 }
