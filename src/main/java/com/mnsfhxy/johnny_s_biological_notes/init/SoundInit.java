@@ -3,6 +3,8 @@ package com.mnsfhxy.johnny_s_biological_notes.init;
 import com.mnsfhxy.johnny_s_biological_notes.JohnnySBiologicalNotes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraftforge.common.util.ForgeSoundType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
@@ -34,6 +36,15 @@ public class SoundInit {
     public static final RegistryObject<SoundEvent> DRIFTERS_HURT =createSoundEvent("drifter_hurt");
     public static final RegistryObject<SoundEvent> DRIFTERS_VICTORY =createSoundEvent("drifter_victory");
 
+    public static final RegistryObject<SoundEvent> JELLY_DEATH =createSoundEvent("jelly_death");
+    public static final RegistryObject<SoundEvent> JELLY_HURT =createSoundEvent("jelly_hurt");
+    public static final RegistryObject<SoundEvent> JELLY_MAKE_BUBBLE =createSoundEvent("jelly_make_bubble");
+    public static final RegistryObject<SoundEvent> JELLY_BLOCK_HIT =createSoundEvent("jelly_block_hit");
+    public static final RegistryObject<SoundEvent> JELLY_BLOCK_PLACE =createSoundEvent("jelly_block_place");
+    public static final RegistryObject<SoundEvent> JELLY_BLOCK_STEP =createSoundEvent("jelly_block_step");
+    public static final RegistryObject<SoundEvent> JELLY_BUBBLE_BROKEN =createSoundEvent("jelly_bubble_broken");
+
+    public static final ForgeSoundType JELLY_BLOCK = new ForgeSoundType(1.0F, 1.0F, JELLY_BLOCK_HIT, JELLY_BLOCK_STEP, JELLY_BLOCK_PLACE, JELLY_BLOCK_HIT, JELLY_BLOCK_PLACE);
 
 
     private static RegistryObject<SoundEvent> createSoundEvent(final String soundName) {

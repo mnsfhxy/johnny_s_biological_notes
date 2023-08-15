@@ -13,6 +13,7 @@ import com.mnsfhxy.johnny_s_biological_notes.entity.jelly.bubble.RendererJellyBu
 import com.mnsfhxy.johnny_s_biological_notes.entity.peeper.ModelPeeper;
 import com.mnsfhxy.johnny_s_biological_notes.entity.peeper.RendererPeeper;
 import com.mnsfhxy.johnny_s_biological_notes.particle.ChopParticle;
+import com.mnsfhxy.johnny_s_biological_notes.particle.JellyGLowParticle;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.*;
 import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
@@ -50,6 +51,8 @@ public class ClientInit {
     @SubscribeEvent
     public static void onRegisterParticleProviders(RegisterParticleProvidersEvent event) {
         event.register(RegistrationInit.CHOP_PARTICLE.get(), ChopParticle.Provider::new);
+        event.register(RegistrationInit.JELLY_GLOW_PARTICLE.get(), JellyGLowParticle.Provider::new);
+
 
     }
     @SubscribeEvent

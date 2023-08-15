@@ -257,6 +257,8 @@ public class RegistrationInit {
 
     public static final RegistryObject<SimpleParticleType> CHOP_PARTICLE =
             PARTICLE_TYPES.register("chop", () -> new SimpleParticleType(true));
+    public static final RegistryObject<SimpleParticleType> JELLY_GLOW_PARTICLE =
+            PARTICLE_TYPES.register("jelly_glow", () -> new SimpleParticleType(true));
 
     //投掷器
     public static void initDispenser() {

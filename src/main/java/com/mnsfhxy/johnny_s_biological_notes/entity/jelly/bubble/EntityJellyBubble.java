@@ -2,6 +2,7 @@ package com.mnsfhxy.johnny_s_biological_notes.entity.jelly.bubble;
 
 import com.mnsfhxy.johnny_s_biological_notes.entity.jelly.EntityJelly;
 import com.mnsfhxy.johnny_s_biological_notes.init.RegistrationInit;
+import com.mnsfhxy.johnny_s_biological_notes.init.SoundInit;
 import com.mnsfhxy.johnny_s_biological_notes.util.UtilLevel;
 import com.mojang.math.Vector3f;
 import net.minecraft.core.BlockPos;
@@ -84,6 +85,7 @@ public class EntityJellyBubble extends Mob {
             }
 
         }
+        if(level.isClientSide)playSound(SoundInit.JELLY_BUBBLE_BROKEN.get(),1.0F,1.0F);
         discard();
     }
 

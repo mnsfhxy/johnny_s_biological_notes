@@ -76,7 +76,7 @@ public class ModInit {
 
     }
 
-
+    //生物生成在此注册
     @SubscribeEvent
     public static void onCommonSetupEvent(FMLCommonSetupEvent event) {
         event.enqueueWork(PotionsInit::initBrewing);

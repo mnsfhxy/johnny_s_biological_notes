@@ -38,7 +38,15 @@ public class UtilSoundJsonGen {
                 .simpleAdd("drifter_ambient",5)
                 .simpleAdd("drifter_death",1)
                 .simpleAdd("drifter_hurt",3)
-                .simpleAdd("drifter_victory",1);
+                .simpleAdd("drifter_victory",1)
+                .simpleAdd("jelly_death",2)
+                .simpleAdd("jelly_hurt",2)
+                .simpleAdd("jelly_make_bubble",1)
+                .simpleAdd("jelly_block_hit",3)
+                .simpleAdd("jelly_block_place",2)
+                .simpleAdd("jelly_block_step",3)
+                .simpleAdd("jelly_bubble_broken",2);
+
         Gson gson = new Gson();
         String json = gson.toJson(soundsJson.soundsJson);
         try {
