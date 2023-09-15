@@ -2,7 +2,11 @@ package com.mnsfhxy.johnny_s_biological_notes.Item;
 
 
 import com.mnsfhxy.johnny_s_biological_notes.init.RegistrationInit;
+import com.mnsfhxy.johnny_s_biological_notes.init.SoundInit;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.food.Foods;
@@ -28,6 +32,8 @@ public class ItemGlueBottle extends Item {
         super(pProperties);
     }
 
+
+
     @Override
     public InteractionResult useOn(UseOnContext pContext) {
         try {
@@ -40,15 +46,19 @@ public class ItemGlueBottle extends Item {
                 Block block = (Block) ((RegistryObject<?>) field.get(null)).get();
                 pContext.getLevel().setBlock(pContext.getClickedPos(), block.defaultBlockState(), 2);
                 ItemStack filledResult =new ItemStack(Items.GLASS_BOTTLE);
-                Objects.requireNonNull(pContext.getPlayer()).setItemInHand(pContext.getHand(), filledResult);
+                pContext.getItemInHand().shrink(1);
+//                Objects.requireNonNull(pContext.getPlayer()).setItemInHand(pContext.getHand(), filledResult);
+                Objects.requireNonNull(pContext.getPlayer()).getInventory().add(filledResult);
+                pContext.getLevel().playLocalSound(pContext.getPlayer().getX(),pContext.getPlayer().getY(),pContext.getPlayer().getZ(), SoundInit.GLUE_BOTTLE_USED.get(), SoundSource.PLAYERS,1,1,false);
+                if(pContext.getLevel() instanceof ServerLevel){
+                    ( (ServerLevel)(pContext.getLevel())).sendParticles(ParticleTypes.ITEM_SLIME,pContext.getClickedPos().getX(),pContext.getClickedPos().getY(),pContext.getClickedPos().getZ(),50, 0.5D, 0.5D, 0.5D, 0.2D);
+                }
                 return InteractionResult.sidedSuccess(pContext.getLevel().isClientSide);
-
             } else {
                 return InteractionResult.PASS;
             }
         } catch (Exception e) {
             return InteractionResult.PASS;
-
         }
     }
 }

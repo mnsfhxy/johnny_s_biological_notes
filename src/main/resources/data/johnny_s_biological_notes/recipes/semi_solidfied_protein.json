@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "johnny_s_biological_notes",
+  "key": {
+    "M": {
+      "item": "johnny_s_biological_notes:solidfied_protein"
+    }
+  },
+  "pattern": [
+    "MM",
+    "MM"
+  ],
+  "result": {
+    "count": 16,
+    "item": "johnny_s_biological_notes:semi_solidfied_protein"
+  }
+}

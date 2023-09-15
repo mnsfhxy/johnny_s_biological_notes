@@ -33,7 +33,7 @@ public class PotionsInit {
                     "fear_water_effect", () -> new EffectFearWater(MobEffectCategory.HARMFUL, 65793));
     public static RegistryObject<MobEffect> VULNUS_RECOVER =
             MOBEFFECTS.register(
-                    "vulnus_recover_effect", () -> new EffectVulnusRecover(MobEffectCategory.BENEFICIAL, 65756));
+                    "vulnus_recover_effect", () -> new EffectVulnusRecover(MobEffectCategory.BENEFICIAL, 0xc4ecc1));
 
     //potion注册
     public static final RegistryObject<Potion> FEAR_WATER_POTION =

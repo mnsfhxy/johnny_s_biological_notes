@@ -3,7 +3,7 @@
 	"render_type": "translucent",
 	"textures": {
 		"1": "johnny_s_biological_notes:block/jelly_block_pink",
-		"particle": "johnny_s_biological_notes:block/jelly_block_lightblue"
+		"particle": "johnny_s_biological_notes:block/jelly_block_pink"
 	},
 	"elements": [
 		{

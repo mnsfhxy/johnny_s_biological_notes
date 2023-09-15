@@ -85,7 +85,7 @@ public class EntityJellyBubble extends Mob {
             }
 
         }
-        if(level.isClientSide)playSound(SoundInit.JELLY_BUBBLE_BROKEN.get(),1.0F,1.0F);
+        playSound(SoundInit.JELLY_BUBBLE_BROKEN.get(),1.0F,1.0F);
         discard();
     }
 

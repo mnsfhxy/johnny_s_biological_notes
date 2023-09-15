@@ -4,7 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class UtilEntityCodeGen {
-    static String name = "Jelly";  // 这里先写死一个示例名称
+    static String name = "Tridacna";  // 这里先写死一个示例名称
 
     // 指定包名和路径
     static String packageName = "com.mnsfhxy.johnny_s_biological_notes.entity." + name.toLowerCase();

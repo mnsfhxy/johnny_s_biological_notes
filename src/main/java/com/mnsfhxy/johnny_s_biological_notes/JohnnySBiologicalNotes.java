@@ -26,13 +26,12 @@ public class JohnnySBiologicalNotes {
 
     public JohnnySBiologicalNotes() {
         IEventBus modBusEvent = FMLJavaModLoadingContext.get().getModEventBus();
-        ModInit.init();
         ForgeInit.init();
         RegistrationInit.init();//包括物品 方块 效果 实体
         ConfigInit.init();
         SoundInit.init();
         PotionsInit.init();//效果 药水
-        ModInit.setup();
+        ModInit.init();
         modBusEvent.addListener(this::setup);
         modBusEvent.addListener(this::clientSetup);
 //        ConfigBiome.init();

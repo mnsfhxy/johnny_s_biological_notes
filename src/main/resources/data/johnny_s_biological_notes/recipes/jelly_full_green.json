@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+   "group": "johnny_s_biological_notes",
+   "pattern": [
+    "mmm",
+    "m#m",
+    "mmm"
+  ],
+  "key": {
+    "#": { "item": "minecraft:green_dye"
+    },
+   "m": { "item": "johnny_s_biological_notes:jelly_jelly"
+    }
+  },
+    "result": {
+	 "count":8,
+    "item": "johnny_s_biological_notes:jelly_green"
+  }
+}

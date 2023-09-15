@@ -52,16 +52,7 @@
     "deep_frozen_ocean",
     "dripstone_caves",
     "lush_caves",
-    "nether_wastes",
-    "warped_forest",
-    "crimson_forest",
-    "soul_sand_valley",
-    "basalt_deltas",
-    "the_end",
-    "end_highlands",
-    "end_midlands",
-    "small_end_islands",
-    "end_barrens"
+    "small_end_islands"
   ],
   "spawners": {
     "type": "johnny_s_biological_notes:jelly",

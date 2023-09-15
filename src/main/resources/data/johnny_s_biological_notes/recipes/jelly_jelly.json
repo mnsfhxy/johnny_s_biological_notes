@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+   "group": "johnny_s_biological_notes",
+  "ingredients": [
+    {
+      "type": "forge:nbt",
+      "item": "minecraft:potion",
+      "nbt": "{Potion:'minecraft:water'}"
+    },
+    {
+       "item": "johnny_s_biological_notes:solidfied_protein"
+    }
+  ],
+  "result": {
+    "item": "johnny_s_biological_notes:jelly_jelly"
+  }
+}

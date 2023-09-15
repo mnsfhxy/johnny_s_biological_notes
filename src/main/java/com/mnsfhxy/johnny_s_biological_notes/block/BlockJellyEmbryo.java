@@ -35,12 +35,12 @@ public class BlockJellyEmbryo extends HalfTransparentBlock implements EntityBloc
 
     public BlockJellyEmbryo() {
         super(BlockBehaviour.Properties
-                .of(Material.CLAY, MaterialColor.GRASS).friction(0.8F).sound(SoundType.SLIME_BLOCK).noOcclusion().strength(0).randomTicks().noCollission());
+                .of(Material.CLAY, MaterialColor.GRASS).friction(0.8F).sound(SoundType.SLIME_BLOCK).noOcclusion().strength(0).randomTicks().lightLevel(
+                        (x) -> {
+                            return 3;
+                        }
+                ));
     }
-
-
-
-
 
 
     @Override
@@ -51,8 +51,9 @@ public class BlockJellyEmbryo extends HalfTransparentBlock implements EntityBloc
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return new JellyEmbryoBE(pPos,pState);
+        return new JellyEmbryoBE(pPos, pState);
     }
+
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {

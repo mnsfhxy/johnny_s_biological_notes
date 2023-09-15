@@ -18,7 +18,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class JellyEmbryoBE extends BlockEntity {
     private int bornTime;
-    private final int BORN_TIME = UtilLevel.TIME.MINUTE.getTick();
+    private final int BORN_TIME = UtilLevel.TIME.MINUTE.getTick()*5;
     public JellyEmbryoBE(BlockPos pPos, BlockState pBlockState) {
         super(RegistrationInit.JELLY_EMBRYO_BE.get(), pPos, pBlockState);
         bornTime = BORN_TIME;
@@ -38,7 +38,7 @@ public class JellyEmbryoBE extends BlockEntity {
             bornTime = BORN_TIME;
             int jellyNum = level.random.nextInt(3) + 1;
             for (int i = 0; i < jellyNum; i++) {
-                if (this.hasEnoughSpace(level,worldPosition)) {
+//                if (this.hasEnoughSpace(level,worldPosition)) {
                     double rx=level.random.nextInt(2)/3.0;
                     double rz=level.random.nextInt(2)/3.0;
 
@@ -47,7 +47,7 @@ public class JellyEmbryoBE extends BlockEntity {
                     if (entityJelly != null) {
                         entityJelly.restrictTo(worldPosition, 16);
                     }
-                }
+//                }
             }
             level.destroyBlock(worldPosition, false);
         }

@@ -45,8 +45,13 @@ public class UtilSoundJsonGen {
                 .simpleAdd("jelly_block_hit",3)
                 .simpleAdd("jelly_block_place",2)
                 .simpleAdd("jelly_block_step",3)
-                .simpleAdd("jelly_bubble_broken",2);
-
+                .simpleAdd("jelly_bubble_broken",2)
+                .simpleAdd("glue_bottle_used",2)
+                .simpleAdd("tridacna_broken",2)
+                .simpleAdd("tridacna_close",4)
+                .simpleAdd("tridacna_death",2)
+                .simpleAdd("tridacna_hurt",3)
+                .simpleAdd("tridacna_open",3);
         Gson gson = new Gson();
         String json = gson.toJson(soundsJson.soundsJson);
         try {

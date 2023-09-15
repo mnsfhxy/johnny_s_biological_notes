@@ -174,6 +174,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add("johnny_s_biological_notes.sound.subtitle.jelly_block_place", "Jelly Block Place");
         add("johnny_s_biological_notes.sound.subtitle.jelly_block_step", "Jelly Block Step");
         add("johnny_s_biological_notes.sound.subtitle.jelly_bubble_broken", "Jelly Bubble Broken");
+        add("johnny_s_biological_notes.sound.subtitle.glue_bottle_used", "Glue Bottle Used");
 
 
 //        ITEM_JELLY

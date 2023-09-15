@@ -67,6 +67,7 @@ public class ModItemModels extends ItemModelProvider {
         withExistingParent(RegistrationInit. BLOCK_ITEM_GLUED_GREEN_CONCRETE_POWDER     .getId().getPath(), mcLoc("block/green_concrete_powder"     ));
         withExistingParent(RegistrationInit. BLOCK_ITEM_GLUED_RED_CONCRETE_POWDER       .getId().getPath(), mcLoc("block/red_concrete_powder"       ));
         withExistingParent(RegistrationInit. BLOCK_ITEM_GLUED_BLACK_CONCRETE_POWDER     .getId().getPath(), mcLoc("block/black_concrete_powder"     ));
+        withExistingParent(RegistrationInit. BLOCK_ITEM_ECO_BOTTLE                      .getId().getPath(), modLoc("block/eco_bottle"     ));
 
 
 
@@ -83,6 +84,7 @@ public class ModItemModels extends ItemModelProvider {
 
 
 
+        withExistingParent(RegistrationInit.TRIDACNA_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
 
         withExistingParent(RegistrationInit.JELLY_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(RegistrationInit.CRAB_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));

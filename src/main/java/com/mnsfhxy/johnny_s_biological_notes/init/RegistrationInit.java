@@ -4,6 +4,7 @@ import com.mnsfhxy.johnny_s_biological_notes.Item.ItemGlueBottle;
 import com.mnsfhxy.johnny_s_biological_notes.Item.ItemKatana;
 import com.mnsfhxy.johnny_s_biological_notes.Item.ItemModFishBucket;
 import com.mnsfhxy.johnny_s_biological_notes.JohnnySBiologicalNotes;
+import com.mnsfhxy.johnny_s_biological_notes.block.BlockEcoBottle;
 import com.mnsfhxy.johnny_s_biological_notes.block.gluedblock.BlockGluedConcretePowder;
 import com.mnsfhxy.johnny_s_biological_notes.block.gluedblock.BlockGluedSand;
 import com.mnsfhxy.johnny_s_biological_notes.block.BlockJelly;
@@ -14,6 +15,7 @@ import com.mnsfhxy.johnny_s_biological_notes.entity.drifter.EntityDrifter;
 import com.mnsfhxy.johnny_s_biological_notes.entity.jelly.EntityJelly;
 import com.mnsfhxy.johnny_s_biological_notes.entity.jelly.bubble.EntityJellyBubble;
 import com.mnsfhxy.johnny_s_biological_notes.entity.peeper.EntityPeeper;
+import com.mnsfhxy.johnny_s_biological_notes.entity.tridacna.EntityTridacna;
 import com.mnsfhxy.johnny_s_biological_notes.util.UtilLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockSource;
@@ -108,6 +110,7 @@ public class RegistrationInit {
     public static final RegistryObject<BlockGluedConcretePowder> BLOCK_GLUED_GREEN_CONCRETE_POWDER = BLOCKS.register("glued_green_concrete_powder", () -> new BlockGluedConcretePowder(Blocks.GREEN_CONCRETE, BlockBehaviour.Properties.of(Material.SAND, DyeColor.GREEN).strength(0.5F).sound(SoundType.SAND)));
     public static final RegistryObject<BlockGluedConcretePowder> BLOCK_GLUED_RED_CONCRETE_POWDER = BLOCKS.register("glued_red_concrete_powder", () -> new BlockGluedConcretePowder(Blocks.RED_CONCRETE, BlockBehaviour.Properties.of(Material.SAND, DyeColor.RED).strength(0.5F).sound(SoundType.SAND)));
     public static final RegistryObject<BlockGluedConcretePowder> BLOCK_GLUED_BLACK_CONCRETE_POWDER = BLOCKS.register("glued_black_concrete_powder", () -> new BlockGluedConcretePowder(Blocks.BLACK_CONCRETE, BlockBehaviour.Properties.of(Material.SAND, DyeColor.BLACK).strength(0.5F).sound(SoundType.SAND)));
+    public static final RegistryObject<BlockEcoBottle> BLOCK_ECO_BOTTLE = BLOCKS.register("eco_bottle", BlockEcoBottle::new);
 
 
     public static final RegistryObject<Item> BLOCK_ITEM_JELLY_EMBRYO = fromBlock(BLOCK_JELLY_EMBRYO);
@@ -146,6 +149,7 @@ public class RegistrationInit {
     public static final RegistryObject<Item> BLOCK_ITEM_GLUED_GREEN_CONCRETE_POWDER = fromBlock(BLOCK_GLUED_GREEN_CONCRETE_POWDER);
     public static final RegistryObject<Item> BLOCK_ITEM_GLUED_RED_CONCRETE_POWDER = fromBlock(BLOCK_GLUED_RED_CONCRETE_POWDER);
     public static final RegistryObject<Item> BLOCK_ITEM_GLUED_BLACK_CONCRETE_POWDER = fromBlock(BLOCK_GLUED_BLACK_CONCRETE_POWDER);
+    public static final RegistryObject<Item> BLOCK_ITEM_ECO_BOTTLE = fromBlock(BLOCK_ECO_BOTTLE);
 
 
     //BlockEntityType
@@ -187,6 +191,10 @@ public class RegistrationInit {
             ENTITIES.register("jelly_bubble",
                     () -> registerEntity(EntityType.Builder.of(EntityJellyBubble::new, MobCategory.MISC)
                             .sized((float) (1.0 / 16), (float) (1.0 / 16)), "jelly_bubble"));
+    public static final RegistryObject<EntityType<EntityTridacna>> TRIDACNA =
+            ENTITIES.register("tridacna",
+                    () -> registerEntity(EntityType.Builder.of(EntityTridacna::new, MobCategory.MISC)
+                            .sized((float) (1.0), (float) (1.0 )), "tridacna"));
 
     //Item注册
     //egg
@@ -202,7 +210,10 @@ public class RegistrationInit {
                     "peeper", () -> new ForgeSpawnEggItem(PEEPER, 0x534620, 0x6c7911, ITEM_PROPERTIES));
     public static final RegistryObject<Item> JELLY_EGG =
             ITEMS.register(
-                    "jelly", () -> new ForgeSpawnEggItem(JELLY, 0x534620, 0x6c7911, ITEM_PROPERTIES));
+                    "jelly", () -> new ForgeSpawnEggItem(JELLY, 0x7e6f9f, 0xf6f2fb, ITEM_PROPERTIES));
+    public static final RegistryObject<Item> TRIDACNA_EGG =
+            ITEMS.register(
+                    "tridacna", () -> new ForgeSpawnEggItem(TRIDACNA, 0x7e61cf, 0xf2f2fb, ITEM_PROPERTIES));
 
     public static final RegistryObject<Item> FORGED_PLATE = ITEMS.register("forged_plate", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP)));
 
@@ -246,7 +257,7 @@ public class RegistrationInit {
     public static final RegistryObject<Item> ITEM_JELLY_YELLOW = ITEMS.register("jelly_yellow", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.4f).build())));
     public static final RegistryObject<Item> SEMI_SOLIDFIED_PROTEIN = ITEMS.register("semi_solidfied_protein", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP)));
     public static final RegistryObject<Item> SOLIDFIED_PROTEIN = ITEMS.register("solidfied_protein", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP)));
-    public static final RegistryObject<Item> JELLY_PLATTER = ITEMS.register("jelly_platter", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP).food(new FoodProperties.Builder().nutrition(5).effect(() -> new MobEffectInstance(MobEffects.HEAL, 10), 1.0F).effect(() -> new MobEffectInstance(MobEffects.REGENERATION, UtilLevel.TIME.SECOND.getTick() * 22, 1), 1.0F).effect(() -> new MobEffectInstance(PotionsInit.VULNUS_RECOVER.get(), UtilLevel.TIME.MINUTE.getTick() * 2), 1.0F).alwaysEat().build())));
+    public static final RegistryObject<Item> JELLY_PLATTER = ITEMS.register("jelly_platter", () -> new BowlFoodItem(new Item.Properties().tab(ModInit.ITEM_GROUP).stacksTo(1).food(new FoodProperties.Builder().nutrition(5).effect(() -> new MobEffectInstance(MobEffects.HEAL, 10), 1.0F).effect(() -> new MobEffectInstance(MobEffects.REGENERATION, UtilLevel.TIME.SECOND.getTick() * 22, 1), 1.0F).effect(() -> new MobEffectInstance(PotionsInit.VULNUS_RECOVER.get(), UtilLevel.TIME.MINUTE.getTick() * 2), 1.0F).alwaysEat().build())));
     public static final RegistryObject<Item> GLUE_BOTTLE = ITEMS.register("glue_bottle", () -> new ItemGlueBottle(new Item.Properties().tab(ModInit.ITEM_GROUP)));
 
 

@@ -11,6 +11,7 @@ import com.mnsfhxy.johnny_s_biological_notes.entity.drifter.EntityDrifter;
 import com.mnsfhxy.johnny_s_biological_notes.entity.jelly.EntityJelly;
 import com.mnsfhxy.johnny_s_biological_notes.entity.jelly.bubble.EntityJellyBubble;
 import com.mnsfhxy.johnny_s_biological_notes.entity.peeper.EntityPeeper;
+import com.mnsfhxy.johnny_s_biological_notes.entity.tridacna.EntityTridacna;
 import com.mnsfhxy.johnny_s_biological_notes.networking.Messages;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
@@ -41,16 +42,13 @@ public class ModInit {
             return JohnnySBiologicalNotes.MODID;
         }
     };
-    public static void setup() {
+
+
+    public static void init() {
         IEventBus bus = MinecraftForge.EVENT_BUS;
         bus.addGenericListener(Entity.class, SpiritEvents::onAttachCapabilitiesPlayer);
         bus.addListener(SpiritEvents::onPlayerCloned);
         bus.addListener(SpiritEvents::onRegisterCapabilities);
-//        bus.addListener(ManaEvents::onWorldTick);
-    }
-
-    public static void init() {
-//                IEventBus bus = MinecraftForge.EVENT_BUS;
 
     }
 
@@ -61,7 +59,7 @@ public class ModInit {
         event.put(RegistrationInit.PEEPER.get(), EntityPeeper.prepareAttributes().build());
         event.put(RegistrationInit.JELLY.get(), EntityJelly.prepareAttributes().build());
         event.put(RegistrationInit.JELLY_BUBBLE.get(), EntityJellyBubble.prepareAttributes().build());
-
+        event.put(RegistrationInit.TRIDACNA.get(), EntityTridacna.prepareAttributes().build());
 
     }
 
@@ -82,6 +80,7 @@ public class ModInit {
         event.enqueueWork(PotionsInit::initBrewing);
         event.enqueueWork(EntityPeeper::init);
         event.enqueueWork(EntityCrab::init);
+        event.enqueueWork(EntityJelly::init);
         Messages.register();
 
     }

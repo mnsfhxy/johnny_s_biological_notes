@@ -43,6 +43,12 @@ public class SoundInit {
     public static final RegistryObject<SoundEvent> JELLY_BLOCK_PLACE =createSoundEvent("jelly_block_place");
     public static final RegistryObject<SoundEvent> JELLY_BLOCK_STEP =createSoundEvent("jelly_block_step");
     public static final RegistryObject<SoundEvent> JELLY_BUBBLE_BROKEN =createSoundEvent("jelly_bubble_broken");
+    public static final RegistryObject<SoundEvent> GLUE_BOTTLE_USED =createSoundEvent("glue_bottle_used");
+    public static final RegistryObject<SoundEvent> TRIDACNA_BROKEN =createSoundEvent("tridacna_broken");
+    public static final RegistryObject<SoundEvent> TRIDACNA_CLOSE =createSoundEvent("tridacna_close");
+    public static final RegistryObject<SoundEvent> TRIDACNA_DEATH =createSoundEvent("tridacna_death");
+    public static final RegistryObject<SoundEvent> TRIDACNA_HURT =createSoundEvent("tridacna_hurt");
+    public static final RegistryObject<SoundEvent> TRIDACNA_OPEN =createSoundEvent("tridacna_open");
 
     public static final ForgeSoundType JELLY_BLOCK = new ForgeSoundType(1.0F, 1.0F, JELLY_BLOCK_HIT, JELLY_BLOCK_STEP, JELLY_BLOCK_PLACE, JELLY_BLOCK_HIT, JELLY_BLOCK_PLACE);
 

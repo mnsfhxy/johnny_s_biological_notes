@@ -6,12 +6,14 @@ import com.mnsfhxy.johnny_s_biological_notes.capability.spirit.PlayerSpirit;
 import com.mnsfhxy.johnny_s_biological_notes.capability.spirit.PlayerSpiritProvider;
 import com.mnsfhxy.johnny_s_biological_notes.capability.spirit.SpiritOverlay;
 import com.mnsfhxy.johnny_s_biological_notes.config.ConfigBiome;
+import com.mnsfhxy.johnny_s_biological_notes.effect.EffectVulnusRecover;
 import com.mnsfhxy.johnny_s_biological_notes.entity.crab.EntityCrab;
 import com.mnsfhxy.johnny_s_biological_notes.entity.drifter.EntityDrifter;
 import com.mnsfhxy.johnny_s_biological_notes.util.UtilLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.Container;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -19,6 +21,8 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraftforge.api.distmarker.Dist;
@@ -26,6 +30,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RenderLevelStageEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -35,23 +40,36 @@ import net.minecraftforge.fml.event.config.ModConfigEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
 import java.util.List;
+import java.util.Objects;
 
 @Mod.EventBusSubscriber(modid = JohnnySBiologicalNotes.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ForgeInit {
     public static void init() {
 
     }
+
+    @SubscribeEvent
+    public static void onPlayerCrafted(PlayerEvent.ItemCraftedEvent event) {
+        Container inventory = event.getInventory();
+        ItemStack crafting = event.getCrafting();
+        if (crafting.is(RegistrationInit.ITEM_JELLY.get())) {
+            event.getEntity().getInventory().add(new ItemStack(Items.GLASS_BOTTLE, crafting.getCount()));
+        }
+
+    }
+
     @SubscribeEvent
     public static void onPlayerCloned(PlayerEvent.Clone event) {
         List<EntityDrifter> drifters = event.getEntity().level.getEntitiesOfClass(EntityDrifter.class, event.getEntity().getBoundingBox().inflate(64F, 10, 64F));
-        for (var drifter :  drifters) {
+        for (var drifter : drifters) {
             EntityDrifter.Favorability favorability = drifter.favorability.get(event.getOriginal().getUUID());
-            if(favorability!=null){
+            if (favorability != null) {
                 drifter.favorability.remove(event.getOriginal().getUUID());
             }
         }
 
     }
+
     @SubscribeEvent
     public static void onLivingDeath(LivingDeathEvent event) {
 
@@ -63,11 +81,28 @@ public class ForgeInit {
             for (var drifter : entitiesOfClass) {
                 drifter.updateFavorability((Player) entitySource, event.getEntity());
             }
-        }else if(entitySource instanceof EntityDrifter){
-            ((EntityDrifter)entitySource).addEffect(new MobEffectInstance(MobEffects.REGENERATION,UtilLevel.TIME.SECOND.getTick()*15,1));
+        } else if (entitySource instanceof EntityDrifter) {
+            ((EntityDrifter) entitySource).addEffect(new MobEffectInstance(MobEffects.REGENERATION, UtilLevel.TIME.SECOND.getTick() * 15, 1));
         }
     }
 
+
+    @SubscribeEvent
+    public static void onLivingHurtEvent(LivingHurtEvent event) {
+        Entity pTarget = event.getEntity();
+        if (pTarget instanceof LivingEntity) {
+            LivingEntity pLivingEntity = ((LivingEntity) pTarget);
+            if (pLivingEntity.hasEffect(PotionsInit.VULNUS_RECOVER.get())) {
+                if (EffectVulnusRecover.canEffect.test(pLivingEntity)) {
+                    if (!pLivingEntity.isDeadOrDying()) {
+                        pLivingEntity.setHealth(Math.min(pLivingEntity.getHealth() + 3 + Objects.requireNonNull(pLivingEntity.getEffect(PotionsInit.VULNUS_RECOVER.get())).getAmplifier(), pLivingEntity.getMaxHealth()));
+                    }
+                }
+            }
+        }
+
+
+    }
     @SubscribeEvent
     public static void onAttackEntity(AttackEntityEvent event) {
         Entity pTarget = event.getTarget();
@@ -75,9 +110,9 @@ public class ForgeInit {
 
         //浪客好感度更新
         List<EntityDrifter> drifters = pPlayer.level.getEntitiesOfClass(EntityDrifter.class, pPlayer.getBoundingBox().inflate(64F, 10, 64F));
-        for (var drifter :  drifters) {
-            if (pTarget instanceof Villager||pTarget instanceof EntityDrifter) {
-                 drifter.updateFavorability(pPlayer,(LivingEntity) pTarget);
+        for (var drifter : drifters) {
+            if (pTarget instanceof Villager || pTarget instanceof EntityDrifter) {
+                drifter.updateFavorability(pPlayer, (LivingEntity) pTarget);
             }
         }
 

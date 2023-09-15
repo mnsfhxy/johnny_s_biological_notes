@@ -176,7 +176,7 @@ public class ModLanguageZhProvider extends LanguageProvider {
         add("johnny_s_biological_notes.sound.subtitle.jelly_block_place", "果冻块：放置");
         add("johnny_s_biological_notes.sound.subtitle.jelly_block_step", "果冻块：移动");
         add("johnny_s_biological_notes.sound.subtitle.jelly_bubble_broken", "果冻泡：破裂");
-
+        add("johnny_s_biological_notes.sound.subtitle.glue_bottle_used", "胶液瓶：倾倒");
 
     }
 }

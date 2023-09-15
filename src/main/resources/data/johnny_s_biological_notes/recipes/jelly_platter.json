@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "johnny_s_biological_notes",
+   "pattern": [
+    "mmm",
+    "mmm",
+    " # "
+  ],
+  "key": {
+    "m": [
+      { "item": "johnny_s_biological_notes:jelly_jelly"},
+      { "item": "johnny_s_biological_notes:jelly_black"},
+      { "item": "johnny_s_biological_notes:jelly_blue"},
+      { "item": "johnny_s_biological_notes:jelly_brown"},
+      { "item": "johnny_s_biological_notes:jelly_cyan"},
+      { "item": "johnny_s_biological_notes:jelly_gray"},
+      { "item": "johnny_s_biological_notes:jelly_green"},
+      { "item": "johnny_s_biological_notes:jelly_lightblue"},
+      { "item": "johnny_s_biological_notes:jelly_lightgray"},
+      { "item": "johnny_s_biological_notes:jelly_lightgreen"},
+      { "item": "johnny_s_biological_notes:jelly_magenta"},
+      { "item": "johnny_s_biological_notes:jelly_orange"},
+      { "item": "johnny_s_biological_notes:jelly_pink"},
+      { "item": "johnny_s_biological_notes:jelly_purple"},
+      { "item": "johnny_s_biological_notes:jelly_red"},
+      { "item": "johnny_s_biological_notes:jelly_white"},
+      { "item": "johnny_s_biological_notes:jelly_yellow"}
+    ],
+    "#":{ "item": "minecraft:bowl"}
+  },
+    "result": {
+
+    "item": "johnny_s_biological_notes:jelly_platter"
+  }
+}

@@ -15,7 +15,7 @@ public class EffectVulnusRecover extends MobEffect {
         super(pCategory, pColor);
     }
 
-    Predicate<LivingEntity> canEffect = (p) -> {
+    public static Predicate<LivingEntity> canEffect = (p) -> {
         if (p.getType().is(Tags.EntityTypes.BOSSES)) {
             return false;
         }
@@ -24,13 +24,7 @@ public class EffectVulnusRecover extends MobEffect {
 
     @Override
     public void applyEffectTick(LivingEntity pLivingEntity, int pAmplifier) {
-        if (canEffect.test(pLivingEntity)) {
-            if(pLivingEntity.getHealth()<pLivingEntity.getMaxHealth()){
-                pLivingEntity.setHealth(Math.min(pLivingEntity.getHealth()+3+pAmplifier,pLivingEntity.getMaxHealth()));
-                pLivingEntity.removeEffect(this);
-            }
 
-        }
         super.applyEffectTick(pLivingEntity, pAmplifier);
 
 

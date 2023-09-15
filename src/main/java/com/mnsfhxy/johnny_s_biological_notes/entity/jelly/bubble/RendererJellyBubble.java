@@ -13,7 +13,9 @@ import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.renderer.texture.TextureAtlas;
+import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -22,12 +24,13 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class RendererJellyBubble extends MobRenderer<EntityJellyBubble,ModelJellyBubble> {
+public class RendererJellyBubble extends MobRenderer<EntityJellyBubble, ModelJellyBubble> {
     private static final ResourceLocation LAYER_LOCATION = new ResourceLocation(JohnnySBiologicalNotes.MODID, "textures/entity/jelly_bubble.png");
-//    ModelJellyBubble modelJellyBubble;
+    //    ModelJellyBubble modelJellyBubble;
     protected RenderType renderType;
+
     public RendererJellyBubble(EntityRendererProvider.Context pContext) {
-        super(pContext,new ModelJellyBubble(pContext.bakeLayer(ModelJellyBubble.LAYER_LOCATION)),0.15f);
+        super(pContext, new ModelJellyBubble(pContext.bakeLayer(ModelJellyBubble.LAYER_LOCATION)), 0.15f);
 //        modelJellyBubble=new ModelJellyBubble(pContext.bakeLayer(ModelJellyBubble.LAYER_LOCATION));
 
     }
@@ -49,7 +52,7 @@ public class RendererJellyBubble extends MobRenderer<EntityJellyBubble,ModelJell
 //        return LAYER_LOCATION;
 //    }
 
-//    @Override
+    //    @Override
 //    public void render(EntityJellyBubble pEntity, float pEntityYaw, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight) {
 //        super.render(pEntity, pEntityYaw, pPartialTick, pPoseStack, pBuffer, pPackedLight);
 //        pPoseStack.pushPose();
@@ -65,5 +68,8 @@ public class RendererJellyBubble extends MobRenderer<EntityJellyBubble,ModelJell
 //    protected float getWhiteOverlayProgress(EntityJellyBubble pLivingEntity, float pPartialTicks) {
 //        return 0.0F;
 //    }
-
+    protected int getBlockLightLevel(EntityJellyBubble p_174146_, BlockPos p_174147_) {
+        int i = (int) Mth.clampedLerp(0.0F, 15.0F, 1.0F);
+        return i == 15 ? 15 : Math.max(i, super.getBlockLightLevel(p_174146_, p_174147_));
+    }
 }

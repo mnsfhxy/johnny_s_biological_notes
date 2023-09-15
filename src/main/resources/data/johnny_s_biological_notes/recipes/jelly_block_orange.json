@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+   "group": "johnny_s_biological_notes",
+   "pattern": [
+    "mmm",
+    "mmm",
+    "mmm"
+  ],
+  "key": {
+
+   "m": { "item": "johnny_s_biological_notes:jelly_orange"
+    }
+  },
+    "result": {
+
+    "item": "johnny_s_biological_notes:jelly_block_orange"
+  }
+}
