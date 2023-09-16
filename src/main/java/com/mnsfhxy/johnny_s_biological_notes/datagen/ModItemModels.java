@@ -67,7 +67,7 @@ public class ModItemModels extends ItemModelProvider {
         withExistingParent(RegistrationInit. BLOCK_ITEM_GLUED_GREEN_CONCRETE_POWDER     .getId().getPath(), mcLoc("block/green_concrete_powder"     ));
         withExistingParent(RegistrationInit. BLOCK_ITEM_GLUED_RED_CONCRETE_POWDER       .getId().getPath(), mcLoc("block/red_concrete_powder"       ));
         withExistingParent(RegistrationInit. BLOCK_ITEM_GLUED_BLACK_CONCRETE_POWDER     .getId().getPath(), mcLoc("block/black_concrete_powder"     ));
-        withExistingParent(RegistrationInit. BLOCK_ITEM_ECO_BOTTLE                      .getId().getPath(), modLoc("block/eco_bottle"     ));
+        withExistingParent(RegistrationInit. BLOCK_ITEM_ECO_BOTTLE                      .getId().getPath(), modLoc("block/eco_bottle_ceiling"     ));
 
 
 
@@ -134,7 +134,5 @@ public class ModItemModels extends ItemModelProvider {
         singleTexture(RegistrationInit.SOLIDFIED_PROTEIN.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/solidfied_protein"));
         singleTexture(RegistrationInit.JELLY_PLATTER.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/jelly_platter"));
         singleTexture(RegistrationInit.GLUE_BOTTLE.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/glue_bottle"));
-
-
     }
 }

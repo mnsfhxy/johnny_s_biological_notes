@@ -45,6 +45,8 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.lang.reflect.Field;
+
 public class RegistrationInit {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, JohnnySBiologicalNotes.MODID);
     public static final Item.Properties ITEM_PROPERTIES =
@@ -111,6 +113,11 @@ public class RegistrationInit {
     public static final RegistryObject<BlockGluedConcretePowder> BLOCK_GLUED_RED_CONCRETE_POWDER = BLOCKS.register("glued_red_concrete_powder", () -> new BlockGluedConcretePowder(Blocks.RED_CONCRETE, BlockBehaviour.Properties.of(Material.SAND, DyeColor.RED).strength(0.5F).sound(SoundType.SAND)));
     public static final RegistryObject<BlockGluedConcretePowder> BLOCK_GLUED_BLACK_CONCRETE_POWDER = BLOCKS.register("glued_black_concrete_powder", () -> new BlockGluedConcretePowder(Blocks.BLACK_CONCRETE, BlockBehaviour.Properties.of(Material.SAND, DyeColor.BLACK).strength(0.5F).sound(SoundType.SAND)));
     public static final RegistryObject<BlockEcoBottle> BLOCK_ECO_BOTTLE = BLOCKS.register("eco_bottle", BlockEcoBottle::new);
+    public static final RegistryObject<BlockEcoBottle> BLOCK_ECO_BOTTLE_BUBBLE_CORAL = BLOCKS.register("eco_bottle_bubble_coral", BlockEcoBottle::new);
+    public static final RegistryObject<BlockEcoBottle> BLOCK_ECO_BOTTLE_FIRE_CORAL = BLOCKS.register("eco_bottle_fire_coral", BlockEcoBottle::new);
+    public static final RegistryObject<BlockEcoBottle> BLOCK_ECO_BOTTLE_HORN_CORAL = BLOCKS.register("eco_bottle_horn_coral", BlockEcoBottle::new);
+    public static final RegistryObject<BlockEcoBottle> BLOCK_ECO_BOTTLE_TUBE_CORAL = BLOCKS.register("eco_bottle_tube_coral", BlockEcoBottle::new);
+    public static final RegistryObject<BlockEcoBottle> BLOCK_ECO_BOTTLE_BRAIN_CORAL = BLOCKS.register("eco_bottle_brain_coral", BlockEcoBottle::new);
 
 
     public static final RegistryObject<Item> BLOCK_ITEM_JELLY_EMBRYO = fromBlock(BLOCK_JELLY_EMBRYO);
@@ -295,4 +302,18 @@ public class RegistrationInit {
     private static final EntityType registerEntity(EntityType.Builder builder, String entityName) {
         return (EntityType) builder.build(entityName);
     }
+    public static Object getFieldValue(String fieldName) throws ClassNotFoundException, NoSuchFieldException, IllegalAccessException, InstantiationException {
+        // 这里假设要获取的类名为"ClassName"
+
+
+        Class<?> clazz = RegistrationInit.class;
+
+        Field field = clazz.getDeclaredField(fieldName);
+        field.setAccessible(true);  // 设置为可访问，即使是私有成员变量也可以获取到
+
+        Object value = field.get(clazz.newInstance());  // 创建类的实例并获取成员变量的值
+
+        return value;
+    }
+
 }

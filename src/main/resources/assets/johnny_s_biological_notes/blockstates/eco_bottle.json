@@ -1,5 +1,6 @@
 {
 	"variants": {
-		"": { "model": "johnny_s_biological_notes:block/eco_bottle" }
+		"attachment=floor": { "model": "johnny_s_biological_notes:block/eco_bottle_floor" },
+		"attachment=ceiling":{ "model": "johnny_s_biological_notes:block/eco_bottle_ceiling" }
 	}
 }

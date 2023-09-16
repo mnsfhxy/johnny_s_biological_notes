@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "attachment=floor": { "model": "johnny_s_biological_notes:block/eco_bottle_fire_coral" },
+    "attachment=ceiling":{ "model": "johnny_s_biological_notes:block/eco_bottle_fire_coral" }
+  }
+}
