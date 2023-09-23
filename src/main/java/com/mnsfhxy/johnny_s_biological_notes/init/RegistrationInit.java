@@ -200,8 +200,8 @@ public class RegistrationInit {
                             .sized((float) (1.0 / 16), (float) (1.0 / 16)), "jelly_bubble"));
     public static final RegistryObject<EntityType<EntityTridacna>> TRIDACNA =
             ENTITIES.register("tridacna",
-                    () -> registerEntity(EntityType.Builder.of(EntityTridacna::new, MobCategory.MISC)
-                            .sized((float) (1.0), (float) (1.0 )), "tridacna"));
+                    () -> registerEntity(EntityType.Builder.of(EntityTridacna::new,MobCategory.WATER_AMBIENT)
+                            .sized(1F, 1F), "tridacna"));
 
     //Item注册
     //egg

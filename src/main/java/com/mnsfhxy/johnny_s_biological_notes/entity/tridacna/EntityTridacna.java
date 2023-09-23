@@ -4,13 +4,20 @@ import com.mnsfhxy.johnny_s_biological_notes.JohnnySBiologicalNotes;
 import com.mnsfhxy.johnny_s_biological_notes.entity.crab.EntityCrab;
 import com.mnsfhxy.johnny_s_biological_notes.entity.jelly.EntityJelly;
 import com.mnsfhxy.johnny_s_biological_notes.entity.jelly.bubble.EntityJellyBubble;
+import com.mnsfhxy.johnny_s_biological_notes.init.RegistrationInit;
+import com.mnsfhxy.johnny_s_biological_notes.init.SoundInit;
 import com.mnsfhxy.johnny_s_biological_notes.util.UtilLevel;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -22,16 +29,32 @@ import net.minecraft.world.entity.animal.WaterAnimal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.biome.Biomes;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.fluids.FluidType;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 
-public class EntityTridacna extends WaterAnimal {
+public class EntityTridacna extends PathfinderMob {
     private static final EntityDataAccessor<Integer> VARIANT = SynchedEntityData.defineId(EntityTridacna.class, EntityDataSerializers.INT);
-    private static final EntityDataAccessor<Integer> CLOSE_REMAIN_TICK = SynchedEntityData.defineId(EntityTridacna.class, EntityDataSerializers.INT);
+//    private static final EntityDataAccessor<Integer> CLOSE_REMAIN_TICK = SynchedEntityData.defineId(EntityTridacna.class, EntityDataSerializers.INT);
     AttributeModifier MODIFIER_CLOSE_SHELL = new AttributeModifier("close_shell", 4, AttributeModifier.Operation.ADDITION);
-    AttributeModifier MODIFIER_CLOSE_SHELL_BROKEN = new AttributeModifier("close_shell", 2, AttributeModifier.Operation.ADDITION);
+    AttributeModifier MODIFIER_CLOSE_SHELL_BROKEN = new AttributeModifier("close_shell_broken", 2, AttributeModifier.Operation.ADDITION);
+    private int CLOSE_REMAIN_TICK;
+    public EntityTridacna(EntityType<? extends PathfinderMob> pEntityType, Level pLevel) {
+        super(pEntityType, pLevel);
+        xpReward = 3;
+        if (random.nextInt(25) == 0) {
+            this.setVariant(2);
+        } else {
+            this.setVariant(0);
+        }
+        CLOSE_REMAIN_TICK=0;
+    }
 
     private AttributeModifier getCloseShellModifier() {
         return this.getVariant() % 2 == 0 ? MODIFIER_CLOSE_SHELL : MODIFIER_CLOSE_SHELL_BROKEN;
@@ -51,21 +74,27 @@ public class EntityTridacna extends WaterAnimal {
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(VARIANT, 0);
-        this.entityData.define(CLOSE_REMAIN_TICK, 0);
+//        this.entityData.define(CLOSE_REMAIN_TICK, 0);
     }
 
     public boolean isShellOpen() {
         return getCloseRemindTick() == 0;
     }
 
-    public void setCloseRemindTick(int p) {
-        this.entityData.set(CLOSE_REMAIN_TICK, p);
-    }
+//    public void setCloseRemindTick(int p) {
+//        this.entityData.set(CLOSE_REMAIN_TICK, p);
+//    }
+//
+//    public int getCloseRemindTick() {
+//        return this.entityData.get(CLOSE_REMAIN_TICK);
+//    }
+public void setCloseRemindTick(int p) {
+    CLOSE_REMAIN_TICK=p;
+}
 
     public int getCloseRemindTick() {
-        return this.entityData.get(CLOSE_REMAIN_TICK);
+        return CLOSE_REMAIN_TICK;
     }
-
     public void setVariant(int pVariantId) {
         this.entityData.set(VARIANT, pVariantId);
     }
@@ -79,13 +108,28 @@ public class EntityTridacna extends WaterAnimal {
     }
 
     public void closeShell() {
-        if (Objects.requireNonNull(this.getAttributes().getInstance(Attributes.ARMOR)).hasModifier(getCloseShellModifier())) {
+        if (!(Objects.requireNonNull(this.getAttributes().getInstance(Attributes.ARMOR)).hasModifier(getCloseShellModifier()))) {
+            playSound(SoundInit.TRIDACNA_CLOSE.get(), this.getSoundVolume(), this.getVoicePitch());
             Objects.requireNonNull(this.getAttributes().getInstance(Attributes.ARMOR)).addPermanentModifier(getCloseShellModifier());
-        } ;
+        }
+        ;
         this.setCloseRemindTick(UtilLevel.TIME.MINUTE.getTick() * 3);
     }
 
+    @Nullable
+    @Override
+    protected SoundEvent getDeathSound() {
+        return SoundInit.TRIDACNA_DEATH.get();
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getHurtSound(DamageSource pDamageSource) {
+        return SoundInit.TRIDACNA_HURT.get();
+    }
+
     public void openShell() {
+        playSound(SoundInit.TRIDACNA_OPEN.get(), this.getSoundVolume(), this.getVoicePitch());
         if (Objects.requireNonNull(this.getAttributes().getInstance(Attributes.ARMOR)).hasModifier(MODIFIER_CLOSE_SHELL)) {
             Objects.requireNonNull(this.getAttributes().getInstance(Attributes.ARMOR)).removeModifier(MODIFIER_CLOSE_SHELL);
 
@@ -98,7 +142,10 @@ public class EntityTridacna extends WaterAnimal {
 
     @Override
     public boolean hurt(DamageSource pSource, float pAmount) {
-        if (pSource.getMsgId().equals("hotFloor")) pAmount = 0;
+        if (pSource.getMsgId().equals("hotFloor")) {
+            pAmount = 0;
+            return false;
+        }
         if (!isShellOpen()) {
             Entity entity = pSource.getDirectEntity();
             if (entity instanceof AbstractArrow) {
@@ -106,23 +153,14 @@ public class EntityTridacna extends WaterAnimal {
             }
         }
         if (!isShellOpen() && pAmount > 10) {
+            playSound(SoundInit.TRIDACNA_BROKEN.get(), this.getSoundVolume(), this.getVoicePitch());
             this.setVariant(this.getVariant() + 1);
         }
         if (pAmount > 0) closeShell();
         return super.hurt(pSource, pAmount);
     }
 
-    public EntityTridacna(EntityType<? extends WaterAnimal> pEntityType, Level pLevel) {
-        super(pEntityType, pLevel);
-        xpReward = 3;
-        if (random.nextInt(25) == 0) {
-            this.setVariant(2);
-        } else {
-            this.setVariant(0);
-        }
-    }
 
-    @Override
     public void handleAirSupply(int pAirSupply) {
         if (this.isAlive() && !this.isInWaterOrBubble()) {
             this.setAirSupply(pAirSupply - 1);
@@ -131,14 +169,32 @@ public class EntityTridacna extends WaterAnimal {
                 this.hurt(DamageSource.DROWN, 1.0F);
             }
         } else {
-            this.setAirSupply(UtilLevel.TIME.MINUTE.getTick() * 2);
+            this.setAirSupply(getMaxAirSupply());
         }
 
     }
 
-    public static AttributeSupplier.Builder prepareAttributes() {
-        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 20.0D).add(Attributes.ARMOR, 0);
+    @Override
+    public int getMaxAirSupply() {
+        return UtilLevel.TIME.MINUTE.getTick() * 2;
+    }
 
+    public static AttributeSupplier.Builder prepareAttributes() {
+//        System.out.println("aaaaaaaaaaa");
+        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 20.0D).add(Attributes.ARMOR, 0).add(Attributes.KNOCKBACK_RESISTANCE, Integer.MAX_VALUE);
+
+
+    }
+
+    public static void init() {
+        SpawnPlacements.register(RegistrationInit.TRIDACNA.get(), SpawnPlacements.Type.create("ON_WATER_GROUND_2",
+                ((levelReader, blockPos, entityType) -> levelReader.getFluidState(blockPos).is(FluidTags.WATER) && levelReader.getBlockState(blockPos.below()).isFaceSturdy(levelReader, blockPos.below(), Direction.UP))), Heightmap.Types.OCEAN_FLOOR, EntityTridacna::checkSpawnRules);
+
+
+    }
+
+    public static boolean checkSpawnRules(EntityType<? extends Mob> pType, LevelAccessor pLevel, MobSpawnType pSpawnType, BlockPos pPos, RandomSource pRandom) {
+        return pPos.getY() < pLevel.getSeaLevel() - 8;
     }
 
     @Override
@@ -146,22 +202,43 @@ public class EntityTridacna extends WaterAnimal {
         return ForgeMod.WATER_TYPE.get() != type;
     }
 
+    public boolean isPushedByFluid() {
+        return false;
+    }
+
+    public boolean canBeLeashed(Player pPlayer) {
+        return false;
+    }
+
+    public void baseTick() {
+        int i = this.getAirSupply();
+        super.baseTick();
+        this.handleAirSupply(i);
+    }
+
     @Override
     public boolean canBreatheUnderwater() {
-        return super.canBreatheUnderwater();
+        return true;
+    }
+
+    public MobType getMobType() {
+        return MobType.WATER;
     }
 
     @Override
     public void tick() {
         super.tick();
+//        System.out.println("llllllllllllllllllll");
         updateShellState();
-        for (LivingEntity livingEntity : this.level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(3D))) {
-            livingEntity.setAirSupply(livingEntity.getMaxAirSupply());
-        }
-        for (TropicalFish tropicalFish : this.level.getEntitiesOfClass(TropicalFish.class, this.getBoundingBox().inflate(15D))) {
-            if (!tropicalFish.getMoveControl().hasWanted())
-                tropicalFish.getMoveControl().setWantedPosition(this.getX(), this.getY(), this.getZ(), 0.3);
+        if (this.isInWater()) {
+            for (LivingEntity livingEntity : this.level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(3D))) {
+                livingEntity.setAirSupply(livingEntity.getMaxAirSupply());
+            }
+            for (TropicalFish tropicalFish : this.level.getEntitiesOfClass(TropicalFish.class, this.getBoundingBox().inflate(15D))) {
+                if (!tropicalFish.getMoveControl().hasWanted())
+                    tropicalFish.getMoveControl().setWantedPosition(this.getX(), this.getY(), this.getZ(), 0.3);
 
+            }
         }
     }
 
@@ -177,8 +254,16 @@ public class EntityTridacna extends WaterAnimal {
         return super.causeFallDamage(pFallDistance, pMultiplier, pSource);
     }
 
+    @Override
+    public boolean isPushable() {
+        return false;
+    }
+
     private void updateShellState() {
         if (!this.isInWater()) {
+            closeShell();
+        }
+        if (this.getBlockStateOn().isAir() || this.getBlockStateOn().is(Blocks.WATER)) {
             closeShell();
         }
         if (this.getCloseRemindTick() == 1) {

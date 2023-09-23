@@ -13,11 +13,17 @@ import com.mnsfhxy.johnny_s_biological_notes.entity.jelly.bubble.EntityJellyBubb
 import com.mnsfhxy.johnny_s_biological_notes.entity.peeper.EntityPeeper;
 import com.mnsfhxy.johnny_s_biological_notes.entity.tridacna.EntityTridacna;
 import com.mnsfhxy.johnny_s_biological_notes.networking.Messages;
+import net.minecraft.core.Direction;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.SpawnPlacements;
+import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.animal.WaterAnimal;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent;
@@ -71,16 +77,22 @@ public class ModInit {
 //                EntityCrab::checkCrabSpawnRules, SpawnPlacementRegisterEvent.Operation.REPLACE);
 //        event.register(RegistrationInit.PEEPER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.WORLD_SURFACE_WG,
 //                EntityPeeper::checkPeeperSpawnRule,SpawnPlacementRegisterEvent.Operation.REPLACE);
-
+//        event.register(
+//                RegistrationInit.TRIDACNA.get(), SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+//                EntityTridacna::checkTridacnaSpawnRules,SpawnPlacementRegisterEvent.Operation.OR
+//        );
     }
 
     //生物生成在此注册
     @SubscribeEvent
     public static void onCommonSetupEvent(FMLCommonSetupEvent event) {
         event.enqueueWork(PotionsInit::initBrewing);
-        event.enqueueWork(EntityPeeper::init);
-        event.enqueueWork(EntityCrab::init);
-        event.enqueueWork(EntityJelly::init);
+        {
+            event.enqueueWork(EntityPeeper::init);
+            event.enqueueWork(EntityCrab::init);
+            event.enqueueWork(EntityJelly::init);
+            event.enqueueWork(EntityTridacna::init);
+        }
         Messages.register();
 
     }

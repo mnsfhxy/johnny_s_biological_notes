@@ -178,5 +178,20 @@ public class ModLanguageZhProvider extends LanguageProvider {
         add("johnny_s_biological_notes.sound.subtitle.jelly_bubble_broken", "果冻泡：破裂");
         add("johnny_s_biological_notes.sound.subtitle.glue_bottle_used", "胶液瓶：倾倒");
 
+        add(RegistrationInit.TRIDACNA.get(),"砗磲");
+        add(RegistrationInit.TRIDACNA_EGG.get(),"砗磲蛋");
+        add(RegistrationInit.BLOCK_ECO_BOTTLE.get(),"生态瓶");
+        add(RegistrationInit.BLOCK_ECO_BOTTLE_BUBBLE_CORAL.get(),"生态瓶");
+        add(RegistrationInit.BLOCK_ECO_BOTTLE_FIRE_CORAL .get(),"生态瓶");
+        add(RegistrationInit.BLOCK_ECO_BOTTLE_HORN_CORAL .get(),"生态瓶");
+        add(RegistrationInit.BLOCK_ECO_BOTTLE_TUBE_CORAL .get(),"生态瓶");
+        add(RegistrationInit.BLOCK_ECO_BOTTLE_BRAIN_CORAL.get(),"生态瓶");
+//        add(RegistrationInit.BLOCK_ITEM_ECO_BOTTLE.get(),"生态瓶");
+        add("johnny_s_biological_notes.sound.subtitle.tridacna_hurt", "砗磲：受伤");
+        add("johnny_s_biological_notes.sound.subtitle.tridacna_death", "砗磲：死亡");
+        add("johnny_s_biological_notes.sound.subtitle.tridacna_broken", "砗磲：外壳破裂");
+        add("johnny_s_biological_notes.sound.subtitle.tridacna_open", "砗磲：打开外壳");
+        add("johnny_s_biological_notes.sound.subtitle.tridacna_close", "砗磲：关闭外壳");
+
     }
 }

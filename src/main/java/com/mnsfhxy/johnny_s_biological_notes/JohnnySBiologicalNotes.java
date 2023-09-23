@@ -1,13 +1,13 @@
 package com.mnsfhxy.johnny_s_biological_notes;
 
-import com.mnsfhxy.johnny_s_biological_notes.config.ConfigBiome;
-import com.mnsfhxy.johnny_s_biological_notes.config.biome.SpawnBiomeModifier;
 import com.mnsfhxy.johnny_s_biological_notes.init.*;
+import com.mnsfhxy.johnny_s_biological_notes.spawn.SpawnHandler;
 import com.mojang.logging.LogUtils;
 import com.mojang.serialization.Codec;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraftforge.common.world.BiomeModifier;
+import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -34,6 +34,7 @@ public class JohnnySBiologicalNotes {
         ModInit.init();
         modBusEvent.addListener(this::setup);
         modBusEvent.addListener(this::clientSetup);
+//        modBusEvent.addListener(this::gatherData);
 //        ConfigBiome.init();
 //        final DeferredRegister<Codec<? extends BiomeModifier>> biomeModifiers = DeferredRegister.create(ForgeRegistries.Keys.BIOME_MODIFIER_SERIALIZERS, JohnnySBiologicalNotes.MODID);
 //        biomeModifiers.register(modBusEvent);

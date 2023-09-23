@@ -176,6 +176,22 @@ public class ModLanguageProvider extends LanguageProvider {
         add("johnny_s_biological_notes.sound.subtitle.jelly_bubble_broken", "Jelly Bubble Broken");
         add("johnny_s_biological_notes.sound.subtitle.glue_bottle_used", "Glue Bottle Used");
 
+        add(RegistrationInit.TRIDACNA.get(),"Tridacna");
+
+        add(RegistrationInit.TRIDACNA_EGG.get(),"Tridacna Egg");
+        add(RegistrationInit.BLOCK_ECO_BOTTLE.get(),"Eco Bottle");
+        add(RegistrationInit.BLOCK_ECO_BOTTLE_BUBBLE_CORAL.get(),"Eco Bottle");
+        add(RegistrationInit.BLOCK_ECO_BOTTLE_FIRE_CORAL .get(),"Eco Bottle");
+        add(RegistrationInit.BLOCK_ECO_BOTTLE_HORN_CORAL .get(),"Eco Bottle");
+        add(RegistrationInit.BLOCK_ECO_BOTTLE_TUBE_CORAL .get(),"Eco Bottle");
+        add(RegistrationInit.BLOCK_ECO_BOTTLE_BRAIN_CORAL.get(),"Eco Bottle");
+
+//        add(RegistrationInit.BLOCK_ITEM_ECO_BOTTLE.get(),"Eco Bottle");
+        add("johnny_s_biological_notes.sound.subtitle.tridacna_hurt", "Tridacna Hurt");
+        add("johnny_s_biological_notes.sound.subtitle.tridacna_death", "Tridacna Death");
+        add("johnny_s_biological_notes.sound.subtitle.tridacna_broken", "Tridacna Broken");
+        add("johnny_s_biological_notes.sound.subtitle.tridacna_open", "Tridacna Open");
+        add("johnny_s_biological_notes.sound.subtitle.tridacna_close", "Tridacna Close");
 
 //        ITEM_JELLY
 //        ITEM_JELLY_BLACK

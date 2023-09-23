@@ -1,4 +1,10 @@
 {
+  "block.johnny_s_biological_notes.eco_bottle": "Eco Bottle",
+  "block.johnny_s_biological_notes.eco_bottle_brain_coral": "Eco Bottle",
+  "block.johnny_s_biological_notes.eco_bottle_bubble_coral": "Eco Bottle",
+  "block.johnny_s_biological_notes.eco_bottle_fire_coral": "Eco Bottle",
+  "block.johnny_s_biological_notes.eco_bottle_horn_coral": "Eco Bottle",
+  "block.johnny_s_biological_notes.eco_bottle_tube_coral": "Eco Bottle",
   "block.johnny_s_biological_notes.glued_black_concrete_powder": "Glued Black Concrete Powder",
   "block.johnny_s_biological_notes.glued_blue_concrete_powder": "Glued Blue Concrete Powder",
   "block.johnny_s_biological_notes.glued_brown_concrete_powder": "Glued Brown Concrete Powder",
@@ -45,6 +51,7 @@
   "entity.johnny_s_biological_notes.jelly": "Jelly",
   "entity.johnny_s_biological_notes.jelly_bubble": "Jelly Bubble",
   "entity.johnny_s_biological_notes.peeper": "Peeper",
+  "entity.johnny_s_biological_notes.tridacna": "Tridacna",
   "item.johnny_s_biological_notes.cooked_crab_meat": "Cooked Crab Meat",
   "item.johnny_s_biological_notes.crab": "Crab Egg",
   "item.johnny_s_biological_notes.crab_bucket": "Crab Bucket",
@@ -84,6 +91,7 @@
   "item.johnny_s_biological_notes.solidfied_protein": "Solidfied Protein",
   "item.johnny_s_biological_notes.stone_blade": "Stone Blade",
   "item.johnny_s_biological_notes.stone_katana": "Stone Katana",
+  "item.johnny_s_biological_notes.tridacna": "Tridacna Egg",
   "item.johnny_s_biological_notes.wood_blade": "Wood Blade",
   "item.johnny_s_biological_notes.wood_katana": "Wood Katana",
   "item.minecraft.lingering_potion.effect.fear_water_potion": "Lingering Fear Water Potion",
@@ -116,5 +124,10 @@
   "johnny_s_biological_notes.sound.subtitle.jelly_make_bubble": "Jelly Make Bubble",
   "johnny_s_biological_notes.sound.subtitle.peeper_death": "Peeper Death",
   "johnny_s_biological_notes.sound.subtitle.peeper_hurt": "Peeper Hurt",
-  "johnny_s_biological_notes.sound.subtitle.peeper_sound": "Peeper wuwu"
+  "johnny_s_biological_notes.sound.subtitle.peeper_sound": "Peeper wuwu",
+  "johnny_s_biological_notes.sound.subtitle.tridacna_broken": "Tridacna Broken",
+  "johnny_s_biological_notes.sound.subtitle.tridacna_close": "Tridacna Close",
+  "johnny_s_biological_notes.sound.subtitle.tridacna_death": "Tridacna Death",
+  "johnny_s_biological_notes.sound.subtitle.tridacna_hurt": "Tridacna Hurt",
+  "johnny_s_biological_notes.sound.subtitle.tridacna_open": "Tridacna Open"
 }

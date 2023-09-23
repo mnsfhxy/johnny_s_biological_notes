@@ -5,10 +5,10 @@ import com.mnsfhxy.johnny_s_biological_notes.JohnnySBiologicalNotes;
 import com.mnsfhxy.johnny_s_biological_notes.capability.spirit.PlayerSpirit;
 import com.mnsfhxy.johnny_s_biological_notes.capability.spirit.PlayerSpiritProvider;
 import com.mnsfhxy.johnny_s_biological_notes.capability.spirit.SpiritOverlay;
-import com.mnsfhxy.johnny_s_biological_notes.config.ConfigBiome;
 import com.mnsfhxy.johnny_s_biological_notes.effect.EffectVulnusRecover;
 import com.mnsfhxy.johnny_s_biological_notes.entity.crab.EntityCrab;
 import com.mnsfhxy.johnny_s_biological_notes.entity.drifter.EntityDrifter;
+import com.mnsfhxy.johnny_s_biological_notes.entity.tridacna.EntityTridacna;
 import com.mnsfhxy.johnny_s_biological_notes.util.UtilLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
@@ -154,6 +154,9 @@ public class ForgeInit {
     public static void onEntitySpawned(EntityJoinLevelEvent event) {
         //
         Entity entity = event.getEntity();
+//        if(entity instanceof EntityTridacna){
+//            System.out.println("11111111111111111");
+//        }
         if (entity instanceof EntityCrab) {
             ((EntityCrab) entity).spawnColorInit();
         }

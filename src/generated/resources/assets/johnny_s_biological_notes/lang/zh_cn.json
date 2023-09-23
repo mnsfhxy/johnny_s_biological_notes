@@ -1,4 +1,10 @@
 {
+  "block.johnny_s_biological_notes.eco_bottle": "生态瓶",
+  "block.johnny_s_biological_notes.eco_bottle_brain_coral": "生态瓶",
+  "block.johnny_s_biological_notes.eco_bottle_bubble_coral": "生态瓶",
+  "block.johnny_s_biological_notes.eco_bottle_fire_coral": "生态瓶",
+  "block.johnny_s_biological_notes.eco_bottle_horn_coral": "生态瓶",
+  "block.johnny_s_biological_notes.eco_bottle_tube_coral": "生态瓶",
   "block.johnny_s_biological_notes.glued_black_concrete_powder": "涂胶的黑色混凝土粉末",
   "block.johnny_s_biological_notes.glued_blue_concrete_powder": "涂胶的蓝色混凝土粉末",
   "block.johnny_s_biological_notes.glued_brown_concrete_powder": "涂胶的棕色混凝土粉末",
@@ -45,6 +51,7 @@
   "entity.johnny_s_biological_notes.jelly": "果冻体",
   "entity.johnny_s_biological_notes.jelly_bubble": "果冻泡",
   "entity.johnny_s_biological_notes.peeper": "窥视者",
+  "entity.johnny_s_biological_notes.tridacna": "砗磲",
   "item.johnny_s_biological_notes.cooked_crab_meat": "熟蟹",
   "item.johnny_s_biological_notes.crab": "螃蟹蛋",
   "item.johnny_s_biological_notes.crab_bucket": "蟹桶",
@@ -85,6 +92,7 @@
   "item.johnny_s_biological_notes.solidfied_protein": "凝合蛋白",
   "item.johnny_s_biological_notes.stone_blade": "石刀刃",
   "item.johnny_s_biological_notes.stone_katana": "石刀",
+  "item.johnny_s_biological_notes.tridacna": "砗磲蛋",
   "item.johnny_s_biological_notes.wood_blade": "木刀刃",
   "item.johnny_s_biological_notes.wood_katana": "木刀",
   "item.minecraft.lingering_potion.effect.fear_water_potion": "滞留型恐水药水",
@@ -117,5 +125,10 @@
   "johnny_s_biological_notes.sound.subtitle.jelly_make_bubble": "果冻体：吐泡",
   "johnny_s_biological_notes.sound.subtitle.peeper_death": "窥视者：死亡",
   "johnny_s_biological_notes.sound.subtitle.peeper_hurt": "窥视者：受伤",
-  "johnny_s_biological_notes.sound.subtitle.peeper_sound": "窥视者：呜呜"
+  "johnny_s_biological_notes.sound.subtitle.peeper_sound": "窥视者：呜呜",
+  "johnny_s_biological_notes.sound.subtitle.tridacna_broken": "砗磲：外壳破裂",
+  "johnny_s_biological_notes.sound.subtitle.tridacna_close": "砗磲：关闭外壳",
+  "johnny_s_biological_notes.sound.subtitle.tridacna_death": "砗磲：死亡",
+  "johnny_s_biological_notes.sound.subtitle.tridacna_hurt": "砗磲：受伤",
+  "johnny_s_biological_notes.sound.subtitle.tridacna_open": "砗磲：打开外壳"
 }

@@ -1,6 +1,7 @@
 package com.mnsfhxy.johnny_s_biological_notes.entity.crab;
 
 import com.mnsfhxy.johnny_s_biological_notes.JohnnySBiologicalNotes;
+import com.mnsfhxy.johnny_s_biological_notes.entity.tridacna.EntityTridacna;
 import com.mnsfhxy.johnny_s_biological_notes.init.RegistrationInit;
 import com.mnsfhxy.johnny_s_biological_notes.init.SoundInit;
 import com.mnsfhxy.johnny_s_biological_notes.util.UtilItem;
@@ -9,6 +10,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.resources.sounds.EntityBoundSoundInstance;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
@@ -22,6 +24,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.EntityTypeTags;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
@@ -275,8 +278,8 @@ public class EntityCrab extends Animal implements Bucketable {
 
     }
     public static void init() {
-        SpawnPlacements.register(RegistrationInit.CRAB.get(), SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                (entityType, world, reason, pos, random) -> ( isBrightEnoughToSpawn(world,pos)&& Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));
+        SpawnPlacements.register(RegistrationInit.CRAB.get(), SpawnPlacements.Type.create("ON_WATER_GROUND",
+                ((levelReader, blockPos, entityType) -> levelReader.getFluidState(blockPos).is(FluidTags.WATER) && levelReader.getBlockState(blockPos.below()).isFaceSturdy(levelReader, blockPos.below(), Direction.UP))), Heightmap.Types.OCEAN_FLOOR, EntityCrab::checkCrabSpawnRules);
     }
 
     public static boolean checkCrabSpawnRules(
@@ -285,7 +288,8 @@ public class EntityCrab extends Animal implements Bucketable {
             MobSpawnType pSpawnType,
             BlockPos pPos,
             RandomSource pRandom) {
-        return isBrightEnoughToSpawn(pLevel, pPos);
+        return pPos.getY() < pLevel.getSeaLevel() - 8;
+//        return isBrightEnoughToSpawn(pLevel, pPos);
 //        return (!(pLevel.getBlockState(pPos.below()).getMaterial() == Material.WATER));//&&(!(pLevel.getBlockState(pPos.below()).getMaterial() == net.minecraft.world.level.material.Material.LEAVES)) ;//&& (isBrightEnoughToSpawn(pLevel, pPos));
     }
 
