@@ -5,6 +5,7 @@ import com.mnsfhxy.johnny_s_biological_notes.Item.ItemKatana;
 import com.mnsfhxy.johnny_s_biological_notes.Item.ItemModFishBucket;
 import com.mnsfhxy.johnny_s_biological_notes.JohnnySBiologicalNotes;
 import com.mnsfhxy.johnny_s_biological_notes.block.BlockEcoBottle;
+import com.mnsfhxy.johnny_s_biological_notes.block.BlockTridacnaShell;
 import com.mnsfhxy.johnny_s_biological_notes.block.gluedblock.BlockGluedConcretePowder;
 import com.mnsfhxy.johnny_s_biological_notes.block.gluedblock.BlockGluedSand;
 import com.mnsfhxy.johnny_s_biological_notes.block.BlockJelly;
@@ -119,6 +120,7 @@ public class RegistrationInit {
     public static final RegistryObject<BlockEcoBottle> BLOCK_ECO_BOTTLE_TUBE_CORAL = BLOCKS.register("eco_bottle_tube_coral", BlockEcoBottle::new);
     public static final RegistryObject<BlockEcoBottle> BLOCK_ECO_BOTTLE_BRAIN_CORAL = BLOCKS.register("eco_bottle_brain_coral", BlockEcoBottle::new);
 
+    public static final RegistryObject<BlockTridacnaShell> BLOCK_TRIDACNA_SHELL = BLOCKS.register("tridacna_shell", BlockTridacnaShell::new);
 
     public static final RegistryObject<Item> BLOCK_ITEM_JELLY_EMBRYO = fromBlock(BLOCK_JELLY_EMBRYO);
     public static final RegistryObject<Item> BLOCK_ITEM_JELLY = fromBlock(BLOCK_JELLY);
@@ -158,7 +160,7 @@ public class RegistrationInit {
     public static final RegistryObject<Item> BLOCK_ITEM_GLUED_BLACK_CONCRETE_POWDER = fromBlock(BLOCK_GLUED_BLACK_CONCRETE_POWDER);
     public static final RegistryObject<Item> BLOCK_ITEM_ECO_BOTTLE = fromBlock(BLOCK_ECO_BOTTLE);
 
-
+    public static final RegistryObject<Item> BLOCK_ITEM_TRIDACNA_SHELL=fromBlock(BLOCK_TRIDACNA_SHELL);
     //BlockEntityType
     public static final RegistryObject<BlockEntityType<JellyEmbryoBE>> JELLY_EMBRYO_BE = BLOCK_ENTITY_TYPE.register("jelly_embryo", () -> BlockEntityType.Builder.of(JellyEmbryoBE::new, (BLOCK_JELLY_EMBRYO.get())).build(null));
 
