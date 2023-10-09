@@ -160,7 +160,7 @@ public class RegistrationInit {
     public static final RegistryObject<Item> BLOCK_ITEM_GLUED_BLACK_CONCRETE_POWDER = fromBlock(BLOCK_GLUED_BLACK_CONCRETE_POWDER);
     public static final RegistryObject<Item> BLOCK_ITEM_ECO_BOTTLE = fromBlock(BLOCK_ECO_BOTTLE);
 
-    public static final RegistryObject<Item> BLOCK_ITEM_TRIDACNA_SHELL=fromBlock(BLOCK_TRIDACNA_SHELL);
+    public static final RegistryObject<Item> BLOCK_ITEM_TRIDACNA_SHELL=fromBlock(BLOCK_TRIDACNA_SHELL,16);
     //BlockEntityType
     public static final RegistryObject<BlockEntityType<JellyEmbryoBE>> JELLY_EMBRYO_BE = BLOCK_ENTITY_TYPE.register("jelly_embryo", () -> BlockEntityType.Builder.of(JellyEmbryoBE::new, (BLOCK_JELLY_EMBRYO.get())).build(null));
 
@@ -168,7 +168,9 @@ public class RegistrationInit {
     public static <B extends Block> RegistryObject<Item> fromBlock(RegistryObject<B> block) {
         return ITEMS.register(block.getId().getPath(), () -> new BlockItem(block.get(), ITEM_PROPERTIES));
     }
-
+    public static <B extends Block> RegistryObject<Item> fromBlock(RegistryObject<B> block,int pStackTo) {
+        return ITEMS.register(block.getId().getPath(), () -> new BlockItem(block.get(), ITEM_PROPERTIES.stacksTo(pStackTo)));
+    }
 
     //Entity注册
     public static final RegistryObject<EntityType<EntityCrab>> CRAB =

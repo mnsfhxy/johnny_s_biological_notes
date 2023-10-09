@@ -33,10 +33,10 @@ public class ModItemModels extends ItemModelProvider {
 //                "layer0", modLoc("item/mysterious_ingot"));
         withExistingParent(RegistrationInit.BLOCK_ITEM_JELLY.getId().getPath(), modLoc("block/jelly_block"));
         withExistingParent(RegistrationInit.BLOCK_ITEM_JELLY_BLACK.getId().getPath(), modLoc("block/jelly_block_black"));
-        withExistingParent(RegistrationInit.BLOCK_ITEM_JELLY_BLUE.getId().getPath(), modLoc( "block/jelly_block_blue"));
-        withExistingParent(RegistrationInit.BLOCK_ITEM_JELLY_BROWN.getId().getPath(), modLoc( "block/jelly_block_brown"));
-        withExistingParent(RegistrationInit.BLOCK_ITEM_JELLY_CYAN.getId().getPath(), modLoc( "block/jelly_block_cyan"));
-        withExistingParent(RegistrationInit.BLOCK_ITEM_JELLY_GRAY.getId().getPath(), modLoc( "block/jelly_block_gray"));
+        withExistingParent(RegistrationInit.BLOCK_ITEM_JELLY_BLUE.getId().getPath(), modLoc("block/jelly_block_blue"));
+        withExistingParent(RegistrationInit.BLOCK_ITEM_JELLY_BROWN.getId().getPath(), modLoc("block/jelly_block_brown"));
+        withExistingParent(RegistrationInit.BLOCK_ITEM_JELLY_CYAN.getId().getPath(), modLoc("block/jelly_block_cyan"));
+        withExistingParent(RegistrationInit.BLOCK_ITEM_JELLY_GRAY.getId().getPath(), modLoc("block/jelly_block_gray"));
         withExistingParent(RegistrationInit.BLOCK_ITEM_JELLY_GREEN.getId().getPath(), modLoc("block/jelly_block_green"));
         withExistingParent(RegistrationInit.BLOCK_ITEM_JELLY_LIGHTBLUE.getId().getPath(), modLoc("block/jelly_block_lightblue"));
         withExistingParent(RegistrationInit.BLOCK_ITEM_JELLY_LIGHTGRAY.getId().getPath(), modLoc("block/jelly_block_lightgray"));
@@ -51,41 +51,27 @@ public class ModItemModels extends ItemModelProvider {
         withExistingParent(RegistrationInit.BLOCK_ITEM_GLUED_SAND.getId().getPath(), mcLoc("block/sand"));
         withExistingParent(RegistrationInit.BLOCK_ITEM_GLUED_RED_SAND.getId().getPath(), mcLoc("block/red_sand"));
 
-        withExistingParent(RegistrationInit. BLOCK_ITEM_GLUED_WHITE_CONCRETE_POWDER     .getId().getPath(), mcLoc("block/white_concrete_powder"     ));
-        withExistingParent(RegistrationInit. BLOCK_ITEM_GLUED_ORANGE_CONCRETE_POWDER    .getId().getPath(), mcLoc("block/orange_concrete_powder"    ));
-        withExistingParent(RegistrationInit. BLOCK_ITEM_GLUED_MAGENTA_CONCRETE_POWDER   .getId().getPath(), mcLoc("block/magenta_concrete_powder"   ));
-        withExistingParent(RegistrationInit. BLOCK_ITEM_GLUED_LIGHT_BLUE_CONCRETE_POWDER.getId().getPath(), mcLoc("block/light_blue_concrete_powder"));
-        withExistingParent(RegistrationInit. BLOCK_ITEM_GLUED_YELLOW_CONCRETE_POWDER    .getId().getPath(), mcLoc("block/yellow_concrete_powder"    ));
-        withExistingParent(RegistrationInit. BLOCK_ITEM_GLUED_LIME_CONCRETE_POWDER      .getId().getPath(), mcLoc("block/lime_concrete_powder"      ));
-        withExistingParent(RegistrationInit. BLOCK_ITEM_GLUED_PINK_CONCRETE_POWDER      .getId().getPath(), mcLoc("block/pink_concrete_powder"      ));
-        withExistingParent(RegistrationInit. BLOCK_ITEM_GLUED_GRAY_CONCRETE_POWDER      .getId().getPath(), mcLoc("block/gray_concrete_powder"      ));
-        withExistingParent(RegistrationInit. BLOCK_ITEM_GLUED_LIGHT_GRAY_CONCRETE_POWDER.getId().getPath(), mcLoc("block/light_gray_concrete_powder"));
-        withExistingParent(RegistrationInit. BLOCK_ITEM_GLUED_CYAN_CONCRETE_POWDER      .getId().getPath(), mcLoc("block/cyan_concrete_powder"      ));
-        withExistingParent(RegistrationInit. BLOCK_ITEM_GLUED_PURPLE_CONCRETE_POWDER    .getId().getPath(), mcLoc("block/purple_concrete_powder"    ));
-        withExistingParent(RegistrationInit. BLOCK_ITEM_GLUED_BLUE_CONCRETE_POWDER      .getId().getPath(), mcLoc("block/blue_concrete_powder"      ));
-        withExistingParent(RegistrationInit. BLOCK_ITEM_GLUED_BROWN_CONCRETE_POWDER     .getId().getPath(), mcLoc("block/brown_concrete_powder"     ));
-        withExistingParent(RegistrationInit. BLOCK_ITEM_GLUED_GREEN_CONCRETE_POWDER     .getId().getPath(), mcLoc("block/green_concrete_powder"     ));
-        withExistingParent(RegistrationInit. BLOCK_ITEM_GLUED_RED_CONCRETE_POWDER       .getId().getPath(), mcLoc("block/red_concrete_powder"       ));
-        withExistingParent(RegistrationInit. BLOCK_ITEM_GLUED_BLACK_CONCRETE_POWDER     .getId().getPath(), mcLoc("block/black_concrete_powder"     ));
-        withExistingParent(RegistrationInit. BLOCK_ITEM_ECO_BOTTLE                      .getId().getPath(), modLoc("block/eco_bottle_ceiling"     ));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        withExistingParent(RegistrationInit.BLOCK_ITEM_GLUED_WHITE_CONCRETE_POWDER.getId().getPath(), mcLoc("block/white_concrete_powder"));
+        withExistingParent(RegistrationInit.BLOCK_ITEM_GLUED_ORANGE_CONCRETE_POWDER.getId().getPath(), mcLoc("block/orange_concrete_powder"));
+        withExistingParent(RegistrationInit.BLOCK_ITEM_GLUED_MAGENTA_CONCRETE_POWDER.getId().getPath(), mcLoc("block/magenta_concrete_powder"));
+        withExistingParent(RegistrationInit.BLOCK_ITEM_GLUED_LIGHT_BLUE_CONCRETE_POWDER.getId().getPath(), mcLoc("block/light_blue_concrete_powder"));
+        withExistingParent(RegistrationInit.BLOCK_ITEM_GLUED_YELLOW_CONCRETE_POWDER.getId().getPath(), mcLoc("block/yellow_concrete_powder"));
+        withExistingParent(RegistrationInit.BLOCK_ITEM_GLUED_LIME_CONCRETE_POWDER.getId().getPath(), mcLoc("block/lime_concrete_powder"));
+        withExistingParent(RegistrationInit.BLOCK_ITEM_GLUED_PINK_CONCRETE_POWDER.getId().getPath(), mcLoc("block/pink_concrete_powder"));
+        withExistingParent(RegistrationInit.BLOCK_ITEM_GLUED_GRAY_CONCRETE_POWDER.getId().getPath(), mcLoc("block/gray_concrete_powder"));
+        withExistingParent(RegistrationInit.BLOCK_ITEM_GLUED_LIGHT_GRAY_CONCRETE_POWDER.getId().getPath(), mcLoc("block/light_gray_concrete_powder"));
+        withExistingParent(RegistrationInit.BLOCK_ITEM_GLUED_CYAN_CONCRETE_POWDER.getId().getPath(), mcLoc("block/cyan_concrete_powder"));
+        withExistingParent(RegistrationInit.BLOCK_ITEM_GLUED_PURPLE_CONCRETE_POWDER.getId().getPath(), mcLoc("block/purple_concrete_powder"));
+        withExistingParent(RegistrationInit.BLOCK_ITEM_GLUED_BLUE_CONCRETE_POWDER.getId().getPath(), mcLoc("block/blue_concrete_powder"));
+        withExistingParent(RegistrationInit.BLOCK_ITEM_GLUED_BROWN_CONCRETE_POWDER.getId().getPath(), mcLoc("block/brown_concrete_powder"));
+        withExistingParent(RegistrationInit.BLOCK_ITEM_GLUED_GREEN_CONCRETE_POWDER.getId().getPath(), mcLoc("block/green_concrete_powder"));
+        withExistingParent(RegistrationInit.BLOCK_ITEM_GLUED_RED_CONCRETE_POWDER.getId().getPath(), mcLoc("block/red_concrete_powder"));
+        withExistingParent(RegistrationInit.BLOCK_ITEM_GLUED_BLACK_CONCRETE_POWDER.getId().getPath(), mcLoc("block/black_concrete_powder"));
+        withExistingParent(RegistrationInit.BLOCK_ITEM_ECO_BOTTLE.getId().getPath(), modLoc("block/eco_bottle_ceiling"));
+        withExistingParent(RegistrationInit.BLOCK_ITEM_TRIDACNA_SHELL.getId().getPath(), modLoc("block/tridacna_shell_closed"));
 
 
         withExistingParent(RegistrationInit.TRIDACNA_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
-
         withExistingParent(RegistrationInit.JELLY_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(RegistrationInit.CRAB_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(RegistrationInit.PEEPER_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
@@ -115,10 +101,10 @@ public class ModItemModels extends ItemModelProvider {
 
         singleTexture(RegistrationInit.ITEM_JELLY.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/jelly"));
         singleTexture(RegistrationInit.ITEM_JELLY_BLACK.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/jelly_black"));
-        singleTexture(RegistrationInit.ITEM_JELLY_BLUE.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc( "item/jelly_blue"));
-        singleTexture(RegistrationInit.ITEM_JELLY_BROWN.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc( "item/jelly_brown"));
-        singleTexture(RegistrationInit.ITEM_JELLY_CYAN.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc( "item/jelly_cyan"));
-        singleTexture(RegistrationInit.ITEM_JELLY_GRAY.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc( "item/jelly_gray"));
+        singleTexture(RegistrationInit.ITEM_JELLY_BLUE.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/jelly_blue"));
+        singleTexture(RegistrationInit.ITEM_JELLY_BROWN.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/jelly_brown"));
+        singleTexture(RegistrationInit.ITEM_JELLY_CYAN.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/jelly_cyan"));
+        singleTexture(RegistrationInit.ITEM_JELLY_GRAY.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/jelly_gray"));
         singleTexture(RegistrationInit.ITEM_JELLY_GREEN.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/jelly_green"));
         singleTexture(RegistrationInit.ITEM_JELLY_LIGHTBLUE.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/jelly_lightblue"));
         singleTexture(RegistrationInit.ITEM_JELLY_LIGHTGRAY.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/jelly_lightgray"));
@@ -134,5 +120,6 @@ public class ModItemModels extends ItemModelProvider {
         singleTexture(RegistrationInit.SOLIDFIED_PROTEIN.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/solidfied_protein"));
         singleTexture(RegistrationInit.JELLY_PLATTER.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/jelly_platter"));
         singleTexture(RegistrationInit.GLUE_BOTTLE.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/glue_bottle"));
+
     }
 }
