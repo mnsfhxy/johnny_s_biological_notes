@@ -68,7 +68,10 @@ public class ModItemModels extends ItemModelProvider {
         withExistingParent(RegistrationInit.BLOCK_ITEM_GLUED_RED_CONCRETE_POWDER.getId().getPath(), mcLoc("block/red_concrete_powder"));
         withExistingParent(RegistrationInit.BLOCK_ITEM_GLUED_BLACK_CONCRETE_POWDER.getId().getPath(), mcLoc("block/black_concrete_powder"));
         withExistingParent(RegistrationInit.BLOCK_ITEM_ECO_BOTTLE.getId().getPath(), modLoc("block/eco_bottle_ceiling"));
-        withExistingParent(RegistrationInit.BLOCK_ITEM_TRIDACNA_SHELL.getId().getPath(), modLoc("block/tridacna_shell_closed"));
+        withExistingParent(RegistrationInit.BLOCK_ITEM_TRIDACNA_SHELL.getId().getPath(), modLoc("block/tridacna_shell_open"));
+        withExistingParent(RegistrationInit.BLOCK_ITEM_TRIDACNA_SHELL_BROKEN.getId().getPath(), modLoc("block/tridacna_shell_broken_open"));
+        withExistingParent(RegistrationInit.BLOCK_ITEM_OLDER_TRIDACNA_SHELL_BROKEN.getId().getPath(), modLoc("block/older_tridacna_shell_broken_open"));
+        withExistingParent(RegistrationInit.BLOCK_ITEM_OLDER_TRIDACNA_SHELL.getId().getPath(), modLoc("block/older_tridacna_shell_open"));
 
 
         withExistingParent(RegistrationInit.TRIDACNA_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));

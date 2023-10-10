@@ -1,0 +1,6 @@
+{
+	"variants": {
+		"state=closed": { "model": "johnny_s_biological_notes:block/older_tridacna_shell_closed" },
+		"state=open":{ "model": "johnny_s_biological_notes:block/older_tridacna_shell_open" }
+	}
+}

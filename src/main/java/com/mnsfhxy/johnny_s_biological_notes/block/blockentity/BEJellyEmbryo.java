@@ -10,16 +10,13 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityTicker;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class JellyEmbryoBE extends BlockEntity {
+public class BEJellyEmbryo extends BlockEntity {
     private int bornTime;
     private final int BORN_TIME = UtilLevel.TIME.MINUTE.getTick()*5;
-    public JellyEmbryoBE(BlockPos pPos, BlockState pBlockState) {
+    public BEJellyEmbryo(BlockPos pPos, BlockState pBlockState) {
         super(RegistrationInit.JELLY_EMBRYO_BE.get(), pPos, pBlockState);
         bornTime = BORN_TIME;
     }

@@ -6,11 +6,12 @@ import com.mnsfhxy.johnny_s_biological_notes.Item.ItemModFishBucket;
 import com.mnsfhxy.johnny_s_biological_notes.JohnnySBiologicalNotes;
 import com.mnsfhxy.johnny_s_biological_notes.block.BlockEcoBottle;
 import com.mnsfhxy.johnny_s_biological_notes.block.BlockTridacnaShell;
+import com.mnsfhxy.johnny_s_biological_notes.block.blockentity.BETridacnaShell;
 import com.mnsfhxy.johnny_s_biological_notes.block.gluedblock.BlockGluedConcretePowder;
 import com.mnsfhxy.johnny_s_biological_notes.block.gluedblock.BlockGluedSand;
 import com.mnsfhxy.johnny_s_biological_notes.block.BlockJelly;
 import com.mnsfhxy.johnny_s_biological_notes.block.BlockJellyEmbryo;
-import com.mnsfhxy.johnny_s_biological_notes.block.blockentity.JellyEmbryoBE;
+import com.mnsfhxy.johnny_s_biological_notes.block.blockentity.BEJellyEmbryo;
 import com.mnsfhxy.johnny_s_biological_notes.entity.crab.EntityCrab;
 import com.mnsfhxy.johnny_s_biological_notes.entity.drifter.EntityDrifter;
 import com.mnsfhxy.johnny_s_biological_notes.entity.jelly.EntityJelly;
@@ -121,6 +122,9 @@ public class RegistrationInit {
     public static final RegistryObject<BlockEcoBottle> BLOCK_ECO_BOTTLE_BRAIN_CORAL = BLOCKS.register("eco_bottle_brain_coral", BlockEcoBottle::new);
 
     public static final RegistryObject<BlockTridacnaShell> BLOCK_TRIDACNA_SHELL = BLOCKS.register("tridacna_shell", BlockTridacnaShell::new);
+    public static final RegistryObject<BlockTridacnaShell> BLOCK_TRIDACNA_SHELL_BROKEN = BLOCKS.register("tridacna_shell_broken", BlockTridacnaShell::new);
+    public static final RegistryObject<BlockTridacnaShell> BLOCK_OLDER_TRIDACNA_SHELL = BLOCKS.register("older_tridacna_shell", BlockTridacnaShell::new);
+    public static final RegistryObject<BlockTridacnaShell> BLOCK_OLDER_TRIDACNA_SHELL_BROKEN = BLOCKS.register("older_tridacna_shell_broken", BlockTridacnaShell::new);
 
     public static final RegistryObject<Item> BLOCK_ITEM_JELLY_EMBRYO = fromBlock(BLOCK_JELLY_EMBRYO);
     public static final RegistryObject<Item> BLOCK_ITEM_JELLY = fromBlock(BLOCK_JELLY);
@@ -161,8 +165,21 @@ public class RegistrationInit {
     public static final RegistryObject<Item> BLOCK_ITEM_ECO_BOTTLE = fromBlock(BLOCK_ECO_BOTTLE);
 
     public static final RegistryObject<Item> BLOCK_ITEM_TRIDACNA_SHELL=fromBlock(BLOCK_TRIDACNA_SHELL,16);
+    public static final RegistryObject<Item> BLOCK_ITEM_OLDER_TRIDACNA_SHELL=fromBlock(BLOCK_OLDER_TRIDACNA_SHELL,16);
+    public static final RegistryObject<Item> BLOCK_ITEM_OLDER_TRIDACNA_SHELL_BROKEN=fromBlock(BLOCK_OLDER_TRIDACNA_SHELL_BROKEN,16);
+    public static final RegistryObject<Item> BLOCK_ITEM_TRIDACNA_SHELL_BROKEN=fromBlock(BLOCK_TRIDACNA_SHELL_BROKEN,16);
+
+
+
+
+
     //BlockEntityType
-    public static final RegistryObject<BlockEntityType<JellyEmbryoBE>> JELLY_EMBRYO_BE = BLOCK_ENTITY_TYPE.register("jelly_embryo", () -> BlockEntityType.Builder.of(JellyEmbryoBE::new, (BLOCK_JELLY_EMBRYO.get())).build(null));
+    public static final RegistryObject<BlockEntityType<BEJellyEmbryo>> JELLY_EMBRYO_BE = BLOCK_ENTITY_TYPE.register("jelly_embryo", () -> BlockEntityType.Builder.of(BEJellyEmbryo::new, (BLOCK_JELLY_EMBRYO.get())).build(null));
+    public static final RegistryObject<BlockEntityType<BETridacnaShell>> TRIDACNA_SHELL_BE = BLOCK_ENTITY_TYPE.register("tridacna_shell", () -> BlockEntityType.Builder.of(BETridacnaShell::new, (BLOCK_TRIDACNA_SHELL.get())).build(null));
+//    public static final RegistryObject<BlockEntityType<BETridacnaShell>> OLDER_TRIDACNA_SHELL_BE = BLOCK_ENTITY_TYPE.register("older_tridacna_shell", () -> BlockEntityType.Builder.of(BETridacnaShell::new, (BLOCK_TRIDACNA_SHELL.get())).build(null));
+//    public static final RegistryObject<BlockEntityType<BETridacnaShell>> TRIDACNA_SHELL_BROKEN_BE = BLOCK_ENTITY_TYPE.register("tridacna_shell_broken", () -> BlockEntityType.Builder.of(BETridacnaShell::new, (BLOCK_TRIDACNA_SHELL.get())).build(null));
+//    public static final RegistryObject<BlockEntityType<BETridacnaShell>> OLDER_TRIDACNA_SHELL_BROKEN_BE = BLOCK_ENTITY_TYPE.register("older_tridacna_shell_broken", () -> BlockEntityType.Builder.of(BETridacnaShell::new, (BLOCK_TRIDACNA_SHELL.get())).build(null));
+//
 
 
     public static <B extends Block> RegistryObject<Item> fromBlock(RegistryObject<B> block) {

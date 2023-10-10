@@ -1,17 +1,7 @@
 package com.mnsfhxy.johnny_s_biological_notes.block;
 
-import com.mnsfhxy.johnny_s_biological_notes.block.blockentity.JellyEmbryoBE;
-import com.mnsfhxy.johnny_s_biological_notes.entity.drifter.EntityDrifter;
-import com.mnsfhxy.johnny_s_biological_notes.entity.jelly.EntityJelly;
-import com.mnsfhxy.johnny_s_biological_notes.init.RegistrationInit;
-import com.mnsfhxy.johnny_s_biological_notes.util.UtilLevel;
+import com.mnsfhxy.johnny_s_biological_notes.block.blockentity.BEJellyEmbryo;
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.entity.MobSpawnType;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -51,7 +41,7 @@ public class BlockJellyEmbryo extends HalfTransparentBlock implements EntityBloc
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return new JellyEmbryoBE(pPos, pState);
+        return new BEJellyEmbryo(pPos, pState);
     }
 
     @Nullable
@@ -59,7 +49,7 @@ public class BlockJellyEmbryo extends HalfTransparentBlock implements EntityBloc
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
         if (!pLevel.isClientSide()) {
             return (lvl, pos, stt, te) -> {
-                if (te instanceof JellyEmbryoBE jellyEmbryoBE) jellyEmbryoBE.tickServer();
+                if (te instanceof BEJellyEmbryo BEJellyEmbryo) BEJellyEmbryo.tickServer();
             };
         }
         return null;
