@@ -1,5 +1,5 @@
 {
-  "parent": "johnny_s_biological_notes:block/template_tridacna_shell_open",
+  "parent": "johnny_s_biological_notes:block/template_tridacna_shell_closed",
   "textures": {
     "2": "johnny_s_biological_notes:block/older_tridacna"
   }

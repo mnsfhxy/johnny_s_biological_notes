@@ -3,6 +3,7 @@ package com.mnsfhxy.johnny_s_biological_notes.block;
 import com.mnsfhxy.johnny_s_biological_notes.block.blockentity.BETridacnaShell;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.StringRepresentable;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Wearable;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -11,18 +12,28 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.PushReaction;
+import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.Stream;
 
+
 public class BlockTridacnaShell extends  HorizontalDirectionalBlock implements Wearable, SimpleWaterloggedBlock,EntityBlock{
+    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     private final VoxelShape openShape=Shapes.join(Stream.of(
             Block.box(14.299999999999999, 0.30000000000000004, 1, 14.299999999999999, 10.299999999999999, 14.999999999999996),
@@ -100,33 +111,45 @@ public class BlockTridacnaShell extends  HorizontalDirectionalBlock implements W
     public static final EnumProperty<TridacnaShellState> STATE=EnumProperty.create("state",TridacnaShellState.class);
 
     public BlockTridacnaShell() {
-        super(BlockBehaviour.Properties.of(Material.STONE).strength(2.5F).sound(SoundType.WOOD).explosionResistance(2.5F));
-        this.registerDefaultState(this.getStateDefinition().any().setValue(STATE,TridacnaShellState.OPEN));
+        super(BlockBehaviour.Properties.of(Material.STONE).strength(2.5F).sound(SoundType.WOOD).explosionResistance(2.5F).noOcclusion());
+        this.registerDefaultState(this.getStateDefinition().any().setValue(STATE,TridacnaShellState.OPEN).setValue(WATERLOGGED, Boolean.FALSE));
     }
     public void onPlace(BlockState pState, Level pLevel, BlockPos pPos, BlockState pOldState, boolean pIsMoving) {
         if (!pLevel.isClientSide) {
-            if ( pLevel.hasNeighborSignal(pPos)) {
-                pState.setValue(STATE,TridacnaShellState.CLOSED);
-            }else {
-                pState.setValue(STATE,TridacnaShellState.OPEN);
+            if (pLevel.hasNeighborSignal(pPos)) {
+                pLevel.setBlock(pPos,pState.setValue(STATE,TridacnaShellState.CLOSED), 2);
             }
+
         }
     }
     @Override
+    public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
+        List<ItemStack> dropsOriginal = super.getDrops(state, builder);
+        if (!dropsOriginal.isEmpty())
+            return dropsOriginal;
+        return Collections.singletonList(new ItemStack(this, 1));
+    }
+
+    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        pBuilder.add(STATE);
+        pBuilder.add(STATE,WATERLOGGED);
     }
     public PushReaction getPistonPushReaction(BlockState pState) {
         return PushReaction.BLOCK;
     }
+
     public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
         if (!pLevel.isClientSide) {
-            if ( pLevel.hasNeighborSignal(pPos)) {
-                pState.setValue(STATE,TridacnaShellState.CLOSED);
-            }else {
-                pState.setValue(STATE,TridacnaShellState.OPEN);
-            }
-
+//            if ( pLevel.hasNeighborSignal(pPos)) {
+//                pState.setValue(STATE,TridacnaShellState.CLOSED);
+//
+//            }else {
+//                pState.setValue(STATE,TridacnaShellState.OPEN);
+//            }
+            pLevel.setBlock(pPos,pState.cycle(STATE), 2);
         }
+    }
+    public @NotNull FluidState getFluidState(BlockState pState) {
+        return pState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(pState);
     }
 }
