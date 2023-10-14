@@ -2,11 +2,15 @@ package com.mnsfhxy.johnny_s_biological_notes.block;
 
 import com.mnsfhxy.johnny_s_biological_notes.block.blockentity.BETridacnaShell;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Wearable;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -89,6 +93,15 @@ public class BlockTridacnaShell extends  HorizontalDirectionalBlock implements W
         return new BETridacnaShell(pPos,pState);
     }
 
+
+    public static boolean canSurvive(LevelReader pLevel, BlockPos pPos) {
+        Holder<Biome> biome = pLevel.getBiome(pPos);
+        return canBorn(biome);
+    }
+    public static boolean canBorn(Holder<Biome> biome){
+        return biome.is(Biomes.WARM_OCEAN)||biome.is(Biomes.BEACH)||biome.is(Biomes.STONY_SHORE);
+
+    }
     @Override
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
 

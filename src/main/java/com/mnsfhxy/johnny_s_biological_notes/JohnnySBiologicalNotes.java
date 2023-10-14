@@ -2,6 +2,7 @@ package com.mnsfhxy.johnny_s_biological_notes;
 
 import com.mnsfhxy.johnny_s_biological_notes.init.*;
 import com.mnsfhxy.johnny_s_biological_notes.spawn.SpawnHandler;
+import com.mnsfhxy.johnny_s_biological_notes.world.biome.modifier.BiomeModifierTridacnaShell;
 import com.mojang.logging.LogUtils;
 import com.mojang.serialization.Codec;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -15,6 +16,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -34,6 +36,10 @@ public class JohnnySBiologicalNotes {
         ModInit.init();
         modBusEvent.addListener(this::setup);
         modBusEvent.addListener(this::clientSetup);
+        final DeferredRegister<Codec<? extends BiomeModifier>> biomeModifiers = DeferredRegister.create(ForgeRegistries.Keys.BIOME_MODIFIER_SERIALIZERS, JohnnySBiologicalNotes.MODID);
+        biomeModifiers.register(modBusEvent);
+        biomeModifiers.register("tridacna_shell_biome_modifier", BiomeModifierTridacnaShell::makeCodec);
+
 //        modBusEvent.addListener(this::gatherData);
 //        ConfigBiome.init();
 //        final DeferredRegister<Codec<? extends BiomeModifier>> biomeModifiers = DeferredRegister.create(ForgeRegistries.Keys.BIOME_MODIFIER_SERIALIZERS, JohnnySBiologicalNotes.MODID);

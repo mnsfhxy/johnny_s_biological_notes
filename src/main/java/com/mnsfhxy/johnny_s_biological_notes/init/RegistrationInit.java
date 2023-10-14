@@ -19,8 +19,13 @@ import com.mnsfhxy.johnny_s_biological_notes.entity.jelly.bubble.EntityJellyBubb
 import com.mnsfhxy.johnny_s_biological_notes.entity.peeper.EntityPeeper;
 import com.mnsfhxy.johnny_s_biological_notes.entity.tridacna.EntityTridacna;
 import com.mnsfhxy.johnny_s_biological_notes.util.UtilLevel;
+import com.mnsfhxy.johnny_s_biological_notes.world.biome.modifier.BiomeModifierTridacnaShell;
+import com.mnsfhxy.johnny_s_biological_notes.world.features.FeatureTridacnaShell;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockSource;
+import net.minecraft.core.HolderSet;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.core.particles.ParticleType;
@@ -33,14 +38,18 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.common.ForgeSpawnEggItem;
+import net.minecraftforge.common.world.BiomeModifier;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
@@ -55,13 +64,14 @@ public class RegistrationInit {
             new Item.Properties().tab(ModInit.ITEM_GROUP);
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, JohnnySBiologicalNotes.MODID);
-
+    public static final DeferredRegister<Codec<? extends BiomeModifier>> BIOME_MODIFIER_SERIALIZER = DeferredRegister.create(ForgeRegistries.Keys.BIOME_MODIFIER_SERIALIZERS, JohnnySBiologicalNotes.MODID);
     public static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES =
             DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, JohnnySBiologicalNotes.MODID);
     public static final DeferredRegister<EntityType<?>> ENTITIES =
             DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, JohnnySBiologicalNotes.MODID);
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPE = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, JohnnySBiologicalNotes.MODID);
-
+    public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, JohnnySBiologicalNotes.MODID);
+//    public static final DeferredRegister<Codec<? extends BiomeModifier>>  BIOME_MODIFIERS=   DeferredRegister.create(ForgeRegistries.Keys.BIOME_MODIFIER_SERIALIZERS, JohnnySBiologicalNotes.MODID);
     public static void init() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         BLOCKS.register(bus);
@@ -71,7 +81,9 @@ public class RegistrationInit {
         //        CONTAINERS.register(bus);
         ENTITIES.register(bus);
         //        STRUCTURES.register(bus);
-        //        BIOME_MODIFIERS.register(bus);
+        BIOME_MODIFIER_SERIALIZER.register(bus);
+
+//        BIOME_MODIFIERS.register(bus);
         //        PLACED_FEATURES.register(bus);
         PARTICLE_TYPES.register(bus);
     }
@@ -292,6 +304,14 @@ public class RegistrationInit {
     //tages
 //    public static final TagKey<EntityType<?>> HYDROBIOS = TagKey.create(Registry.ENTITY_TYPE_REGISTRY, new ResourceLocation(JohnnySBiologicalNotes.MODID, "hydrobios"));
 
+    //Feature注册
+    public static final RegistryObject<FeatureTridacnaShell> FEATURE_TRIDACNA_SHELL = FEATURES.register("tridacna_shell", FeatureTridacnaShell::new);
+
+    //biomeModifierSerializer注册
+
+//    RegistryObject<Codec<BiomeModifierTridacnaShell>>TRIDACNA_SHELL_MODIFIER   = BIOME_MODIFIERS.register("tridacna_shell_biome_modifier", BiomeModifierTridacnaShell::makeCodec);
+
+
 //粒子注册
 
     public static final RegistryObject<SimpleParticleType> CHOP_PARTICLE =
@@ -333,6 +353,7 @@ public class RegistrationInit {
         field.setAccessible(true);  // 设置为可访问，即使是私有成员变量也可以获取到
 
         Object value = field.get(clazz.newInstance());  // 创建类的实例并获取成员变量的值
+//        RecordCodecBuilder<BiomeModifierTridacnaShell, HolderSet<Biome>> biomes = Biome.LIST_CODEC.fieldOf("biomes").forGetter(BiomeModifierTridacnaShell::biomes)
 
         return value;
     }
