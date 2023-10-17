@@ -31,6 +31,7 @@ public class FeatureTridacnaShell extends Feature<NoneFeatureConfiguration> {
         RandomSource randomsource=pContext.random();
         WorldGenLevel worldgenlevel=pContext.level();
         BlockPos blockpos=pContext.origin();
+        if(randomsource.nextInt(3)!=0)return false;
         int i = randomsource.nextInt(8) - randomsource.nextInt(8);
         int j = randomsource.nextInt(8) - randomsource.nextInt(8);
         int k = worldgenlevel.getHeight(Heightmap.Types.OCEAN_FLOOR, blockpos.getX() + i, blockpos.getZ() + j);
@@ -38,6 +39,9 @@ public class FeatureTridacnaShell extends Feature<NoneFeatureConfiguration> {
         if (worldgenlevel.getBlockState(blockpos1).is(Blocks.WATER)) {
             boolean flag1 = randomsource.nextInt(25) ==0;
             BlockState blockstate = flag1 ? RegistrationInit.BLOCK_OLDER_TRIDACNA_SHELL.get().defaultBlockState() : RegistrationInit.BLOCK_TRIDACNA_SHELL.get().defaultBlockState();
+            if(randomsource.nextInt(4)==0){
+                blockstate=blockstate.getBlock()==RegistrationInit.BLOCK_OLDER_TRIDACNA_SHELL.get()?RegistrationInit.BLOCK_OLDER_TRIDACNA_SHELL_BROKEN.get().defaultBlockState():RegistrationInit.BLOCK_TRIDACNA_SHELL_BROKEN.get().defaultBlockState();
+            }
             if (BlockTridacnaShell.canSurvive(worldgenlevel, blockpos1)) {
                     worldgenlevel.setBlock(blockpos1, blockstate, 2);
                 flag = true;

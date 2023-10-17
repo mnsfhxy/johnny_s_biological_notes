@@ -26,7 +26,6 @@ public class BiomeModifierTridacnaShell implements BiomeModifier {
 
     public static final RegistryObject<Codec<? extends BiomeModifier>> SERIALIZER = RegistryObject.create(new ResourceLocation(JohnnySBiologicalNotes.MODID, "tridacna_shell_biome_modifier"), ForgeRegistries.Keys.BIOME_MODIFIER_SERIALIZERS, JohnnySBiologicalNotes.MODID);
 
-
     @Override
     public void modify(Holder<Biome> biome, Phase phase, ModifiableBiomeInfo.BiomeInfo.Builder builder) {
         if (phase == BiomeModifier.Phase.ADD && BlockTridacnaShell.canBorn(biome)) {
