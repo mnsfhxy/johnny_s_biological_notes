@@ -30,6 +30,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.Heightmap;
@@ -197,6 +198,10 @@ public void setCloseRemindTick(int p) {
         return ForgeMod.WATER_TYPE.get() != type;
     }
 
+    //!!!没有Override会导致无法在水中生成(详见NaturalSpawner$isValidPositionForMob)
+    public boolean checkSpawnObstruction(LevelReader pLevel) {
+        return pLevel.isUnobstructed(this);
+    }
     public boolean isPushedByFluid() {
         return false;
     }

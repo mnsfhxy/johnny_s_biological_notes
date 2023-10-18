@@ -233,7 +233,7 @@ public class RegistrationInit {
                             .sized((float) (1.0 / 16), (float) (1.0 / 16)), "jelly_bubble"));
     public static final RegistryObject<EntityType<EntityTridacna>> TRIDACNA =
             ENTITIES.register("tridacna",
-                    () -> registerEntity(EntityType.Builder.of(EntityTridacna::new,MobCategory.WATER_AMBIENT)
+                    () -> registerFarSpawnEntity(EntityType.Builder.of(EntityTridacna::new,MobCategory.WATER_CREATURE)
                             .sized(1F, 1F), "tridacna"));
 
     //Item注册
@@ -344,6 +344,9 @@ public class RegistrationInit {
 
     private static final EntityType registerEntity(EntityType.Builder builder, String entityName) {
         return (EntityType) builder.build(entityName);
+    }
+    private static final EntityType registerFarSpawnEntity(EntityType.Builder builder, String entityName) {
+        return (EntityType) builder.canSpawnFarFromPlayer().build(entityName);
     }
     public static Object getFieldValue(String fieldName) throws ClassNotFoundException, NoSuchFieldException, IllegalAccessException, InstantiationException {
         // 这里假设要获取的类名为"ClassName"

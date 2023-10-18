@@ -12,13 +12,13 @@ public class BiomeSpawnConfig {
 
     final ModSpawnData TridacnaShell=new ModSpawnData(
             RegistrationInit.TRIDACNA.get(),
-            MobCategory.CREATURE,
+            MobCategory.WATER_CREATURE,
             ImmutableList.of(
                     Biomes.LUKEWARM_OCEAN,
                     Biomes.WARM_OCEAN,
                     Biomes.DEEP_LUKEWARM_OCEAN
             ),
-            200,
+            20,
             1,
             1
     );
