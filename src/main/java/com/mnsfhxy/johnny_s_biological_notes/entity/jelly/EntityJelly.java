@@ -143,11 +143,6 @@ public class EntityJelly extends PathfinderMob {
             return i > pRandom.nextInt(j) ? false : checkMobSpawnRules(pBat, pLevel, pSpawnType, pPos, pRandom);
         }
     }
-    public static void init() {
-        SpawnPlacements.register(RegistrationInit.JELLY.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                EntityJelly::checkJellySpawnRules);
-    }
-
 
     @Override
     protected void dropCustomDeathLoot(DamageSource pSource, int pLooting, boolean pRecentlyHit) {

@@ -73,7 +73,7 @@ public class ModLanguageZhProvider extends LanguageProvider {
         add(RegistrationInit.SEMI_SOLIDFIED_PROTEIN.get(), "半凝合蛋白");
         add(RegistrationInit.SOLIDFIED_PROTEIN.get(), "凝合蛋白");
         add(RegistrationInit.JELLY_PLATTER.get(), "果冻拼盘");
-        add(RegistrationInit.GLUE_BOTTLE.get(), "胶液瓶");
+//        add(RegistrationInit.GLUE_BOTTLE.get(), "胶液瓶");
         add(PotionsInit.VULNUS_RECOVER.get(), "创伤恢复");
         add(RegistrationInit.JELLY_EGG.get(), "果冻体蛋");
         add(RegistrationInit.JELLY_BUBBLE.get(), "果冻泡");
@@ -114,7 +114,7 @@ public class ModLanguageZhProvider extends LanguageProvider {
 //        add(RegistrationInit.BLOCK_ITEM_JELLY_WHITE.get(), "白色果冻方块");
 //        add(RegistrationInit.BLOCK_ITEM_JELLY_YELLOW.get(), "黄色果冻方块");
 
-
+//Block(Block_Item无需注册)
         add(RegistrationInit.BLOCK_GLUED_SAND.get(), "涂胶的沙子");
         add(RegistrationInit.BLOCK_GLUED_RED_SAND.get(), "涂胶的红沙");
         add(RegistrationInit.BLOCK_GLUED_WHITE_CONCRETE_POWDER.get(), "涂胶的白色混凝土粉末");
@@ -133,6 +133,10 @@ public class ModLanguageZhProvider extends LanguageProvider {
         add(RegistrationInit.BLOCK_GLUED_GREEN_CONCRETE_POWDER.get(), "涂胶的绿色混凝土粉末");
         add(RegistrationInit.BLOCK_GLUED_RED_CONCRETE_POWDER.get(), "涂胶的红色混凝土粉末");
         add(RegistrationInit.BLOCK_GLUED_BLACK_CONCRETE_POWDER.get(), "涂胶的黑色混凝土粉末");
+        add(RegistrationInit.BLOCK_TRIDACNA_SHELL.get(),"砗磲壳");
+        add(RegistrationInit.BLOCK_TRIDACNA_SHELL_BROKEN.get(),"破损的砗磲壳");
+        add(RegistrationInit.BLOCK_OLDER_TRIDACNA_SHELL.get(),"古老的砗磲壳");
+        add(RegistrationInit.BLOCK_OLDER_TRIDACNA_SHELL_BROKEN.get(),"古老的破损的砗磲壳");
 
 //        add(RegistrationInit.BLOCK_ITEM_GLUED_WHITE_CONCRETE_POWDER.get(), "白色胶合混凝土粉末");
 //        add(RegistrationInit.BLOCK_ITEM_GLUED_ORANGE_CONCRETE_POWDER.get(), "橙色胶合混凝土粉末");

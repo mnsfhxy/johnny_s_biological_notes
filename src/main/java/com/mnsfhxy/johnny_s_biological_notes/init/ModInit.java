@@ -17,9 +17,11 @@ import net.minecraft.core.Direction;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.WaterAnimal;
+import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -60,6 +62,16 @@ public class ModInit {
 
     @SubscribeEvent
     public static void onAttributeCreate(EntityAttributeCreationEvent event) {
+        SpawnPlacements.Type SPAWN_ON_WATER_GROUND = SpawnPlacements.Type.create("ON_WATER_GROUND",
+                ((levelReader, blockPos, entityType) -> levelReader.getFluidState(blockPos).is(FluidTags.WATER) ));
+
+        SpawnPlacements.register(RegistrationInit.CRAB.get(), SPAWN_ON_WATER_GROUND, Heightmap.Types.OCEAN_FLOOR, EntityCrab::checkCrabSpawnRules);
+        SpawnPlacements.register(RegistrationInit.PEEPER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                (entityType, world, reason, pos, random) -> ( Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));
+        SpawnPlacements.register(RegistrationInit.JELLY.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                EntityJelly::checkJellySpawnRules);
+        SpawnPlacements.register(RegistrationInit.TRIDACNA.get(), SPAWN_ON_WATER_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, EntityTridacna::checkSpawnRules);
+
         event.put(RegistrationInit.CRAB.get(), EntityCrab.prepareAttributes().build());
         event.put(RegistrationInit.DRIFTER.get(), EntityDrifter.prepareAttributes().build());
         event.put(RegistrationInit.PEEPER.get(), EntityPeeper.prepareAttributes().build());
@@ -81,18 +93,13 @@ public class ModInit {
 //                RegistrationInit.TRIDACNA.get(), SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
 //                EntityTridacna::checkTridacnaSpawnRules,SpawnPlacementRegisterEvent.Operation.OR
 //        );
+
     }
 
     //生物生成在此注册
     @SubscribeEvent
     public static void onCommonSetupEvent(FMLCommonSetupEvent event) {
         event.enqueueWork(PotionsInit::initBrewing);
-        {
-            event.enqueueWork(EntityPeeper::init);
-            event.enqueueWork(EntityCrab::init);
-            event.enqueueWork(EntityJelly::init);
-            event.enqueueWork(EntityTridacna::init);
-        }
         Messages.register();
 
     }

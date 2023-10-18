@@ -73,7 +73,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add(RegistrationInit.SEMI_SOLIDFIED_PROTEIN.get(), "Semi Solidfied Protein");
         add(RegistrationInit.SOLIDFIED_PROTEIN.get(), "Solidfied Protein");
         add(RegistrationInit.JELLY_PLATTER.get(), "Jelly Platter");
-        add(RegistrationInit.GLUE_BOTTLE.get(), "Glue Bottle");
+//        add(RegistrationInit.GLUE_BOTTLE.get(), "Glue Bottle");
         add(PotionsInit.VULNUS_RECOVER.get(), "Vulnus Recover");
 
         add(RegistrationInit.BLOCK_JELLY.get(), "Jelly Block");

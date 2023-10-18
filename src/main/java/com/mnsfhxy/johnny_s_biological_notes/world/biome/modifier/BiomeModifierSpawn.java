@@ -3,12 +3,16 @@ package com.mnsfhxy.johnny_s_biological_notes.world.biome.modifier;
 import com.google.common.collect.ImmutableList;
 import com.mnsfhxy.johnny_s_biological_notes.JohnnySBiologicalNotes;
 import com.mnsfhxy.johnny_s_biological_notes.world.biome.BiomeSpawnConfig;
+import com.mnsfhxy.johnny_s_biological_notes.world.biome.ModSpawnData;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.level.SpawnData;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraftforge.common.world.BiomeModifier;
 import net.minecraftforge.common.world.ModifiableBiomeInfo;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -25,39 +29,47 @@ public class BiomeModifierSpawn implements BiomeModifier {
 
         if (phase == Phase.ADD) {
             addBiomeSpawns(biome, builder);
-
         }
     }
-    public static void addBiomeSpawns(Holder<Biome> biome, ModifiableBiomeInfo.BiomeInfo.Builder builder) {
 
-
-        Class<?> yourClass = BiomeSpawnConfig.class;
-
-        Field[] fields = yourClass.getDeclaredFields();
-
+    public static void addBiomeSpawns(Holder<Biome> biome, ModifiableBiomeInfo.BiomeInfo.Builder builder)  {
+        Class<?> BCNClass = BiomeSpawnConfig.class;
+        BiomeSpawnConfig biomeSpawnConfig = new BiomeSpawnConfig();
+        Field[] fields = BCNClass.getDeclaredFields();
         for (Field field : fields) {
-            if (field.getType() == SpawnData.class) {
-                System.out.println("Found a field of type SpawnData: " + field.getName());
+            if (field.getType() == ModSpawnData.class) {
+                field.setAccessible(true);
+                ModSpawnData spawnData = null;
+                try {
+                    spawnData = (ModSpawnData) field.get(biomeSpawnConfig);
+                } catch (IllegalAccessException e) {
+                    throw new RuntimeException(e);
+                }
+                if (testBiome(spawnData.getSpawnBiomes(), biome)) {
+                    builder.getMobSpawnSettings().getSpawner(spawnData.getMobCategory()).add(spawnData.getSpawnerData());
+                }
             }
         }
-
-
-
-
     }
+
+
+
+
     public static boolean testBiome(ImmutableList<ResourceKey<Biome>> list, Holder<Biome> biome) {
-        boolean result = false;
-
-
-
-
-
-
-        return result;
+        for (var i : list) {
+            if (biome.is(i)) {
+                return true;
+            }
+        }
+        return false;
     }
+
     @Override
     public Codec<? extends BiomeModifier> codec() {
-        return  Codec.unit(BiomeModifierSpawn::new);
+        return (Codec)SERIALIZER.get();
+    }
+    public static Codec<BiomeModifierSpawn> makeCodec() {
+        return Codec.unit(BiomeModifierSpawn::new);
     }
 
 }

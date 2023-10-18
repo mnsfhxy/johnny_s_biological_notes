@@ -298,7 +298,9 @@ public class RegistrationInit {
     public static final RegistryObject<Item> SEMI_SOLIDFIED_PROTEIN = ITEMS.register("semi_solidfied_protein", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP)));
     public static final RegistryObject<Item> SOLIDFIED_PROTEIN = ITEMS.register("solidfied_protein", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP)));
     public static final RegistryObject<Item> JELLY_PLATTER = ITEMS.register("jelly_platter", () -> new BowlFoodItem(new Item.Properties().tab(ModInit.ITEM_GROUP).stacksTo(1).food(new FoodProperties.Builder().nutrition(5).effect(() -> new MobEffectInstance(MobEffects.HEAL, 10), 1.0F).effect(() -> new MobEffectInstance(MobEffects.REGENERATION, UtilLevel.TIME.SECOND.getTick() * 22, 1), 1.0F).effect(() -> new MobEffectInstance(PotionsInit.VULNUS_RECOVER.get(), UtilLevel.TIME.MINUTE.getTick() * 2), 1.0F).alwaysEat().build())));
-    public static final RegistryObject<Item> GLUE_BOTTLE = ITEMS.register("glue_bottle", () -> new ItemGlueBottle(new Item.Properties().tab(ModInit.ITEM_GROUP)));
+
+    //ModItemModels,zh,en,
+//    public static final RegistryObject<Item> GLUE_BOTTLE = ITEMS.register("glue_bottle", () -> new ItemGlueBottle(new Item.Properties().tab(ModInit.ITEM_GROUP)));
 
 
     //tages

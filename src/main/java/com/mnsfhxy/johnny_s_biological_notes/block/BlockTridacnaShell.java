@@ -3,6 +3,8 @@ package com.mnsfhxy.johnny_s_biological_notes.block;
 import com.mnsfhxy.johnny_s_biological_notes.block.blockentity.BETridacnaShell;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Wearable;
@@ -153,14 +155,28 @@ public class BlockTridacnaShell extends  HorizontalDirectionalBlock implements W
 
     public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
         if (!pLevel.isClientSide) {
+            boolean flag = pState.getValue(STATE)==TridacnaShellState.CLOSED;
+            if (flag != pLevel.hasNeighborSignal(pPos)) {
+                if (flag) {
+                    pLevel.scheduleTick(pPos, this, 4);
+                } else {
+                    pLevel.setBlock(pPos, pState.cycle(STATE), 2);
+                }
+            }
 //            if ( pLevel.hasNeighborSignal(pPos)) {
 //                pState.setValue(STATE,TridacnaShellState.CLOSED);
 //
 //            }else {
 //                pState.setValue(STATE,TridacnaShellState.OPEN);
 //            }
-            pLevel.setBlock(pPos,pState.cycle(STATE), 2);
+//            pLevel.setBlock(pPos,pState.cycle(STATE), 2);
         }
+    }
+    public void tick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
+        if (pState.getValue(STATE)==TridacnaShellState.CLOSED && !pLevel.hasNeighborSignal(pPos)) {
+            pLevel.setBlock(pPos, pState.cycle(STATE), 2);
+        }
+
     }
     public @NotNull FluidState getFluidState(BlockState pState) {
         return pState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(pState);

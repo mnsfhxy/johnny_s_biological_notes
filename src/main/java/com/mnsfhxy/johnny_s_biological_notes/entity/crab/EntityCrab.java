@@ -277,10 +277,6 @@ public class EntityCrab extends Animal implements Bucketable {
         this.goalSelector.addGoal(3, new CrabAvoidEntityGoal<Player>(this, Player.class, 5.0F, MOVEMENT_SPEED, MOVEMENT_SPEED * 1.5));
 
     }
-    public static void init() {
-        SpawnPlacements.register(RegistrationInit.CRAB.get(), SpawnPlacements.Type.create("ON_WATER_GROUND",
-                ((levelReader, blockPos, entityType) -> levelReader.getFluidState(blockPos).is(FluidTags.WATER) && levelReader.getBlockState(blockPos.below()).isFaceSturdy(levelReader, blockPos.below(), Direction.UP))), Heightmap.Types.OCEAN_FLOOR, EntityCrab::checkCrabSpawnRules);
-    }
 
     public static boolean checkCrabSpawnRules(
             EntityType<EntityCrab> pCrab,
@@ -288,7 +284,7 @@ public class EntityCrab extends Animal implements Bucketable {
             MobSpawnType pSpawnType,
             BlockPos pPos,
             RandomSource pRandom) {
-        return pPos.getY() < pLevel.getSeaLevel() - 8;
+        return true;
 //        return isBrightEnoughToSpawn(pLevel, pPos);
 //        return (!(pLevel.getBlockState(pPos.below()).getMaterial() == Material.WATER));//&&(!(pLevel.getBlockState(pPos.below()).getMaterial() == net.minecraft.world.level.material.Material.LEAVES)) ;//&& (isBrightEnoughToSpawn(pLevel, pPos));
     }

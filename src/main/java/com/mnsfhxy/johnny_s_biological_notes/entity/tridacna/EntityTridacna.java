@@ -186,15 +186,10 @@ public void setCloseRemindTick(int p) {
 
     }
 
-    public static void init() {
-        SpawnPlacements.register(RegistrationInit.TRIDACNA.get(), SpawnPlacements.Type.create("ON_WATER_GROUND_2",
-                ((levelReader, blockPos, entityType) -> levelReader.getFluidState(blockPos).is(FluidTags.WATER) && levelReader.getBlockState(blockPos.below()).isFaceSturdy(levelReader, blockPos.below(), Direction.UP))), Heightmap.Types.OCEAN_FLOOR, EntityTridacna::checkSpawnRules);
 
-
-    }
 
     public static boolean checkSpawnRules(EntityType<? extends Mob> pType, LevelAccessor pLevel, MobSpawnType pSpawnType, BlockPos pPos, RandomSource pRandom) {
-        return pPos.getY() < pLevel.getSeaLevel() - 8;
+        return true;
     }
 
     @Override

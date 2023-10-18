@@ -151,10 +151,7 @@ public class EntityPeeper extends PathfinderMob {
 //        return new Location(player.getWorld(), backX, backY, backZ);
     }
 
-    public static void init() {
-        SpawnPlacements.register(RegistrationInit.PEEPER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                (entityType, world, reason, pos, random) -> ( Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));
-    }
+
 
     @Override
     public SoundEvent getDeathSound() {
