@@ -1,10 +1,5 @@
 {
   "block.johnny_s_biological_notes.eco_bottle": "Eco Bottle",
-  "block.johnny_s_biological_notes.eco_bottle_brain_coral": "Eco Bottle",
-  "block.johnny_s_biological_notes.eco_bottle_bubble_coral": "Eco Bottle",
-  "block.johnny_s_biological_notes.eco_bottle_fire_coral": "Eco Bottle",
-  "block.johnny_s_biological_notes.eco_bottle_horn_coral": "Eco Bottle",
-  "block.johnny_s_biological_notes.eco_bottle_tube_coral": "Eco Bottle",
   "block.johnny_s_biological_notes.glued_black_concrete_powder": "Glued Black Concrete Powder",
   "block.johnny_s_biological_notes.glued_blue_concrete_powder": "Glued Blue Concrete Powder",
   "block.johnny_s_biological_notes.glued_brown_concrete_powder": "Glued Brown Concrete Powder",
@@ -60,6 +55,7 @@
   "item.johnny_s_biological_notes.diamond_katana": "Diamond Katana",
   "item.johnny_s_biological_notes.drifter": "Drifter Egg",
   "item.johnny_s_biological_notes.forged_plate": "Forged Plate",
+  "item.johnny_s_biological_notes.glue_bottle": "Glue Bottle",
   "item.johnny_s_biological_notes.gold_blade": "Gold Blade",
   "item.johnny_s_biological_notes.gold_katana": "Gold Katana",
   "item.johnny_s_biological_notes.iron_blade": "Iron Blade",

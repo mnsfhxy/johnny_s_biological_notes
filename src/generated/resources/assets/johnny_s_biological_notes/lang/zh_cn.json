@@ -1,10 +1,5 @@
 {
   "block.johnny_s_biological_notes.eco_bottle": "生态瓶",
-  "block.johnny_s_biological_notes.eco_bottle_brain_coral": "生态瓶",
-  "block.johnny_s_biological_notes.eco_bottle_bubble_coral": "生态瓶",
-  "block.johnny_s_biological_notes.eco_bottle_fire_coral": "生态瓶",
-  "block.johnny_s_biological_notes.eco_bottle_horn_coral": "生态瓶",
-  "block.johnny_s_biological_notes.eco_bottle_tube_coral": "生态瓶",
   "block.johnny_s_biological_notes.glued_black_concrete_powder": "涂胶的黑色混凝土粉末",
   "block.johnny_s_biological_notes.glued_blue_concrete_powder": "涂胶的蓝色混凝土粉末",
   "block.johnny_s_biological_notes.glued_brown_concrete_powder": "涂胶的棕色混凝土粉末",
@@ -65,6 +60,7 @@
   "item.johnny_s_biological_notes.diamond_katana": "钻石刀",
   "item.johnny_s_biological_notes.drifter": "浪客蛋",
   "item.johnny_s_biological_notes.forged_plate": "锻刀模板",
+  "item.johnny_s_biological_notes.glue_bottle": "胶液瓶",
   "item.johnny_s_biological_notes.gold_blade": "金刀刃",
   "item.johnny_s_biological_notes.gold_katana": "金刀",
   "item.johnny_s_biological_notes.iron_blade": "铁刀刃",

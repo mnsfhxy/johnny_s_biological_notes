@@ -73,7 +73,7 @@ public class ModLanguageZhProvider extends LanguageProvider {
         add(RegistrationInit.SEMI_SOLIDFIED_PROTEIN.get(), "半凝合蛋白");
         add(RegistrationInit.SOLIDFIED_PROTEIN.get(), "凝合蛋白");
         add(RegistrationInit.JELLY_PLATTER.get(), "果冻拼盘");
-//        add(RegistrationInit.GLUE_BOTTLE.get(), "胶液瓶");
+        add(RegistrationInit.GLUE_BOTTLE.get(), "胶液瓶");
         add(PotionsInit.VULNUS_RECOVER.get(), "创伤恢复");
         add(RegistrationInit.JELLY_EGG.get(), "果冻体蛋");
         add(RegistrationInit.JELLY_BUBBLE.get(), "果冻泡");
@@ -185,11 +185,11 @@ public class ModLanguageZhProvider extends LanguageProvider {
         add(RegistrationInit.TRIDACNA.get(),"砗磲");
         add(RegistrationInit.TRIDACNA_EGG.get(),"砗磲蛋");
         add(RegistrationInit.BLOCK_ECO_BOTTLE.get(),"生态瓶");
-        add(RegistrationInit.BLOCK_ECO_BOTTLE_BUBBLE_CORAL.get(),"生态瓶");
-        add(RegistrationInit.BLOCK_ECO_BOTTLE_FIRE_CORAL .get(),"生态瓶");
-        add(RegistrationInit.BLOCK_ECO_BOTTLE_HORN_CORAL .get(),"生态瓶");
-        add(RegistrationInit.BLOCK_ECO_BOTTLE_TUBE_CORAL .get(),"生态瓶");
-        add(RegistrationInit.BLOCK_ECO_BOTTLE_BRAIN_CORAL.get(),"生态瓶");
+//        add(RegistrationInit.BLOCK_ECO_BOTTLE_BUBBLE_CORAL.get(),"生态瓶");
+//        add(RegistrationInit.BLOCK_ECO_BOTTLE_FIRE_CORAL .get(),"生态瓶");
+//        add(RegistrationInit.BLOCK_ECO_BOTTLE_HORN_CORAL .get(),"生态瓶");
+//        add(RegistrationInit.BLOCK_ECO_BOTTLE_TUBE_CORAL .get(),"生态瓶");
+//        add(RegistrationInit.BLOCK_ECO_BOTTLE_BRAIN_CORAL.get(),"生态瓶");
 //        add(RegistrationInit.BLOCK_ITEM_ECO_BOTTLE.get(),"生态瓶");
         add("johnny_s_biological_notes.sound.subtitle.tridacna_hurt", "砗磲：受伤");
         add("johnny_s_biological_notes.sound.subtitle.tridacna_death", "砗磲：死亡");

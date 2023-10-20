@@ -73,7 +73,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add(RegistrationInit.SEMI_SOLIDFIED_PROTEIN.get(), "Semi Solidfied Protein");
         add(RegistrationInit.SOLIDFIED_PROTEIN.get(), "Solidfied Protein");
         add(RegistrationInit.JELLY_PLATTER.get(), "Jelly Platter");
-//        add(RegistrationInit.GLUE_BOTTLE.get(), "Glue Bottle");
+        add(RegistrationInit.GLUE_BOTTLE.get(), "Glue Bottle");
         add(PotionsInit.VULNUS_RECOVER.get(), "Vulnus Recover");
 
         add(RegistrationInit.BLOCK_JELLY.get(), "Jelly Block");
@@ -180,11 +180,11 @@ public class ModLanguageProvider extends LanguageProvider {
 
         add(RegistrationInit.TRIDACNA_EGG.get(),"Tridacna Egg");
         add(RegistrationInit.BLOCK_ECO_BOTTLE.get(),"Eco Bottle");
-        add(RegistrationInit.BLOCK_ECO_BOTTLE_BUBBLE_CORAL.get(),"Eco Bottle");
-        add(RegistrationInit.BLOCK_ECO_BOTTLE_FIRE_CORAL .get(),"Eco Bottle");
-        add(RegistrationInit.BLOCK_ECO_BOTTLE_HORN_CORAL .get(),"Eco Bottle");
-        add(RegistrationInit.BLOCK_ECO_BOTTLE_TUBE_CORAL .get(),"Eco Bottle");
-        add(RegistrationInit.BLOCK_ECO_BOTTLE_BRAIN_CORAL.get(),"Eco Bottle");
+//        add(RegistrationInit.BLOCK_ECO_BOTTLE_BUBBLE_CORAL.get(),"Eco Bottle");
+//        add(RegistrationInit.BLOCK_ECO_BOTTLE_FIRE_CORAL .get(),"Eco Bottle");
+//        add(RegistrationInit.BLOCK_ECO_BOTTLE_HORN_CORAL .get(),"Eco Bottle");
+//        add(RegistrationInit.BLOCK_ECO_BOTTLE_TUBE_CORAL .get(),"Eco Bottle");
+//        add(RegistrationInit.BLOCK_ECO_BOTTLE_BRAIN_CORAL.get(),"Eco Bottle");
 
 //        add(RegistrationInit.BLOCK_ITEM_ECO_BOTTLE.get(),"Eco Bottle");
         add("johnny_s_biological_notes.sound.subtitle.tridacna_hurt", "Tridacna Hurt");

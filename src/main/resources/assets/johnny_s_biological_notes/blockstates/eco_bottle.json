@@ -1,6 +1,23 @@
 {
 	"variants": {
-		"attachment=floor": { "model": "johnny_s_biological_notes:block/eco_bottle_floor" },
-		"attachment=ceiling":{ "model": "johnny_s_biological_notes:block/eco_bottle_ceiling" }
+		"attachment=floor,content=empty": { "model": "johnny_s_biological_notes:block/eco_bottle_floor" },
+		"attachment=ceiling,content=empty":{ "model": "johnny_s_biological_notes:block/eco_bottle_ceiling" },
+
+		"attachment=floor,content=brain_coral": { "model": "johnny_s_biological_notes:block/eco_bottle_brain_coral" },
+		"attachment=ceiling,content=brain_coral":{ "model": "johnny_s_biological_notes:block/eco_bottle_brain_coral" },
+
+		"attachment=floor,content=bubble_coral": { "model": "johnny_s_biological_notes:block/eco_bottle_bubble_coral" },
+		"attachment=ceiling,content=bubble_coral":{ "model": "johnny_s_biological_notes:block/eco_bottle_bubble_coral" },
+
+		"attachment=floor,content=fire_coral": { "model": "johnny_s_biological_notes:block/eco_bottle_fire_coral" },
+		"attachment=ceiling,content=fire_coral":{ "model": "johnny_s_biological_notes:block/eco_bottle_fire_coral" },
+
+		"attachment=floor,content=horn_coral": { "model": "johnny_s_biological_notes:block/eco_bottle_horn_coral" },
+		"attachment=ceiling,content=horn_coral":{ "model": "johnny_s_biological_notes:block/eco_bottle_horn_coral" },
+
+		"attachment=floor,content=tube_coral": { "model": "johnny_s_biological_notes:block/eco_bottle_tube_coral" },
+		"attachment=ceiling,content=tube_coral":{ "model": "johnny_s_biological_notes:block/eco_bottle_tube_coral" }
+
+
 	}
 }

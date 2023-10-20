@@ -8,6 +8,7 @@ import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
 
+//反射调用
 public class BiomeSpawnConfig {
 
     final ModSpawnData TridacnaShell=new ModSpawnData(
@@ -18,7 +19,7 @@ public class BiomeSpawnConfig {
                     Biomes.WARM_OCEAN,
                     Biomes.DEEP_LUKEWARM_OCEAN
             ),
-            20,
+            50,
             1,
             1
     );
