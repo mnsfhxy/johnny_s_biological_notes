@@ -47,6 +47,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.GravelBlock;
@@ -488,6 +489,10 @@ public class EntityCrab extends Animal implements Bucketable {
         return stack;
     }
 
+    //!!!没有Override会导致无法在水中生成(详见NaturalSpawner$isValidPositionForMob)
+    public boolean checkSpawnObstruction(LevelReader pLevel) {
+        return pLevel.isUnobstructed(this);
+    }
     public void onSyncedDataUpdated(EntityDataAccessor<?> pKey) {
 //        if (DATA_POSE.equals(pKey)) {
 //            switch (this.getPose()) {
@@ -656,7 +661,6 @@ public class EntityCrab extends Animal implements Bucketable {
                 isDropped = true;
             }
         }
-
         @Override
         public void tick() {
             super.tick();

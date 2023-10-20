@@ -63,7 +63,8 @@ public class ModInit {
     @SubscribeEvent
     public static void onAttributeCreate(EntityAttributeCreationEvent event) {
         SpawnPlacements.Type SPAWN_ON_WATER_GROUND = SpawnPlacements.Type.create("ON_WATER_GROUND",
-                ((levelReader, blockPos, entityType) -> levelReader.getFluidState(blockPos).is(FluidTags.WATER) ));
+                ((levelReader, blockPos, entityType) -> levelReader.getFluidState(blockPos).is(FluidTags.WATER)
+                        &&levelReader.getBlockState(blockPos.below()).isFaceSturdy(levelReader, blockPos.below(), Direction.UP)));
 
         SpawnPlacements.register(RegistrationInit.CRAB.get(), SPAWN_ON_WATER_GROUND, Heightmap.Types.OCEAN_FLOOR, EntityCrab::checkCrabSpawnRules);
         SpawnPlacements.register(RegistrationInit.PEEPER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,

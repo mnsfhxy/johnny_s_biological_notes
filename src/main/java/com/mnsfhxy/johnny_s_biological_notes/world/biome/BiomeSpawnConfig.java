@@ -22,7 +22,16 @@ public class BiomeSpawnConfig {
             1,
             1
     );
-
+//    final ModSpawnData Crab=new ModSpawnData(
+//      RegistrationInit.CRAB.get(),
+//            MobCategory.WATER_CREATURE,
+//            ImmutableList.of(
+//
+//            ),
+//            20,
+//            2,5
+//
+//    );
 
 
 }
