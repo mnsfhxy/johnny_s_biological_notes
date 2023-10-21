@@ -127,11 +127,11 @@ public class RegistrationInit {
     public static final RegistryObject<BlockGluedConcretePowder> BLOCK_GLUED_RED_CONCRETE_POWDER = BLOCKS.register("glued_red_concrete_powder", () -> new BlockGluedConcretePowder(Blocks.RED_CONCRETE, BlockBehaviour.Properties.of(Material.SAND, DyeColor.RED).strength(0.5F).sound(SoundType.SAND)));
     public static final RegistryObject<BlockGluedConcretePowder> BLOCK_GLUED_BLACK_CONCRETE_POWDER = BLOCKS.register("glued_black_concrete_powder", () -> new BlockGluedConcretePowder(Blocks.BLACK_CONCRETE, BlockBehaviour.Properties.of(Material.SAND, DyeColor.BLACK).strength(0.5F).sound(SoundType.SAND)));
     public static final RegistryObject<BlockEcoBottle> BLOCK_ECO_BOTTLE = BLOCKS.register("eco_bottle", BlockEcoBottle::new);
-    public static final RegistryObject<BlockEcoBottle> BLOCK_ECO_BOTTLE_BUBBLE_CORAL = BLOCKS.register("eco_bottle_bubble_coral", BlockEcoBottle::new);
-    public static final RegistryObject<BlockEcoBottle> BLOCK_ECO_BOTTLE_FIRE_CORAL = BLOCKS.register("eco_bottle_fire_coral", BlockEcoBottle::new);
-    public static final RegistryObject<BlockEcoBottle> BLOCK_ECO_BOTTLE_HORN_CORAL = BLOCKS.register("eco_bottle_horn_coral", BlockEcoBottle::new);
-    public static final RegistryObject<BlockEcoBottle> BLOCK_ECO_BOTTLE_TUBE_CORAL = BLOCKS.register("eco_bottle_tube_coral", BlockEcoBottle::new);
-    public static final RegistryObject<BlockEcoBottle> BLOCK_ECO_BOTTLE_BRAIN_CORAL = BLOCKS.register("eco_bottle_brain_coral", BlockEcoBottle::new);
+//    public static final RegistryObject<BlockEcoBottle> BLOCK_ECO_BOTTLE_BUBBLE_CORAL = BLOCKS.register("eco_bottle_bubble_coral", BlockEcoBottle::new);
+//    public static final RegistryObject<BlockEcoBottle> BLOCK_ECO_BOTTLE_FIRE_CORAL = BLOCKS.register("eco_bottle_fire_coral", BlockEcoBottle::new);
+//    public static final RegistryObject<BlockEcoBottle> BLOCK_ECO_BOTTLE_HORN_CORAL = BLOCKS.register("eco_bottle_horn_coral", BlockEcoBottle::new);
+//    public static final RegistryObject<BlockEcoBottle> BLOCK_ECO_BOTTLE_TUBE_CORAL = BLOCKS.register("eco_bottle_tube_coral", BlockEcoBottle::new);
+//    public static final RegistryObject<BlockEcoBottle> BLOCK_ECO_BOTTLE_BRAIN_CORAL = BLOCKS.register("eco_bottle_brain_coral", BlockEcoBottle::new);
 
     public static final RegistryObject<BlockTridacnaShell> BLOCK_TRIDACNA_SHELL = BLOCKS.register("tridacna_shell", BlockTridacnaShell::new);
     public static final RegistryObject<BlockTridacnaShell> BLOCK_TRIDACNA_SHELL_BROKEN = BLOCKS.register("tridacna_shell_broken", BlockTridacnaShell::new);
@@ -174,7 +174,8 @@ public class RegistrationInit {
     public static final RegistryObject<Item> BLOCK_ITEM_GLUED_GREEN_CONCRETE_POWDER = fromBlock(BLOCK_GLUED_GREEN_CONCRETE_POWDER);
     public static final RegistryObject<Item> BLOCK_ITEM_GLUED_RED_CONCRETE_POWDER = fromBlock(BLOCK_GLUED_RED_CONCRETE_POWDER);
     public static final RegistryObject<Item> BLOCK_ITEM_GLUED_BLACK_CONCRETE_POWDER = fromBlock(BLOCK_GLUED_BLACK_CONCRETE_POWDER);
-    public static final RegistryObject<Item> BLOCK_ITEM_ECO_BOTTLE = fromBlock(BLOCK_ECO_BOTTLE);
+    //暂时不添加到创造栏
+    public static final RegistryObject<Item> BLOCK_ITEM_ECO_BOTTLE = ITEMS.register(BLOCK_ECO_BOTTLE.getId().getPath(), () -> new BlockItem(BLOCK_ECO_BOTTLE.get(), new Item.Properties()));
 
     public static final RegistryObject<Item> BLOCK_ITEM_TRIDACNA_SHELL=fromBlock(BLOCK_TRIDACNA_SHELL,16);
     public static final RegistryObject<Item> BLOCK_ITEM_OLDER_TRIDACNA_SHELL=fromBlock(BLOCK_OLDER_TRIDACNA_SHELL,16);
@@ -200,7 +201,6 @@ public class RegistrationInit {
     public static <B extends Block> RegistryObject<Item> fromBlock(RegistryObject<B> block,int pStackTo) {
         return ITEMS.register(block.getId().getPath(), () -> new BlockItem(block.get(), ITEM_PROPERTIES.stacksTo(pStackTo)));
     }
-
     //Entity注册
     public static final RegistryObject<EntityType<EntityCrab>> CRAB =
             ENTITIES.register(
@@ -299,8 +299,8 @@ public class RegistrationInit {
     public static final RegistryObject<Item> SOLIDFIED_PROTEIN = ITEMS.register("solidfied_protein", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP)));
     public static final RegistryObject<Item> JELLY_PLATTER = ITEMS.register("jelly_platter", () -> new BowlFoodItem(new Item.Properties().tab(ModInit.ITEM_GROUP).stacksTo(1).food(new FoodProperties.Builder().nutrition(5).effect(() -> new MobEffectInstance(MobEffects.HEAL, 10), 1.0F).effect(() -> new MobEffectInstance(MobEffects.REGENERATION, UtilLevel.TIME.SECOND.getTick() * 22, 1), 1.0F).effect(() -> new MobEffectInstance(PotionsInit.VULNUS_RECOVER.get(), UtilLevel.TIME.MINUTE.getTick() * 2), 1.0F).alwaysEat().build())));
 
-    //ModItemModels,zh,en,
-//    public static final RegistryObject<Item> GLUE_BOTTLE = ITEMS.register("glue_bottle", () -> new ItemGlueBottle(new Item.Properties().tab(ModInit.ITEM_GROUP)));
+//    ModItemModels,zh,en,
+    public static final RegistryObject<Item> GLUE_BOTTLE = ITEMS.register("glue_bottle", () -> new ItemGlueBottle(new Item.Properties().tab(ModInit.ITEM_GROUP)));
 
 
     //tages
