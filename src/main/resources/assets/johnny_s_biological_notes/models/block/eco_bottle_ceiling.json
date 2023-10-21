@@ -3,7 +3,7 @@
 	"render_type": "translucent",
 	"texture_size": [128, 128],
 	"textures": {
-		"2": "johnny_s_biological_notes:block/co_bottle_tube_coral",
+		"2": "johnny_s_biological_notes:block/eco_bottle_tube_coral",
 		"particle": "johnny_s_biological_notes:block/eco_bottle_horn_coral"
 	},
 	"elements": [

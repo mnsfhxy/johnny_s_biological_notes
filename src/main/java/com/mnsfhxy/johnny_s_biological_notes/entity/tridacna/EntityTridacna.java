@@ -9,11 +9,13 @@ import com.mnsfhxy.johnny_s_biological_notes.init.SoundInit;
 import com.mnsfhxy.johnny_s_biological_notes.util.UtilLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Mth;
@@ -231,6 +233,9 @@ public void setCloseRemindTick(int p) {
 //        System.out.println("llllllllllllllllllll");
         updateShellState();
         if (this.isInWater()) {
+            if (this.level instanceof ServerLevel) {
+                ((ServerLevel)this.level).sendParticles(ParticleTypes.BUBBLE,this.getRandomX(0.6D), this.getRandomY(), this.getRandomZ(0.6D), 1, 0.0D, -1D, 0.0D, 0.0D);
+            }
             for (LivingEntity livingEntity : this.level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(3D))) {
                 livingEntity.setAirSupply(livingEntity.getMaxAirSupply());
             }

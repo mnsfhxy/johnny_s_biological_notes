@@ -122,7 +122,7 @@ public class ModItemModels extends ItemModelProvider {
         singleTexture(RegistrationInit.SEMI_SOLIDFIED_PROTEIN.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/semi_solidfied_protein"));
         singleTexture(RegistrationInit.SOLIDFIED_PROTEIN.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/solidfied_protein"));
         singleTexture(RegistrationInit.JELLY_PLATTER.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/jelly_platter"));
-//        singleTexture(RegistrationInit.GLUE_BOTTLE.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/glue_bottle"));
+        singleTexture(RegistrationInit.GLUE_BOTTLE.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/glue_bottle"));
 
     }
 }
