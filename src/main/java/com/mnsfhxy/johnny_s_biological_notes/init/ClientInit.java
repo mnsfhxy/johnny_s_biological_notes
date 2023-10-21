@@ -12,6 +12,8 @@ import com.mnsfhxy.johnny_s_biological_notes.entity.jelly.ModelJelly;
 import com.mnsfhxy.johnny_s_biological_notes.entity.jelly.RendererJelly;
 import com.mnsfhxy.johnny_s_biological_notes.entity.jelly.bubble.ModelJellyBubble;
 import com.mnsfhxy.johnny_s_biological_notes.entity.jelly.bubble.RendererJellyBubble;
+import com.mnsfhxy.johnny_s_biological_notes.entity.loiter.ModelLoiter;
+import com.mnsfhxy.johnny_s_biological_notes.entity.loiter.RendererLoiter;
 import com.mnsfhxy.johnny_s_biological_notes.entity.peeper.ModelPeeper;
 import com.mnsfhxy.johnny_s_biological_notes.entity.peeper.RendererPeeper;
 import com.mnsfhxy.johnny_s_biological_notes.entity.tridacna.ModelTridacna;
@@ -37,6 +39,7 @@ public class ClientInit {
         event.registerLayerDefinition(ModelJellyBubble.LAYER_LOCATION,ModelJellyBubble::createBodyLayer);
         event.registerLayerDefinition(ModelTridacna.LAYER_LOCATION,ModelTridacna::createBodyLayer);
         event.registerLayerDefinition(ModelTridacnaClosed.LAYER_LOCATION,ModelTridacnaClosed::createBodyLayer);
+        event.registerLayerDefinition(ModelLoiter.LAYER_LOCATION,ModelLoiter::createBodyLayer);
 //        event.registerLayerDefinition(ModelTridacnaShellOpen.LAYER_LOCATION,ModelTridacnaShellOpen::createBodyLayer);
 
     }
@@ -50,6 +53,7 @@ public class ClientInit {
         event.registerEntityRenderer(RegistrationInit.JELLY.get(), RendererJelly::new);
         event.registerEntityRenderer(RegistrationInit.JELLY_BUBBLE.get(), RendererJellyBubble::new);
         event.registerEntityRenderer(RegistrationInit.TRIDACNA.get(), RendererTridacna::new);
+        event.registerEntityRenderer(RegistrationInit.LOITER.get(), RendererLoiter::new);
 //        event.registerBlockEntityRenderer(RegistrationInit.TRIDACNA_SHELL_BE.get(), RendererTridacnaShell::new);
 
     }

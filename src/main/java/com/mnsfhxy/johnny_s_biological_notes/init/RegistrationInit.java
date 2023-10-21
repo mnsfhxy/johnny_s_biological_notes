@@ -16,6 +16,7 @@ import com.mnsfhxy.johnny_s_biological_notes.entity.crab.EntityCrab;
 import com.mnsfhxy.johnny_s_biological_notes.entity.drifter.EntityDrifter;
 import com.mnsfhxy.johnny_s_biological_notes.entity.jelly.EntityJelly;
 import com.mnsfhxy.johnny_s_biological_notes.entity.jelly.bubble.EntityJellyBubble;
+import com.mnsfhxy.johnny_s_biological_notes.entity.loiter.EntityLoiter;
 import com.mnsfhxy.johnny_s_biological_notes.entity.peeper.EntityPeeper;
 import com.mnsfhxy.johnny_s_biological_notes.entity.tridacna.EntityTridacna;
 import com.mnsfhxy.johnny_s_biological_notes.util.UtilLevel;
@@ -235,6 +236,10 @@ public class RegistrationInit {
             ENTITIES.register("tridacna",
                     () -> registerFarSpawnEntity(EntityType.Builder.of(EntityTridacna::new,MobCategory.WATER_CREATURE)
                             .sized(1F, 1F), "tridacna"));
+    public static final RegistryObject<EntityType<EntityLoiter>> LOITER =
+            ENTITIES.register("loiter",
+                    () -> registerEntity(EntityType.Builder.of(EntityLoiter::new,MobCategory.MONSTER)
+                            .sized(1F, 1F), "loiter"));
 
     //Item注册
     //egg
@@ -254,6 +259,9 @@ public class RegistrationInit {
     public static final RegistryObject<Item> TRIDACNA_EGG =
             ITEMS.register(
                     "tridacna", () -> new ForgeSpawnEggItem(TRIDACNA, 0x7e61cf, 0xf2f2fb, ITEM_PROPERTIES));
+    public static final RegistryObject<Item> LOITER_EGG =
+            ITEMS.register(
+                    "loiter", () -> new ForgeSpawnEggItem(LOITER, 0x1e61cf, 0xc2f2fb, ITEM_PROPERTIES));
 
     public static final RegistryObject<Item> FORGED_PLATE = ITEMS.register("forged_plate", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP)));
 

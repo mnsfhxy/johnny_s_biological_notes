@@ -10,6 +10,7 @@ import com.mnsfhxy.johnny_s_biological_notes.entity.crab.EntityCrab;
 import com.mnsfhxy.johnny_s_biological_notes.entity.drifter.EntityDrifter;
 import com.mnsfhxy.johnny_s_biological_notes.entity.jelly.EntityJelly;
 import com.mnsfhxy.johnny_s_biological_notes.entity.jelly.bubble.EntityJellyBubble;
+import com.mnsfhxy.johnny_s_biological_notes.entity.loiter.EntityLoiter;
 import com.mnsfhxy.johnny_s_biological_notes.entity.peeper.EntityPeeper;
 import com.mnsfhxy.johnny_s_biological_notes.entity.tridacna.EntityTridacna;
 import com.mnsfhxy.johnny_s_biological_notes.networking.Messages;
@@ -79,7 +80,7 @@ public class ModInit {
         event.put(RegistrationInit.JELLY.get(), EntityJelly.prepareAttributes().build());
         event.put(RegistrationInit.JELLY_BUBBLE.get(), EntityJellyBubble.prepareAttributes().build());
         event.put(RegistrationInit.TRIDACNA.get(), EntityTridacna.prepareAttributes().build());
-
+        event.put(RegistrationInit.LOITER.get(), EntityLoiter.prepareAttributes().build());
     }
 
 

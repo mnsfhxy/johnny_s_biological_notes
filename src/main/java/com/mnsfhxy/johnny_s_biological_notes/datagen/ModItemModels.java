@@ -73,7 +73,7 @@ public class ModItemModels extends ItemModelProvider {
         withExistingParent(RegistrationInit.BLOCK_ITEM_OLDER_TRIDACNA_SHELL_BROKEN.getId().getPath(), modLoc("block/older_tridacna_shell_broken_open"));
         withExistingParent(RegistrationInit.BLOCK_ITEM_OLDER_TRIDACNA_SHELL.getId().getPath(), modLoc("block/older_tridacna_shell_open"));
 
-
+        withExistingParent(RegistrationInit.LOITER_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(RegistrationInit.TRIDACNA_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(RegistrationInit.JELLY_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(RegistrationInit.CRAB_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
