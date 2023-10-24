@@ -1,16 +1,10 @@
 package com.mnsfhxy.johnny_s_biological_notes.entity.crab;
 
-import com.mnsfhxy.johnny_s_biological_notes.JohnnySBiologicalNotes;
-import com.mnsfhxy.johnny_s_biological_notes.entity.tridacna.EntityTridacna;
 import com.mnsfhxy.johnny_s_biological_notes.init.RegistrationInit;
 import com.mnsfhxy.johnny_s_biological_notes.init.SoundInit;
 import com.mnsfhxy.johnny_s_biological_notes.util.UtilItem;
 import com.mnsfhxy.johnny_s_biological_notes.util.UtilLevel;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.client.resources.sounds.EntityBoundSoundInstance;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
@@ -21,10 +15,7 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.EntityTypeTags;
-import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
@@ -36,13 +27,9 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
-import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
-import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.Bucketable;
-import net.minecraft.world.entity.animal.Cat;
 import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -54,11 +41,7 @@ import net.minecraft.world.level.block.GravelBlock;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.MudBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
-import net.minecraft.world.level.storage.loot.entries.LootItem;
-import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.Tags;
 
 import javax.annotation.Nonnull;
@@ -239,8 +222,8 @@ public class EntityCrab extends Animal implements Bucketable {
     protected void dropCustomDeathLoot(DamageSource pSource, int pLooting, boolean pRecentlyHit) {
         super.dropCustomDeathLoot(pSource, pLooting, pRecentlyHit);
         ItemStack itemStack;
-        if (this.isOnFire()) itemStack = new ItemStack(RegistrationInit.COOKED_CRAB_MEAT.get(), 1);
-        else itemStack = new ItemStack(RegistrationInit.CRAB_MEAT.get(), 1);
+        if (this.isOnFire()) itemStack = new ItemStack(RegistrationInit.ITEM_COOKED_CRAB_MEAT.get(), 1);
+        else itemStack = new ItemStack(RegistrationInit.ITEM_CRAB_MEAT.get(), 1);
         this.spawnAtLocation(itemStack);
     }
 
@@ -482,7 +465,7 @@ public class EntityCrab extends Animal implements Bucketable {
 
     @Override
     public ItemStack getBucketItemStack() {
-        ItemStack stack = new ItemStack(RegistrationInit.CRAB_BUCKET.get());
+        ItemStack stack = new ItemStack(RegistrationInit.ITEM_CRAB_BUCKET.get());
         if (this.hasCustomName()) {
             stack.setHoverName(this.getCustomName());
         }
@@ -654,7 +637,7 @@ public class EntityCrab extends Animal implements Bucketable {
             if (!isDropped) {
                 playSound(SoundInit.CRAB_DROP_SHELL.get(), crabEntity.getSoundVolume(), crabEntity.getVoicePitch());
                 crabEntity.entityData.set(EntityCrab.COLOR, "BLACK");
-                ItemEntity itemEntity = crabEntity.spawnAtLocation(new ItemStack(RegistrationInit.CRAB_SHELL.get(), random.nextInt(2) + 1));
+                ItemEntity itemEntity = crabEntity.spawnAtLocation(new ItemStack(RegistrationInit.ITEM_CRAB_SHELL.get(), random.nextInt(2) + 1));
                 UtilItem.setDeltaMovement(itemEntity);
                 crabEntity.setHealth(3F);
                 if (crabEntity.random.nextInt(20) == 0) crabEntity.setHealth(0);

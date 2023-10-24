@@ -1,6 +1,7 @@
 package com.mnsfhxy.johnny_s_biological_notes.init;
 
 import com.mnsfhxy.johnny_s_biological_notes.JohnnySBiologicalNotes;
+import com.mnsfhxy.johnny_s_biological_notes.effect.EffectConcentrate;
 import com.mnsfhxy.johnny_s_biological_notes.effect.EffectFearWater;
 import com.mnsfhxy.johnny_s_biological_notes.effect.EffectVulnusRecover;
 import com.mnsfhxy.johnny_s_biological_notes.potions.ProperBrewingRecipe;
@@ -34,12 +35,23 @@ public class PotionsInit {
     public static RegistryObject<MobEffect> VULNUS_RECOVER =
             MOBEFFECTS.register(
                     "vulnus_recover_effect", () -> new EffectVulnusRecover(MobEffectCategory.BENEFICIAL, 0xc4ecc1));
+    public static RegistryObject<MobEffect> CONCENTRATE =
+            MOBEFFECTS.register(
+                    "concentrate_effect", () -> new EffectConcentrate(MobEffectCategory.BENEFICIAL, 0x9a5d52));
+
+
+
 
     //potion注册
     public static final RegistryObject<Potion> FEAR_WATER_POTION =
-            POTIONS.register("fear_water_potion", () -> new Potion(new MobEffectInstance(FEAR_WATER.get(), UtilLevel.TIME.SECOND.getTick() * 45)));
+            POTIONS.register("fear_water_potion", () -> new Potion(new MobEffectInstance(FEAR_WATER.get(), UtilLevel.TIME.MINUTE.getTick() * 3)));
     public static final RegistryObject<Potion> LONG_FEAR_WATER_POTION =
-            POTIONS.register("long_fear_water_potion", () -> new Potion(new MobEffectInstance(FEAR_WATER.get(), UtilLevel.TIME.SECOND.getTick() * 90)));
+            POTIONS.register("long_fear_water_potion", () -> new Potion(new MobEffectInstance(FEAR_WATER.get(), UtilLevel.TIME.MINUTE.getTick() * 8)));
+
+    public static final RegistryObject<Potion> CONCENTRATE_POTION =
+            POTIONS.register("concentrate_potion", () -> new Potion(new MobEffectInstance(CONCENTRATE.get(), UtilLevel.TIME.MINUTE.getTick() * 3)));
+    public static final RegistryObject<Potion> LONG_CONCENTRATE_POTION =
+            POTIONS.register("long_concentrate_potion", () -> new Potion(new MobEffectInstance(CONCENTRATE.get(), UtilLevel.TIME.MINUTE.getTick() * 8)));
 
 //    public static final RegistryObject<Potion> VULNUS_RECOVER_POTION =
 //            POTIONS.register("vulnus_recover_effect", () -> new Potion(new MobEffectInstance(VULNUS_RECOVER.get(), UtilLevel.TIME.SECOND.getTick() * 45,0)));
@@ -57,8 +69,11 @@ public class PotionsInit {
     }
 
     public static void initBrewing() {
-        BrewingRecipeRegistry.addRecipe(Ingredient.of(createPotion(Potions.AWKWARD)), Ingredient.of(RegistrationInit.CRAB_SHELL.get()), createPotion(FEAR_WATER_POTION.get()));
+        BrewingRecipeRegistry.addRecipe(Ingredient.of(createPotion(Potions.AWKWARD)), Ingredient.of(RegistrationInit.ITEM_CRAB_SHELL.get()), createPotion(FEAR_WATER_POTION.get()));
         BrewingRecipeRegistry.addRecipe(new ProperBrewingRecipe(Ingredient.of(createPotion(FEAR_WATER_POTION.get())), Ingredient.of(Items.REDSTONE), createPotion(LONG_FEAR_WATER_POTION.get())));
+
+        BrewingRecipeRegistry.addRecipe(Ingredient.of(createPotion(Potions.AWKWARD)),Ingredient.of(RegistrationInit.ITEM_SOUL_TUMOR.get()),createPotion(CONCENTRATE_POTION.get()));
+        BrewingRecipeRegistry.addRecipe(new ProperBrewingRecipe(Ingredient.of(createPotion(CONCENTRATE_POTION.get())), Ingredient.of(Items.REDSTONE), createPotion(LONG_CONCENTRATE_POTION.get())));
 
     }
 }

@@ -79,26 +79,26 @@ public class ModItemModels extends ItemModelProvider {
         withExistingParent(RegistrationInit.CRAB_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(RegistrationInit.PEEPER_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(RegistrationInit.DRIFTER_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
-        singleTexture(RegistrationInit.CRAB_SHELL.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/crab_shell"));
-        singleTexture(RegistrationInit.CRAB_MEAT.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/crab_meat"));
-        singleTexture(RegistrationInit.COOKED_CRAB_MEAT.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/cooked_crab_meat"));
-        singleTexture(RegistrationInit.CRAB_BUCKET.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/crab_bucket"));
+        singleTexture(RegistrationInit.ITEM_CRAB_SHELL.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/crab_shell"));
+        singleTexture(RegistrationInit.ITEM_CRAB_MEAT.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/crab_meat"));
+        singleTexture(RegistrationInit.ITEM_COOKED_CRAB_MEAT.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/cooked_crab_meat"));
+        singleTexture(RegistrationInit.ITEM_CRAB_BUCKET.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/crab_bucket"));
 //        singleTexture(Po
 //        tionsInit.FEAR_WATER_POTION.getId().getPath(), mcLoc("item/generated"),"layer0",modLoc("item/fear_water_glass"));
-        singleTexture(RegistrationInit.WOOD_BLADE.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/wood_blade"));
-        singleTexture(RegistrationInit.GOLD_BLADE.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/gold_blade"));
-        singleTexture(RegistrationInit.DIAMOND_BLADE.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/diamond_blade"));
-        singleTexture(RegistrationInit.IRON_BLADE.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/iron_blade"));
-        singleTexture(RegistrationInit.NETHERITE_BLADE.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/netherite_blade"));
-        singleTexture(RegistrationInit.STONE_BLADE.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/stone_blade"));
+        singleTexture(RegistrationInit.ITEM_WOOD_BLADE.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/wood_blade"));
+        singleTexture(RegistrationInit.ITEM_GOLD_BLADE.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/gold_blade"));
+        singleTexture(RegistrationInit.ITEM_DIAMOND_BLADE.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/diamond_blade"));
+        singleTexture(RegistrationInit.ITEM_IRON_BLADE.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/iron_blade"));
+        singleTexture(RegistrationInit.ITEM_NETHERITE_BLADE.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/netherite_blade"));
+        singleTexture(RegistrationInit.ITEM_STONE_BLADE.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/stone_blade"));
 
-        singleTexture(RegistrationInit.WOOD_KATANA.getId().getPath(), mcLoc("item/handheld"), "layer0", modLoc("item/wood_katana"));
-        singleTexture(RegistrationInit.GOLD_KATANA.getId().getPath(), mcLoc("item/handheld"), "layer0", modLoc("item/gold_katana"));
-        singleTexture(RegistrationInit.DIAMOND_KATANA.getId().getPath(), mcLoc("item/handheld"), "layer0", modLoc("item/diamond_katana"));
-        singleTexture(RegistrationInit.IRON_KATANA.getId().getPath(), mcLoc("item/handheld"), "layer0", modLoc("item/iron_katana"));
-        singleTexture(RegistrationInit.NETHERITE_KATANA.getId().getPath(), mcLoc("item/handheld"), "layer0", modLoc("item/netherite_katana"));
-        singleTexture(RegistrationInit.STONE_KATANA.getId().getPath(), mcLoc("item/handheld"), "layer0", modLoc("item/stone_katana"));
-        singleTexture(RegistrationInit.FORGED_PLATE.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/forged_plate"));
+        singleTexture(RegistrationInit.ITEM_WOOD_KATANA.getId().getPath(), mcLoc("item/handheld"), "layer0", modLoc("item/wood_katana"));
+        singleTexture(RegistrationInit.ITEM_GOLD_KATANA.getId().getPath(), mcLoc("item/handheld"), "layer0", modLoc("item/gold_katana"));
+        singleTexture(RegistrationInit.ITEM_DIAMOND_KATANA.getId().getPath(), mcLoc("item/handheld"), "layer0", modLoc("item/diamond_katana"));
+        singleTexture(RegistrationInit.ITEM_IRON_KATANA.getId().getPath(), mcLoc("item/handheld"), "layer0", modLoc("item/iron_katana"));
+        singleTexture(RegistrationInit.ITEM_NETHERITE_KATANA.getId().getPath(), mcLoc("item/handheld"), "layer0", modLoc("item/netherite_katana"));
+        singleTexture(RegistrationInit.ITEM_STONE_KATANA.getId().getPath(), mcLoc("item/handheld"), "layer0", modLoc("item/stone_katana"));
+        singleTexture(RegistrationInit.ITEM_FORGED_PLATE.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/forged_plate"));
         singleTexture(RegistrationInit.BLOCK_ITEM_JELLY_EMBRYO.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/jelly_embryo_item"));
 
 
@@ -119,10 +119,11 @@ public class ModItemModels extends ItemModelProvider {
         singleTexture(RegistrationInit.ITEM_JELLY_RED.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/jelly_red"));
         singleTexture(RegistrationInit.ITEM_JELLY_WHITE.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/jelly_white"));
         singleTexture(RegistrationInit.ITEM_JELLY_YELLOW.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/jelly_yellow"));
-        singleTexture(RegistrationInit.SEMI_SOLIDFIED_PROTEIN.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/semi_solidfied_protein"));
-        singleTexture(RegistrationInit.SOLIDFIED_PROTEIN.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/solidfied_protein"));
-        singleTexture(RegistrationInit.JELLY_PLATTER.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/jelly_platter"));
-        singleTexture(RegistrationInit.GLUE_BOTTLE.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/glue_bottle"));
+        singleTexture(RegistrationInit.ITEM_SEMI_SOLIDFIED_PROTEIN.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/semi_solidfied_protein"));
+        singleTexture(RegistrationInit.ITEM_SOLIDFIED_PROTEIN.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/solidfied_protein"));
+        singleTexture(RegistrationInit.ITEM_JELLY_PLATTER.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/jelly_platter"));
+        singleTexture(RegistrationInit.ITEM_GLUE_BOTTLE.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/glue_bottle"));
+        singleTexture(RegistrationInit.ITEM_SOUL_TUMOR.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/soul_tumor"));
 
     }
 }

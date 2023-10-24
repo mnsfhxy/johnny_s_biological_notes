@@ -51,7 +51,12 @@ public class UtilSoundJsonGen {
                 .simpleAdd("tridacna_close",4)
                 .simpleAdd("tridacna_death",2)
                 .simpleAdd("tridacna_hurt",3)
-                .simpleAdd("tridacna_open",3);
+                .simpleAdd("tridacna_open",3)
+                .simpleAdd("loiter_ambient",5)
+                .simpleAdd("loiter_hurt",3)
+                .simpleAdd("loiter_death",1)
+                .simpleAdd("loiter_saturate",1)
+                ;
         Gson gson = new Gson();
         String json = gson.toJson(soundsJson.soundsJson);
         try {

@@ -4,6 +4,7 @@ import com.mnsfhxy.johnny_s_biological_notes.JohnnySBiologicalNotes;
 import com.mnsfhxy.johnny_s_biological_notes.init.ModInit;
 import com.mnsfhxy.johnny_s_biological_notes.init.PotionsInit;
 import com.mnsfhxy.johnny_s_biological_notes.init.RegistrationInit;
+import com.mnsfhxy.johnny_s_biological_notes.init.SoundInit;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.LanguageProvider;
 
@@ -12,69 +13,89 @@ public class ModLanguageProvider extends LanguageProvider {
     public ModLanguageProvider(DataGenerator gen, String locale) {
         super(gen, JohnnySBiologicalNotes.MODID, locale);
     }
+    public void  addPotion(String registerName,String name){
+        add("item.minecraft.lingering_potion.effect."+registerName,"Lingering "+name);
+        add("item.minecraft.splash_potion.effect."+registerName, "Splash "+name);
+        add("item.minecraft.potion.effect."+registerName, name);
 
+    }
+    public void addSubtitle(String registerName,String name){
+        add(JohnnySBiologicalNotes.MODID+".sound.subtitle."+registerName, name);
+    }
     @Override
     protected void addTranslations() {
         add("itemGroup." + ModInit.TAB_NAME, "JohnnySBiologicalNotes");
         add(RegistrationInit.CRAB.get(), "Crab");
         add(RegistrationInit.CRAB_EGG.get(), "Crab Egg");
-        add(RegistrationInit.CRAB_MEAT.get(), "Crab Meat");
-        add(RegistrationInit.COOKED_CRAB_MEAT.get(), "Cooked Crab Meat");
-        add(RegistrationInit.CRAB_BUCKET.get(), "Crab Bucket");
+        add(RegistrationInit.ITEM_CRAB_MEAT.get(), "Crab Meat");
+        add(RegistrationInit.ITEM_COOKED_CRAB_MEAT.get(), "Cooked Crab Meat");
+        add(RegistrationInit.ITEM_CRAB_BUCKET.get(), "Crab Bucket");
         add(RegistrationInit.CRAB.get() + ".RED", "Red Crab");
         add(RegistrationInit.CRAB.get() + ".BROWN", "Brown Crab");
         add(RegistrationInit.CRAB.get() + ".SPOTTED", "Spotted Crab");
         add(RegistrationInit.CRAB.get() + ".CYAN", "Cyan Crab");
         add(RegistrationInit.CRAB.get() + ".BLACK", "Black Crab");
         add(PotionsInit.FEAR_WATER.get(), "Fear Water");
-        add("item.minecraft.lingering_potion.effect.fear_water_potion", "Lingering Fear Water Potion");
-        add("item.minecraft.splash_potion.effect.fear_water_potion", "Splash Fear Water Potion");
-        add("item.minecraft.potion.effect.fear_water_potion", "Fear Water Potion");
-        add("item.minecraft.lingering_potion.effect.long_fear_water_potion", "Lingering Fear Water Potion");
-        add("item.minecraft.splash_potion.effect.long_fear_water_potion", "Splash Fear Water Potion");
-        add("item.minecraft.potion.effect.long_fear_water_potion", "Fear Water Potion");
-        add("johnny_s_biological_notes.sound.subtitle.crab_bubble", "Crab Bubble");
-        add("johnny_s_biological_notes.sound.subtitle.crab_drop_shell", "Crab Drop Shell");
-        add("johnny_s_biological_notes.sound.subtitle.crab_hurt", "Crab Hurt");
-        add("johnny_s_biological_notes.sound.subtitle.crab_talon", "Crab Talon");
-        add("johnny_s_biological_notes.sound.subtitle.crab_walking", "Crab Walking");
-        add("johnny_s_biological_notes.sound.subtitle.crab_dig", "Crab Dig");
+
+        addPotion(PotionsInit.FEAR_WATER_POTION.getId().getPath(),"Fear Water Potion");
+        addPotion(PotionsInit.LONG_FEAR_WATER_POTION.getId().getPath(),"Long Fear Water Potion");
+        addPotion(PotionsInit.CONCENTRATE_POTION.getId().getPath(),"Concentrate Potion");
+        addPotion(PotionsInit.LONG_CONCENTRATE_POTION.getId().getPath(),"Long Concentrate Potion");
+
+//        add("item.minecraft.potion.effect.long_fear_water_potion", "Fear Water Potion");
+//        add("item.minecraft.splash_potion.effect.long_fear_water_potion", "Splash Fear Water Potion");
+//        add("item.minecraft.lingering_potion.effect.long_fear_water_potion", "Lingering Fear Water Potion");
+
+//        add("item.minecraft.lingering_potion.effect.fear_water_potion", "Lingering Fear Water Potion");
+//        add("item.minecraft.splash_potion.effect.fear_water_potion", "Splash Fear Water Potion");
+//        add("item.minecraft.potion.effect.fear_water_potion", "Fear Water Potion");
+
+
+
+         addSubtitle(SoundInit.CRAB_BUBBLE.getId().getPath(), "Crab Bubble");
+         addSubtitle(SoundInit.CRAB_DROP_SHELL.getId().getPath(), "Crab Drop Shell");
+         addSubtitle(SoundInit.CRAB_HURT.getId().getPath(),"Crab Hurt");
+         addSubtitle(SoundInit.CRAB_TALON.getId().getPath(), "Crab Talon");
+         addSubtitle(SoundInit.CRAB_WALKING.getId().getPath(), "Crab Walking");
+         addSubtitle(SoundInit.CRAB_DIG.getId().getPath(),"Crab Dig");
         add(RegistrationInit.PEEPER.get(), "Peeper");
         add(RegistrationInit.PEEPER_EGG.get(), "Peeper Egg");
-        add("johnny_s_biological_notes.sound.subtitle.peeper_death", "Peeper Death");
-        add("johnny_s_biological_notes.sound.subtitle.peeper_hurt", "Peeper Hurt");
-        add("johnny_s_biological_notes.sound.subtitle.peeper_sound", "Peeper wuwu");
+        addSubtitle(SoundInit.PEEPER_DEATH.getId().getPath(), "Peeper Death");
+        addSubtitle(SoundInit.PEEPER_HURT.getId().getPath(), "Peeper Hurt");
+        addSubtitle(SoundInit.PEEPER_SOUND.getId().getPath(), "Peeper wuwu");
 
-        add("johnny_s_biological_notes.sound.subtitle.drifter_admire", "Drifters Admire");
-        add("johnny_s_biological_notes.sound.subtitle.drifter_ambient", "Drifters Ambient");
-        add("johnny_s_biological_notes.sound.subtitle.drifter_death", "Drifters Death");
-        add("johnny_s_biological_notes.sound.subtitle.drifter_hurt", "Drifters Hurt");
-        add("johnny_s_biological_notes.sound.subtitle.drifter_victory", "Drifters Victory");
+       addSubtitle( SoundInit.DRIFTERS_ADMIRE.getId().getPath(), "Drifters Admire");
+       addSubtitle(SoundInit.DRIFTERS_AMBIENT.getId().getPath(), "Drifters Ambient");
+       addSubtitle(SoundInit.DRIFTERS_DEATH.getId().getPath(), "Drifters Death");
+       addSubtitle(SoundInit.DRIFTERS_HURT.getId().getPath(),"Drifters Hurt");
+       addSubtitle(SoundInit.DRIFTERS_VICTORY.getId().getPath(), "Drifters Victory");
         add(RegistrationInit.DRIFTER.get(), "Drifter");
         add(RegistrationInit.DRIFTER_EGG.get(), "Drifter Egg");
-        add(RegistrationInit.NETHERITE_KATANA.get(), "Netherite Katana");
-        add(RegistrationInit.WOOD_KATANA.get(), "Wood Katana");
-        add(RegistrationInit.DIAMOND_KATANA.get(), "Diamond Katana");
-        add(RegistrationInit.STONE_KATANA.get(), "Stone Katana");
-        add(RegistrationInit.GOLD_KATANA.get(), "Gold Katana");
-        add(RegistrationInit.IRON_KATANA.get(), "Iron Katana");
-        add(RegistrationInit.FORGED_PLATE.get(), "Forged Plate");
-        add(RegistrationInit.NETHERITE_BLADE.get(), "Netherite Blade");
-        add(RegistrationInit.WOOD_BLADE.get(), "Wood Blade");
-        add(RegistrationInit.DIAMOND_BLADE.get(), "Diamond Blade");
-        add(RegistrationInit.STONE_BLADE.get(), "Stone Blade");
-        add(RegistrationInit.GOLD_BLADE.get(), "Gold Blade");
-        add(RegistrationInit.IRON_BLADE.get(), "Iron Blade");
+        add(RegistrationInit.ITEM_NETHERITE_KATANA.get(), "Netherite Katana");
+        add(RegistrationInit.ITEM_WOOD_KATANA.get(), "Wood Katana");
+        add(RegistrationInit.ITEM_DIAMOND_KATANA.get(), "Diamond Katana");
+        add(RegistrationInit.ITEM_STONE_KATANA.get(), "Stone Katana");
+        add(RegistrationInit.ITEM_GOLD_KATANA.get(), "Gold Katana");
+        add(RegistrationInit.ITEM_IRON_KATANA.get(), "Iron Katana");
+        add(RegistrationInit.ITEM_FORGED_PLATE.get(), "Forged Plate");
+        add(RegistrationInit.ITEM_NETHERITE_BLADE.get(), "Netherite Blade");
+        add(RegistrationInit.ITEM_WOOD_BLADE.get(), "Wood Blade");
+        add(RegistrationInit.ITEM_DIAMOND_BLADE.get(), "Diamond Blade");
+        add(RegistrationInit.ITEM_STONE_BLADE.get(), "Stone Blade");
+        add(RegistrationInit.ITEM_GOLD_BLADE.get(), "Gold Blade");
+        add(RegistrationInit.ITEM_IRON_BLADE.get(), "Iron Blade");
 
         add(RegistrationInit.JELLY.get(), "Jelly");
         add(RegistrationInit.JELLY_EGG.get(), "Jelly Egg");
         add(RegistrationInit.JELLY_BUBBLE.get(), "Jelly Bubble");
         add(RegistrationInit.BLOCK_JELLY_EMBRYO.get(), "Jelly Embryo Block");
-        add(RegistrationInit.SEMI_SOLIDFIED_PROTEIN.get(), "Semi Solidfied Protein");
-        add(RegistrationInit.SOLIDFIED_PROTEIN.get(), "Solidfied Protein");
-        add(RegistrationInit.JELLY_PLATTER.get(), "Jelly Platter");
-        add(RegistrationInit.GLUE_BOTTLE.get(), "Glue Bottle");
+        add(RegistrationInit.ITEM_SEMI_SOLIDFIED_PROTEIN.get(), "Semi Solidfied Protein");
+        add(RegistrationInit.ITEM_SOLIDFIED_PROTEIN.get(), "Solidfied Protein");
+        add(RegistrationInit.ITEM_JELLY_PLATTER.get(), "Jelly Platter");
+        add(RegistrationInit.ITEM_GLUE_BOTTLE.get(), "Glue Bottle");
         add(PotionsInit.VULNUS_RECOVER.get(), "Vulnus Recover");
+        add(PotionsInit.CONCENTRATE.get(), "Concentrate");
+
 
         add(RegistrationInit.BLOCK_JELLY.get(), "Jelly Block");
         add(RegistrationInit.BLOCK_JELLY_BLACK.get(), "Jelly Block Black");
@@ -167,17 +188,15 @@ public class ModLanguageProvider extends LanguageProvider {
         add(RegistrationInit.ITEM_JELLY_WHITE.get(), "JELLY WHITE");
         add(RegistrationInit.ITEM_JELLY_YELLOW.get(), "JELLY YELLOW");
 
-        add("johnny_s_biological_notes.sound.subtitle.jelly_death", "Jelly Death");
-        add("johnny_s_biological_notes.sound.subtitle.jelly_hurt", "Jelly Hurt");
-        add("johnny_s_biological_notes.sound.subtitle.jelly_make_bubble", "Jelly Make Bubble");
-        add("johnny_s_biological_notes.sound.subtitle.jelly_block_hit", "Jelly Block Hit");
-        add("johnny_s_biological_notes.sound.subtitle.jelly_block_place", "Jelly Block Place");
-        add("johnny_s_biological_notes.sound.subtitle.jelly_block_step", "Jelly Block Step");
-        add("johnny_s_biological_notes.sound.subtitle.jelly_bubble_broken", "Jelly Bubble Broken");
-        add("johnny_s_biological_notes.sound.subtitle.glue_bottle_used", "Glue Bottle Used");
-
+       addSubtitle( SoundInit.JELLY_DEATH.getId().getPath(), "Jelly Death");
+       addSubtitle(SoundInit.JELLY_HURT.getId().getPath(),"Jelly Hurt");
+       addSubtitle(SoundInit.JELLY_MAKE_BUBBLE.getId().getPath(), "Jelly Make Bubble");
+       addSubtitle(SoundInit.JELLY_BLOCK_HIT.getId().getPath(), "Jelly Block Hit");
+       addSubtitle(SoundInit.JELLY_BLOCK_PLACE.getId().getPath(), "Jelly Block Place");
+       addSubtitle(SoundInit.JELLY_BLOCK_STEP.getId().getPath(), "Jelly Block Step");
+       addSubtitle(SoundInit.JELLY_BUBBLE_BROKEN.getId().getPath(), "Jelly Bubble Broken");
+       addSubtitle(SoundInit.GLUE_BOTTLE_USED.getId().getPath(), "Glue Bottle Used");
         add(RegistrationInit.TRIDACNA.get(),"Tridacna");
-
         add(RegistrationInit.TRIDACNA_EGG.get(),"Tridacna Egg");
         add(RegistrationInit.BLOCK_ECO_BOTTLE.get(),"Eco Bottle");
 //        add(RegistrationInit.BLOCK_ECO_BOTTLE_BUBBLE_CORAL.get(),"Eco Bottle");
@@ -187,11 +206,20 @@ public class ModLanguageProvider extends LanguageProvider {
 //        add(RegistrationInit.BLOCK_ECO_BOTTLE_BRAIN_CORAL.get(),"Eco Bottle");
 
 //        add(RegistrationInit.BLOCK_ITEM_ECO_BOTTLE.get(),"Eco Bottle");
-        add("johnny_s_biological_notes.sound.subtitle.tridacna_hurt", "Tridacna Hurt");
-        add("johnny_s_biological_notes.sound.subtitle.tridacna_death", "Tridacna Death");
-        add("johnny_s_biological_notes.sound.subtitle.tridacna_broken", "Tridacna Broken");
-        add("johnny_s_biological_notes.sound.subtitle.tridacna_open", "Tridacna Open");
-        add("johnny_s_biological_notes.sound.subtitle.tridacna_close", "Tridacna Close");
+        addSubtitle(SoundInit.TRIDACNA_HURT.getId().getPath(),"Tridacna Hurt");
+        addSubtitle(SoundInit.TRIDACNA_DEATH.getId().getPath(), "Tridacna Death");
+        addSubtitle(SoundInit.TRIDACNA_BROKEN.getId().getPath(), "Tridacna Broken");
+        addSubtitle(SoundInit.TRIDACNA_OPEN.getId().getPath(),"Tridacna Open");
+        addSubtitle(SoundInit.TRIDACNA_CLOSE.getId().getPath(), "Tridacna Close");
+
+        add(RegistrationInit.LOITER.get(),"Loiter");
+        add(RegistrationInit.LOITER_EGG.get(),"Loiter Egg");
+        add(RegistrationInit.ITEM_SOUL_TUMOR.get(),"Soul Tumor");
+
+        addSubtitle(SoundInit.LOITER_AMBIENT.getId().getPath(),"Loiter Ambient");
+        addSubtitle(SoundInit.LOITER_HURT.getId().getPath(),"Loiter Hurt");
+        addSubtitle(SoundInit.LOITER_DEATH.getId().getPath(),"Loiter Death");
+        addSubtitle(SoundInit.LOITER_SATURATE.getId().getPath(),"Loiter Saturate");
 
 //        ITEM_JELLY
 //        ITEM_JELLY_BLACK

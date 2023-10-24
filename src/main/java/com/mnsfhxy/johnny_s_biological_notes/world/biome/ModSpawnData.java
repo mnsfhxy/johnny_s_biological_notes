@@ -16,7 +16,11 @@ public class ModSpawnData{
         this.mobCategory=mobCategory;
         spawnerData=new MobSpawnSettings.SpawnerData(entity,weight,minCount,maxCount);
     }
-
+    public ModSpawnData( EntityType<?> entity,ImmutableList<ResourceKey<Biome>> spawnBiomes, int weight,int minCount, int maxCount) {
+        SpawnBiomes = spawnBiomes;
+        this.mobCategory=entity.getCategory();
+        spawnerData=new MobSpawnSettings.SpawnerData(entity,weight,minCount,maxCount);
+    }
     public MobCategory getMobCategory() {
         return mobCategory;
     }

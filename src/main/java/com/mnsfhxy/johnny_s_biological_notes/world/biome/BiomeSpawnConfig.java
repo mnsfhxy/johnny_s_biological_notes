@@ -11,9 +11,8 @@ import net.minecraft.world.level.biome.Biomes;
 //反射调用
 public class BiomeSpawnConfig {
 
-    final ModSpawnData TridacnaShell=new ModSpawnData(
+    final ModSpawnData TRIDACNA=new ModSpawnData(
             RegistrationInit.TRIDACNA.get(),
-            MobCategory.WATER_CREATURE,
             ImmutableList.of(
                     Biomes.LUKEWARM_OCEAN,
                     Biomes.WARM_OCEAN,
@@ -22,6 +21,15 @@ public class BiomeSpawnConfig {
             50,
             1,
             1
+    );
+    final ModSpawnData LOITER=new ModSpawnData(
+            RegistrationInit.LOITER.get(),
+            ImmutableList.of(
+                    Biomes.SOUL_SAND_VALLEY
+            ),
+            45,
+            1,
+            3
     );
 //    final ModSpawnData Crab=new ModSpawnData(
 //      RegistrationInit.CRAB.get(),

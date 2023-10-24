@@ -4,26 +4,18 @@ import com.mnsfhxy.johnny_s_biological_notes.entity.jelly.EntityJelly;
 import com.mnsfhxy.johnny_s_biological_notes.init.RegistrationInit;
 import com.mnsfhxy.johnny_s_biological_notes.init.SoundInit;
 import com.mnsfhxy.johnny_s_biological_notes.util.UtilLevel;
-import com.mojang.math.Vector3f;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.protocol.Packet;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.network.NetworkHooks;
-import org.jetbrains.annotations.NotNull;
 
 public class EntityJellyBubble extends Mob {
     public AnimationState bubbleAnimationState = new AnimationState();
@@ -94,9 +86,9 @@ public class EntityJellyBubble extends Mob {
         if (pSource.getEntity() instanceof Player) {
             int i = random.nextInt(100);
             if (i < 65) {
-                spawnAtLocation(new ItemStack(RegistrationInit.SEMI_SOLIDFIED_PROTEIN.get()));
+                spawnAtLocation(new ItemStack(RegistrationInit.ITEM_SEMI_SOLIDFIED_PROTEIN.get()));
             } else {
-                spawnAtLocation(new ItemStack(RegistrationInit.SOLIDFIED_PROTEIN.get()));
+                spawnAtLocation(new ItemStack(RegistrationInit.ITEM_SOLIDFIED_PROTEIN.get()));
 
             }
         }

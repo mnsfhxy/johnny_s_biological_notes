@@ -3,7 +3,6 @@ package com.mnsfhxy.johnny_s_biological_notes.init;
 import com.mnsfhxy.johnny_s_biological_notes.JohnnySBiologicalNotes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.world.level.block.SoundType;
 import net.minecraftforge.common.util.ForgeSoundType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -49,6 +48,10 @@ public class SoundInit {
     public static final RegistryObject<SoundEvent> TRIDACNA_DEATH =createSoundEvent("tridacna_death");
     public static final RegistryObject<SoundEvent> TRIDACNA_HURT =createSoundEvent("tridacna_hurt");
     public static final RegistryObject<SoundEvent> TRIDACNA_OPEN =createSoundEvent("tridacna_open");
+    public static final RegistryObject<SoundEvent> LOITER_AMBIENT=createSoundEvent("loiter_ambient");
+    public static final RegistryObject<SoundEvent> LOITER_HURT=createSoundEvent("loiter_hurt");
+    public static final RegistryObject<SoundEvent> LOITER_DEATH=createSoundEvent("loiter_death");
+    public static final RegistryObject<SoundEvent> LOITER_SATURATE =createSoundEvent("loiter_saturate");
 
     public static final ForgeSoundType JELLY_BLOCK = new ForgeSoundType(1.0F, 1.0F, JELLY_BLOCK_HIT, JELLY_BLOCK_STEP, JELLY_BLOCK_PLACE, JELLY_BLOCK_HIT, JELLY_BLOCK_PLACE);
 

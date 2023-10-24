@@ -1,28 +1,17 @@
 package com.mnsfhxy.johnny_s_biological_notes.entity.drifter;
 
-import com.google.common.collect.Maps;
 import com.google.gson.Gson;
-import com.mnsfhxy.johnny_s_biological_notes.Item.ItemKatana;
 import com.mnsfhxy.johnny_s_biological_notes.init.RegistrationInit;
 import com.mnsfhxy.johnny_s_biological_notes.init.SoundInit;
 import com.mnsfhxy.johnny_s_biological_notes.init.TagsInit;
 import com.mnsfhxy.johnny_s_biological_notes.util.ModAnimation;
-import net.minecraft.Util;
-import net.minecraft.client.model.IllagerModel;
-import net.minecraft.client.renderer.entity.IllagerRenderer;
-import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.NbtUtils;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
@@ -33,28 +22,18 @@ import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
-import net.minecraft.world.entity.ai.targeting.TargetingConditions;
-import net.minecraft.world.entity.animal.IronGolem;
-import net.minecraft.world.entity.animal.Turtle;
 import net.minecraft.world.entity.monster.*;
-import net.minecraft.world.entity.monster.hoglin.Hoglin;
-import net.minecraft.world.entity.monster.piglin.PiglinBrute;
-import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.level.pathfinder.WalkNodeEvaluator;
-import net.minecraftforge.common.data.ForgeEntityTypeTagsProvider;
 import org.jetbrains.annotations.Nullable;
 
-import java.io.ByteArrayOutputStream;
-import java.io.ObjectOutputStream;
 import java.util.*;
 
 public class EntityDrifter extends PathfinderMob {
@@ -202,7 +181,7 @@ public class EntityDrifter extends PathfinderMob {
         super.dropCustomDeathLoot(pSource, pLooting, pRecentlyHit);
 
         if (this.random.nextInt(0, 100) < 9) {
-            ItemStack itemStack = new ItemStack(RegistrationInit.IRON_KATANA.get());
+            ItemStack itemStack = new ItemStack(RegistrationInit.ITEM_IRON_KATANA.get());
             itemStack.setDamageValue(75);
 //            itemStack = new ItemStack(ItemKatana(Tiers.IRON, 0, 0, new Item.Properties().tab(CreativeModeTab.TAB_COMBAT).durability(75)));
             this.spawnAtLocation(itemStack);
@@ -211,7 +190,7 @@ public class EntityDrifter extends PathfinderMob {
 
     protected void populateDefaultEquipmentSlots(RandomSource pRandom, DifficultyInstance pDifficulty) {
         super.populateDefaultEquipmentSlots(pRandom, pDifficulty);
-        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(RegistrationInit.IRON_KATANA.get()));
+        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(RegistrationInit.ITEM_IRON_KATANA.get()));
     }
 
 
@@ -226,7 +205,7 @@ public class EntityDrifter extends PathfinderMob {
                     this.moveTo((double) pPlayer.getX() + 0.5D, (double) pPlayer.getY(), (double) pPlayer.getZ() + 0.5D, this.getYRot(), this.getXRot());
                     this.navigation.stop();
                 }
-                BehaviorUtils.throwItem(this, new ItemStack(RegistrationInit.FORGED_PLATE.get()), this.position().add(0.0D, 1.0D, 0.0D));
+                BehaviorUtils.throwItem(this, new ItemStack(RegistrationInit.ITEM_FORGED_PLATE.get()), this.position().add(0.0D, 1.0D, 0.0D));
                 this.haveGift = false;
 
             }
