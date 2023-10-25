@@ -1,20 +1,11 @@
 package com.mnsfhxy.johnny_s_biological_notes.init;
 
-import com.mnsfhxy.johnny_s_biological_notes.Item.ItemKatana;
 import com.mnsfhxy.johnny_s_biological_notes.JohnnySBiologicalNotes;
-import com.mnsfhxy.johnny_s_biological_notes.capability.spirit.PlayerSpirit;
-import com.mnsfhxy.johnny_s_biological_notes.capability.spirit.PlayerSpiritProvider;
-import com.mnsfhxy.johnny_s_biological_notes.capability.spirit.SpiritOverlay;
 import com.mnsfhxy.johnny_s_biological_notes.effect.EffectVulnusRecover;
 import com.mnsfhxy.johnny_s_biological_notes.entity.crab.EntityCrab;
 import com.mnsfhxy.johnny_s_biological_notes.entity.drifter.EntityDrifter;
-import com.mnsfhxy.johnny_s_biological_notes.entity.tridacna.EntityTridacna;
 import com.mnsfhxy.johnny_s_biological_notes.util.UtilLevel;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Holder;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -23,8 +14,6 @@ import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RenderLevelStageEvent;
@@ -37,8 +26,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.config.ModConfigEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-
 import java.util.List;
 import java.util.Objects;
 

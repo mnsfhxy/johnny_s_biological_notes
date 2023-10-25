@@ -253,7 +253,7 @@ public class RegistrationInit {
                     "jelly", () -> new ForgeSpawnEggItem(JELLY, 0x7e6f9f, 0xf6f2fb, ITEM_PROPERTIES));
     public static final RegistryObject<Item> TRIDACNA_EGG =
             ITEMS.register(
-                    "tridacna", () -> new ForgeSpawnEggItem(TRIDACNA, 0x7e61cf, 0xf2f2fb, ITEM_PROPERTIES));
+                    "tridacna", () -> new ForgeSpawnEggItem(TRIDACNA, 0x9f9997, 0x42468e, ITEM_PROPERTIES));
     public static final RegistryObject<Item> LOITER_EGG =
             ITEMS.register(
                     "loiter", () -> new ForgeSpawnEggItem(LOITER, 0x1e61cf, 0xc2f2fb, ITEM_PROPERTIES));

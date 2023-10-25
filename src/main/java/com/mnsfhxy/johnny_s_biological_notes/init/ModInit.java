@@ -1,12 +1,9 @@
 package com.mnsfhxy.johnny_s_biological_notes.init;
 
-import com.mnsfhxy.johnny_s_biological_notes.Item.ItemKatana;
 import com.mnsfhxy.johnny_s_biological_notes.JohnnySBiologicalNotes;
-import com.mnsfhxy.johnny_s_biological_notes.capability.spirit.PlayerSpirit;
-import com.mnsfhxy.johnny_s_biological_notes.capability.spirit.PlayerSpiritProvider;
+
 import com.mnsfhxy.johnny_s_biological_notes.capability.spirit.SpiritEvents;
 import com.mnsfhxy.johnny_s_biological_notes.entity.crab.EntityCrab;
-//import com.mnsfhxy.johnny_s_biological_notes.entity.crab.BRendererCrab;
 import com.mnsfhxy.johnny_s_biological_notes.entity.drifter.EntityDrifter;
 import com.mnsfhxy.johnny_s_biological_notes.entity.jelly.EntityJelly;
 import com.mnsfhxy.johnny_s_biological_notes.entity.jelly.bubble.EntityJellyBubble;
@@ -16,21 +13,16 @@ import com.mnsfhxy.johnny_s_biological_notes.entity.tridacna.EntityTridacna;
 import com.mnsfhxy.johnny_s_biological_notes.networking.Messages;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.SpawnPlacements;
-import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.entity.animal.WaterAnimal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent;
-import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -43,7 +35,7 @@ public class ModInit {
     public static final CreativeModeTab ITEM_GROUP = new CreativeModeTab(TAB_NAME) {
         @Override
         public ItemStack makeIcon() {
-            return new ItemStack(Items.DIAMOND);
+            return new ItemStack(RegistrationInit.ITEM_CRAB_MEAT.get());
         }
 
         @Override
