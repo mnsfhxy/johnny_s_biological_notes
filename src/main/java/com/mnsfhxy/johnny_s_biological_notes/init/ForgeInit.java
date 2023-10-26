@@ -5,6 +5,10 @@ import com.mnsfhxy.johnny_s_biological_notes.effect.EffectVulnusRecover;
 import com.mnsfhxy.johnny_s_biological_notes.entity.crab.EntityCrab;
 import com.mnsfhxy.johnny_s_biological_notes.entity.drifter.EntityDrifter;
 import com.mnsfhxy.johnny_s_biological_notes.util.UtilLevel;
+import com.mnsfhxy.johnny_s_biological_notes.util.UtilRender;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.Container;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -17,6 +21,7 @@ import net.minecraft.world.item.Items;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RenderLevelStageEvent;
+import net.minecraftforge.event.PlayLevelSoundEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -123,7 +128,16 @@ public class ForgeInit {
     public static void onWorldRenderLast(
             RenderLevelStageEvent event) // Called when drawing the world.
     {
+        if (event.getStage() != RenderLevelStageEvent.Stage.AFTER_WEATHER) {
+            return;
+        }
 
+            // this is a world pos of the player
+            try {
+                UtilRender.drawParticle(event);
+            } catch (Throwable ignore) {
+
+        }
     }
 
     //无法触发?
@@ -148,7 +162,19 @@ public class ForgeInit {
             ((EntityCrab) entity).spawnColorInit();
         }
     }
+    @SubscribeEvent
+    public static void onPlaySoundAtEntity(PlayLevelSoundEvent.AtEntity event){
+        if(event.getLevel().isClientSide){
+            LocalPlayer player = Minecraft.getInstance().player;
+            if(player!=null&&player.hasEffect(PotionsInit.CONCENTRATE.get())){
+                if(player.distanceTo(event.getEntity())<15){
+                    UtilRender.addParticle(RegistrationInit.CONCENTRATE_PARTICLE.get(),10,event.getEntity().getRandomX(0.6D),event.getEntity().getY(),event.getEntity().getRandomZ(0.6d),0.0D, 0.0D, 0.0D);
+//                    event.getLevel().addParticle(ParticleTypes.BUBBLE,event.getEntity().getRandomX(0.6D),event.getEntity().getY(),event.getEntity().getRandomZ(0.6d),0.0D, 0.0D, 0.0D);
+                }
+            }
 
+        }
+    }
 
 }
 
