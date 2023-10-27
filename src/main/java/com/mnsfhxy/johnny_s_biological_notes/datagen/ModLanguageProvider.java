@@ -39,8 +39,8 @@ public class ModLanguageProvider extends LanguageProvider {
 
         addPotion(PotionsInit.FEAR_WATER_POTION.getId().getPath(),"Fear Water Potion");
         addPotion(PotionsInit.LONG_FEAR_WATER_POTION.getId().getPath(),"Long Fear Water Potion");
-        addPotion(PotionsInit.CONCENTRATE_POTION.getId().getPath(),"Concentrate Potion");
-        addPotion(PotionsInit.LONG_CONCENTRATE_POTION.getId().getPath(),"Long Concentrate Potion");
+//        addPotion(PotionsInit.CONCENTRATE_POTION.getId().getPath(),"Concentrate Potion");
+//        addPotion(PotionsInit.LONG_CONCENTRATE_POTION.getId().getPath(),"Long Concentrate Potion");
 
 //        add("item.minecraft.potion.effect.long_fear_water_potion", "Fear Water Potion");
 //        add("item.minecraft.splash_potion.effect.long_fear_water_potion", "Splash Fear Water Potion");

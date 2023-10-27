@@ -101,6 +101,21 @@ public class ConcentrateParticle extends TextureSheetParticle implements  Compar
         }
     }
     @Override
+    protected int getLightColor(float pPartialTick) {
+//        float f = ((float)this.age + pPartialTick) / (float)this.lifetime;
+//        f = Mth.clamp(f, 0.0F, 1.0F);
+//        int i = super.getLightColor(pPartialTick);
+//        int j = i & 255;
+//        int k = i >> 16 & 255;
+//        j += (int)(f * 15.0F * 16.0F);
+//        if (j > 240) {
+//            j = 240;
+//        }
+
+        return 160;
+    }
+
+    @Override
     public void render(VertexConsumer p_107678_, Camera p_107679_, float p_107680_) {
         Vec3 vec3 = p_107679_.getPosition();
         float f = (float) (Mth.lerp((double) p_107680_, this.xo, this.x) - vec3.x());

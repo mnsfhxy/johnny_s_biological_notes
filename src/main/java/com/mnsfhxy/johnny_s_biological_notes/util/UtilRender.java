@@ -25,55 +25,10 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 
 public class UtilRender {
-    private static RenderType XRAY_TYPE = null;
     public static Queue<Particle> iterable = new PriorityQueue<>();
-
     static final RandomSource randomsource = RandomSource.create();
-
-    public static RenderType buildRenderType() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        var compositeState = RenderType.CompositeState.builder()
-                .setShaderState(new RenderStateShard.ShaderStateShard(GameRenderer::getRendertypeLinesShader))
-                //.setDepthTestState(new RenderStateShard.DepthTestStateShard("always",GL11.GL_ALWAYS))
-                .setCullState(new RenderStateShard.CullStateShard(false))
-                .setTransparencyState(new RenderStateShard.TransparencyStateShard("xray", () -> {
-                    RenderSystem.enableBlend();
-                    RenderSystem.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
-                }, () -> {
-                    RenderSystem.disableBlend();
-                })).createCompositeState(true);
-
-        return RenderType.create("xray", DefaultVertexFormat.POSITION_COLOR_NORMAL, VertexFormat.Mode.LINES, 1024, false, false, compositeState);
-
-    }
-
     @OnlyIn(Dist.CLIENT)
     public static <T extends ParticleOptions> void addParticle(T t, int pParticleNum, double pX, double pY, double pZ, double pXSpeed, double pYSpeed, double pZSpeed) {
-//    System.out.println("drawParticle");
-        //        final Player player = Minecraft.getInstance().player;
-        //        final Level world = Minecraft.getInstance().level;
-        //
-        //        System.out.println("drawParticle-----");
-        //        System.out.println(ConcentrateEntity.SoundingEntity.size());
-        //        for(Entity entity : ConcentrateEntity.SoundingEntity){
-        //            System.out.println(entity.getType().toShortString());
-        //            assert world != null;
-        ////
-        // world.addParticle(ParticleTypes.EXPLOSION,entity.getX(),entity.getY()+1,entity.getZ(),0,0,0);
-        ////
-        // world.addAlwaysVisibleParticle(Init.CONCENTRATE_PARTICLE.get(),entity.getX(),entity.getY()+1,entity.getZ(),0,0,0);
-        //            if(entity instanceof LivingEntity ){
-        //                ((LivingEntity) entity).addEffect(new
-        // MobEffectInstance(MobEffects.GLOWING,1));
-        //            }
-        //            ConcentrateEntity.SoundingEntity.remove(entity);
-        //        }
-        if (XRAY_TYPE == null) {
-            try {
-                XRAY_TYPE = buildRenderType();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
         Minecraft minecraft = Minecraft.getInstance();
         if (minecraft != null) {
 //            Camera camera = minecraft.gameRenderer.getMainCamera();
@@ -88,13 +43,10 @@ public class UtilRender {
                     double d2 = 0.01D + randomsource.nextDouble() * 0.5D;
                     double d4 = Math.sin(d26) * d21;
                     Particle particle = minecraft.particleEngine.createParticle(t, pX, pY, pZ, d30, d2, d4);
-                    iterable.add(particle);
+                    //最大50个例子防止卡顿
+                    if(iterable.size()<50)iterable.add(particle);
                 }
-
-
             }
-
-
         }
 
 
@@ -110,5 +62,4 @@ public class UtilRender {
 
             }
     }
-
 }

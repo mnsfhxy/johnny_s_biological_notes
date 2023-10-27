@@ -18,6 +18,7 @@ import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RenderLevelStageEvent;
@@ -169,6 +170,20 @@ public class ForgeInit {
             if(player!=null&&player.hasEffect(PotionsInit.CONCENTRATE.get())){
                 if(player.distanceTo(event.getEntity())<15){
                     UtilRender.addParticle(RegistrationInit.CONCENTRATE_PARTICLE.get(),10,event.getEntity().getRandomX(0.6D),event.getEntity().getY(),event.getEntity().getRandomZ(0.6d),0.0D, 0.0D, 0.0D);
+//                    event.getLevel().addParticle(ParticleTypes.BUBBLE,event.getEntity().getRandomX(0.6D),event.getEntity().getY(),event.getEntity().getRandomZ(0.6d),0.0D, 0.0D, 0.0D);
+                }
+            }
+
+        }
+    }
+    @SubscribeEvent
+    public static void onPlaySoundAtEntity(PlayLevelSoundEvent.AtPosition event){
+        if(event.getLevel().isClientSide){
+            LocalPlayer player = Minecraft.getInstance().player;
+            if(player!=null&&player.hasEffect(PotionsInit.CONCENTRATE.get())){
+                Vec3 position = event.getPosition();
+                if(Math.sqrt(player.distanceToSqr(position))<15){
+                    UtilRender.addParticle(RegistrationInit.CONCENTRATE_PARTICLE.get(),10,position.x,position.y,position.z,0.0D, 0.0D, 0.0D);
 //                    event.getLevel().addParticle(ParticleTypes.BUBBLE,event.getEntity().getRandomX(0.6D),event.getEntity().getY(),event.getEntity().getRandomZ(0.6d),0.0D, 0.0D, 0.0D);
                 }
             }

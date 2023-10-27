@@ -1,7 +1,6 @@
 package com.mnsfhxy.johnny_s_biological_notes;
 
 import com.mnsfhxy.johnny_s_biological_notes.init.*;
-import com.mnsfhxy.johnny_s_biological_notes.spawn.SpawnHandler;
 import com.mnsfhxy.johnny_s_biological_notes.world.biome.modifier.BiomeModifierSpawn;
 import com.mnsfhxy.johnny_s_biological_notes.world.biome.modifier.BiomeModifierTridacnaShell;
 import com.mojang.logging.LogUtils;

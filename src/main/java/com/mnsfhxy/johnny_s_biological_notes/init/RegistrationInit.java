@@ -201,7 +201,7 @@ public class RegistrationInit {
     public static final RegistryObject<EntityType<EntityCrab>> CRAB =
             ENTITIES.register(
                     "crab",
-                    () -> registerEntity(EntityType.Builder.of(EntityCrab::new, MobCategory.AMBIENT)
+                    () -> registerEntity(EntityType.Builder.of(EntityCrab::new, MobCategory.MONSTER)
                             .sized(0.75F, 0.75F), "crab"));
 
     public static final RegistryObject<EntityType<EntityDrifter>> DRIFTER =
@@ -229,7 +229,7 @@ public class RegistrationInit {
                             .sized((float) (1.0 / 16), (float) (1.0 / 16)), "jelly_bubble"));
     public static final RegistryObject<EntityType<EntityTridacna>> TRIDACNA =
             ENTITIES.register("tridacna",
-                    () -> registerFarSpawnEntity(EntityType.Builder.of(EntityTridacna::new,MobCategory.WATER_CREATURE)
+                    () -> registerFarSpawnEntity(EntityType.Builder.of(EntityTridacna::new,MobCategory.MONSTER)
                             .sized(1F, 1F), "tridacna"));
     public static final RegistryObject<EntityType<EntityLoiter>> LOITER =
             ENTITIES.register("loiter",
@@ -254,11 +254,13 @@ public class RegistrationInit {
     public static final RegistryObject<Item> TRIDACNA_EGG =
             ITEMS.register(
                     "tridacna", () -> new ForgeSpawnEggItem(TRIDACNA, 0x9f9997, 0x42468e, ITEM_PROPERTIES));
+//    public static final RegistryObject<Item> LOITER_EGG =
+//            ITEMS.register(
+//                    "loiter", () -> new ForgeSpawnEggItem(LOITER, 0x1e61cf, 0xc2f2fb, ITEM_PROPERTIES));
+
     public static final RegistryObject<Item> LOITER_EGG =
             ITEMS.register(
-                    "loiter", () -> new ForgeSpawnEggItem(LOITER, 0x1e61cf, 0xc2f2fb, ITEM_PROPERTIES));
-
-
+                    "loiter", () -> new ForgeSpawnEggItem(LOITER, 0x1e61cf, 0xc2f2fb, new Item.Properties()));
 
     public static final RegistryObject<Item> ITEM_FORGED_PLATE = ITEMS.register("forged_plate", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP)));
 
@@ -307,7 +309,8 @@ public class RegistrationInit {
 //    ModItemModels,zh,en,
     public static final RegistryObject<Item> ITEM_GLUE_BOTTLE = ITEMS.register("glue_bottle", () -> new ItemGlueBottle(new Item.Properties().tab(ModInit.ITEM_GROUP)));
 
-    public static final RegistryObject<Item> ITEM_SOUL_TUMOR =ITEMS.register("soul_tumor", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP)));
+//    public static final RegistryObject<Item> ITEM_SOUL_TUMOR =ITEMS.register("soul_tumor", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP)));
+    public static final RegistryObject<Item> ITEM_SOUL_TUMOR =ITEMS.register("soul_tumor", () -> new Item(new Item.Properties()));
     //tages
 //    public static final TagKey<EntityType<?>> HYDROBIOS = TagKey.create(Registry.ENTITY_TYPE_REGISTRY, new ResourceLocation(JohnnySBiologicalNotes.MODID, "hydrobios"));
 

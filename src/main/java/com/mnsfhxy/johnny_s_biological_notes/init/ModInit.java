@@ -11,6 +11,8 @@ import com.mnsfhxy.johnny_s_biological_notes.entity.loiter.EntityLoiter;
 import com.mnsfhxy.johnny_s_biological_notes.entity.peeper.EntityPeeper;
 import com.mnsfhxy.johnny_s_biological_notes.entity.tridacna.EntityTridacna;
 import com.mnsfhxy.johnny_s_biological_notes.networking.Messages;
+import com.mnsfhxy.johnny_s_biological_notes.world.biome.BiomeSpawnConfig;
+import com.mnsfhxy.johnny_s_biological_notes.world.biome.ModSpawnData;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.entity.Entity;
@@ -27,6 +29,8 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+
+import java.lang.reflect.Field;
 
 //注意！在使用了 @Mod.EventBusSubscriber 的类里，所有方法都必须有 public 和 static 修饰符。
 @Mod.EventBusSubscriber(modid = JohnnySBiologicalNotes.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -55,16 +59,24 @@ public class ModInit {
 
     @SubscribeEvent
     public static void onAttributeCreate(EntityAttributeCreationEvent event) {
-        SpawnPlacements.Type SPAWN_ON_WATER_GROUND = SpawnPlacements.Type.create("ON_WATER_GROUND",
-                ((levelReader, blockPos, entityType) -> levelReader.getFluidState(blockPos).is(FluidTags.WATER)
-                        &&levelReader.getBlockState(blockPos.below()).isFaceSturdy(levelReader, blockPos.below(), Direction.UP)));
 
-        SpawnPlacements.register(RegistrationInit.CRAB.get(), SPAWN_ON_WATER_GROUND, Heightmap.Types.OCEAN_FLOOR, EntityCrab::checkCrabSpawnRules);
-        SpawnPlacements.register(RegistrationInit.PEEPER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                (entityType, world, reason, pos, random) -> ( Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));
-        SpawnPlacements.register(RegistrationInit.JELLY.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                EntityJelly::checkJellySpawnRules);
-        SpawnPlacements.register(RegistrationInit.TRIDACNA.get(), SPAWN_ON_WATER_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, EntityTridacna::checkSpawnRules);
+        Class<?> BCNClass = BiomeSpawnConfig.class;
+        BiomeSpawnConfig biomeSpawnConfig = new BiomeSpawnConfig();
+        Field[] fields = BCNClass.getDeclaredFields();
+        for (Field field : fields) {
+            if (field.getType() == ModSpawnData.class) {
+                field.setAccessible(true);
+                ModSpawnData spawnData = null;
+                try {
+                    spawnData = (ModSpawnData) field.get(biomeSpawnConfig);
+                    SpawnPlacements.register(spawnData.getEntityType(),spawnData.getSpawnPlacementType(),spawnData.getHeightMapType(),spawnData.getPredicate());
+                } catch (IllegalAccessException e) {
+                    throw new RuntimeException(e);
+                }
+
+            }
+        }
+
 
         event.put(RegistrationInit.CRAB.get(), EntityCrab.prepareAttributes().build());
         event.put(RegistrationInit.DRIFTER.get(), EntityDrifter.prepareAttributes().build());
