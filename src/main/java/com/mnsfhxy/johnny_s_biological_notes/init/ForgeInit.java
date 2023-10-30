@@ -169,7 +169,7 @@ public class ForgeInit {
             LocalPlayer player = Minecraft.getInstance().player;
             if(player!=null&&player.hasEffect(PotionsInit.CONCENTRATE.get())){
                 if(player.distanceTo(event.getEntity())<15){
-                    UtilRender.addParticle(RegistrationInit.CONCENTRATE_PARTICLE.get(),10,event.getEntity().getRandomX(0.6D),event.getEntity().getY(),event.getEntity().getRandomZ(0.6d),0.0D, 0.0D, 0.0D);
+                    UtilRender.addParticle(RegistrationInit.CONCENTRATE_PARTICLE.get(),1,event.getEntity().getRandomX(0.6D),event.getEntity().getY(),event.getEntity().getRandomZ(0.6d),0.0D, 0.0D, 0.0D);
 //                    event.getLevel().addParticle(ParticleTypes.BUBBLE,event.getEntity().getRandomX(0.6D),event.getEntity().getY(),event.getEntity().getRandomZ(0.6d),0.0D, 0.0D, 0.0D);
                 }
             }
@@ -183,7 +183,7 @@ public class ForgeInit {
             if(player!=null&&player.hasEffect(PotionsInit.CONCENTRATE.get())){
                 Vec3 position = event.getPosition();
                 if(Math.sqrt(player.distanceToSqr(position))<15){
-                    UtilRender.addParticle(RegistrationInit.CONCENTRATE_PARTICLE.get(),10,position.x,position.y,position.z,0.0D, 0.0D, 0.0D);
+                    UtilRender.addParticle(RegistrationInit.CONCENTRATE_PARTICLE.get(),1,position.x,position.y,position.z,0.0D, 0.0D, 0.0D);
 //                    event.getLevel().addParticle(ParticleTypes.BUBBLE,event.getEntity().getRandomX(0.6D),event.getEntity().getY(),event.getEntity().getRandomZ(0.6d),0.0D, 0.0D, 0.0D);
                 }
             }

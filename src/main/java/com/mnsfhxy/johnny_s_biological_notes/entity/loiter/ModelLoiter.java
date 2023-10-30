@@ -1,5 +1,6 @@
 package com.mnsfhxy.johnny_s_biological_notes.entity.loiter;
 import com.mnsfhxy.johnny_s_biological_notes.JohnnySBiologicalNotes;
+import com.mnsfhxy.johnny_s_biological_notes.entity.peeper.AnimationPeeper;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Minecraft;
@@ -15,7 +16,7 @@ public class ModelLoiter extends HierarchicalModel<EntityLoiter> {
     private final ModelPart root;
 
     public ModelLoiter(ModelPart root) {
-        this.root=this.root();
+        this.root=root;
         this.body = root.getChild("body");
     }
 
@@ -85,6 +86,9 @@ public class ModelLoiter extends HierarchicalModel<EntityLoiter> {
 
     @Override
     public void setupAnim(EntityLoiter pEntity, float pLimbSwing, float pLimbSwingAmount, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
+        this.root().getAllParts().forEach(ModelPart::resetPose);
+        this.animate(pEntity.movingAnimationState, AnimationLoiter.MOVING, pAgeInTicks);
+        this.animate(pEntity.tailMovingAnimationState, AnimationLoiter.TAIL_MOVING, pAgeInTicks);
 
     }
 }
