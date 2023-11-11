@@ -117,7 +117,7 @@ public class EntityCrab extends Animal implements Bucketable {
             this.setBornColor(colors[random.nextInt(2)]);
         } else if (biome.is(new ResourceLocation("mangrove_swamp"))) {
             int i = random.nextInt(2);
-            this.setBornColor(colors[i==1?++i:i]);
+            this.setBornColor(colors[i==1?3:i]);
         }
 
         while (this.level.getBlockState(this.getOnPos().below()).getBlock() instanceof LiquidBlock) {
