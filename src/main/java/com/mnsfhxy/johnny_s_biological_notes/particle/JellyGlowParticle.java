@@ -3,18 +3,17 @@ package com.mnsfhxy.johnny_s_biological_notes.particle;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.SimpleParticleType;
-import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.Nullable;
 
-public class JellyGLowParticle extends TextureSheetParticle {
+public class JellyGlowParticle extends TextureSheetParticle {
     private final SpriteSet sprites;
     static final RandomSource RANDOM = RandomSource.create();
 
 
-    protected JellyGLowParticle(ClientLevel pLevel, double pX, double pY, double pZ, double pXSpeed, double pYSpeed, double pZSpeed, SpriteSet pSprites) {
+    protected JellyGlowParticle(ClientLevel pLevel, double pX, double pY, double pZ, double pXSpeed, double pYSpeed, double pZSpeed, SpriteSet pSprites) {
         super(pLevel, pX, pY, pZ, pXSpeed, pYSpeed, pZSpeed);
         this.friction = 0.96F;
         this.speedUpWhenYMotionIsBlocked = true;
@@ -60,7 +59,7 @@ public class JellyGLowParticle extends TextureSheetParticle {
         @Nullable
         @Override
         public Particle createParticle(SimpleParticleType pType, ClientLevel pLevel, double pX, double pY, double pZ, double pXSpeed, double pYSpeed, double pZSpeed) {
-            JellyGLowParticle glowparticle = new JellyGLowParticle(pLevel, pX, pY, pZ, 0.5D - JellyGLowParticle.RANDOM.nextDouble(), pYSpeed, 0.5D - JellyGLowParticle.RANDOM.nextDouble(), this.spirte);
+            JellyGlowParticle glowparticle = new JellyGlowParticle(pLevel, pX, pY, pZ, 0.5D - JellyGlowParticle.RANDOM.nextDouble(), pYSpeed, 0.5D - JellyGlowParticle.RANDOM.nextDouble(), this.spirte);
             glowparticle.yd *= (double)0.2F;
             if (pXSpeed == 0.0D && pZSpeed == 0.0D) {
                 glowparticle.xd *= (double)0.1F;

@@ -116,24 +116,8 @@ public class EntityCrab extends Animal implements Bucketable {
         if (biome.is(new ResourceLocation("beach"))) {
             this.setBornColor(colors[random.nextInt(2)]);
         } else if (biome.is(new ResourceLocation("mangrove_swamp"))) {
-            this.setBornColor(colors[random.nextInt(2)]);
-        } else if (biome.is(new ResourceLocation("lukewarm_ocean"))) {
-            this.setBornColor(colors[random.nextInt(2) + 1]);
-        } else if (biome.is(new ResourceLocation("deep_lukewarm_ocean"))) {
-            this.setBornColor(colors[random.nextInt(2) + 1]);
-        } else if (biome.is(new ResourceLocation("deep_ocean"))) {
-            this.setBornColor(colors[random.nextInt(3) + 1]);
-        } else if (biome.is(new ResourceLocation("warm_ocean"))) {
-            if (random.nextInt(2) == 0) {
-                this.setBornColor(colors[2]);
-            } else {
-                this.setBornColor(colors[0]);
-            }
-
-        } else if (biome.is(new ResourceLocation("ocean"))) {
-            this.setBornColor(colors[random.nextInt(3) + 1]);
-        } else if (biome.is(new ResourceLocation("cold_ocean")) || biome.is(new ResourceLocation("deep_cold_ocean")) || biome.is(new ResourceLocation("frozen_ocean")) || biome.is(new ResourceLocation("deep_frozen_ocean"))) {
-            this.setBornColor(colors[3]);
+            int i = random.nextInt(2);
+            this.setBornColor(colors[i==1?++i:i]);
         }
 
         while (this.level.getBlockState(this.getOnPos().below()).getBlock() instanceof LiquidBlock) {

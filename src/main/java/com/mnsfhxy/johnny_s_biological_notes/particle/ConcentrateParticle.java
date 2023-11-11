@@ -1,5 +1,6 @@
 package com.mnsfhxy.johnny_s_biological_notes.particle;
 
+import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.Quaternion;
@@ -54,14 +55,18 @@ public class ConcentrateParticle extends TextureSheetParticle implements  Compar
     ParticleRenderType CONCENTRATE_RENDERTYPE = new ParticleRenderType() {
         public void begin(BufferBuilder p_107448_, TextureManager p_107449_) {
 //      RenderSystem.setShader(GameRenderer::getRendertypeLinesShader);
-            RenderSystem.disableCull();
-//      RenderSystem.disableTexture();
+
+
+//            RenderSystem.disableCull();
+
             RenderSystem.disableDepthTest();
             RenderSystem.depthMask(false);
 
+//            RenderSystem.disableBlend();
 
-            RenderSystem.disableBlend();
-//      RenderSystem.depthMask(true);
+            RenderSystem.enableBlend();
+            RenderSystem.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+
             RenderSystem.setShader(GameRenderer::getParticleShader);
             RenderSystem.setShaderTexture(0, TextureAtlas.LOCATION_PARTICLES);
             p_107448_.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.PARTICLE);

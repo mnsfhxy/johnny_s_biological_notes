@@ -1,8 +1,6 @@
 package com.mnsfhxy.johnny_s_biological_notes.init;
 
 import com.mnsfhxy.johnny_s_biological_notes.JohnnySBiologicalNotes;
-import com.mnsfhxy.johnny_s_biological_notes.block.berenderer.RendererTridacnaShell;
-import com.mnsfhxy.johnny_s_biological_notes.block.model.ModelTridacnaShellOpen;
 import com.mnsfhxy.johnny_s_biological_notes.capability.spirit.SpiritOverlay;
 import com.mnsfhxy.johnny_s_biological_notes.entity.crab.ModelCrab;
 import com.mnsfhxy.johnny_s_biological_notes.entity.crab.RendererCrab;
@@ -21,7 +19,7 @@ import com.mnsfhxy.johnny_s_biological_notes.entity.tridacna.ModelTridacnaClosed
 import com.mnsfhxy.johnny_s_biological_notes.entity.tridacna.RendererTridacna;
 import com.mnsfhxy.johnny_s_biological_notes.particle.ChopParticle;
 import com.mnsfhxy.johnny_s_biological_notes.particle.ConcentrateParticle;
-import com.mnsfhxy.johnny_s_biological_notes.particle.JellyGLowParticle;
+import com.mnsfhxy.johnny_s_biological_notes.particle.JellyGlowParticle;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.*;
 import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
@@ -69,7 +67,7 @@ public class ClientInit {
     @SubscribeEvent
     public static void onRegisterParticleProviders(RegisterParticleProvidersEvent event) {
         event.register(RegistrationInit.CHOP_PARTICLE.get(), ChopParticle.Provider::new);
-        event.register(RegistrationInit.JELLY_GLOW_PARTICLE.get(), JellyGLowParticle.Provider::new);
+        event.register(RegistrationInit.JELLY_GLOW_PARTICLE.get(), JellyGlowParticle.Provider::new);
         event.register(RegistrationInit.CONCENTRATE_PARTICLE.get(), ConcentrateParticle.Provider::new);
 
 

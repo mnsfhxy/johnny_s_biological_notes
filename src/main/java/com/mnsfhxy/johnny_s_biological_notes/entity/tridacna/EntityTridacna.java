@@ -234,7 +234,12 @@ public void setCloseRemindTick(int p) {
         updateShellState();
         if (this.isInWater()) {
             if (this.level instanceof ServerLevel) {
-                ((ServerLevel)this.level).sendParticles(ParticleTypes.BUBBLE,this.getRandomX(0.6D), this.getRandomY(), this.getRandomZ(0.6D), 1, 0.0D, -1D, 0.0D, 0.0D);
+                if(this.level.isWaterAt(this.getOnPos().above().above())) {
+                    double randomX = this.getRandomX(0.6D);
+                    double randomY = this.getRandomY();
+                    double randomZ = this.getRandomZ(0.6D);
+                    ((ServerLevel) this.level).sendParticles(ParticleTypes.BUBBLE, randomX, randomY, randomZ, 1, 0.0D, -1D, 0.0D, 0.0D);
+                }
             }
             for (LivingEntity livingEntity : this.level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(3D))) {
                 livingEntity.setAirSupply(livingEntity.getMaxAirSupply());

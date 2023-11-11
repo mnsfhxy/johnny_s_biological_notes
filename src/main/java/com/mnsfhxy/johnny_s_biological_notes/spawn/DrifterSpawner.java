@@ -76,7 +76,7 @@ public class DrifterSpawner implements CustomSpawner {
 //        }
         if (player == null) {
             return true;
-        }else if (this.random.nextInt(10) >=5) {
+        }else if (this.random.nextInt(10) >=2) {
             return false;
         } else {
             BlockPos blockpos = player.blockPosition();

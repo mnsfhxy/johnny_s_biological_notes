@@ -36,6 +36,10 @@ import org.jetbrains.annotations.Nullable;
 import java.util.EnumSet;
 
 public class EntityLoiter extends Monster {
+    public float xBodyRot;
+    public float xBodyRotO;
+    public float zBodyRot;
+    public float zBodyRotO;
     private static final float MOVEMENT_SPEED = 0.3F;
     private static final EntityDataAccessor<Boolean> SOUL = SynchedEntityData.defineId(EntityLoiter.class, EntityDataSerializers.BOOLEAN);
     public AnimationState movingAnimationState = new AnimationState();
@@ -143,7 +147,17 @@ public class EntityLoiter extends Monster {
                 this.setSecondsOnFire(8);
             }
         }
+        this.xBodyRotO = this.xBodyRot;
+        this.zBodyRotO = this.zBodyRot;
+        Vec3 vec3 = this.getDeltaMovement();
+        double d0 = vec3.horizontalDistance();
+        this.yBodyRot += (-((float)Mth.atan2(vec3.x, vec3.z)) * (180F / (float)Math.PI) - this.yBodyRot) * 0.1F;
+        this.setYRot(this.yBodyRot);
+        this.zBodyRot += (float)Math.PI * 1 * 1.5F;
+        this.xBodyRot += (-((float)Mth.atan2(d0, vec3.y)) * (180F / (float)Math.PI) - this.xBodyRot) * 0.1F;
         super.aiStep();
+
+
     }
 
     @Override

@@ -50,23 +50,23 @@ public class BiomeSpawnConfig {
     final ModSpawnData<EntityCrab> CRAB=new ModSpawnData<>(
             RegistrationInit.CRAB.get(),
             ImmutableList.of(
-                    Biomes.DEEP_COLD_OCEAN,
-                    Biomes.FROZEN_OCEAN,
-                    Biomes.WARM_OCEAN,
-                    Biomes.OCEAN,
-                    Biomes.LUKEWARM_OCEAN,
-                    Biomes.DEEP_LUKEWARM_OCEAN,
-                    Biomes.COLD_OCEAN,
-                    Biomes.DEEP_OCEAN,
-                    Biomes.DEEP_FROZEN_OCEAN,
+//                    Biomes.DEEP_COLD_OCEAN,
+//                    Biomes.FROZEN_OCEAN,
+//                    Biomes.WARM_OCEAN,
+//                    Biomes.OCEAN,
+//                    Biomes.LUKEWARM_OCEAN,
+//                    Biomes.DEEP_LUKEWARM_OCEAN,
+//                    Biomes.COLD_OCEAN,
+//                    Biomes.DEEP_OCEAN,
+//                    Biomes.DEEP_FROZEN_OCEAN,
                     Biomes.BEACH,
                     Biomes.MANGROVE_SWAMP
             ),
             50,
-            2,
-            5,
-            SpawnPlacementsType.SPAWN_ON_WATER_GROUND,
-            Heightmap.Types.OCEAN_FLOOR,
+            1,
+            3,
+            SpawnPlacements.Type.ON_GROUND,
+            Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
             EntityCrab::checkCrabSpawnRules
     );
     final ModSpawnData<EntityPeeper> PEEPER=new ModSpawnData<>(
