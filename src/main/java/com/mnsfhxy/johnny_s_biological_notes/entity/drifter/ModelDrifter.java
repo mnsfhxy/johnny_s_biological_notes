@@ -87,9 +87,11 @@ public class ModelDrifter  extends HierarchicalModel<EntityDrifter> implements A
         this.root().getAllParts().forEach(ModelPart::resetPose);
         this.head.yRot = netHeadYaw * ((float)Math.PI / 180F);
         this.head.xRot = headPitch * ((float)Math.PI / 180F);
-        this.animate(entity.alert0AnimationState,AnimationDrifter.DRIFTERS_ALERT_0,ageInTicks);
-        this.animate(entity.alert1AnimationState,AnimationDrifter.DRIFTERS_ALERT_1,ageInTicks);
-        this.animate(entity.fightAnimationState.getAnimationState(),AnimationDrifter.DRIFTERS_FIGHT,ageInTicks);
+//        this.animate(entity.alert0AnimationState,AnimationDrifter.DRIFTERS_ALERT_0,ageInTicks);
+//        this.animate(entity.alert1AnimationState,AnimationDrifter.DRIFTERS_ALERT_1,ageInTicks);
+        this.animate(entity.fightAnimationState,AnimationDrifter.DRIFTERS_FIGHT,ageInTicks);
+        this.animate(entity.alertAnimationState,AnimationDrifter.DRIFTERS_ALERT,ageInTicks);
+//        this.animate(entity.fightAnimationState.getAnimationState(),AnimationDrifter.DRIFTERS_FIGHT,ageInTicks);
         this.RightLeg.xRot = Mth.cos(pLimbSwing * 0.6662F) * 1.4F * pLimbSwingAmount * 0.5F;
         this.LeftLeg.xRot = Mth.cos(pLimbSwing * 0.6662F + (float)Math.PI) * 1.4F * pLimbSwingAmount * 0.5F;
         this.RightLeg.yRot = 0.0F;

@@ -5,6 +5,7 @@ import com.mnsfhxy.johnny_s_biological_notes.init.RegistrationInit;
 import com.mnsfhxy.johnny_s_biological_notes.init.SoundInit;
 import com.mnsfhxy.johnny_s_biological_notes.init.TagsInit;
 import com.mnsfhxy.johnny_s_biological_notes.util.ModAnimation;
+import com.mnsfhxy.johnny_s_biological_notes.util.UtilLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -13,6 +14,7 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -31,6 +33,7 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.level.pathfinder.WalkNodeEvaluator;
 import org.jetbrains.annotations.Nullable;
 
@@ -40,13 +43,15 @@ public class EntityDrifter extends PathfinderMob {
     private static final EntityDataAccessor<String> FAV_STR = SynchedEntityData.defineId(EntityDrifter.class, EntityDataSerializers.STRING);
     public Map<UUID, Favorability> favorability = new HashMap<>();
     public AnimationState walkingAnimationState = new AnimationState();
-    public AnimationState alert0AnimationState = new AnimationState();
-    public AnimationState alert1AnimationState = new AnimationState();
-    //    public AnimationState fightAnimationState = new AnimationState();
+    public AnimationState alertAnimationState = new AnimationState();
+    //
+//    public AnimationState alert0AnimationState = new AnimationState();
+//    public AnimationState alert1AnimationState = new AnimationState();
+        public AnimationState fightAnimationState = new AnimationState();
     //    public ModAnimation walkingAnimationState = new ModAnimation();
 //    public ModAnimation alert0AnimationState = new ModAnimation();
 //    public ModAnimation alert1AnimationState = new ModAnimation();
-    public ModAnimation fightAnimationState = new ModAnimation();
+//    public ModAnimation fightAnimationState = new ModAnimation();
     private boolean renderItem = false;
     private boolean haveGift = true;
 
@@ -112,7 +117,7 @@ public class EntityDrifter extends PathfinderMob {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new FloatGoal(this));
-        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0D, false));
+        this.goalSelector.addGoal(2, new DrifterMeleeAttackGoal(this, 1.0D, false){});
         this.goalSelector.addGoal(3, new FllowPlayerGoal(this));
         this.goalSelector.addGoal(4, new LookAtPlayerGoal(this, Player.class, 3.0F, 1.0F));
         this.goalSelector.addGoal(5, new LookAtPlayerGoal(this, Mob.class, 8.0F));
@@ -127,7 +132,7 @@ public class EntityDrifter extends PathfinderMob {
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Mob.class, 5, false, false, (p_28879_) -> {
             return p_28879_ instanceof Enemy && !(p_28879_ instanceof Creeper);
         }));
-      //        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Zombie.class, true));
+        //        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Zombie.class, true));
 //        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, ZombieVillager.class, true));
 //        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, WitherSkeleton.class, true));
 //        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, Witch.class, true));
@@ -297,32 +302,55 @@ public class EntityDrifter extends PathfinderMob {
                     minDisToEnemy = Math.min(target.distanceTo(this), minDisToEnemy);
                 }
             }
-
-            if (this.isAggressive()) {
-                renderItem = true;
-                if (!fightAnimationState.isStarted()) {
-                    renderItem = true;
-                    fightAnimationState.playOnce(this.tickCount, 500);
-//                fightAnimationState.start(this.tickCount);
-                }
-            }else{
-                renderItem = false;
-
+//            System.out.println(this.fightAnimationState.isStarted());
+            if (!this.fightAnimationState.isStarted()) {
+                    if (minDisToEnemy < 10) {
+                        alertAnimationState.start(this.tickCount);
+                    } else {
+                        alertAnimationState.stop();
+                    }
             }
-//            alert0AnimationState.stop();
-//            alert1AnimationState.stop();
-//            if (!this.fightAnimationState.isStarted()) {
-//                if (minDisToEnemy < 4) {
-//                    if (this.isAggressive()) {
-//                        fightAnimationState.playOnce(this.tickCount, 500);
-//                    } else {
-//                        alert1AnimationState.start(this.tickCount);
-//                    }
-//                    renderItem = true;
-//                } else if (minDisToEnemy < 10) {
-//                        alert0AnimationState.start(this.tickCount);
+            if(this.fightAnimationState.isStarted()|| alertAnimationState.isStarted()){
+                renderItem = true;
+            }else{
+                renderItem =false;
+            }
+
+//            if (this.isAggressive()) {
+////                renderItem = true;
+////                if (!fightAnimationState.isStarted()) {
+//                renderItem = true;
+////                    fightAnimationState.playOnce(this.tickCount, UtilLevel.TIME.SECOND.getTick()*2);
+//                fightAnimationState.start(this.tickCount);
+////                }
+//            } else {
+//                fightAnimationState.stop();
+//                renderItem = false;
+//                if (minDisToEnemy < 10) {
+//                    alertAnimationState.start(this.tickCount);
 //                    renderItem = true;
 //                } else {
+//                    alertAnimationState.stop();
+//                    renderItem = false;
+//                }
+//            }
+//            alert0AnimationState.stop();
+//            alert1AnimationState.stop();
+//            alertAnimationState.stop();
+//            if (!this.fightAnimationState.isStarted()) {
+////                if (minDisToEnemy < 4) {
+////                    if (this.isAggressive()) {
+////                        fightAnimationState.playOnce(this.tickCount, 500);
+////                    } else {
+////                        alert1AnimationState.start(this.tickCount);
+////                    }
+////                    renderItem = true;
+////                } else
+//                    if (minDisToEnemy < 10) {
+//                        alertAnimationState.start(this.tickCount);
+//                    renderItem = true;
+//                } else {
+//                        alertAnimationState.stop();
 //                    renderItem = false;
 //                }
 //            }
@@ -533,6 +561,201 @@ public class EntityDrifter extends PathfinderMob {
                     }
                 }
             }
+        }
+    }
+    class DrifterMeleeAttackGoal extends Goal {
+        protected final EntityDrifter mob;
+        private final double speedModifier;
+        private final boolean followingTargetEvenIfNotSeen;
+        private Path path;
+        private double pathedTargetX;
+        private double pathedTargetY;
+        private double pathedTargetZ;
+        private int ticksUntilNextPathRecalculation;
+        private int ticksUntilNextAttack;
+        private final int attackInterval = UtilLevel.TIME.SECOND.getTick()*2;
+        private long lastCanUseCheck;
+        private static final long COOLDOWN_BETWEEN_CAN_USE_CHECKS = 20L;
+        private int failedPathFindingPenalty = 0;
+        private boolean canPenalize = false;
+
+        public DrifterMeleeAttackGoal(EntityDrifter pMob, double pSpeedModifier, boolean pFollowingTargetEvenIfNotSeen) {
+            this.mob = pMob;
+            this.speedModifier = pSpeedModifier;
+            this.followingTargetEvenIfNotSeen = pFollowingTargetEvenIfNotSeen;
+            this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
+        }
+
+
+
+        /**
+         * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
+         * method as well.
+         */
+        public boolean canUse() {
+            long i = this.mob.level.getGameTime();
+            if (i - this.lastCanUseCheck < 20L) {
+                return false;
+            } else {
+                this.lastCanUseCheck = i;
+                LivingEntity livingentity = this.mob.getTarget();
+                if (livingentity == null) {
+                    return false;
+                } else if (!livingentity.isAlive()) {
+                    return false;
+                } else {
+                    if (canPenalize) {
+                        if (--this.ticksUntilNextPathRecalculation <= 0) {
+                            this.path = this.mob.getNavigation().createPath(livingentity, 0);
+                            this.ticksUntilNextPathRecalculation = 4 + this.mob.getRandom().nextInt(7);
+                            return this.path != null;
+                        } else {
+                            return true;
+                        }
+                    }
+                    this.path = this.mob.getNavigation().createPath(livingentity, 0);
+                    if (this.path != null) {
+                        return true;
+                    } else {
+                        return this.getAttackReachSqr(livingentity) >= this.mob.distanceToSqr(livingentity.getX(), livingentity.getY(), livingentity.getZ());
+                    }
+                }
+            }
+        }
+
+        /**
+         * Returns whether an in-progress EntityAIBase should continue executing
+         */
+        public boolean canContinueToUse() {
+            LivingEntity livingentity = this.mob.getTarget();
+            if (livingentity == null) {
+                return false;
+            } else if (!livingentity.isAlive()) {
+                return false;
+            } else if (!this.followingTargetEvenIfNotSeen) {
+                return !this.mob.getNavigation().isDone();
+            } else if (!this.mob.isWithinRestriction(livingentity.blockPosition())) {
+                return false;
+            } else {
+                return !(livingentity instanceof Player) || !livingentity.isSpectator() && !((Player)livingentity).isCreative();
+            }
+        }
+
+        /**
+         * Execute a one shot task or start executing a continuous task
+         */
+        public void start() {
+            this.mob.getNavigation().moveTo(this.path, this.speedModifier);
+            this.mob.setAggressive(true);
+            this.ticksUntilNextPathRecalculation = 0;
+            this.ticksUntilNextAttack = 0;
+        }
+
+        /**
+         * Reset the task's internal state. Called when this task is interrupted by another one
+         */
+        public void stop() {
+            LivingEntity livingentity = this.mob.getTarget();
+            if (!EntitySelector.NO_CREATIVE_OR_SPECTATOR.test(livingentity)) {
+                this.mob.setTarget((LivingEntity)null);
+            }
+
+            this.mob.setAggressive(false);
+            this.mob.getNavigation().stop();
+        }
+
+        public boolean requiresUpdateEveryTick() {
+            return true;
+        }
+
+        /**
+         * Keep ticking a continuous task that has already been started
+         */
+        public void tick() {
+            LivingEntity livingentity = this.mob.getTarget();
+            if (livingentity != null) {
+                this.mob.getLookControl().setLookAt(livingentity, 30.0F, 30.0F);
+                double d0 = this.mob.distanceToSqr(livingentity.getX(), livingentity.getY(), livingentity.getZ());
+                this.ticksUntilNextPathRecalculation = Math.max(this.ticksUntilNextPathRecalculation - 1, 0);
+                if ((this.followingTargetEvenIfNotSeen || this.mob.getSensing().hasLineOfSight(livingentity)) && this.ticksUntilNextPathRecalculation <= 0 && (this.pathedTargetX == 0.0D && this.pathedTargetY == 0.0D && this.pathedTargetZ == 0.0D || livingentity.distanceToSqr(this.pathedTargetX, this.pathedTargetY, this.pathedTargetZ) >= 1.0D || this.mob.getRandom().nextFloat() < 0.05F)) {
+                    this.pathedTargetX = livingentity.getX();
+                    this.pathedTargetY = livingentity.getY();
+                    this.pathedTargetZ = livingentity.getZ();
+                    this.ticksUntilNextPathRecalculation = 4 + this.mob.getRandom().nextInt(7);
+                    if (this.canPenalize) {
+                        this.ticksUntilNextPathRecalculation += failedPathFindingPenalty;
+                        if (this.mob.getNavigation().getPath() != null) {
+                            net.minecraft.world.level.pathfinder.Node finalPathPoint = this.mob.getNavigation().getPath().getEndNode();
+                            if (finalPathPoint != null && livingentity.distanceToSqr(finalPathPoint.x, finalPathPoint.y, finalPathPoint.z) < 1)
+                                failedPathFindingPenalty = 0;
+                            else
+                                failedPathFindingPenalty += 10;
+                        } else {
+                            failedPathFindingPenalty += 10;
+                        }
+                    }
+                    if (d0 > 1024.0D) {
+                        this.ticksUntilNextPathRecalculation += 10;
+                    } else if (d0 > 256.0D) {
+                        this.ticksUntilNextPathRecalculation += 5;
+                    }
+
+                    if (!this.mob.getNavigation().moveTo(livingentity, this.speedModifier)) {
+                        this.ticksUntilNextPathRecalculation += 15;
+                    }
+
+                    this.ticksUntilNextPathRecalculation = this.adjustedTickDelay(this.ticksUntilNextPathRecalculation);
+                }
+
+                this.ticksUntilNextAttack = Math.max(this.ticksUntilNextAttack - 1, 0);
+                this.checkAndPerformAttack(livingentity, d0);
+            }
+        }
+
+        protected void checkAndPerformAttack(LivingEntity pEnemy, double pDistToEnemySqr) {
+            double d0 = this.getAttackReachSqr(pEnemy);
+            if (pDistToEnemySqr <= d0 && this.ticksUntilNextAttack <= 0) {
+                this.resetAttackCooldown();
+//                this.mob.swing(InteractionHand.MAIN_HAND);
+//                 this.mob.fightAnimationState.fightAnimationState.playOnce(this.mob.tickCount,this.attackInterval);
+                this.mob.alertAnimationState.stop();
+                AnimationState fightAnimationState = this.mob.fightAnimationState;
+                fightAnimationState .start(this.mob.tickCount);
+                Thread thread=new Thread(){
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(UtilLevel.TIME.SECOND.getTick()* 2L);
+                            fightAnimationState.stop();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                };
+                thread.start();
+                this.mob.doHurtTarget(pEnemy);
+            }
+
+        }
+
+        protected void resetAttackCooldown() {
+            this.ticksUntilNextAttack = this.adjustedTickDelay(20);
+        }
+
+        protected boolean isTimeToAttack() {
+            return this.ticksUntilNextAttack <= 0;
+        }
+
+        protected int getTicksUntilNextAttack() {
+            return this.ticksUntilNextAttack;
+        }
+
+        protected int getAttackInterval() {
+            return this.adjustedTickDelay(20);
+        }
+
+        protected double getAttackReachSqr(LivingEntity pAttackTarget) {
+            return (double)(this.mob.getBbWidth() * 2.0F * this.mob.getBbWidth() * 2.0F + pAttackTarget.getBbWidth());
         }
     }
 
