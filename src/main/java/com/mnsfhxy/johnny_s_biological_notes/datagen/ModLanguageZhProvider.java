@@ -6,6 +6,7 @@ import com.mnsfhxy.johnny_s_biological_notes.init.PotionsInit;
 import com.mnsfhxy.johnny_s_biological_notes.init.RegistrationInit;
 import com.mnsfhxy.johnny_s_biological_notes.init.SoundInit;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraftforge.common.data.LanguageProvider;
 
 public class ModLanguageZhProvider extends LanguageProvider {
@@ -22,9 +23,16 @@ public class ModLanguageZhProvider extends LanguageProvider {
     public void addSubtitle(String registerName,String name){
         add(JohnnySBiologicalNotes.MODID+".sound.subtitle."+registerName, name);
     }
+    public void addItemGroup(CreativeModeTab creativeModeTab, String name){
+        add("itemGroup." + creativeModeTab.getRecipeFolderName(), name);
+    }
     @Override
     protected void addTranslations() {
-        add("itemGroup." + ModInit.TAB_NAME, "Johnny的生物笔记");
+        addItemGroup(ModInit.ITEM_GROUP_BLOCK,"JohnnySBiologicalNotes的方块");
+        addItemGroup(ModInit.ITEM_GROUP_EGG,"JohnnySBiologicalNotes的刷怪蛋");
+        addItemGroup(ModInit.ITEM_GROUP_FOOD,"JohnnySBiologicalNotes的食物");
+        addItemGroup(ModInit.ITEM_GROUP_TOOL,"JohnnySBiologicalNotes的工具");
+        addItemGroup(ModInit.ITEM_GROUP_MATERIAL,"JohnnySBiologicalNotes的材料");
         add(RegistrationInit.CRAB.get(), "螃蟹");
         add(RegistrationInit.CRAB_EGG.get(), "螃蟹蛋");
         add(RegistrationInit.ITEM_CRAB_MEAT.get(), "生蟹");

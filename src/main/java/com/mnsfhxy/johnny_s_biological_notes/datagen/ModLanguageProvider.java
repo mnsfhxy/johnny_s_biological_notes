@@ -6,7 +6,9 @@ import com.mnsfhxy.johnny_s_biological_notes.init.PotionsInit;
 import com.mnsfhxy.johnny_s_biological_notes.init.RegistrationInit;
 import com.mnsfhxy.johnny_s_biological_notes.init.SoundInit;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraftforge.common.data.LanguageProvider;
+import net.minecraftforge.fml.common.Mod;
 
 public class ModLanguageProvider extends LanguageProvider {
 
@@ -22,9 +24,16 @@ public class ModLanguageProvider extends LanguageProvider {
     public void addSubtitle(String registerName,String name){
         add(JohnnySBiologicalNotes.MODID+".sound.subtitle."+registerName, name);
     }
+    public void addItemGroup(CreativeModeTab creativeModeTab,String name){
+        add("itemGroup." + creativeModeTab.getRecipeFolderName(), name);
+    }
     @Override
     protected void addTranslations() {
-        add("itemGroup." + ModInit.TAB_NAME, "JohnnySBiologicalNotes");
+        addItemGroup(ModInit.ITEM_GROUP_BLOCK,"JohnnySBiologicalNotes Block");
+        addItemGroup(ModInit.ITEM_GROUP_EGG,"JohnnySBiologicalNotes Egg");
+        addItemGroup(ModInit.ITEM_GROUP_FOOD,"JohnnySBiologicalNotes Food");
+        addItemGroup(ModInit.ITEM_GROUP_TOOL,"JohnnySBiologicalNotes Tool");
+        addItemGroup(ModInit.ITEM_GROUP_MATERIAL,"JohnnySBiologicalNotes Material");
         add(RegistrationInit.CRAB.get(), "Crab");
         add(RegistrationInit.CRAB_EGG.get(), "Crab Egg");
         add(RegistrationInit.ITEM_CRAB_MEAT.get(), "Crab Meat");

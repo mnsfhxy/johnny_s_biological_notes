@@ -56,8 +56,6 @@ import java.lang.reflect.Field;
 
 public class RegistrationInit {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, JohnnySBiologicalNotes.MODID);
-    public static final Item.Properties ITEM_PROPERTIES =
-            new Item.Properties().tab(ModInit.ITEM_GROUP);
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, JohnnySBiologicalNotes.MODID);
     public static final DeferredRegister<Codec<? extends BiomeModifier>> BIOME_MODIFIER_SERIALIZER = DeferredRegister.create(ForgeRegistries.Keys.BIOME_MODIFIER_SERIALIZERS, JohnnySBiologicalNotes.MODID);
@@ -104,6 +102,7 @@ public class RegistrationInit {
     public static final RegistryObject<BlockJelly> BLOCK_JELLY_WHITE = BLOCKS.register("jelly_block_white", BlockJelly::new);
     public static final RegistryObject<BlockJelly> BLOCK_JELLY_YELLOW = BLOCKS.register("jelly_block_yellow", BlockJelly::new);
     public static final RegistryObject<BlockJellyEmbryo> BLOCK_JELLY_EMBRYO = BLOCKS.register("jelly_embryo", BlockJellyEmbryo::new);
+    //涂胶方块
     public static final RegistryObject<BlockGluedSand> BLOCK_GLUED_SAND = BLOCKS.register("glued_sand", () -> new BlockGluedSand(14406560, BlockBehaviour.Properties.of(Material.SAND, MaterialColor.SAND).strength(0.5F).sound(SoundType.SAND)));
     public static final RegistryObject<BlockGluedSand> BLOCK_GLUED_RED_SAND = BLOCKS.register("glued_red_sand", () -> new BlockGluedSand(11098145, BlockBehaviour.Properties.of(Material.SAND, MaterialColor.SAND).strength(0.5F).sound(SoundType.SAND)));
     public static final RegistryObject<BlockGluedConcretePowder> BLOCK_GLUED_WHITE_CONCRETE_POWDER = BLOCKS.register("glued_white_concrete_powder", () -> new BlockGluedConcretePowder(Blocks.WHITE_CONCRETE, BlockBehaviour.Properties.of(Material.SAND, DyeColor.WHITE).strength(0.5F).sound(SoundType.SAND)));
@@ -152,24 +151,25 @@ public class RegistrationInit {
     public static final RegistryObject<Item> BLOCK_ITEM_JELLY_RED = fromBlock(BLOCK_JELLY_RED);
     public static final RegistryObject<Item> BLOCK_ITEM_JELLY_WHITE = fromBlock(BLOCK_JELLY_WHITE);
     public static final RegistryObject<Item> BLOCK_ITEM_JELLY_YELLOW = fromBlock(BLOCK_JELLY_YELLOW);
-    public static final RegistryObject<Item> BLOCK_ITEM_GLUED_SAND = fromBlock(BLOCK_GLUED_SAND);
-    public static final RegistryObject<Item> BLOCK_ITEM_GLUED_RED_SAND = fromBlock(BLOCK_GLUED_RED_SAND);
-    public static final RegistryObject<Item> BLOCK_ITEM_GLUED_WHITE_CONCRETE_POWDER = fromBlock(BLOCK_GLUED_WHITE_CONCRETE_POWDER);
-    public static final RegistryObject<Item> BLOCK_ITEM_GLUED_ORANGE_CONCRETE_POWDER = fromBlock(BLOCK_GLUED_ORANGE_CONCRETE_POWDER);
-    public static final RegistryObject<Item> BLOCK_ITEM_GLUED_MAGENTA_CONCRETE_POWDER = fromBlock(BLOCK_GLUED_MAGENTA_CONCRETE_POWDER);
-    public static final RegistryObject<Item> BLOCK_ITEM_GLUED_LIGHT_BLUE_CONCRETE_POWDER = fromBlock(BLOCK_GLUED_LIGHT_BLUE_CONCRETE_POWDER);
-    public static final RegistryObject<Item> BLOCK_ITEM_GLUED_YELLOW_CONCRETE_POWDER = fromBlock(BLOCK_GLUED_YELLOW_CONCRETE_POWDER);
-    public static final RegistryObject<Item> BLOCK_ITEM_GLUED_LIME_CONCRETE_POWDER = fromBlock(BLOCK_GLUED_LIME_CONCRETE_POWDER);
-    public static final RegistryObject<Item> BLOCK_ITEM_GLUED_PINK_CONCRETE_POWDER = fromBlock(BLOCK_GLUED_PINK_CONCRETE_POWDER);
-    public static final RegistryObject<Item> BLOCK_ITEM_GLUED_GRAY_CONCRETE_POWDER = fromBlock(BLOCK_GLUED_GRAY_CONCRETE_POWDER);
-    public static final RegistryObject<Item> BLOCK_ITEM_GLUED_LIGHT_GRAY_CONCRETE_POWDER = fromBlock(BLOCK_GLUED_LIGHT_GRAY_CONCRETE_POWDER);
-    public static final RegistryObject<Item> BLOCK_ITEM_GLUED_CYAN_CONCRETE_POWDER = fromBlock(BLOCK_GLUED_CYAN_CONCRETE_POWDER);
-    public static final RegistryObject<Item> BLOCK_ITEM_GLUED_PURPLE_CONCRETE_POWDER = fromBlock(BLOCK_GLUED_PURPLE_CONCRETE_POWDER);
-    public static final RegistryObject<Item> BLOCK_ITEM_GLUED_BLUE_CONCRETE_POWDER = fromBlock(BLOCK_GLUED_BLUE_CONCRETE_POWDER);
-    public static final RegistryObject<Item> BLOCK_ITEM_GLUED_BROWN_CONCRETE_POWDER = fromBlock(BLOCK_GLUED_BROWN_CONCRETE_POWDER);
-    public static final RegistryObject<Item> BLOCK_ITEM_GLUED_GREEN_CONCRETE_POWDER = fromBlock(BLOCK_GLUED_GREEN_CONCRETE_POWDER);
-    public static final RegistryObject<Item> BLOCK_ITEM_GLUED_RED_CONCRETE_POWDER = fromBlock(BLOCK_GLUED_RED_CONCRETE_POWDER);
-    public static final RegistryObject<Item> BLOCK_ITEM_GLUED_BLACK_CONCRETE_POWDER = fromBlock(BLOCK_GLUED_BLACK_CONCRETE_POWDER);
+    //涂胶方块
+//    public static final RegistryObject<Item> BLOCK_ITEM_GLUED_SAND = fromBlock(BLOCK_GLUED_SAND);
+//    public static final RegistryObject<Item> BLOCK_ITEM_GLUED_RED_SAND = fromBlock(BLOCK_GLUED_RED_SAND);
+//    public static final RegistryObject<Item> BLOCK_ITEM_GLUED_WHITE_CONCRETE_POWDER = fromBlock(BLOCK_GLUED_WHITE_CONCRETE_POWDER);
+//    public static final RegistryObject<Item> BLOCK_ITEM_GLUED_ORANGE_CONCRETE_POWDER = fromBlock(BLOCK_GLUED_ORANGE_CONCRETE_POWDER);
+//    public static final RegistryObject<Item> BLOCK_ITEM_GLUED_MAGENTA_CONCRETE_POWDER = fromBlock(BLOCK_GLUED_MAGENTA_CONCRETE_POWDER);
+//    public static final RegistryObject<Item> BLOCK_ITEM_GLUED_LIGHT_BLUE_CONCRETE_POWDER = fromBlock(BLOCK_GLUED_LIGHT_BLUE_CONCRETE_POWDER);
+//    public static final RegistryObject<Item> BLOCK_ITEM_GLUED_YELLOW_CONCRETE_POWDER = fromBlock(BLOCK_GLUED_YELLOW_CONCRETE_POWDER);
+//    public static final RegistryObject<Item> BLOCK_ITEM_GLUED_LIME_CONCRETE_POWDER = fromBlock(BLOCK_GLUED_LIME_CONCRETE_POWDER);
+//    public static final RegistryObject<Item> BLOCK_ITEM_GLUED_PINK_CONCRETE_POWDER = fromBlock(BLOCK_GLUED_PINK_CONCRETE_POWDER);
+//    public static final RegistryObject<Item> BLOCK_ITEM_GLUED_GRAY_CONCRETE_POWDER = fromBlock(BLOCK_GLUED_GRAY_CONCRETE_POWDER);
+//    public static final RegistryObject<Item> BLOCK_ITEM_GLUED_LIGHT_GRAY_CONCRETE_POWDER = fromBlock(BLOCK_GLUED_LIGHT_GRAY_CONCRETE_POWDER);
+//    public static final RegistryObject<Item> BLOCK_ITEM_GLUED_CYAN_CONCRETE_POWDER = fromBlock(BLOCK_GLUED_CYAN_CONCRETE_POWDER);
+//    public static final RegistryObject<Item> BLOCK_ITEM_GLUED_PURPLE_CONCRETE_POWDER = fromBlock(BLOCK_GLUED_PURPLE_CONCRETE_POWDER);
+//    public static final RegistryObject<Item> BLOCK_ITEM_GLUED_BLUE_CONCRETE_POWDER = fromBlock(BLOCK_GLUED_BLUE_CONCRETE_POWDER);
+//    public static final RegistryObject<Item> BLOCK_ITEM_GLUED_BROWN_CONCRETE_POWDER = fromBlock(BLOCK_GLUED_BROWN_CONCRETE_POWDER);
+//    public static final RegistryObject<Item> BLOCK_ITEM_GLUED_GREEN_CONCRETE_POWDER = fromBlock(BLOCK_GLUED_GREEN_CONCRETE_POWDER);
+//    public static final RegistryObject<Item> BLOCK_ITEM_GLUED_RED_CONCRETE_POWDER = fromBlock(BLOCK_GLUED_RED_CONCRETE_POWDER);
+//    public static final RegistryObject<Item> BLOCK_ITEM_GLUED_BLACK_CONCRETE_POWDER = fromBlock(BLOCK_GLUED_BLACK_CONCRETE_POWDER);
     //暂时不添加到创造栏
     public static final RegistryObject<Item> BLOCK_ITEM_ECO_BOTTLE = ITEMS.register(BLOCK_ECO_BOTTLE.getId().getPath(), () -> new BlockItem(BLOCK_ECO_BOTTLE.get(), new Item.Properties()));
 
@@ -192,10 +192,10 @@ public class RegistrationInit {
 
 
     public static <B extends Block> RegistryObject<Item> fromBlock(RegistryObject<B> block) {
-        return ITEMS.register(block.getId().getPath(), () -> new BlockItem(block.get(), ITEM_PROPERTIES));
+        return ITEMS.register(block.getId().getPath(), () -> new BlockItem(block.get(), new Item.Properties().tab(ModInit.ITEM_GROUP_BLOCK)));
     }
     public static <B extends Block> RegistryObject<Item> fromBlock(RegistryObject<B> block,int pStackTo) {
-        return ITEMS.register(block.getId().getPath(), () -> new BlockItem(block.get(), ITEM_PROPERTIES.stacksTo(pStackTo)));
+        return ITEMS.register(block.getId().getPath(), () -> new BlockItem(block.get(), new Item.Properties().tab(ModInit.ITEM_GROUP_BLOCK).stacksTo(pStackTo)));
     }
     //Entity注册
     public static final RegistryObject<EntityType<EntityCrab>> CRAB =
@@ -240,36 +240,33 @@ public class RegistrationInit {
     //egg
     public static final RegistryObject<Item> CRAB_EGG =
             ITEMS.register(
-                    "crab", () -> new ForgeSpawnEggItem(CRAB, 0xe25243, 0xc1bbb9, ITEM_PROPERTIES));
+                    "crab", () -> new ForgeSpawnEggItem(CRAB, 0xe25243, 0xc1bbb9, new Item.Properties().tab(ModInit.ITEM_GROUP_EGG)));
     public static final RegistryObject<Item> DRIFTER_EGG =
             ITEMS.register(
-                    "drifter", () -> new ForgeSpawnEggItem(DRIFTER, 0x794343, 0xbba84c, ITEM_PROPERTIES));
+                    "drifter", () -> new ForgeSpawnEggItem(DRIFTER, 0x794343, 0xbba84c, new Item.Properties().tab(ModInit.ITEM_GROUP_EGG)));
 
     public static final RegistryObject<Item> PEEPER_EGG =
             ITEMS.register(
-                    "peeper", () -> new ForgeSpawnEggItem(PEEPER, 0x534620, 0x6c7911, ITEM_PROPERTIES));
+                    "peeper", () -> new ForgeSpawnEggItem(PEEPER, 0x534620, 0x6c7911,new Item.Properties().tab(ModInit.ITEM_GROUP_EGG)));
     public static final RegistryObject<Item> JELLY_EGG =
             ITEMS.register(
-                    "jelly", () -> new ForgeSpawnEggItem(JELLY, 0x7e6f9f, 0xf6f2fb, ITEM_PROPERTIES));
+                    "jelly", () -> new ForgeSpawnEggItem(JELLY, 0x7e6f9f, 0xf6f2fb,new Item.Properties().tab(ModInit.ITEM_GROUP_EGG)));
     public static final RegistryObject<Item> TRIDACNA_EGG =
             ITEMS.register(
-                    "tridacna", () -> new ForgeSpawnEggItem(TRIDACNA, 0x9f9997, 0x42468e, ITEM_PROPERTIES));
-//    public static final RegistryObject<Item> LOITER_EGG =
-//            ITEMS.register(
-//                    "loiter", () -> new ForgeSpawnEggItem(LOITER, 0x1e61cf, 0xc2f2fb, ITEM_PROPERTIES));
+                    "tridacna", () -> new ForgeSpawnEggItem(TRIDACNA, 0x9f9997, 0x42468e, new Item.Properties().tab(ModInit.ITEM_GROUP_EGG)));
 
     public static final RegistryObject<Item> LOITER_EGG =
             ITEMS.register(
-                    "loiter", () -> new ForgeSpawnEggItem(LOITER, 0x1e61cf, 0xc2f2fb, new Item.Properties()));
+                    "loiter", () -> new ForgeSpawnEggItem(LOITER, 0x1e61cf, 0xc2f2fb, new Item.Properties().tab(ModInit.ITEM_GROUP_EGG)));
 
-    public static final RegistryObject<Item> ITEM_FORGED_PLATE = ITEMS.register("forged_plate", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP)));
+    public static final RegistryObject<Item> ITEM_FORGED_PLATE = ITEMS.register("forged_plate", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP_MATERIAL)));
 
-    public static final RegistryObject<Item> ITEM_WOOD_BLADE = ITEMS.register("wood_blade", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP)));
-    public static final RegistryObject<Item> ITEM_STONE_BLADE = ITEMS.register("stone_blade", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP)));
-    public static final RegistryObject<Item> ITEM_IRON_BLADE = ITEMS.register("iron_blade", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP)));
-    public static final RegistryObject<Item> ITEM_GOLD_BLADE = ITEMS.register("gold_blade", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP)));
-    public static final RegistryObject<Item> ITEM_DIAMOND_BLADE = ITEMS.register("diamond_blade", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP)));
-    public static final RegistryObject<Item> ITEM_NETHERITE_BLADE = ITEMS.register("netherite_blade", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP)));
+    public static final RegistryObject<Item> ITEM_WOOD_BLADE = ITEMS.register("wood_blade", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP_MATERIAL)));
+    public static final RegistryObject<Item> ITEM_STONE_BLADE = ITEMS.register("stone_blade", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP_MATERIAL)));
+    public static final RegistryObject<Item> ITEM_IRON_BLADE = ITEMS.register("iron_blade", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP_MATERIAL)));
+    public static final RegistryObject<Item> ITEM_GOLD_BLADE = ITEMS.register("gold_blade", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP_MATERIAL)));
+    public static final RegistryObject<Item> ITEM_DIAMOND_BLADE = ITEMS.register("diamond_blade", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP_MATERIAL)));
+    public static final RegistryObject<Item> ITEM_NETHERITE_BLADE = ITEMS.register("netherite_blade", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP_MATERIAL)));
 
 
     public static final RegistryObject<ItemKatana> ITEM_WOOD_KATANA = ITEMS.register("wood_katana", () -> new ItemKatana(Tiers.WOOD, 4, -3f));
@@ -280,34 +277,34 @@ public class RegistrationInit {
     public static final RegistryObject<ItemKatana> ITEM_NETHERITE_KATANA = ITEMS.register("netherite_katana", () -> new ItemKatana(Tiers.NETHERITE, 7, -3f));
 
 
-    public static final RegistryObject<Item> ITEM_CRAB_SHELL = ITEMS.register("crab_shell", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP)));
-    public static final RegistryObject<Item> ITEM_CRAB_MEAT = ITEMS.register("crab_meat", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.4f).meat().build())));
-    public static final RegistryObject<Item> ITEM_COOKED_CRAB_MEAT = ITEMS.register("cooked_crab_meat", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP).food(new FoodProperties.Builder().nutrition(5).saturationMod(3f).meat().build())));
-    public static final RegistryObject<Item> ITEM_CRAB_BUCKET = ITEMS.register("crab_bucket", () -> new ItemModFishBucket(CRAB, Fluids.WATER, new Item.Properties().tab(ModInit.ITEM_GROUP)));
+    public static final RegistryObject<Item> ITEM_CRAB_SHELL = ITEMS.register("crab_shell", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP_MATERIAL)));
+    public static final RegistryObject<Item> ITEM_CRAB_MEAT = ITEMS.register("crab_meat", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP_FOOD).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.4f).meat().build())));
+    public static final RegistryObject<Item> ITEM_COOKED_CRAB_MEAT = ITEMS.register("cooked_crab_meat", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP_FOOD).food(new FoodProperties.Builder().nutrition(5).saturationMod(3f).meat().build())));
+    public static final RegistryObject<Item> ITEM_CRAB_BUCKET = ITEMS.register("crab_bucket", () -> new ItemModFishBucket(CRAB, Fluids.WATER, new Item.Properties().tab(ModInit.ITEM_GROUP_FOOD)));
 
-    public static final RegistryObject<Item> ITEM_JELLY = ITEMS.register("jelly_jelly", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.4f).build())));
-    public static final RegistryObject<Item> ITEM_JELLY_BLACK = ITEMS.register("jelly_black", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.4f).build())));
-    public static final RegistryObject<Item> ITEM_JELLY_BLUE = ITEMS.register("jelly_blue", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.4f).build())));
-    public static final RegistryObject<Item> ITEM_JELLY_BROWN = ITEMS.register("jelly_brown", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.4f).build())));
-    public static final RegistryObject<Item> ITEM_JELLY_CYAN = ITEMS.register("jelly_cyan", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.4f).build())));
-    public static final RegistryObject<Item> ITEM_JELLY_GRAY = ITEMS.register("jelly_gray", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.4f).build())));
-    public static final RegistryObject<Item> ITEM_JELLY_GREEN = ITEMS.register("jelly_green", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.4f).build())));
-    public static final RegistryObject<Item> ITEM_JELLY_LIGHTBLUE = ITEMS.register("jelly_lightblue", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.4f).build())));
-    public static final RegistryObject<Item> ITEM_JELLY_LIGHTGRAY = ITEMS.register("jelly_lightgray", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.4f).build())));
-    public static final RegistryObject<Item> ITEM_JELLY_LIGHTGREEN = ITEMS.register("jelly_lightgreen", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.4f).build())));
-    public static final RegistryObject<Item> ITEM_JELLY_MAGENTA = ITEMS.register("jelly_magenta", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.4f).build())));
-    public static final RegistryObject<Item> ITEM_JELLY_ORANGE = ITEMS.register("jelly_orange", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.4f).build())));
-    public static final RegistryObject<Item> ITEM_JELLY_PINK = ITEMS.register("jelly_pink", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.4f).build())));
-    public static final RegistryObject<Item> ITEM_JELLY_PURPLE = ITEMS.register("jelly_purple", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.4f).build())));
-    public static final RegistryObject<Item> ITEM_JELLY_RED = ITEMS.register("jelly_red", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.4f).build())));
-    public static final RegistryObject<Item> ITEM_JELLY_WHITE = ITEMS.register("jelly_white", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.4f).build())));
-    public static final RegistryObject<Item> ITEM_JELLY_YELLOW = ITEMS.register("jelly_yellow", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.4f).build())));
-    public static final RegistryObject<Item> ITEM_SEMI_SOLIDFIED_PROTEIN = ITEMS.register("semi_solidfied_protein", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP)));
-    public static final RegistryObject<Item> ITEM_SOLIDFIED_PROTEIN = ITEMS.register("solidfied_protein", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP)));
-    public static final RegistryObject<Item> ITEM_JELLY_PLATTER = ITEMS.register("jelly_platter", () -> new BowlFoodItem(new Item.Properties().tab(ModInit.ITEM_GROUP).stacksTo(1).food(new FoodProperties.Builder().nutrition(5).effect(() -> new MobEffectInstance(MobEffects.HEAL, 10), 1.0F).effect(() -> new MobEffectInstance(MobEffects.REGENERATION, UtilLevel.TIME.SECOND.getTick() * 22, 1), 1.0F).effect(() -> new MobEffectInstance(PotionsInit.VULNUS_RECOVER.get(), UtilLevel.TIME.MINUTE.getTick() * 2), 1.0F).alwaysEat().build())));
+    public static final RegistryObject<Item> ITEM_JELLY = ITEMS.register("jelly_jelly", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP_BLOCK).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.4f).build())));
+    public static final RegistryObject<Item> ITEM_JELLY_BLACK = ITEMS.register("jelly_black", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP_BLOCK).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.4f).build())));
+    public static final RegistryObject<Item> ITEM_JELLY_BLUE = ITEMS.register("jelly_blue", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP_BLOCK).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.4f).build())));
+    public static final RegistryObject<Item> ITEM_JELLY_BROWN = ITEMS.register("jelly_brown", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP_BLOCK).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.4f).build())));
+    public static final RegistryObject<Item> ITEM_JELLY_CYAN = ITEMS.register("jelly_cyan", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP_BLOCK).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.4f).build())));
+    public static final RegistryObject<Item> ITEM_JELLY_GRAY = ITEMS.register("jelly_gray", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP_BLOCK).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.4f).build())));
+    public static final RegistryObject<Item> ITEM_JELLY_GREEN = ITEMS.register("jelly_green", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP_BLOCK).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.4f).build())));
+    public static final RegistryObject<Item> ITEM_JELLY_LIGHTBLUE = ITEMS.register("jelly_lightblue", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP_BLOCK).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.4f).build())));
+    public static final RegistryObject<Item> ITEM_JELLY_LIGHTGRAY = ITEMS.register("jelly_lightgray", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP_BLOCK).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.4f).build())));
+    public static final RegistryObject<Item> ITEM_JELLY_LIGHTGREEN = ITEMS.register("jelly_lightgreen", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP_BLOCK).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.4f).build())));
+    public static final RegistryObject<Item> ITEM_JELLY_MAGENTA = ITEMS.register("jelly_magenta", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP_BLOCK).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.4f).build())));
+    public static final RegistryObject<Item> ITEM_JELLY_ORANGE = ITEMS.register("jelly_orange", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP_BLOCK).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.4f).build())));
+    public static final RegistryObject<Item> ITEM_JELLY_PINK = ITEMS.register("jelly_pink", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP_BLOCK).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.4f).build())));
+    public static final RegistryObject<Item> ITEM_JELLY_PURPLE = ITEMS.register("jelly_purple", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP_BLOCK).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.4f).build())));
+    public static final RegistryObject<Item> ITEM_JELLY_RED = ITEMS.register("jelly_red", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP_BLOCK).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.4f).build())));
+    public static final RegistryObject<Item> ITEM_JELLY_WHITE = ITEMS.register("jelly_white", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP_BLOCK).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.4f).build())));
+    public static final RegistryObject<Item> ITEM_JELLY_YELLOW = ITEMS.register("jelly_yellow", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP_BLOCK).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.4f).build())));
+    public static final RegistryObject<Item> ITEM_SEMI_SOLIDFIED_PROTEIN = ITEMS.register("semi_solidfied_protein", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP_BLOCK)));
+    public static final RegistryObject<Item> ITEM_SOLIDFIED_PROTEIN = ITEMS.register("solidfied_protein", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP_BLOCK)));
+    public static final RegistryObject<Item> ITEM_JELLY_PLATTER = ITEMS.register("jelly_platter", () -> new BowlFoodItem(new Item.Properties().tab(ModInit.ITEM_GROUP_BLOCK).stacksTo(1).food(new FoodProperties.Builder().nutrition(5).effect(() -> new MobEffectInstance(MobEffects.HEAL, 10), 1.0F).effect(() -> new MobEffectInstance(MobEffects.REGENERATION, UtilLevel.TIME.SECOND.getTick() * 22, 1), 1.0F).effect(() -> new MobEffectInstance(PotionsInit.VULNUS_RECOVER.get(), UtilLevel.TIME.MINUTE.getTick() * 2), 1.0F).alwaysEat().build())));
 
 //    ModItemModels,zh,en,
-    public static final RegistryObject<Item> ITEM_GLUE_BOTTLE = ITEMS.register("glue_bottle", () -> new ItemGlueBottle(new Item.Properties().tab(ModInit.ITEM_GROUP)));
+    public static final RegistryObject<Item> ITEM_GLUE_BOTTLE = ITEMS.register("glue_bottle", () -> new ItemGlueBottle(new Item.Properties().tab(ModInit.ITEM_GROUP_TOOL)));
 
 //    public static final RegistryObject<Item> ITEM_SOUL_TUMOR =ITEMS.register("soul_tumor", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP)));
     public static final RegistryObject<Item> ITEM_SOUL_TUMOR =ITEMS.register("soul_tumor", () -> new Item(new Item.Properties()));

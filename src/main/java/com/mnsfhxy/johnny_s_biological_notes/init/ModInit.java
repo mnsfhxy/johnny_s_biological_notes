@@ -35,20 +35,62 @@ import java.lang.reflect.Field;
 //注意！在使用了 @Mod.EventBusSubscriber 的类里，所有方法都必须有 public 和 static 修饰符。
 @Mod.EventBusSubscriber(modid = JohnnySBiologicalNotes.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModInit {
-    public static final String TAB_NAME = "JohnnySBiologicalNotes";
-    public static final CreativeModeTab ITEM_GROUP = new CreativeModeTab(TAB_NAME) {
+    public static final String TAB_NAME = JohnnySBiologicalNotes.MODID;
+    public static final CreativeModeTab ITEM_GROUP_BLOCK = new CreativeModeTab(TAB_NAME+"_block") {
         @Override
         public ItemStack makeIcon() {
-            return new ItemStack(RegistrationInit.ITEM_CRAB_MEAT.get());
+            return new ItemStack(RegistrationInit.BLOCK_TRIDACNA_SHELL.get());
         }
 
         @Override
         public String getRecipeFolderName() {
-            return JohnnySBiologicalNotes.MODID;
+            return JohnnySBiologicalNotes.MODID+"_block";
         }
     };
+    public static final CreativeModeTab ITEM_GROUP_EGG = new CreativeModeTab(TAB_NAME+"_egg") {
+        @Override
+        public ItemStack makeIcon() {
+            return new ItemStack(RegistrationInit.CRAB_EGG.get());
+        }
 
+        @Override
+        public String getRecipeFolderName() {
+            return JohnnySBiologicalNotes.MODID+"_egg";
+        }
+    };
+    public static final CreativeModeTab ITEM_GROUP_MATERIAL = new CreativeModeTab(TAB_NAME+"_material") {
+        @Override
+        public ItemStack makeIcon() {
+            return new ItemStack(RegistrationInit.ITEM_FORGED_PLATE.get());
+        }
 
+        @Override
+        public String getRecipeFolderName() {
+            return JohnnySBiologicalNotes.MODID+"_material";
+        }
+    };
+    public static final CreativeModeTab ITEM_GROUP_FOOD = new CreativeModeTab(TAB_NAME+"_food") {
+        @Override
+        public ItemStack makeIcon() {
+            return new ItemStack(RegistrationInit.ITEM_JELLY_PLATTER.get());
+        }
+
+        @Override
+        public String getRecipeFolderName() {
+            return JohnnySBiologicalNotes.MODID+"_food";
+        }
+    };
+    public static final CreativeModeTab ITEM_GROUP_TOOL = new CreativeModeTab(TAB_NAME+"_tool") {
+        @Override
+        public ItemStack makeIcon() {
+            return new ItemStack(RegistrationInit.ITEM_CRAB_BUCKET.get());
+        }
+
+        @Override
+        public String getRecipeFolderName() {
+            return JohnnySBiologicalNotes.MODID+"_tool";
+        }
+    };
     public static void init() {
         IEventBus bus = MinecraftForge.EVENT_BUS;
         bus.addGenericListener(Entity.class, SpiritEvents::onAttachCapabilitiesPlayer);

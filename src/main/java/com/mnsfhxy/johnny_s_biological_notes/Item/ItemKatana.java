@@ -2,6 +2,7 @@ package com.mnsfhxy.johnny_s_biological_notes.Item;
 
 import com.mnsfhxy.johnny_s_biological_notes.capability.spirit.PlayerSpiritProvider;
 import com.mnsfhxy.johnny_s_biological_notes.capability.spirit.SpiritOverlay;
+import com.mnsfhxy.johnny_s_biological_notes.init.ModInit;
 import com.mnsfhxy.johnny_s_biological_notes.init.RegistrationInit;
 import com.mnsfhxy.johnny_s_biological_notes.init.TagsInit;
 import net.minecraft.core.particles.ParticleTypes;
@@ -20,7 +21,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class ItemKatana extends SwordItem {
     public ItemKatana(final Tier tier, int pAttackDamageModifier, float pAttackSpeedModifier) {
-        super(tier, pAttackDamageModifier, pAttackSpeedModifier, new Item.Properties().tab(CreativeModeTab.TAB_COMBAT));
+        super(tier, pAttackDamageModifier, pAttackSpeedModifier, new Item.Properties().tab(ModInit.ITEM_GROUP_TOOL));
     }
     public ItemKatana(final Tier tier, int pAttackDamageModifier, float pAttackSpeedModifier,Item.Properties pProperties) {
         super(tier, pAttackDamageModifier, pAttackSpeedModifier, pProperties);
