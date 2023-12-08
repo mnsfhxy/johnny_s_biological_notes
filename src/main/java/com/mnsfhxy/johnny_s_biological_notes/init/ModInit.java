@@ -83,7 +83,7 @@ public class ModInit {
     public static final CreativeModeTab ITEM_GROUP_TOOL = new CreativeModeTab(TAB_NAME+"_tool") {
         @Override
         public ItemStack makeIcon() {
-            return new ItemStack(RegistrationInit.ITEM_CRAB_BUCKET.get());
+            return new ItemStack(RegistrationInit.ITEM_DIAMOND_KATANA.get());
         }
 
         @Override
