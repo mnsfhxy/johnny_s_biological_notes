@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
-    "johnny_s_biological_notes:tridacna_shell"
+    "johnny_s_biological_notes:tridacna_shell",
+    "johnny_s_biological_notes:tridacna_shell_broken",
+    "johnny_s_biological_notes:older_tridacna_shell",
+    "johnny_s_biological_notes:older_tridacna_shell_broken"
   ]
 }
