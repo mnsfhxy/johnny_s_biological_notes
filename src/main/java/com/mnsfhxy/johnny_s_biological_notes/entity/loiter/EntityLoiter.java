@@ -1,11 +1,8 @@
 package com.mnsfhxy.johnny_s_biological_notes.entity.loiter;
 
-import com.mnsfhxy.johnny_s_biological_notes.entity.drifter.EntityDrifter;
-import com.mnsfhxy.johnny_s_biological_notes.entity.peeper.EntityPeeper;
 import com.mnsfhxy.johnny_s_biological_notes.init.RegistrationInit;
 import com.mnsfhxy.johnny_s_biological_notes.init.SoundInit;
 import com.mnsfhxy.johnny_s_biological_notes.util.UtilLevel;
-import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -14,7 +11,6 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
@@ -25,7 +21,6 @@ import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
-import net.minecraft.world.entity.monster.Ghast;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -108,9 +103,10 @@ public class EntityLoiter extends Monster {
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(1, new RandomStrollGoal(this, MOVEMENT_SPEED));
-        this.goalSelector.addGoal(3, new RandomLookAroundGoal(this));
-        this.goalSelector.addGoal(4, new FloatGoal(this));
+        this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(5, new FloatGoal(this));
         this.goalSelector.addGoal(2, new EntityLoiter.RandomFloatAroundGoal(this));
+        this.goalSelector.addGoal(3, new EntityLoiter.EntityLoiterLookGoal(this));
     }
 
     @Override
@@ -147,17 +143,8 @@ public class EntityLoiter extends Monster {
                 this.setSecondsOnFire(8);
             }
         }
-        this.xBodyRotO = this.xBodyRot;
-        this.zBodyRotO = this.zBodyRot;
-        Vec3 vec3 = this.getDeltaMovement();
-        double d0 = vec3.horizontalDistance();
-        this.yBodyRot += (-((float)Mth.atan2(vec3.x, vec3.z)) * (180F / (float)Math.PI) - this.yBodyRot) * 0.1F;
-        this.setYRot(this.yBodyRot);
-        this.zBodyRot += (float)Math.PI * 1 * 1.5F;
-        this.xBodyRot += (-((float)Mth.atan2(d0, vec3.y)) * (180F / (float)Math.PI) - this.xBodyRot) * 0.1F;
+
         super.aiStep();
-
-
     }
 
     @Override
@@ -289,6 +276,48 @@ public class EntityLoiter extends Monster {
             }
 
             return true;
+        }
+    }
+
+    static class EntityLoiterLookGoal extends Goal {
+        private final EntityLoiter entityLoiter;
+
+        public EntityLoiterLookGoal(EntityLoiter entityLoiter) {
+            this.entityLoiter = entityLoiter;
+            this.setFlags(EnumSet.of(Goal.Flag.LOOK));
+        }
+
+        /**
+         * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
+         * method as well.
+         */
+        public boolean canUse() {
+            return true;
+        }
+
+        public boolean requiresUpdateEveryTick() {
+            return true;
+        }
+
+        /**
+         * Keep ticking a continuous task that has already been started
+         */
+        public void tick() {
+            if (this.entityLoiter.getTarget() == null) {
+                Vec3 vec3 = this.entityLoiter.getDeltaMovement();
+                this.entityLoiter.setYRot(-((float)Mth.atan2(vec3.x, vec3.z)) * (180F / (float)Math.PI));
+                this.entityLoiter.yBodyRot = this.entityLoiter.getYRot();
+            } else {
+                LivingEntity livingentity = this.entityLoiter.getTarget();
+                double d0 = 64.0D;
+                if (livingentity.distanceToSqr(this.entityLoiter) < 4096.0D) {
+                    double d1 = livingentity.getX() - this.entityLoiter.getX();
+                    double d2 = livingentity.getZ() - this.entityLoiter.getZ();
+                    this.entityLoiter.setYRot(-((float)Mth.atan2(d1, d2)) * (180F / (float)Math.PI));
+                    this.entityLoiter.yBodyRot = this.entityLoiter.getYRot();
+                }
+            }
+
         }
     }
 }
