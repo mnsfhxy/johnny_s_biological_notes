@@ -40,9 +40,9 @@ public class BiomeSpawnConfig {
             ImmutableList.of(
                     Biomes.SOUL_SAND_VALLEY
             ),
-            25,
+            8,
             1,
-            3,
+            1,
             SpawnPlacements.Type.ON_GROUND,
             Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
             Monster::checkMonsterSpawnRules

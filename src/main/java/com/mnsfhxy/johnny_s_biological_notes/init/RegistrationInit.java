@@ -234,7 +234,7 @@ public class RegistrationInit {
     public static final RegistryObject<EntityType<EntityLoiter>> LOITER =
             ENTITIES.register("loiter",
                     () -> registerEntity(EntityType.Builder.of(EntityLoiter::new,MobCategory.MONSTER)
-                            .sized(1F, 1F), "loiter"));
+                            .sized(2.2F, 0.65F), "loiter"));
 
     //Item注册
     //egg
@@ -257,7 +257,7 @@ public class RegistrationInit {
 
     public static final RegistryObject<Item> LOITER_EGG =
             ITEMS.register(
-                    "loiter", () -> new ForgeSpawnEggItem(LOITER, 0x1e61cf, 0xc2f2fb, new Item.Properties().tab(ModInit.ITEM_GROUP_EGG)));
+                    "loiter", () -> new ForgeSpawnEggItem(LOITER, 0x433837, 0x52cfd9, new Item.Properties().tab(ModInit.ITEM_GROUP_EGG)));
 
     public static final RegistryObject<Item> ITEM_FORGED_PLATE = ITEMS.register("forged_plate", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP_MATERIAL)));
 
