@@ -45,8 +45,8 @@ public class ModLanguageZhProvider extends LanguageProvider {
         add(RegistrationInit.CRAB.get() + ".CYAN", "青色螃蟹");
         add(RegistrationInit.CRAB.get() + ".BLACK", "黑色螃蟹");
         add(PotionsInit.FEAR_WATER.get(), "恐水");
-//        addPotion(PotionsInit.CONCENTRATE_POTION.getId().getPath(),"专注药水");
-//        addPotion(PotionsInit.LONG_CONCENTRATE_POTION.getId().getPath(),"长效专注药水");
+        addPotion(PotionsInit.CONCENTRATE_POTION.getId().getPath(),"专注药水");
+        addPotion(PotionsInit.LONG_CONCENTRATE_POTION.getId().getPath(),"长效专注药水");
 
         addPotion(PotionsInit.FEAR_WATER_POTION.getId().getPath(),"恐水药水");
         addPotion(PotionsInit.LONG_FEAR_WATER_POTION.getId().getPath(),"长效恐水药水");

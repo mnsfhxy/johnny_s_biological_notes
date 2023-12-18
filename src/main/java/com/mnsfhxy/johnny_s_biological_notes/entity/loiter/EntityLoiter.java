@@ -176,7 +176,7 @@ public class EntityLoiter extends Monster {
         super.tick();
         if (!this.level.isClientSide) {
             if (!isSoul()) {
-                for (LivingEntity livingEntity : this.level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(8D))) {
+                for (LivingEntity livingEntity : this.level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(24D))) {
                     if (livingEntity.isDeadOrDying()) {
                         this.playSound(SoundInit.LOITER_SATURATE.get(), this.getSoundVolume(), this.getVoicePitch());
                         this.setSoul(true);
