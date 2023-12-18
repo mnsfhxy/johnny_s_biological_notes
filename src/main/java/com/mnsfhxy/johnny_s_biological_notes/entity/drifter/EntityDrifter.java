@@ -47,13 +47,11 @@ public class EntityDrifter extends PathfinderMob {
     //
 //    public AnimationState alert0AnimationState = new AnimationState();
 //    public AnimationState alert1AnimationState = new AnimationState();
-        public AnimationState fightAnimationState = new AnimationState();
+    public AnimationState fightAnimationState = new AnimationState();
     //    public ModAnimation walkingAnimationState = new ModAnimation();
 //    public ModAnimation alert0AnimationState = new ModAnimation();
 //    public ModAnimation alert1AnimationState = new ModAnimation();
 //    public ModAnimation fightAnimationState = new ModAnimation();
-    public AnimationState hostileAnimationState = new AnimationState();
-
     private boolean renderItem = false;
     private boolean haveGift = true;
 
@@ -306,13 +304,13 @@ public class EntityDrifter extends PathfinderMob {
             }
 //            System.out.println(this.fightAnimationState.isStarted());
             if (!this.fightAnimationState.isStarted()) {
-                    if (minDisToEnemy < 10) {
-                        hostileAnimationState.start(this.tickCount);
-                    } else {
-                        hostileAnimationState.stop();
-                    }
+                if (minDisToEnemy < 10) {
+                    alertAnimationState.start(this.tickCount);
+                } else {
+                    alertAnimationState.stop();
+                }
             }
-            if(this.fightAnimationState.isStarted()|| hostileAnimationState.isStarted()){
+            if(this.fightAnimationState.isStarted()|| alertAnimationState.isStarted()){
                 renderItem = true;
             }else{
                 renderItem =false;
@@ -720,7 +718,7 @@ public class EntityDrifter extends PathfinderMob {
                 this.resetAttackCooldown();
 //                this.mob.swing(InteractionHand.MAIN_HAND);
 //                 this.mob.fightAnimationState.fightAnimationState.playOnce(this.mob.tickCount,this.attackInterval);
-                this.mob.hostileAnimationState.stop();
+                this.mob.alertAnimationState.stop();
                 AnimationState fightAnimationState = this.mob.fightAnimationState;
                 fightAnimationState .start(this.mob.tickCount);
                 Thread thread=new Thread(){

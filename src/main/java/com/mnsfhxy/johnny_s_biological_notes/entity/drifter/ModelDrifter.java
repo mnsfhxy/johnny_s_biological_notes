@@ -96,8 +96,8 @@ public class ModelDrifter  extends HierarchicalModel<EntityDrifter> implements A
         this.LeftLeg.xRot = Mth.cos(pLimbSwing * 0.6662F + (float)Math.PI) * 1.4F * pLimbSwingAmount * 0.5F;
         this.RightLeg.yRot = 0.0F;
         this.LeftLeg.yRot = 0.0F;
-      this.animate(entity.walkingAnimationState,AnimationDrifter.DRIFTERS_WALKING_NEW,ageInTicks);
-      this.animate(entity.hostileAnimationState,AnimationDrifter.DRIFTERS_HOSTILE,ageInTicks);
+//      this.animate(entity.walkingAnimationState,AnimationDrifter.DRIFTERS_WALKING,ageInTicks);
+
     }
     public ModelPart getHead() {
         return this.head;
