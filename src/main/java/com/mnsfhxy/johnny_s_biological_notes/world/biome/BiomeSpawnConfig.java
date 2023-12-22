@@ -40,7 +40,7 @@ public class BiomeSpawnConfig {
             ImmutableList.of(
                     Biomes.SOUL_SAND_VALLEY
             ),
-            8,
+            50,
             1,
             1,
             SpawnPlacements.Type.ON_GROUND,

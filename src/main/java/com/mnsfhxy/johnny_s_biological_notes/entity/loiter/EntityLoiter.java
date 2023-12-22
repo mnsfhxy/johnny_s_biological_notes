@@ -35,7 +35,7 @@ public class EntityLoiter extends Monster {
     public float xBodyRotO;
     public float zBodyRot;
     public float zBodyRotO;
-    private static final float MOVEMENT_SPEED = 0.3F;
+    private static final float MOVEMENT_SPEED = 0.05F;
     private static final EntityDataAccessor<Boolean> SOUL = SynchedEntityData.defineId(EntityLoiter.class, EntityDataSerializers.BOOLEAN);
     public AnimationState movingAnimationState = new AnimationState();
     public AnimationState tailMovingAnimationState = new AnimationState();

@@ -306,8 +306,8 @@ public class RegistrationInit {
 //    ModItemModels,zh,en,
     public static final RegistryObject<Item> ITEM_GLUE_BOTTLE = ITEMS.register("glue_bottle", () -> new ItemGlueBottle(new Item.Properties().tab(ModInit.ITEM_GROUP_TOOL)));
 
-//    public static final RegistryObject<Item> ITEM_SOUL_TUMOR =ITEMS.register("soul_tumor", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP)));
-    public static final RegistryObject<Item> ITEM_SOUL_TUMOR =ITEMS.register("soul_tumor", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> ITEM_SOUL_TUMOR =ITEMS.register("soul_tumor", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP_MATERIAL)));
+//    public static final RegistryObject<Item> ITEM_SOUL_TUMOR =ITEMS.register("soul_tumor", () -> new Item(new Item.Properties()));
     //tages
 //    public static final TagKey<EntityType<?>> HYDROBIOS = TagKey.create(Registry.ENTITY_TYPE_REGISTRY, new ResourceLocation(JohnnySBiologicalNotes.MODID, "hydrobios"));
 
