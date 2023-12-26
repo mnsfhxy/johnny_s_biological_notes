@@ -40,12 +40,12 @@ public class BiomeSpawnConfig {
             ImmutableList.of(
                     Biomes.SOUL_SAND_VALLEY
             ),
-            50,
+            56,
             1,
             1,
             SpawnPlacements.Type.ON_GROUND,
             Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-            Monster::checkMonsterSpawnRules
+            EntityLoiter::checkLoiterSpawnRules
     );
     final ModSpawnData<EntityCrab> CRAB=new ModSpawnData<>(
             RegistrationInit.CRAB.get(),

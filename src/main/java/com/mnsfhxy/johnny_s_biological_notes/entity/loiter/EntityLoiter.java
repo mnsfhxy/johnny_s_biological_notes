@@ -10,6 +10,7 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -24,6 +25,7 @@ import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
@@ -123,6 +125,10 @@ public class EntityLoiter extends Monster {
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(SOUL, Boolean.FALSE);
+    }
+
+    public static boolean checkLoiterSpawnRules(EntityType<EntityLoiter> pLoiter, ServerLevelAccessor pLevel, MobSpawnType pSpawnType, BlockPos pPos, RandomSource pRandom) {
+        return pRandom.nextInt(80) == 0 && pLevel.getDifficulty() != Difficulty.PEACEFUL && checkMobSpawnRules(pLoiter, pLevel, pSpawnType, pPos, pRandom);
     }
 
     public boolean isSoul() {
