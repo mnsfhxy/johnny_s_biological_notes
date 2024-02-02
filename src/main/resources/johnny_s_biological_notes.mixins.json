@@ -8,7 +8,8 @@
     "MixinBlock",
     "MixinEntity",
     "MixinLivingEntity",
-    "MixinServerLevel"
+    "MixinServerLevel",
+    "MixinPolarBear"
   ],
   "client": [
   ],

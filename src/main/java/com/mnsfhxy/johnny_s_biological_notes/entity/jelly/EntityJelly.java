@@ -6,9 +6,6 @@ import com.mnsfhxy.johnny_s_biological_notes.init.SoundInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
@@ -20,12 +17,10 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.FlyingMoveControl;
-import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomFlyingGoal;
 import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
-import net.minecraft.world.entity.ambient.Bat;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemUtils;
@@ -36,9 +31,7 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.Tags;
 import org.jetbrains.annotations.Nullable;
 
 public class EntityJelly extends PathfinderMob {
@@ -128,6 +121,9 @@ public class EntityJelly extends PathfinderMob {
         return false;
     }
     public static boolean checkJellySpawnRules(EntityType<EntityJelly> pBat, LevelAccessor pLevel, MobSpawnType pSpawnType, BlockPos pPos, RandomSource pRandom) {
+        if (!hasEnoughSpace(pBat, pLevel, pSpawnType, pPos, pRandom))
+            return false;
+
         if(!pLevel.getBiome(pPos).is(Biomes.SMALL_END_ISLANDS)&&pPos.getY() >= 0 || pPos.getY() <= -64){
             return false;
         }
@@ -142,6 +138,65 @@ public class EntityJelly extends PathfinderMob {
 
             return i > pRandom.nextInt(j) ? false : checkMobSpawnRules(pBat, pLevel, pSpawnType, pPos, pRandom);
         }
+    }
+
+    /**
+     * 检查是否有足够的空间进行果冻的生成
+     * @param pJelly
+     * @param pLevel
+     * @param pSpawnType
+     * @param pPos
+     * @param pRandom
+     * @return
+     */
+    public static boolean hasEnoughSpace(EntityType<EntityJelly> pJelly, LevelAccessor pLevel, MobSpawnType pSpawnType, BlockPos pPos, RandomSource pRandom) {
+        if (isBoundaryInvalid(pLevel, pPos)
+        || isInsideInvalid(pLevel, pPos))
+            return false;
+
+        return true;
+    }
+
+    /**
+     * 边界方块是否无效，只检查上方的方块
+     * @param pLevel
+     * @param pPos
+     * @return
+     */
+    private static boolean isBoundaryInvalid(LevelAccessor pLevel, BlockPos pPos) {
+        for(int dx = -4; dx <= 4; dx++) {
+            for(int dy = 0; dy <= 4; dy++) {
+                for(int dz = -4; dz <= 4; dz++) {
+                    if(Math.abs(dx) == 4 || Math.abs(dy) == 4 || Math.abs(dz) == 4) {
+                        if(!pLevel.getBlockState(pPos.offset(dx, dy, dz)).isAir()
+                        && !pLevel.getBlockState(pPos.offset(dx, dy, dz)).is(Blocks.WATER)) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 内部方块是否无效，只检查上方的方块
+     * @param pLevel
+     * @param pPos
+     * @return
+     */
+    private static boolean isInsideInvalid(LevelAccessor pLevel, BlockPos pPos) {
+        for(int dx = -3; dx <= 3; dx++) {
+            for(int dy = 1; dy <= 3; dy++) {
+                for(int dz = -3; dz <= 3; dz++) {
+                    if(!pLevel.getBlockState(pPos.offset(dx, dy, dz)).isAir()
+                            && !pLevel.getBlockState(pPos.offset(dx, dy, dz)).is(Blocks.WATER)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     @Override

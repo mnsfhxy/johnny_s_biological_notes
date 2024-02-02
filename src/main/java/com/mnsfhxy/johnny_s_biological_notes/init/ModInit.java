@@ -1,8 +1,9 @@
 package com.mnsfhxy.johnny_s_biological_notes.init;
 
 import com.mnsfhxy.johnny_s_biological_notes.JohnnySBiologicalNotes;
-
 import com.mnsfhxy.johnny_s_biological_notes.capability.spirit.SpiritEvents;
+import com.mnsfhxy.johnny_s_biological_notes.entity.beluga.EntityBeluga;
+import com.mnsfhxy.johnny_s_biological_notes.entity.beluga.young.EntityYoungBeluga;
 import com.mnsfhxy.johnny_s_biological_notes.entity.crab.EntityCrab;
 import com.mnsfhxy.johnny_s_biological_notes.entity.drifter.EntityDrifter;
 import com.mnsfhxy.johnny_s_biological_notes.entity.jelly.EntityJelly;
@@ -13,15 +14,10 @@ import com.mnsfhxy.johnny_s_biological_notes.entity.tridacna.EntityTridacna;
 import com.mnsfhxy.johnny_s_biological_notes.networking.Messages;
 import com.mnsfhxy.johnny_s_biological_notes.world.biome.BiomeSpawnConfig;
 import com.mnsfhxy.johnny_s_biological_notes.world.biome.ModSpawnData;
-import net.minecraft.core.Direction;
-import net.minecraft.tags.FluidTags;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.SpawnPlacements;
-import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent;
@@ -127,6 +123,9 @@ public class ModInit {
         event.put(RegistrationInit.JELLY_BUBBLE.get(), EntityJellyBubble.prepareAttributes().build());
         event.put(RegistrationInit.TRIDACNA.get(), EntityTridacna.prepareAttributes().build());
         event.put(RegistrationInit.LOITER.get(), EntityLoiter.prepareAttributes().build());
+        event.put(RegistrationInit.BELUGA.get(), EntityBeluga.prepareAttributes().build());
+        event.put(RegistrationInit.YOUNG_BELUGA.get(), EntityYoungBeluga.prepareAttributes().build());
+
     }
 
 

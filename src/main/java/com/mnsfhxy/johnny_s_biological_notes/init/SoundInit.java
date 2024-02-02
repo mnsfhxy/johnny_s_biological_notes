@@ -52,6 +52,18 @@ public class SoundInit {
     public static final RegistryObject<SoundEvent> LOITER_HURT=createSoundEvent("loiter_hurt");
     public static final RegistryObject<SoundEvent> LOITER_DEATH=createSoundEvent("loiter_death");
     public static final RegistryObject<SoundEvent> LOITER_SATURATE =createSoundEvent("loiter_saturate");
+    public static final RegistryObject<SoundEvent> BELUGA_AMBIENT =createSoundEvent("beluga_ambient");
+    public static final RegistryObject<SoundEvent> BELUGA_AMBIENT_WATER =createSoundEvent("beluga_ambient_water");
+    public static final RegistryObject<SoundEvent> BELUGA_ATTACK =createSoundEvent("beluga_attack");
+    public static final RegistryObject<SoundEvent> BELUGA_BREATH =createSoundEvent("beluga_breath");
+    public static final RegistryObject<SoundEvent> BELUGA_DEATH =createSoundEvent("beluga_death");
+    public static final RegistryObject<SoundEvent> BELUGA_EAT =createSoundEvent("beluga_eat");
+    public static final RegistryObject<SoundEvent> BELUGA_HAPPY =createSoundEvent("beluga_happy");
+    public static final RegistryObject<SoundEvent> BELUGA_HURT =createSoundEvent("beluga_hurt");
+    public static final RegistryObject<SoundEvent> BELUGA_PLAY =createSoundEvent("beluga_play");
+    public static final RegistryObject<SoundEvent> BELUGA_SING =createSoundEvent("beluga_sing");
+    public static final RegistryObject<SoundEvent> BELUGA_SPLASH =createSoundEvent("beluga_splash");
+    public static final RegistryObject<SoundEvent> BELUGA_SWIM =createSoundEvent("beluga_swim");
 
     public static final ForgeSoundType JELLY_BLOCK = new ForgeSoundType(1.0F, 1.0F, JELLY_BLOCK_HIT, JELLY_BLOCK_STEP, JELLY_BLOCK_PLACE, JELLY_BLOCK_HIT, JELLY_BLOCK_PLACE);
 

@@ -77,6 +77,11 @@
 "//":"生物：砗磲",
   "entity.johnny_s_biological_notes.tridacna": "Tridacna",
 
+"//":"生物：白鲸",
+  "entity.johnny_s_biological_notes.beluga": "Beluga",
+"//":"生物：幼年白鲸",
+  "entity.johnny_s_biological_notes.young_beluga": "Young Beluga",
+
 "//":"刷怪蛋",
   "item.johnny_s_biological_notes.crab": "Crab spwam Egg",
   "item.johnny_s_biological_notes.drifter": "Drifter spwam Egg",
@@ -84,6 +89,7 @@
   "item.johnny_s_biological_notes.loiter": "Loiter spwam Egg",
   "item.johnny_s_biological_notes.tridacna": "Tridacna spwam Egg",
   "item.johnny_s_biological_notes.peeper": "Peeper spawm Egg",
+  "item.johnny_s_biological_notes.beluga": "Beluga spawm Egg",
 
 "//":"螃蟹相关物品",
   "item.johnny_s_biological_notes.cooked_crab_meat": "Cooked Crab Meat",

@@ -8,7 +8,6 @@ import com.mnsfhxy.johnny_s_biological_notes.init.SoundInit;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraftforge.common.data.LanguageProvider;
-import net.minecraftforge.fml.common.Mod;
 
 public class ModLanguageProvider extends LanguageProvider {
 
@@ -80,6 +79,9 @@ public class ModLanguageProvider extends LanguageProvider {
        addSubtitle(SoundInit.DRIFTERS_VICTORY.getId().getPath(), "Drifters Victory");
         add(RegistrationInit.DRIFTER.get(), "Drifter");
         add(RegistrationInit.DRIFTER_EGG.get(), "Drifter Egg");
+        add(RegistrationInit.BELUGA.get(), "Beluga");
+        add(RegistrationInit.YOUNG_BELUGA.get(), "Young Beluga");
+        add(RegistrationInit.BELUGA_EGG.get(), "Beluga Egg");
         add(RegistrationInit.ITEM_NETHERITE_KATANA.get(), "Netherite Katana");
         add(RegistrationInit.ITEM_WOOD_KATANA.get(), "Wood Katana");
         add(RegistrationInit.ITEM_DIAMOND_KATANA.get(), "Diamond Katana");

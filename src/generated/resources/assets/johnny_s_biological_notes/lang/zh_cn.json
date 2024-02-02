@@ -77,6 +77,12 @@
 "//":"生物：砗磲",
   "entity.johnny_s_biological_notes.tridacna": "砗磲",
 
+"//":"生物：白鲸",
+  "entity.johnny_s_biological_notes.beluga": "白鲸",
+
+"//":"生物：幼年白鲸",
+  "entity.johnny_s_biological_notes.young_beluga": "幼年白鲸",
+
 "//":"刷怪蛋",
   "item.johnny_s_biological_notes.crab": "螃蟹刷怪蛋",
   "item.johnny_s_biological_notes.drifter": "浪客刷怪蛋",
@@ -84,6 +90,7 @@
   "item.johnny_s_biological_notes.loiter": "游弋者刷怪蛋",
   "item.johnny_s_biological_notes.peeper": "窥视者刷怪蛋",
   "item.johnny_s_biological_notes.tridacna": "砗磲刷怪蛋",
+  "item.johnny_s_biological_notes.beluga": "白鲸刷怪蛋",
 
 "//":"螃蟹相关物品",
   "item.johnny_s_biological_notes.crab_bucket": "蟹桶",

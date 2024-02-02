@@ -2,6 +2,10 @@ package com.mnsfhxy.johnny_s_biological_notes.init;
 
 import com.mnsfhxy.johnny_s_biological_notes.JohnnySBiologicalNotes;
 import com.mnsfhxy.johnny_s_biological_notes.capability.spirit.SpiritOverlay;
+import com.mnsfhxy.johnny_s_biological_notes.entity.beluga.ModelBeluga;
+import com.mnsfhxy.johnny_s_biological_notes.entity.beluga.RendererBeluga;
+import com.mnsfhxy.johnny_s_biological_notes.entity.beluga.young.ModelYoungBeluga;
+import com.mnsfhxy.johnny_s_biological_notes.entity.beluga.young.RendererYoungBeluga;
 import com.mnsfhxy.johnny_s_biological_notes.entity.crab.ModelCrab;
 import com.mnsfhxy.johnny_s_biological_notes.entity.crab.RendererCrab;
 import com.mnsfhxy.johnny_s_biological_notes.entity.drifter.ModelDrifter;
@@ -17,6 +21,7 @@ import com.mnsfhxy.johnny_s_biological_notes.entity.peeper.RendererPeeper;
 import com.mnsfhxy.johnny_s_biological_notes.entity.tridacna.ModelTridacna;
 import com.mnsfhxy.johnny_s_biological_notes.entity.tridacna.ModelTridacnaClosed;
 import com.mnsfhxy.johnny_s_biological_notes.entity.tridacna.RendererTridacna;
+import com.mnsfhxy.johnny_s_biological_notes.particle.BelugaBlowholeParticle;
 import com.mnsfhxy.johnny_s_biological_notes.particle.ChopParticle;
 import com.mnsfhxy.johnny_s_biological_notes.particle.ConcentrateParticle;
 import com.mnsfhxy.johnny_s_biological_notes.particle.JellyGlowParticle;
@@ -39,6 +44,8 @@ public class ClientInit {
         event.registerLayerDefinition(ModelTridacna.LAYER_LOCATION,ModelTridacna::createBodyLayer);
         event.registerLayerDefinition(ModelTridacnaClosed.LAYER_LOCATION,ModelTridacnaClosed::createBodyLayer);
         event.registerLayerDefinition(ModelLoiter.LAYER_LOCATION,ModelLoiter::createBodyLayer);
+        event.registerLayerDefinition(ModelBeluga.LAYER_LOCATION,ModelBeluga::createBodyLayer);
+        event.registerLayerDefinition(ModelYoungBeluga.LAYER_LOCATION,ModelYoungBeluga::createBodyLayer);
 //        event.registerLayerDefinition(ModelTridacnaShellOpen.LAYER_LOCATION,ModelTridacnaShellOpen::createBodyLayer);
 
     }
@@ -53,6 +60,8 @@ public class ClientInit {
         event.registerEntityRenderer(RegistrationInit.JELLY_BUBBLE.get(), RendererJellyBubble::new);
         event.registerEntityRenderer(RegistrationInit.TRIDACNA.get(), RendererTridacna::new);
         event.registerEntityRenderer(RegistrationInit.LOITER.get(), RendererLoiter::new);
+        event.registerEntityRenderer(RegistrationInit.BELUGA.get(), RendererBeluga::new);
+        event.registerEntityRenderer(RegistrationInit.YOUNG_BELUGA.get(), RendererYoungBeluga::new);
 //        event.registerBlockEntityRenderer(RegistrationInit.TRIDACNA_SHELL_BE.get(), RendererTridacnaShell::new);
 
     }
@@ -69,7 +78,7 @@ public class ClientInit {
         event.register(RegistrationInit.CHOP_PARTICLE.get(), ChopParticle.Provider::new);
         event.register(RegistrationInit.JELLY_GLOW_PARTICLE.get(), JellyGlowParticle.Provider::new);
         event.register(RegistrationInit.CONCENTRATE_PARTICLE.get(), ConcentrateParticle.Provider::new);
-
+        event.register(RegistrationInit.BLOWHOLE_PARTICLE.get(), BelugaBlowholeParticle.Provider::new);
 
 
     }
