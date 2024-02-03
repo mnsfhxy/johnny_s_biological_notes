@@ -2,6 +2,7 @@ package com.mnsfhxy.johnny_s_biological_notes.entity.beluga;
 
 import com.mnsfhxy.johnny_s_biological_notes.config.Config;
 import com.mnsfhxy.johnny_s_biological_notes.entity.beluga.goal.BelugaFollowBoatGoal;
+import com.mnsfhxy.johnny_s_biological_notes.entity.beluga.goal.BelugaMeleeAttackGoal;
 import com.mnsfhxy.johnny_s_biological_notes.entity.beluga.young.EntityYoungBeluga;
 import com.mnsfhxy.johnny_s_biological_notes.init.RegistrationInit;
 import com.mnsfhxy.johnny_s_biological_notes.init.SoundInit;
@@ -16,7 +17,6 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.SmoothSwimmingMoveControl;
 import net.minecraft.world.entity.ai.goal.BreedGoal;
-import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -33,6 +33,7 @@ public class EntityBeluga extends EntityYoungBeluga {
     private boolean isRotation = false;
     //白鲸的嬉戏加速状态
     private static final EntityDataAccessor<Boolean> FROLIC_SPEED_FLAG = SynchedEntityData.defineId(EntityBeluga.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Boolean> STANDING_FLAG = SynchedEntityData.defineId(EntityBeluga.class, EntityDataSerializers.BOOLEAN);
 
     /**
      * 白鲸构造方法
@@ -90,9 +91,31 @@ public class EntityBeluga extends EntityYoungBeluga {
     protected void registerGoals() {
         super.registerGoals();
 
-        this.goalSelector.addGoal(0, new MeleeAttackGoal(this, (double)1.2F, true));
+        this.goalSelector.addGoal(0, new BelugaMeleeAttackGoal(this, (double)1.2F, true));
         this.goalSelector.addGoal(4, new BreedGoal(this, 1.0D));
         this.goalSelector.addGoal(5, new BelugaFollowBoatGoal(this));
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+
+        // 如果是站立状态，播放攻击动画
+        if (this.isStanding()) {
+            if (swimmingState.isStarted())
+                swimmingState.stop();
+
+            if (isAttackingAnimationFinished())
+                attackingState.stop();
+
+            this.attackingState.startIfStopped(this.tickCount);
+        }
+    }
+
+    private boolean isAttackingAnimationFinished() {
+        return this.attackingState.getAccumulatedTime() /
+                (AnimationBeluga.ATTACKING.lengthInSeconds() * 1000)
+                >= 1.0F;
     }
 
     /**
@@ -106,7 +129,6 @@ public class EntityBeluga extends EntityYoungBeluga {
         if (flag) {
             this.doEnchantDamageEffects(this, pEntity);
             this.playSound(SoundInit.BELUGA_ATTACK.get(), 1.0F, 1.0F);
-            this.attackingState.startIfStopped(this.tickCount);
         }
 
         return flag;
@@ -141,6 +163,7 @@ public class EntityBeluga extends EntityYoungBeluga {
         super.defineSynchedData();
 
         this.entityData.define(FROLIC_SPEED_FLAG, false);
+        this.entityData.define(STANDING_FLAG, false);
     }
 
     /**
@@ -152,6 +175,7 @@ public class EntityBeluga extends EntityYoungBeluga {
         super.addAdditionalSaveData(pCompound);
 
         pCompound.putBoolean("FrolicSpeedFlag", this.isFrolicSpeed());
+        pCompound.putBoolean("StandingFlag", this.isStanding());
     }
 
     /**
@@ -163,6 +187,7 @@ public class EntityBeluga extends EntityYoungBeluga {
         super.readAdditionalSaveData(pCompound);
 
         this.setFrolicSpeedFlag(pCompound.getBoolean("FrolicSpeedFlag"));
+        this.setStanding(pCompound.getBoolean("StandingFlag"));
     }
 
     public void setFrolicSpeedFlag(boolean flag) {
@@ -171,6 +196,14 @@ public class EntityBeluga extends EntityYoungBeluga {
 
     public boolean isFrolicSpeed() {
         return this.entityData.get(FROLIC_SPEED_FLAG);
+    }
+
+    public void setStanding(boolean flag) {
+        this.entityData.set(STANDING_FLAG, flag);
+    }
+
+    public boolean isStanding() {
+        return this.entityData.get(STANDING_FLAG);
     }
 
     /**
