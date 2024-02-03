@@ -1,5 +1,6 @@
 package com.mnsfhxy.johnny_s_biological_notes.entity.beluga.message;
 
+import com.mnsfhxy.johnny_s_biological_notes.config.Config;
 import com.mnsfhxy.johnny_s_biological_notes.init.RegistrationInit;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
@@ -49,6 +50,8 @@ public class BelugaBlowholePacket {
     public static class Handler {
         // 调整气孔相对于模型的偏移
         public static final double DELTA_Y = 1.11D;
+        public static final int PARTICLE_NUMBER = Config.getInstance().intValueOf("entity.beluga.onSurface.particle.number");
+        public static final double Y_SPEED = Config.getInstance().doubleValueOf("entity.beluga.onSurface.particle.ySpeed");
 
         @OnlyIn(Dist.CLIENT)
         public static void onMessage(BelugaBlowholePacket message, Supplier<NetworkEvent.Context> ctx) {
@@ -60,11 +63,11 @@ public class BelugaBlowholePacket {
                 double x = message.posX;
                 double y = message.posY + DELTA_Y;
                 double z = message.posZ;
-                for (int i = 0; i < 10; ++i) {
+                for (int i = 0; i < PARTICLE_NUMBER; ++i) {
                     double offsetX = level.random.nextGaussian() * 0.02D;
                     double offsetY = level.random.nextGaussian() * 0.02D;
                     double offsetZ = level.random.nextGaussian() * 0.02D;
-                    level.addParticle(RegistrationInit.BLOWHOLE_PARTICLE.get(), x, y, z, 0, 0.4D, 0);
+                    level.addParticle(RegistrationInit.BLOWHOLE_PARTICLE.get(), x, y, z, 0, Y_SPEED, 0);
                 }
             });
             ctx.get().setPacketHandled(true);
