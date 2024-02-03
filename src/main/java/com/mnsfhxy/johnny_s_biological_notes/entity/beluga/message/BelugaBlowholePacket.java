@@ -2,11 +2,8 @@ package com.mnsfhxy.johnny_s_biological_notes.entity.beluga.message;
 
 import com.mnsfhxy.johnny_s_biological_notes.init.RegistrationInit;
 import net.minecraft.client.Minecraft;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.network.NetworkEvent;
@@ -20,43 +17,54 @@ import java.util.function.Supplier;
  */
 public class BelugaBlowholePacket {
     // 实体位置信息
-    private BlockPos pos;
+    private double posX;
+    private double posY;
+    private double posZ;
 
     // 空构造函数，用于反序列化
     public BelugaBlowholePacket() {}
 
     // 构造函数，用于发送实体位置信息
-    public BelugaBlowholePacket(BlockPos pos) {
-        this.pos = pos;
+    public BelugaBlowholePacket(double posX, double posY, double posZ) {
+        this.posX = posX;
+        this.posY = posY;
+        this.posZ = posZ;
     }
 
     // 用于序列化数据
     public void toBytes(FriendlyByteBuf buf) {
-        buf.writeBlockPos(pos);
+        buf.writeDouble(posX);
+        buf.writeDouble(posY);
+        buf.writeDouble(posZ);
     }
 
     // 用于反序列化数据
     public void fromBytes(FriendlyByteBuf buf) {
-        pos = buf.readBlockPos();
+        posX = buf.readDouble();
+        posY = buf.readDouble();
+        posZ = buf.readDouble();
     }
 
     // 自定义网络包处理器
     public static class Handler {
+        // 调整气孔相对于模型的偏移
+        public static final double DELTA_Y = 1.11D;
+
         @OnlyIn(Dist.CLIENT)
         public static void onMessage(BelugaBlowholePacket message, Supplier<NetworkEvent.Context> ctx) {
             // 在客户端执行粒子生成代码
             ctx.get().enqueueWork(() -> {
                 Minecraft mc = Minecraft.getInstance();
                 Level level = mc.level;
-                Vec3 vec = Vec3.atCenterOf(message.pos);
-                double x = vec.x;
-                double y = vec.y;
-                double z = vec.z;
+
+                double x = message.posX;
+                double y = message.posY + DELTA_Y;
+                double z = message.posZ;
                 for (int i = 0; i < 10; ++i) {
                     double offsetX = level.random.nextGaussian() * 0.02D;
                     double offsetY = level.random.nextGaussian() * 0.02D;
                     double offsetZ = level.random.nextGaussian() * 0.02D;
-                    level.addParticle(ParticleTypes.SPLASH, x, y, z, 0, 1, 0);
+                    level.addParticle(RegistrationInit.BLOWHOLE_PARTICLE.get(), x, y, z, 0, 0.4D, 0);
                 }
             });
             ctx.get().setPacketHandled(true);

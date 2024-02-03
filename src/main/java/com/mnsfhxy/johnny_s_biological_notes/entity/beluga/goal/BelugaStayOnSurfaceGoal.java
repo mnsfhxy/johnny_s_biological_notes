@@ -61,11 +61,13 @@ public class BelugaStayOnSurfaceGoal extends Goal {
      */
     private void triggerParticle() {
         Vec3 pos = this.beluga.position();
-        double blowholeY = pos.y + 1.13D; // 根据实际模型调整气孔高度
-        BlockPos triggerPoint = new BlockPos(pos.x, blowholeY, pos.z);
 
         NetworkInit.NETWORK.send(PacketDistributor.TRACKING_ENTITY.with(() -> this.beluga),
-                new BelugaBlowholePacket(triggerPoint));
+                new BelugaBlowholePacket(
+                        pos.x,
+                        pos.y,
+                        pos.z
+                ));
     }
 
     @Override
