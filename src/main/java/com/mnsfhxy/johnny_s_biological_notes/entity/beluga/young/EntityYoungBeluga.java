@@ -158,15 +158,6 @@ public class EntityYoungBeluga extends Animal {
     }
 
     @Override
-    public void ageUp(int pAmount, boolean pForced) {
-        if (this.isBaby()) { // 当生物长大时
-            super.ageUp(1160, pForced);
-        } else {
-            super.ageUp(pAmount, pForced);
-        }
-    }
-
-    @Override
     protected void ageBoundaryReached() {
         if (!this.level.isClientSide && this.isBaby() && this.getAge() >= 0) { // 当生物长大时
             EntityBeluga adult = RegistrationInit.ENTITY_TYPE_BELUGA.create(this.level);
