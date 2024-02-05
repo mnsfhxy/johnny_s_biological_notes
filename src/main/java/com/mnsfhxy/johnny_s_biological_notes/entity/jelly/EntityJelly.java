@@ -121,9 +121,6 @@ public class EntityJelly extends PathfinderMob {
         return false;
     }
     public static boolean checkJellySpawnRules(EntityType<EntityJelly> pBat, LevelAccessor pLevel, MobSpawnType pSpawnType, BlockPos pPos, RandomSource pRandom) {
-        if (!hasEnoughSpace(pBat, pLevel, pSpawnType, pPos, pRandom))
-            return false;
-
         if(!pLevel.getBiome(pPos).is(Biomes.SMALL_END_ISLANDS)&&pPos.getY() >= 0 || pPos.getY() <= -64){
             return false;
         }
@@ -138,65 +135,6 @@ public class EntityJelly extends PathfinderMob {
 
             return i > pRandom.nextInt(j) ? false : checkMobSpawnRules(pBat, pLevel, pSpawnType, pPos, pRandom);
         }
-    }
-
-    /**
-     * 检查是否有足够的空间进行果冻的生成
-     * @param pJelly
-     * @param pLevel
-     * @param pSpawnType
-     * @param pPos
-     * @param pRandom
-     * @return
-     */
-    public static boolean hasEnoughSpace(EntityType<EntityJelly> pJelly, LevelAccessor pLevel, MobSpawnType pSpawnType, BlockPos pPos, RandomSource pRandom) {
-        if (isBoundaryInvalid(pLevel, pPos)
-        || isInsideInvalid(pLevel, pPos))
-            return false;
-
-        return true;
-    }
-
-    /**
-     * 边界方块是否无效，只检查上方的方块
-     * @param pLevel
-     * @param pPos
-     * @return
-     */
-    private static boolean isBoundaryInvalid(LevelAccessor pLevel, BlockPos pPos) {
-        for(int dx = -4; dx <= 4; dx++) {
-            for(int dy = 0; dy <= 4; dy++) {
-                for(int dz = -4; dz <= 4; dz++) {
-                    if(Math.abs(dx) == 4 || Math.abs(dy) == 4 || Math.abs(dz) == 4) {
-                        if(!pLevel.getBlockState(pPos.offset(dx, dy, dz)).isAir()
-                        && !pLevel.getBlockState(pPos.offset(dx, dy, dz)).is(Blocks.WATER)) {
-                            return true;
-                        }
-                    }
-                }
-            }
-        }
-        return false;
-    }
-
-    /**
-     * 内部方块是否无效，只检查上方的方块
-     * @param pLevel
-     * @param pPos
-     * @return
-     */
-    private static boolean isInsideInvalid(LevelAccessor pLevel, BlockPos pPos) {
-        for(int dx = -3; dx <= 3; dx++) {
-            for(int dy = 1; dy <= 3; dy++) {
-                for(int dz = -3; dz <= 3; dz++) {
-                    if(!pLevel.getBlockState(pPos.offset(dx, dy, dz)).isAir()
-                            && !pLevel.getBlockState(pPos.offset(dx, dy, dz)).is(Blocks.WATER)) {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
     }
 
     @Override

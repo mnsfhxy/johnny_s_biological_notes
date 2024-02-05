@@ -147,8 +147,6 @@ public class BiomeSpawnConfig {
     final ModSpawnData<EntityBeluga> BELUGA=new ModSpawnData<>(
             RegistrationInit.BELUGA.get(),
             ImmutableList.of(
-                    Biomes.OCEAN,
-                    Biomes.DEEP_OCEAN,
                     Biomes.COLD_OCEAN,
                     Biomes.DEEP_COLD_OCEAN,
                     Biomes.FROZEN_OCEAN,
