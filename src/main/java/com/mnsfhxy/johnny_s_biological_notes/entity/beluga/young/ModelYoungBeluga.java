@@ -1,6 +1,7 @@
 package com.mnsfhxy.johnny_s_biological_notes.entity.beluga.young;
 
 import com.mnsfhxy.johnny_s_biological_notes.JohnnySBiologicalNotes;
+import com.mnsfhxy.johnny_s_biological_notes.entity.beluga.EntityBeluga;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.HierarchicalModel;
@@ -10,7 +11,10 @@ import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.resources.ResourceLocation;
 
-public class ModelYoungBeluga extends HierarchicalModel<EntityYoungBeluga> {
+/**
+ * 幼年白鲸的模型
+ */
+public class ModelYoungBeluga extends HierarchicalModel<EntityBeluga> {
     public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(JohnnySBiologicalNotes.MODID, "young_beluga"), "root");
     private final ModelPart root;
     private final ModelPart body;
@@ -52,7 +56,7 @@ public class ModelYoungBeluga extends HierarchicalModel<EntityYoungBeluga> {
     }
 
     @Override
-    public void setupAnim(EntityYoungBeluga pEntity, float pLimbSwing, float pLimbSwingAmount, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
+    public void setupAnim(EntityBeluga pEntity, float pLimbSwing, float pLimbSwingAmount, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
         this.root().getAllParts().forEach(ModelPart::resetPose);
         this.animate(pEntity.swimmingState, AnimationYoungBeluga.SWIMMING, pAgeInTicks);
         this.animate(pEntity.touchedState, AnimationYoungBeluga.TOUCHED, pAgeInTicks);

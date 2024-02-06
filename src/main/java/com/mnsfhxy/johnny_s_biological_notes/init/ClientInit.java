@@ -5,7 +5,6 @@ import com.mnsfhxy.johnny_s_biological_notes.capability.spirit.SpiritOverlay;
 import com.mnsfhxy.johnny_s_biological_notes.entity.beluga.ModelBeluga;
 import com.mnsfhxy.johnny_s_biological_notes.entity.beluga.RendererBeluga;
 import com.mnsfhxy.johnny_s_biological_notes.entity.beluga.young.ModelYoungBeluga;
-import com.mnsfhxy.johnny_s_biological_notes.entity.beluga.young.RendererYoungBeluga;
 import com.mnsfhxy.johnny_s_biological_notes.entity.crab.ModelCrab;
 import com.mnsfhxy.johnny_s_biological_notes.entity.crab.RendererCrab;
 import com.mnsfhxy.johnny_s_biological_notes.entity.drifter.ModelDrifter;
@@ -61,7 +60,6 @@ public class ClientInit {
         event.registerEntityRenderer(RegistrationInit.TRIDACNA.get(), RendererTridacna::new);
         event.registerEntityRenderer(RegistrationInit.LOITER.get(), RendererLoiter::new);
         event.registerEntityRenderer(RegistrationInit.BELUGA.get(), RendererBeluga::new);
-        event.registerEntityRenderer(RegistrationInit.YOUNG_BELUGA.get(), RendererYoungBeluga::new);
 //        event.registerBlockEntityRenderer(RegistrationInit.TRIDACNA_SHELL_BE.get(), RendererTridacnaShell::new);
 
     }

@@ -2,7 +2,6 @@ package com.mnsfhxy.johnny_s_biological_notes.init;
 
 import com.mnsfhxy.johnny_s_biological_notes.JohnnySBiologicalNotes;
 import com.mnsfhxy.johnny_s_biological_notes.entity.beluga.message.BelugaBlowholePacket;
-import com.mnsfhxy.johnny_s_biological_notes.entity.beluga.message.BelugaRotationSyncPacket;
 import com.mnsfhxy.johnny_s_biological_notes.entity.beluga.message.BelugaSongParticlePacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -51,12 +50,5 @@ public class NetworkInit {
                 BelugaSongParticlePacket::encode,
                 BelugaSongParticlePacket::decode,
                 BelugaSongParticlePacket::handle);
-
-        //白鲸破冰相关消息及处理器的注册
-        NETWORK.registerMessage(2,
-                BelugaRotationSyncPacket.class,
-                BelugaRotationSyncPacket::encode,
-                BelugaRotationSyncPacket::decode,
-                BelugaRotationSyncPacket::handle);
     }
 }

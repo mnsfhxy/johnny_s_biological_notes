@@ -29,8 +29,6 @@ public class EntityBeluga extends EntityYoungBeluga {
     // 死亡后掉落的经验球数量
     public static final int EXPERIENCE_REWARD_NUMBER = 3;
     public final AnimationState attackingState = new AnimationState();
-    //状态变量，确认白鲸当前是否旋转
-    private boolean isRotation = false;
     //白鲸的嬉戏加速状态
     private static final EntityDataAccessor<Boolean> FROLIC_SPEED_FLAG = SynchedEntityData.defineId(EntityBeluga.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> STANDING_FLAG = SynchedEntityData.defineId(EntityBeluga.class, EntityDataSerializers.BOOLEAN);
@@ -210,13 +208,6 @@ public class EntityBeluga extends EntityYoungBeluga {
      * 以上部分为定义同步数据及访问同步数据的方法
      */
 
-    public void setRotation(boolean isRotation) {
-        this.isRotation = isRotation;
-    }
-
-    public boolean isRotation() {
-        return this.isRotation;
-    }
 
     /**
      * 以下部分为读取配置的值，不同实例采用不同配置创建相关的
