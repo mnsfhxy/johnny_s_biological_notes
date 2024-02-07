@@ -103,12 +103,13 @@ public class EntityBeluga extends Animal {
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor pLevel, DifficultyInstance pDifficulty, MobSpawnType pReason, @Nullable SpawnGroupData pSpawnData, @Nullable CompoundTag pDataTag) {
         initAirSupply();
 
-        AgeableMobGroupData customSpawnData = new AgeableMobGroupData(BABY_SPAWN_CHANCE);
-        SpawnGroupData spawnGroupData = super.finalizeSpawn(pLevel, pDifficulty, pReason, customSpawnData, pDataTag);
+        if (pSpawnData == null)
+            pSpawnData = new AgeableMobGroupData(BABY_SPAWN_CHANCE);
+        pSpawnData = super.finalizeSpawn(pLevel, pDifficulty, pReason, pSpawnData, pDataTag);
 
         resetAttributesOnIsBaby();
 
-        return spawnGroupData;
+        return pSpawnData;
     }
 
     /**
