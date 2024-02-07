@@ -38,6 +38,7 @@ public class BelugaFrolicGoal extends Goal {
 
     private final EntityBeluga beluga;
     private int healCounter = 0;
+    private int duringCounter = 0;
 
     public BelugaFrolicGoal(EntityBeluga beluga) {
         this.beluga = beluga;
@@ -89,6 +90,7 @@ public class BelugaFrolicGoal extends Goal {
         if (this.role.equals(FrolicRole.LEADER)) {
             belugaSpeedModifier.enable();
             this.beluga.setFrolicSpeedFlag(true);
+            duringCounter = 0;
 
             targetPos = randomCanReachedTarget(RANDOM_TARGET_RETRY_TIMES);
             healCounter = 0;
@@ -103,6 +105,7 @@ public class BelugaFrolicGoal extends Goal {
         if (this.role.equals(FrolicRole.LEADER)
                 && targetPos.isPresent()) {
             beluga.getNavigation().moveTo(targetPos.get().x(), targetPos.get().y(), targetPos.get().z(), 1.0);
+            duringCounter++;
 
             heal();
         }
@@ -116,10 +119,19 @@ public class BelugaFrolicGoal extends Goal {
     public boolean canContinueToUse() {
         if (this.role.equals(FrolicRole.LEADER))
             return this.cooldownMonitor.checkIsActive() &&
-                    this.targetPos.isPresent();
+                    this.targetPos.isPresent() &&
+                    isDuring();
         return leaderBeluga.isFrolicSpeed()
                 || (!leaderBeluga.isFrolicSpeed()
                 && this.beluga.distanceTo(leaderBeluga) < FOLLOWER_DETECT_SCOPE);
+    }
+
+    /**
+     * 是否持续加速状态
+     * @return
+     */
+    private boolean isDuring() {
+        return duringCounter < DURING_TIME / 2;
     }
 
     @Override
@@ -203,8 +215,11 @@ public class BelugaFrolicGoal extends Goal {
     @NotNull
     private Vec3 randomTarget(double distance) {
         RandomSource random = beluga.getRandom();
-        double dx = (random.nextFloat() * 2.0 - 1.0) * distance;
-        double dz = (random.nextFloat() * 2.0 - 1.0) * distance;
+
+        double angle = random.nextFloat() * 2.0 * Math.PI;
+        double dx = distance * Math.cos(angle);
+        double dz = distance * Math.sin(angle);
+
         Vec3 targetPos = new Vec3(beluga.getX() + dx, beluga.getY(), beluga.getZ() + dz);
         return targetPos;
     }
@@ -216,7 +231,7 @@ public class BelugaFrolicGoal extends Goal {
      */
     private double calculateDistance() {
         double speed = beluga.getAttribute(Attributes.MOVEMENT_SPEED).getValue();
-        double distance = speed * DURING_TIME;
+        double distance = speed * DURING_TIME / 20;
         return distance;
     }
 
