@@ -95,7 +95,6 @@ public class ModLanguageZhProvider extends LanguageProvider {
         add(RegistrationInit.DRIFTER.get(), "浪客");
         add(RegistrationInit.DRIFTER_EGG.get(), "浪客蛋");
         add(RegistrationInit.BELUGA.get(), "白鲸");
-        add(RegistrationInit.YOUNG_BELUGA.get(), "幼年白鲸");
         add(RegistrationInit.BELUGA_EGG.get(), "白鲸蛋");
         add(RegistrationInit.ITEM_NETHERITE_KATANA.get(), "下界合金刀");
         add(RegistrationInit.ITEM_WOOD_KATANA.get(), "木刀");

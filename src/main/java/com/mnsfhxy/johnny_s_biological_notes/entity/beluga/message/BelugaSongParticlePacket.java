@@ -1,6 +1,6 @@
 package com.mnsfhxy.johnny_s_biological_notes.entity.beluga.message;
 
-import com.mnsfhxy.johnny_s_biological_notes.entity.beluga.young.EntityYoungBeluga;
+import com.mnsfhxy.johnny_s_biological_notes.entity.beluga.EntityBeluga;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.particles.ParticleTypes;
@@ -39,7 +39,7 @@ public class BelugaSongParticlePacket {
             ClientLevel level = Minecraft.getInstance().level;
             if (level != null) {
                 Entity entity = level.getEntity(packet.entityId);
-                if (entity instanceof EntityYoungBeluga) {
+                if (entity instanceof EntityBeluga) {
                     for (int i = 0; i < packet.particleNumber; ++i) {
                         double offsetX = (2 * level.random.nextDouble() - 1) * entity.getBbWidth();
                         double offsetY = level.random.nextDouble() * entity.getBbHeight();

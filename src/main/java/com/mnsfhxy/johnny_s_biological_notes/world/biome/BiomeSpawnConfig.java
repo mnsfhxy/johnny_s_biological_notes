@@ -3,7 +3,6 @@ package com.mnsfhxy.johnny_s_biological_notes.world.biome;
 import com.google.common.collect.ImmutableList;
 import com.mnsfhxy.johnny_s_biological_notes.config.Config;
 import com.mnsfhxy.johnny_s_biological_notes.entity.beluga.EntityBeluga;
-import com.mnsfhxy.johnny_s_biological_notes.entity.beluga.young.EntityYoungBeluga;
 import com.mnsfhxy.johnny_s_biological_notes.entity.crab.EntityCrab;
 import com.mnsfhxy.johnny_s_biological_notes.entity.jelly.EntityJelly;
 import com.mnsfhxy.johnny_s_biological_notes.entity.loiter.EntityLoiter;
@@ -157,6 +156,6 @@ public class BiomeSpawnConfig {
             Config.getInstance().intValueOf("entity.beluga.spawn.max"),
             SpawnPlacements.Type.IN_WATER,
             Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-            EntityYoungBeluga::checkSurfaceWaterAnimalSpawnRules
+            EntityBeluga::checkSurfaceWaterAnimalSpawnRules
     );
 }

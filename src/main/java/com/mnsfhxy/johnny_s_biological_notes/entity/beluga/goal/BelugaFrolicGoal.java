@@ -2,7 +2,6 @@ package com.mnsfhxy.johnny_s_biological_notes.entity.beluga.goal;
 
 import com.mnsfhxy.johnny_s_biological_notes.config.Config;
 import com.mnsfhxy.johnny_s_biological_notes.entity.beluga.EntityBeluga;
-import com.mnsfhxy.johnny_s_biological_notes.entity.beluga.young.EntityYoungBeluga;
 import com.mnsfhxy.johnny_s_biological_notes.init.SoundInit;
 import com.mnsfhxy.johnny_s_biological_notes.tool.CooldownMonitor;
 import com.mnsfhxy.johnny_s_biological_notes.tool.SpeedModifier;
@@ -37,10 +36,10 @@ public class BelugaFrolicGoal extends Goal {
     private Optional<Vec3> targetPos;
     private EntityBeluga leaderBeluga;
 
-    private final EntityYoungBeluga beluga;
+    private final EntityBeluga beluga;
     private int healCounter = 0;
 
-    public BelugaFrolicGoal(EntityYoungBeluga beluga) {
+    public BelugaFrolicGoal(EntityBeluga beluga) {
         this.beluga = beluga;
         this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
 
@@ -66,7 +65,7 @@ public class BelugaFrolicGoal extends Goal {
         }
 
         // 领航者判断，必须是成年白鲸
-        if (this.beluga instanceof EntityBeluga
+        if (!this.beluga.isBaby()
                 && this.cooldownMonitor.checkIsActive()) {
             Optional<EntityBeluga> firstFoundBeluga =
                     firstBelugaInScopeWith(LEADER_DETECT_SCOPE);
@@ -89,7 +88,7 @@ public class BelugaFrolicGoal extends Goal {
     public void start() {
         if (this.role.equals(FrolicRole.LEADER)) {
             belugaSpeedModifier.enable();
-            ((EntityBeluga) this.beluga).setFrolicSpeedFlag(true);
+            this.beluga.setFrolicSpeedFlag(true);
 
             targetPos = randomCanReachedTarget(RANDOM_TARGET_RETRY_TIMES);
             healCounter = 0;
@@ -127,11 +126,11 @@ public class BelugaFrolicGoal extends Goal {
     public void stop() {
         if (this.role.equals(FrolicRole.LEADER)) {
             belugaSpeedModifier.disable();
-            ((EntityBeluga) this.beluga).setFrolicSpeedFlag(false);
+            this.beluga.setFrolicSpeedFlag(false);
         }
 
         if (this.role.equals(FrolicRole.FOLLOWER))
-            this.beluga.setFrolicLeaderId(EntityYoungBeluga.INVALID_LEADER_ID);
+            this.beluga.setFrolicLeaderId(EntityBeluga.INVALID_LEADER_ID);
 
         cooldownMonitor.reset();
     }
@@ -161,12 +160,10 @@ public class BelugaFrolicGoal extends Goal {
         Predicate<Entity> predicate = (entity) ->
                 entity instanceof EntityBeluga
                         && !((EntityBeluga) entity).hasLeader()
-                        && !((EntityBeluga) entity).isFrolicSpeed() //如果是白鲸，则既没有leader，本身也没有加速
-                        || entity instanceof EntityYoungBeluga
-                        && !((EntityYoungBeluga) entity).hasLeader();//如果是幼年白鲸，则没有leader
+                        && !((EntityBeluga) entity).isFrolicSpeed();
         this.beluga.level.getEntities(this.beluga, this.beluga.getBoundingBox().inflate(scope), predicate)
                 .stream()
-                .forEach(entity -> ((EntityYoungBeluga) entity).setFrolicLeaderId(leaderId));
+                .forEach(entity -> ((EntityBeluga) entity).setFrolicLeaderId(leaderId));
     }
 
     /**

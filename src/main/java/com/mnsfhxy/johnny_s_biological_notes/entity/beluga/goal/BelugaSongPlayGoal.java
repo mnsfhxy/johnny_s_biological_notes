@@ -1,8 +1,8 @@
 package com.mnsfhxy.johnny_s_biological_notes.entity.beluga.goal;
 
 import com.mnsfhxy.johnny_s_biological_notes.config.Config;
+import com.mnsfhxy.johnny_s_biological_notes.entity.beluga.EntityBeluga;
 import com.mnsfhxy.johnny_s_biological_notes.entity.beluga.message.BelugaSongParticlePacket;
-import com.mnsfhxy.johnny_s_biological_notes.entity.beluga.young.EntityYoungBeluga;
 import com.mnsfhxy.johnny_s_biological_notes.init.NetworkInit;
 import com.mnsfhxy.johnny_s_biological_notes.init.SoundInit;
 import com.mnsfhxy.johnny_s_biological_notes.tool.CooldownMonitor;
@@ -23,7 +23,7 @@ import java.util.Random;
  */
 public class BelugaSongPlayGoal extends Goal {
     private static final int COOLDOWN_INTERVAL = Config.getInstance().intValueOf("entity.beluga.songPlay.cooldownInterval");
-    private final EntityYoungBeluga beluga;
+    private final EntityBeluga beluga;
     private Optional<BlockPos> focusedBlockPos;
     private int scope;
     private int startTick;
@@ -31,7 +31,7 @@ public class BelugaSongPlayGoal extends Goal {
     private int particleNumber;
     private CooldownMonitor cooldownMonitor;
 
-    public BelugaSongPlayGoal(EntityYoungBeluga beluga, int scope, int particleInterval, int particleNumber) {
+    public BelugaSongPlayGoal(EntityBeluga beluga, int scope, int particleInterval, int particleNumber) {
         this.beluga = beluga;
         this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
 

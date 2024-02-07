@@ -80,7 +80,6 @@ public class ModLanguageProvider extends LanguageProvider {
         add(RegistrationInit.DRIFTER.get(), "Drifter");
         add(RegistrationInit.DRIFTER_EGG.get(), "Drifter Egg");
         add(RegistrationInit.BELUGA.get(), "Beluga");
-        add(RegistrationInit.YOUNG_BELUGA.get(), "Young Beluga");
         add(RegistrationInit.BELUGA_EGG.get(), "Beluga Egg");
         add(RegistrationInit.ITEM_NETHERITE_KATANA.get(), "Netherite Katana");
         add(RegistrationInit.ITEM_WOOD_KATANA.get(), "Wood Katana");

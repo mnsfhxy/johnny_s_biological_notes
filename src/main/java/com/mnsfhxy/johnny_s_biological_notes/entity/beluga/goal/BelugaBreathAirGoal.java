@@ -1,6 +1,6 @@
 package com.mnsfhxy.johnny_s_biological_notes.entity.beluga.goal;
 
-import com.mnsfhxy.johnny_s_biological_notes.entity.beluga.young.EntityYoungBeluga;
+import com.mnsfhxy.johnny_s_biological_notes.entity.beluga.EntityBeluga;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.Mth;
@@ -22,13 +22,13 @@ import java.util.EnumSet;
  * 白鲸呼吸空气的逻辑
  */
 public class BelugaBreathAirGoal extends Goal {
-    private final EntityYoungBeluga beluga;
+    private final EntityBeluga beluga;
     private final int maxAirSupply;
     private final int interval;
     private final int allowedIceSize = 1;
     private boolean hasBreakIce;
 
-    public BelugaBreathAirGoal(EntityYoungBeluga pBeluga, int maxAirSupply, int interval) {
+    public BelugaBreathAirGoal(EntityBeluga pBeluga, int maxAirSupply, int interval) {
         this.beluga = pBeluga;
         this.maxAirSupply = maxAirSupply;
         this.interval = interval;

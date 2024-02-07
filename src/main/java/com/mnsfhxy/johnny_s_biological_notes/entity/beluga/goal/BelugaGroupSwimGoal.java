@@ -1,7 +1,6 @@
 package com.mnsfhxy.johnny_s_biological_notes.entity.beluga.goal;
 
 import com.mnsfhxy.johnny_s_biological_notes.entity.beluga.EntityBeluga;
-import com.mnsfhxy.johnny_s_biological_notes.entity.beluga.young.EntityYoungBeluga;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.goal.Goal;
 
@@ -14,12 +13,12 @@ import java.util.function.Predicate;
  * 白鲸结群游泳的Goal
  */
 public class BelugaGroupSwimGoal extends Goal {
-    private final EntityYoungBeluga beluga;
+    private final EntityBeluga beluga;
     private int detectScope;
     private int maxDistance;
     private Optional<EntityBeluga> targetBeluga;
 
-    public BelugaGroupSwimGoal(EntityYoungBeluga beluga, int detectScope, int maxDistance) {
+    public BelugaGroupSwimGoal(EntityBeluga beluga, int detectScope, int maxDistance) {
         this.beluga = beluga;
         setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
 

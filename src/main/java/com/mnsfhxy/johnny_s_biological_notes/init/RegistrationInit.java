@@ -14,7 +14,6 @@ import com.mnsfhxy.johnny_s_biological_notes.block.gluedblock.BlockGluedConcrete
 import com.mnsfhxy.johnny_s_biological_notes.block.gluedblock.BlockGluedSand;
 import com.mnsfhxy.johnny_s_biological_notes.config.Config;
 import com.mnsfhxy.johnny_s_biological_notes.entity.beluga.EntityBeluga;
-import com.mnsfhxy.johnny_s_biological_notes.entity.beluga.young.EntityYoungBeluga;
 import com.mnsfhxy.johnny_s_biological_notes.entity.crab.EntityCrab;
 import com.mnsfhxy.johnny_s_biological_notes.entity.drifter.EntityDrifter;
 import com.mnsfhxy.johnny_s_biological_notes.entity.jelly.EntityJelly;
@@ -249,20 +248,6 @@ public class RegistrationInit {
                                 .sized(Config.getInstance().floatValueOf("entity.beluga.size.width"),
                                         Config.getInstance().floatValueOf("entity.beluga.size.height")), "beluga");
                         return ENTITY_TYPE_BELUGA;
-                    });
-    /**
-     * 这里因为需要手工创建幼年白鲸的实例，
-     * 需要用到幼年白鲸的实体类型，
-     * 因此将幼年白鲸注册分为两步
-     */
-    public static EntityType<EntityYoungBeluga> ENTITY_TYPE_YOUNG_BELUGA;
-    public static final RegistryObject<EntityType<EntityYoungBeluga>> YOUNG_BELUGA =
-            ENTITIES.register("young_beluga",
-                    () -> {
-                        ENTITY_TYPE_YOUNG_BELUGA = registerEntity(EntityType.Builder.of(EntityYoungBeluga::new,MobCategory.MONSTER)
-                                .sized(Config.getInstance().floatValueOf("entity.youngBeluga.size.width"),
-                                        Config.getInstance().floatValueOf("entity.youngBeluga.size.height")), "young_beluga");
-                        return ENTITY_TYPE_YOUNG_BELUGA;
                     });
 
     //Item注册

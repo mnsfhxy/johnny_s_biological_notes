@@ -1,7 +1,7 @@
 package com.mnsfhxy.johnny_s_biological_notes.entity.beluga.goal;
 
+import com.mnsfhxy.johnny_s_biological_notes.entity.beluga.EntityBeluga;
 import com.mnsfhxy.johnny_s_biological_notes.entity.beluga.message.BelugaBlowholePacket;
-import com.mnsfhxy.johnny_s_biological_notes.entity.beluga.young.EntityYoungBeluga;
 import com.mnsfhxy.johnny_s_biological_notes.init.NetworkInit;
 import com.mnsfhxy.johnny_s_biological_notes.init.SoundInit;
 import net.minecraft.core.BlockPos;
@@ -16,12 +16,12 @@ import java.util.EnumSet;
  * 水上停留的Goal
  */
 public class BelugaStayOnSurfaceGoal extends Goal {
-    private final EntityYoungBeluga beluga;
+    private final EntityBeluga beluga;
     private int startTick;
     private int stayTime;
     private Integer particleInterval;
 
-    public BelugaStayOnSurfaceGoal(EntityYoungBeluga beluga, int stayTime, int particleInterval) {
+    public BelugaStayOnSurfaceGoal(EntityBeluga beluga, int stayTime, int particleInterval) {
         this.beluga = beluga;
         this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
 
