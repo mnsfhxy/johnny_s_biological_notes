@@ -1,5 +1,6 @@
 package com.mnsfhxy.johnny_s_biological_notes.entity.jelly;
 
+import com.mnsfhxy.johnny_s_biological_notes.config.Config;
 import com.mnsfhxy.johnny_s_biological_notes.entity.jelly.bubble.EntityJellyBubble;
 import com.mnsfhxy.johnny_s_biological_notes.init.RegistrationInit;
 import com.mnsfhxy.johnny_s_biological_notes.init.SoundInit;
@@ -35,6 +36,7 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 public class EntityJelly extends PathfinderMob {
+    public static final int SPAWN_SPACE = Config.getInstance().intValueOf("entity.jelly.spawn.space");
     public float xBodyRot;
     public float xBodyRotO;
     public float zBodyRot;
@@ -121,6 +123,9 @@ public class EntityJelly extends PathfinderMob {
         return false;
     }
     public static boolean checkJellySpawnRules(EntityType<EntityJelly> pBat, LevelAccessor pLevel, MobSpawnType pSpawnType, BlockPos pPos, RandomSource pRandom) {
+        if (!hasEnoughSpace(pBat, pLevel, pSpawnType, pPos, pRandom))
+            return false;
+
         if(!pLevel.getBiome(pPos).is(Biomes.SMALL_END_ISLANDS)&&pPos.getY() >= 0 || pPos.getY() <= -64){
             return false;
         }
@@ -135,6 +140,68 @@ public class EntityJelly extends PathfinderMob {
 
             return i > pRandom.nextInt(j) ? false : checkMobSpawnRules(pBat, pLevel, pSpawnType, pPos, pRandom);
         }
+    }
+
+    /**
+     * 检查是否有足够的空间进行果冻的生成
+     * @param pJelly
+     * @param pLevel
+     * @param pSpawnType
+     * @param pPos
+     * @param pRandom
+     * @return
+     */
+    public static boolean hasEnoughSpace(EntityType<EntityJelly> pJelly, LevelAccessor pLevel, MobSpawnType pSpawnType, BlockPos pPos, RandomSource pRandom) {
+        if (SPAWN_SPACE == 0)
+            return true;
+
+        if (isBoundaryInvalid(pLevel, pPos)
+                || isInsideInvalid(pLevel, pPos))
+            return false;
+
+        return true;
+    }
+
+    /**
+     * 边界方块是否无效，只检查上方的方块
+     * @param pLevel
+     * @param pPos
+     * @return
+     */
+    private static boolean isBoundaryInvalid(LevelAccessor pLevel, BlockPos pPos) {
+        for(int dx = -SPAWN_SPACE; dx <= SPAWN_SPACE; dx++) {
+            for(int dy = 0; dy <= SPAWN_SPACE; dy++) {
+                for(int dz = -SPAWN_SPACE; dz <= SPAWN_SPACE; dz++) {
+                    if(Math.abs(dx) == SPAWN_SPACE || Math.abs(dy) == SPAWN_SPACE || Math.abs(dz) == SPAWN_SPACE) {
+                        if(!pLevel.getBlockState(pPos.offset(dx, dy, dz)).isAir()
+                                && !pLevel.getBlockState(pPos.offset(dx, dy, dz)).is(Blocks.WATER)) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 内部方块是否无效，只检查上方的方块
+     * @param pLevel
+     * @param pPos
+     * @return
+     */
+    private static boolean isInsideInvalid(LevelAccessor pLevel, BlockPos pPos) {
+        for(int dx = -(SPAWN_SPACE - 1); dx <= (SPAWN_SPACE - 1); dx++) {
+            for(int dy = 1; dy <= (SPAWN_SPACE - 1); dy++) {
+                for(int dz = -(SPAWN_SPACE - 1); dz <= (SPAWN_SPACE - 1); dz++) {
+                    if(!pLevel.getBlockState(pPos.offset(dx, dy, dz)).isAir()
+                            && !pLevel.getBlockState(pPos.offset(dx, dy, dz)).is(Blocks.WATER)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     @Override

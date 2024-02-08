@@ -22,7 +22,7 @@ apply plugin: 'org.parchmentmc.librarian.forgegradle'
 apply plugin: 'org.spongepowered.mixin'
 
 group = 'com.mnsfhxy'
-version = '1.1-beta'
+version = '1.2-beta'
 
 java {
     archivesBaseName = 'johnny_s_biological_notes'

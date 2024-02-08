@@ -211,5 +211,19 @@
   "johnny_s_biological_notes.sound.subtitle.tridacna_close": "Tridacna Close",
   "johnny_s_biological_notes.sound.subtitle.tridacna_death": "Tridacna Death",
   "johnny_s_biological_notes.sound.subtitle.tridacna_hurt": "Tridacna Hurt",
-  "johnny_s_biological_notes.sound.subtitle.tridacna_open": "Tridacna Open"
+  "johnny_s_biological_notes.sound.subtitle.tridacna_open": "Tridacna Open",
+
+"//":"生物：白鲸音效",
+  "johnny_s_biological_notes.sound.subtitle.beluga_ambient":"Beluga Pant",
+  "johnny_s_biological_notes.sound.subtitle.beluga_ambient-water":"Beluga Exchange",
+  "johnny_s_biological_notes.sound.subtitle.beluga_attack":"Beluga Attack",
+  "johnny_s_biological_notes.sound.subtitle.beluga_death":"Beluga Death",
+  "johnny_s_biological_notes.sound.subtitle.beluga_eat":"Beluga Eat",
+  "johnny_s_biological_notes.sound.subtitle.beluga_hurt":"Beluga Hurt",
+  "johnny_s_biological_notes.sound.subtitle.beluga_play":"Beluga Play",
+  "johnny_s_biological_notes.sound.subtitle.beluga_happy":"Beluga Joyful",
+  "johnny_s_biological_notes.sound.subtitle.beluga_sing":"Beluga Singing",
+  "johnny_s_biological_notes.sound.subtitle.beluga_swim":"Beluga Swim",
+  "johnny_s_biological_notes.sound.subtitle.beluga_breath":"Beluga Breath",
+  "johnny_s_biological_notes.sound.subtitle.beluga_splash":"Beluga Splash"
 }

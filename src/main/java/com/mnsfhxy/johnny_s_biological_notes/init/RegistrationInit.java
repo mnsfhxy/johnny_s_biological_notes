@@ -226,7 +226,7 @@ public class RegistrationInit {
     public static final RegistryObject<EntityType<EntityJelly>> JELLY =
             ENTITIES.register("jelly",
                     () -> registerEntity(EntityType.Builder.of(EntityJelly::new, MobCategory.AMBIENT)
-                            .sized(1F, 1F), "jelly"));
+                            .sized(Config.getInstance().floatValueOf("entity.jelly.size.width"), Config.getInstance().floatValueOf("entity.jelly.size.height")), "jelly"));
 
     public static final RegistryObject<EntityType<EntityJellyBubble>> JELLY_BUBBLE =
             ENTITIES.register("jelly_bubble",

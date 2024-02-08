@@ -136,9 +136,9 @@ public class BiomeSpawnConfig {
                     Biomes.LUSH_CAVES,
                     Biomes.SMALL_END_ISLANDS
             ),
-            50,
-            1,
-            6,
+            Config.getInstance().intValueOf("entity.jelly.spawn.weight"),
+            Config.getInstance().intValueOf("entity.jelly.spawn.min"),
+            Config.getInstance().intValueOf("entity.jelly.spawn.max"),
             SpawnPlacements.Type.ON_GROUND,
             Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
             EntityJelly::checkJellySpawnRules

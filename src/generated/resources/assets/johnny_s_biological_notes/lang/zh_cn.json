@@ -213,5 +213,19 @@
   "johnny_s_biological_notes.sound.subtitle.tridacna_close": "砗磲：关闭外壳",
   "johnny_s_biological_notes.sound.subtitle.tridacna_death": "砗磲：死亡",
   "johnny_s_biological_notes.sound.subtitle.tridacna_hurt": "砗磲：受伤",
-  "johnny_s_biological_notes.sound.subtitle.tridacna_open": "砗磲：打开外壳"
+  "johnny_s_biological_notes.sound.subtitle.tridacna_open": "砗磲：打开外壳",
+
+"//":"生物：白鲸音效",
+  "johnny_s_biological_notes.sound.subtitle.beluga_ambient":"白鲸：喘息",
+  "johnny_s_biological_notes.sound.subtitle.beluga_ambient-water":"白鲸：交流",
+  "johnny_s_biological_notes.sound.subtitle.beluga_attack":"白鲸：攻击",
+  "johnny_s_biological_notes.sound.subtitle.beluga_death":"白鲸：死亡",
+  "johnny_s_biological_notes.sound.subtitle.beluga_eat":"白鲸：进食",
+  "johnny_s_biological_notes.sound.subtitle.beluga_hurt":"白鲸：受伤",
+  "johnny_s_biological_notes.sound.subtitle.beluga_play":"白鲸：嬉戏",
+  "johnny_s_biological_notes.sound.subtitle.beluga_happy":"白鲸，愉悦",
+  "johnny_s_biological_notes.sound.subtitle.beluga_sing":"白鲸：鸣唱",
+  "johnny_s_biological_notes.sound.subtitle.beluga_swim":"白鲸，游泳",
+  "johnny_s_biological_notes.sound.subtitle.beluga_breath":"白鲸，呼吸",
+  "johnny_s_biological_notes.sound.subtitle.beluga_splash":"白鲸，溅起水花"
 }
