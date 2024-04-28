@@ -3,6 +3,7 @@ package com.mnsfhxy.johnny_s_biological_notes.init;
 import com.mnsfhxy.johnny_s_biological_notes.JohnnySBiologicalNotes;
 import com.mnsfhxy.johnny_s_biological_notes.capability.spirit.SpiritEvents;
 import com.mnsfhxy.johnny_s_biological_notes.entity.beluga.EntityBeluga;
+import com.mnsfhxy.johnny_s_biological_notes.entity.betty.EntityBetty;
 import com.mnsfhxy.johnny_s_biological_notes.entity.crab.EntityCrab;
 import com.mnsfhxy.johnny_s_biological_notes.entity.drifter.EntityDrifter;
 import com.mnsfhxy.johnny_s_biological_notes.entity.jelly.EntityJelly;
@@ -123,6 +124,7 @@ public class ModInit {
         event.put(RegistrationInit.TRIDACNA.get(), EntityTridacna.prepareAttributes().build());
         event.put(RegistrationInit.LOITER.get(), EntityLoiter.prepareAttributes().build());
         event.put(RegistrationInit.BELUGA.get(), EntityBeluga.prepareAttributes().build());
+        event.put(RegistrationInit.BETTY.get(), EntityBetty.prepareAttributes().build());
 
     }
 

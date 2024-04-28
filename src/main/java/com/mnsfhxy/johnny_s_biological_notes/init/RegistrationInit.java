@@ -1,19 +1,16 @@
 package com.mnsfhxy.johnny_s_biological_notes.init;
 
-import com.mnsfhxy.johnny_s_biological_notes.Item.ItemGlueBottle;
-import com.mnsfhxy.johnny_s_biological_notes.Item.ItemKatana;
-import com.mnsfhxy.johnny_s_biological_notes.Item.ItemModFishBucket;
+import com.mnsfhxy.johnny_s_biological_notes.Item.*;
 import com.mnsfhxy.johnny_s_biological_notes.JohnnySBiologicalNotes;
-import com.mnsfhxy.johnny_s_biological_notes.block.BlockEcoBottle;
-import com.mnsfhxy.johnny_s_biological_notes.block.BlockJelly;
-import com.mnsfhxy.johnny_s_biological_notes.block.BlockJellyEmbryo;
-import com.mnsfhxy.johnny_s_biological_notes.block.BlockTridacnaShell;
+import com.mnsfhxy.johnny_s_biological_notes.block.*;
 import com.mnsfhxy.johnny_s_biological_notes.block.blockentity.BEJellyEmbryo;
+import com.mnsfhxy.johnny_s_biological_notes.block.blockentity.BESigil;
 import com.mnsfhxy.johnny_s_biological_notes.block.blockentity.BETridacnaShell;
 import com.mnsfhxy.johnny_s_biological_notes.block.gluedblock.BlockGluedConcretePowder;
 import com.mnsfhxy.johnny_s_biological_notes.block.gluedblock.BlockGluedSand;
 import com.mnsfhxy.johnny_s_biological_notes.config.Config;
 import com.mnsfhxy.johnny_s_biological_notes.entity.beluga.EntityBeluga;
+import com.mnsfhxy.johnny_s_biological_notes.entity.betty.EntityBetty;
 import com.mnsfhxy.johnny_s_biological_notes.entity.crab.EntityCrab;
 import com.mnsfhxy.johnny_s_biological_notes.entity.drifter.EntityDrifter;
 import com.mnsfhxy.johnny_s_biological_notes.entity.jelly.EntityJelly;
@@ -107,6 +104,8 @@ public class RegistrationInit {
     public static final RegistryObject<BlockJelly> BLOCK_JELLY_WHITE = BLOCKS.register("jelly_block_white", BlockJelly::new);
     public static final RegistryObject<BlockJelly> BLOCK_JELLY_YELLOW = BLOCKS.register("jelly_block_yellow", BlockJelly::new);
     public static final RegistryObject<BlockJellyEmbryo> BLOCK_JELLY_EMBRYO = BLOCKS.register("jelly_embryo", BlockJellyEmbryo::new);
+
+
     //涂胶方块
     public static final RegistryObject<BlockGluedSand> BLOCK_GLUED_SAND = BLOCKS.register("glued_sand", () -> new BlockGluedSand(14406560, BlockBehaviour.Properties.of(Material.SAND, MaterialColor.SAND).strength(0.5F).sound(SoundType.SAND)));
     public static final RegistryObject<BlockGluedSand> BLOCK_GLUED_RED_SAND = BLOCKS.register("glued_red_sand", () -> new BlockGluedSand(11098145, BlockBehaviour.Properties.of(Material.SAND, MaterialColor.SAND).strength(0.5F).sound(SoundType.SAND)));
@@ -127,6 +126,8 @@ public class RegistrationInit {
     public static final RegistryObject<BlockGluedConcretePowder> BLOCK_GLUED_RED_CONCRETE_POWDER = BLOCKS.register("glued_red_concrete_powder", () -> new BlockGluedConcretePowder(Blocks.RED_CONCRETE, BlockBehaviour.Properties.of(Material.SAND, DyeColor.RED).strength(0.5F).sound(SoundType.SAND)));
     public static final RegistryObject<BlockGluedConcretePowder> BLOCK_GLUED_BLACK_CONCRETE_POWDER = BLOCKS.register("glued_black_concrete_powder", () -> new BlockGluedConcretePowder(Blocks.BLACK_CONCRETE, BlockBehaviour.Properties.of(Material.SAND, DyeColor.BLACK).strength(0.5F).sound(SoundType.SAND)));
     public static final RegistryObject<BlockEcoBottle> BLOCK_ECO_BOTTLE = BLOCKS.register("eco_bottle", BlockEcoBottle::new);
+
+    public static final RegistryObject<BlockSigil> BLOCK_SIGIL = BLOCKS.register("sigil", BlockSigil::new);
 //    public static final RegistryObject<BlockEcoBottle> BLOCK_ECO_BOTTLE_BUBBLE_CORAL = BLOCKS.register("eco_bottle_bubble_coral", BlockEcoBottle::new);
 //    public static final RegistryObject<BlockEcoBottle> BLOCK_ECO_BOTTLE_FIRE_CORAL = BLOCKS.register("eco_bottle_fire_coral", BlockEcoBottle::new);
 //    public static final RegistryObject<BlockEcoBottle> BLOCK_ECO_BOTTLE_HORN_CORAL = BLOCKS.register("eco_bottle_horn_coral", BlockEcoBottle::new);
@@ -137,6 +138,8 @@ public class RegistrationInit {
     public static final RegistryObject<BlockTridacnaShell> BLOCK_TRIDACNA_SHELL_BROKEN = BLOCKS.register("tridacna_shell_broken", BlockTridacnaShell::new);
     public static final RegistryObject<BlockTridacnaShell> BLOCK_OLDER_TRIDACNA_SHELL = BLOCKS.register("older_tridacna_shell", BlockTridacnaShell::new);
     public static final RegistryObject<BlockTridacnaShell> BLOCK_OLDER_TRIDACNA_SHELL_BROKEN = BLOCKS.register("older_tridacna_shell_broken", BlockTridacnaShell::new);
+
+    public static final RegistryObject<Block> BLOCK_LOSE_SIGIL=BLOCKS.register("lose_sigil",()->new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(0.3F,6F).sound(SoundType.STONE)));
 
     public static final RegistryObject<Item> BLOCK_ITEM_JELLY_EMBRYO = fromBlock(BLOCK_JELLY_EMBRYO);
     public static final RegistryObject<Item> BLOCK_ITEM_JELLY = fromBlock(BLOCK_JELLY);
@@ -183,13 +186,17 @@ public class RegistrationInit {
     public static final RegistryObject<Item> BLOCK_ITEM_OLDER_TRIDACNA_SHELL_BROKEN=fromBlock(BLOCK_OLDER_TRIDACNA_SHELL_BROKEN,16);
     public static final RegistryObject<Item> BLOCK_ITEM_TRIDACNA_SHELL_BROKEN=fromBlock(BLOCK_TRIDACNA_SHELL_BROKEN,16);
 
+    public static final RegistryObject<Item> BLOCK_ITEM_LOSE_SIGIL=fromBlock(BLOCK_LOSE_SIGIL);
 
+    public static final RegistryObject<Item> BLOCK_ITEM_SIGIL = fromBlock(BLOCK_SIGIL);
 
 
 
     //BlockEntityType
     public static final RegistryObject<BlockEntityType<BEJellyEmbryo>> JELLY_EMBRYO_BE = BLOCK_ENTITY_TYPE.register("jelly_embryo", () -> BlockEntityType.Builder.of(BEJellyEmbryo::new, (BLOCK_JELLY_EMBRYO.get())).build(null));
     public static final RegistryObject<BlockEntityType<BETridacnaShell>> TRIDACNA_SHELL_BE = BLOCK_ENTITY_TYPE.register("tridacna_shell", () -> BlockEntityType.Builder.of(BETridacnaShell::new, (BLOCK_TRIDACNA_SHELL.get())).build(null));
+    public static final RegistryObject<BlockEntityType<BESigil>> SIGIL_BE = BLOCK_ENTITY_TYPE.register("sigil", () -> BlockEntityType.Builder.of(BESigil::new, (BLOCK_SIGIL.get())).build(null));
+
 //    public static final RegistryObject<BlockEntityType<BETridacnaShell>> OLDER_TRIDACNA_SHELL_BE = BLOCK_ENTITY_TYPE.register("older_tridacna_shell", () -> BlockEntityType.Builder.of(BETridacnaShell::new, (BLOCK_TRIDACNA_SHELL.get())).build(null));
 //    public static final RegistryObject<BlockEntityType<BETridacnaShell>> TRIDACNA_SHELL_BROKEN_BE = BLOCK_ENTITY_TYPE.register("tridacna_shell_broken", () -> BlockEntityType.Builder.of(BETridacnaShell::new, (BLOCK_TRIDACNA_SHELL.get())).build(null));
 //    public static final RegistryObject<BlockEntityType<BETridacnaShell>> OLDER_TRIDACNA_SHELL_BROKEN_BE = BLOCK_ENTITY_TYPE.register("older_tridacna_shell_broken", () -> BlockEntityType.Builder.of(BETridacnaShell::new, (BLOCK_TRIDACNA_SHELL.get())).build(null));
@@ -249,6 +256,13 @@ public class RegistrationInit {
                                         Config.getInstance().floatValueOf("entity.beluga.size.height")), "beluga");
                         return ENTITY_TYPE_BELUGA;
                     });
+    public static final RegistryObject<EntityType<EntityBetty>> BETTY =
+            ENTITIES.register("betty",
+                    () -> registerEntity(EntityType.Builder.of(EntityBetty::new,MobCategory.CREATURE)
+                            .sized(1F, 1F), "betty"));
+
+
+
 
     //Item注册
     //egg
@@ -277,7 +291,14 @@ public class RegistrationInit {
             ITEMS.register(
                     "beluga", () -> new ForgeSpawnEggItem(BELUGA, Config.getInstance().intValueOfHexString("entity.beluga.egg.color.background"), Config.getInstance().intValueOfHexString("entity.beluga.egg.color.highlight"), new Item.Properties().tab(ModInit.ITEM_GROUP_EGG)));
 
+    public static final RegistryObject<Item> BETTY_EGG =
+            ITEMS.register(
+                    "betty", () -> new ForgeSpawnEggItem(BETTY, 0x433837, 0x52cfd9, new Item.Properties().tab(ModInit.ITEM_GROUP_EGG)));
+
     public static final RegistryObject<Item> ITEM_FORGED_PLATE = ITEMS.register("forged_plate", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP_MATERIAL)));
+    public static final RegistryObject<Item> ITEM_BETTY_CONTRACT = ITEMS.register("betty_contract", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP_TOOL)));
+    public static final RegistryObject<Item> ITEM_BETTY_WITNESS = ITEMS.register("betty_witness", () -> new ItemBettyWitness(
+            new Item.Properties().tab(ModInit.ITEM_GROUP_TOOL)));
 
     public static final RegistryObject<Item> ITEM_WOOD_BLADE = ITEMS.register("wood_blade", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP_MATERIAL)));
     public static final RegistryObject<Item> ITEM_STONE_BLADE = ITEMS.register("stone_blade", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP_MATERIAL)));
@@ -299,6 +320,8 @@ public class RegistrationInit {
     public static final RegistryObject<Item> ITEM_CRAB_MEAT = ITEMS.register("crab_meat", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP_FOOD).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.4f).meat().build())));
     public static final RegistryObject<Item> ITEM_COOKED_CRAB_MEAT = ITEMS.register("cooked_crab_meat", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP_FOOD).food(new FoodProperties.Builder().nutrition(5).saturationMod(3f).meat().build())));
     public static final RegistryObject<Item> ITEM_CRAB_BUCKET = ITEMS.register("crab_bucket", () -> new ItemModFishBucket(CRAB, Fluids.WATER, new Item.Properties().tab(ModInit.ITEM_GROUP_TOOL)));
+
+    public static final RegistryObject<Item> ITEM_DELICATE_LIGHT = ITEMS.register("delicate_light", () -> new ItemDelicateLight( new Item.Properties().tab(ModInit.ITEM_GROUP_MATERIAL)));
 
     public static final RegistryObject<Item> ITEM_JELLY = ITEMS.register("jelly_jelly", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP_FOOD).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.4f).build())));
     public static final RegistryObject<Item> ITEM_JELLY_BLACK = ITEMS.register("jelly_black", () -> new Item(new Item.Properties().tab(ModInit.ITEM_GROUP_FOOD).food(new FoodProperties.Builder().nutrition(2).saturationMod(0.4f).build())));

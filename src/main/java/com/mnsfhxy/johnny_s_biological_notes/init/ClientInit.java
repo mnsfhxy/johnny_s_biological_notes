@@ -5,8 +5,11 @@ import com.mnsfhxy.johnny_s_biological_notes.capability.spirit.SpiritOverlay;
 import com.mnsfhxy.johnny_s_biological_notes.entity.beluga.ModelBeluga;
 import com.mnsfhxy.johnny_s_biological_notes.entity.beluga.RendererBeluga;
 import com.mnsfhxy.johnny_s_biological_notes.entity.beluga.young.ModelYoungBeluga;
+import com.mnsfhxy.johnny_s_biological_notes.entity.betty.ModelBetty;
 import com.mnsfhxy.johnny_s_biological_notes.entity.crab.ModelCrab;
 import com.mnsfhxy.johnny_s_biological_notes.entity.crab.RendererCrab;
+import com.mnsfhxy.johnny_s_biological_notes.entity.betty.RendererBetty;
+
 import com.mnsfhxy.johnny_s_biological_notes.entity.drifter.ModelDrifter;
 import com.mnsfhxy.johnny_s_biological_notes.entity.drifter.RendererDrifter;
 import com.mnsfhxy.johnny_s_biological_notes.entity.jelly.ModelJelly;
@@ -35,6 +38,7 @@ public class ClientInit {
     //        注册生物Layers
     @SubscribeEvent
     public static void onRegisterLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
+        event.registerLayerDefinition(ModelBetty.LAYER_LOCATION, ModelBetty::createBodyLayer);
         event.registerLayerDefinition(ModelCrab.LAYER_LOCATION, ModelCrab::createBodyLayer);
         event.registerLayerDefinition(ModelDrifter.LAYER_LOCATION,ModelDrifter::createBodyLayer);
         event.registerLayerDefinition(ModelPeeper.LAYER_LOCATION,ModelPeeper::createBodyLayer);
@@ -52,6 +56,7 @@ public class ClientInit {
     @SubscribeEvent
     public static void onRegisterRenderer(EntityRenderersEvent.RegisterRenderers event) {
         //注意Render new只能有一个参数
+        event.registerEntityRenderer(RegistrationInit.BETTY.get(), RendererBetty::new);
         event.registerEntityRenderer(RegistrationInit.CRAB.get(), RendererCrab::new);
         event.registerEntityRenderer(RegistrationInit.DRIFTER.get(), RendererDrifter::new);
         event.registerEntityRenderer(RegistrationInit.PEEPER.get(), RendererPeeper::new);

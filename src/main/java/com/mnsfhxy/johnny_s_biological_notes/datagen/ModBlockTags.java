@@ -31,6 +31,23 @@ public class ModBlockTags extends BlockTagsProvider {
 //                .add(Registration.FIRST_BLOCK.get());
 //        tag(BlockTags.NEEDS_IRON_TOOL)
 //                .add(Registration.FIRST_BLOCK.get());
+        //在SIGIL_PLACEABLE里增加这些标签石头,花岗岩,闪长岩,安山岩,深板岩,橡木原木,云杉原木,白桦原木,丛林原木,金合欢原木,深色橡木原木,红树原木,绯红菌柄,诡异菌柄
+
+        tag(TagsInit.Blocks.SIGIL_PLACEABLE).add(
+                Blocks.STONE,
+                Blocks.GRANITE,
+                Blocks.DIORITE,
+                Blocks.ANDESITE,
+                Blocks.DEEPSLATE,
+                Blocks.OAK_LOG,
+                Blocks.SPRUCE_LOG,
+                Blocks.BIRCH_LOG,
+                Blocks.JUNGLE_LOG,
+                Blocks.ACACIA_LOG,
+                Blocks.DARK_OAK_LOG,
+                Blocks.CRIMSON_STEM,
+                Blocks.WARPED_STEM
+        );
         tag(TagsInit.Blocks.MINEABLE_WITH_KATANA).add(Blocks.BAMBOO, Blocks.COCOA);
         tag(TagsInit.Blocks.SAFE_ON_JELLY).add(
                 Blocks.WATER,

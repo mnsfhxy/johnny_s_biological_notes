@@ -139,7 +139,13 @@ public class ModLanguageZhProvider extends LanguageProvider {
         add(RegistrationInit.BLOCK_JELLY_RED.get(), "红色果冻方块");
         add(RegistrationInit.BLOCK_JELLY_WHITE.get(), "白色果冻方块");
         add(RegistrationInit.BLOCK_JELLY_YELLOW.get(), "黄色果冻方块");
-
+        add(RegistrationInit.BETTY_EGG.get(),"光灵蛋");
+        add(RegistrationInit.BETTY.get(),"光灵");
+        add(RegistrationInit.ITEM_DELICATE_LIGHT.get(),"精饰灯壶");
+        add(RegistrationInit.ITEM_BETTY_CONTRACT.get(),"光灵契约");
+        add(RegistrationInit.ITEM_BETTY_WITNESS.get(),"契约的见证");
+        add(RegistrationInit.BLOCK_SIGIL.get(),"咒印");
+        add(RegistrationInit.BLOCK_LOSE_SIGIL.get(),"失效咒印");
 //        add(RegistrationInit.BLOCK_ITEM_JELLY.get(), "果冻方块");
 //        add(RegistrationInit.BLOCK_ITEM_JELLY_BLACK.get(), "黑色果冻方块");
 //        add(RegistrationInit.BLOCK_ITEM_JELLY_BLUE.get(), "蓝色果冻方块");

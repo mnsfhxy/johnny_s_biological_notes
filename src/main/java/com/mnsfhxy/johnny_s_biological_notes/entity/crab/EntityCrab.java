@@ -128,8 +128,8 @@ public class EntityCrab extends Animal implements Bucketable {
 
     public EntityCrab(EntityType<? extends Animal> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
-        this.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
-        this.setPathfindingMalus(BlockPathTypes.WATER_BORDER, 0.0F);
+//        this.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
+//        this.setPathfindingMalus(BlockPathTypes.WATER_BORDER, 0.0F);
 //        if(this.level.isClientSide)
 //        crabWalkingSoundInstance=new CrabWalkingSoundInstance(SoundInit.CRAB_WALKING.get(),this.getSoundSource(),this.getSoundVolume(),this.getVoicePitch(),this,this.getRandom().nextLong());
     }

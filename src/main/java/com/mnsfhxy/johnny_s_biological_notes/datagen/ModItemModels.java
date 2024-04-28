@@ -31,6 +31,8 @@ public class ModItemModels extends ItemModelProvider {
 //        singleTexture(Registration.MYSTERIOUS_INGOT.getId().getPath(),
 //                mcLoc("item/generated"),
 //                "layer0", modLoc("item/mysterious_ingot"));
+        withExistingParent(RegistrationInit.BLOCK_ITEM_LOSE_SIGIL.getId().getPath(), modLoc("block/sigil"));
+        withExistingParent(RegistrationInit.BLOCK_ITEM_SIGIL.getId().getPath(), modLoc("block/sigil"));
         withExistingParent(RegistrationInit.BLOCK_ITEM_JELLY.getId().getPath(), modLoc("block/jelly_block"));
         withExistingParent(RegistrationInit.BLOCK_ITEM_JELLY_BLACK.getId().getPath(), modLoc("block/jelly_block_black"));
         withExistingParent(RegistrationInit.BLOCK_ITEM_JELLY_BLUE.getId().getPath(), modLoc("block/jelly_block_blue"));
@@ -70,9 +72,10 @@ public class ModItemModels extends ItemModelProvider {
 //        withExistingParent(RegistrationInit.BLOCK_ITEM_ECO_BOTTLE.getId().getPath(), modLoc("block/eco_bottle_ceiling"));
         withExistingParent(RegistrationInit.BLOCK_ITEM_TRIDACNA_SHELL.getId().getPath(), modLoc("block/tridacna_shell_open"));
         withExistingParent(RegistrationInit.BLOCK_ITEM_TRIDACNA_SHELL_BROKEN.getId().getPath(), modLoc("block/tridacna_shell_broken_open"));
+
         withExistingParent(RegistrationInit.BLOCK_ITEM_OLDER_TRIDACNA_SHELL_BROKEN.getId().getPath(), modLoc("block/older_tridacna_shell_broken_open"));
         withExistingParent(RegistrationInit.BLOCK_ITEM_OLDER_TRIDACNA_SHELL.getId().getPath(), modLoc("block/older_tridacna_shell_open"));
-
+        withExistingParent(RegistrationInit.BETTY_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(RegistrationInit.LOITER_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(RegistrationInit.TRIDACNA_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
         withExistingParent(RegistrationInit.JELLY_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
@@ -90,6 +93,10 @@ public class ModItemModels extends ItemModelProvider {
         singleTexture(RegistrationInit.ITEM_DIAMOND_BLADE.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/diamond_blade"));
         singleTexture(RegistrationInit.ITEM_IRON_BLADE.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/iron_blade"));
         singleTexture(RegistrationInit.ITEM_NETHERITE_BLADE.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/netherite_blade"));
+        singleTexture(RegistrationInit.ITEM_BETTY_CONTRACT.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/betty_contract"));
+        singleTexture(RegistrationInit.ITEM_BETTY_WITNESS.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/betty_contract"));
+        singleTexture(RegistrationInit.ITEM_DELICATE_LIGHT.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/delicate_light"));
+
         singleTexture(RegistrationInit.ITEM_STONE_BLADE.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/stone_blade"));
 
         singleTexture(RegistrationInit.ITEM_WOOD_KATANA.getId().getPath(), mcLoc("item/handheld"), "layer0", modLoc("item/wood_katana"));
